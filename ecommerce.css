@@ -47,7 +47,7 @@ nav {
 
 .cover {
   grid-area: cover;
-  background-image: url("../img/ecommerce.png");
+  background-image: url("img/ecommerce.png");
   background-size: cover;
   background-position: center;
 }
