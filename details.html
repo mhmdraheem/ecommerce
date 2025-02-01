@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link rel="stylesheet" href="ecommerce.css" />
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a> <span> > </span>
+      <a href="#">Product Details</a>
+    </nav>
+
+    <div class="product-details">
+      <div class="product-gallery">
+        <img id="main-image" src="img/placeholder.jpg" alt="Product Image" />
+        <div class="thumbnails">
+          <img src="img/placeholder.jpg" alt="Thumb 1" />
+          <img src="img/placeholder.jpg" alt="Thumb 2" />
+          <img src="img/placeholder.jpg" alt="Thumb 3" />
+        </div>
+      </div>
+      <div class="product-info">
+        <h1 class="product-title">Product Name</h1>
+        <span class="rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </span>
+        <p class="price">$99.99</p>
+        <p class="stock">Availability: <span class="in-stock">In Stock</span></p>
+        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque varius.</p>
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="buy-now">Buy Now</button>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <h2>Customer Reviews</h2>
+      <p>No reviews yet.</p>
+    </div>
+
+    <div class="related-products">
+      <h2>Related Products</h2>
+      <div class="products">
+        <div class="product">
+          <img src="img/placeholder.jpg" alt="Product 1" />
+          <p>Product Name</p>
+          <p>$79.99</p>
+        </div>
+        <div class="product">
+          <img src="img/placeholder.jpg" alt="Product 2" />
+          <p>Product Name</p>
+          <p>$89.99</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.querySelectorAll(".thumbnails img").forEach((img) => {
+      img.onclick = function () {
+        document.getElementById("main-image").src = this.src;
+      };
+    });
+  </script>
+</html>

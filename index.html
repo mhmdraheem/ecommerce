@@ -11,363 +11,67 @@
       rel="stylesheet"
     />
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="ecommerce.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <nav>
-      <a href="#">Home</a>
-      <span> > </span>
-      <a href="#">Shop</a>
-    </nav>
-    <div class="cover"></div>
-    <aside>
-      <div class="side-menu nested-menu categories">
-        <div class="header">Categories</div>
-        <ul class="collapsed">
-          <li>
-            <a href="#">Hot Category</a>
-            <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-          </li>
-          <ul class="collapsed">
-            <li>
-              <a href="#">Dresses</a>
-              <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-            </li>
-            <li><a href="#">Short Dresses</a></li>
-            <li><a href="#">Meduim Dresses</a></li>
-            <li><a href="#">Long Dresses</a></li>
-          </ul>
-          <li><a href="#">Jackets & Coats</a></li>
-          <li><a href="#">Sweaters</a></li>
-          <ul class="collapsed">
-            <li>
-              <a href="#">Jeans</a>
-              <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-            </li>
-            <li><a href="#">Skinny</a></li>
-            <li><a href="#">Regular</a></li>
-            <li><a href="#">Slim Fit</a></li>
-          </ul>
-          <li><a href="#">Blouses & Shirts</a></li>
-        </ul>
-        <ul class="collapsed">
-          <li>
-            <a href="#">Outwear and Jackets</a>
-            <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-          </li>
-          <li><a href="#">Sub category</a></li>
-          <li><a href="#">Sub category</a></li>
-        </ul>
-        <ul class="collapsed">
-          <li>
-            <a href="#">Weddings & Events</a>
-            <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-          </li>
-          <li><a href="#">Sub category</a></li>
-          <li><a href="#">Sub category</a></li>
-          <li><a href="#">Sub category</a></li>
-          <li><a href="#">Sub category</a></li>
-        </ul>
-        <ul class="collapsed">
-          <li>
-            <a href="#">Bottoms</a>
-            <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-          </li>
-          <li><a href="#">Sub category</a></li>
-          <li><a href="#">Sub category</a></li>
-          <ul class="collapsed">
-            <li>
-              <a href="#">Shorts</a>
-              <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-            </li>
-            <li><a href="#">Sub category</a></li>
-            <li><a href="#">Sub category</a></li>
-            <ul class="collapsed">
-              <li>
-                <a href="#">Slips</a>
-                <i class="nested-menu-icon fa-solid fa-caret-down"></i>
-              </li>
-              <li><a href="#">Sub category</a></li>
-              <li><a href="#">Sub category</a></li>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <h1>Shopify</h1>
+            <p>One-click shopping</p>
+          </div>
+          <i class="fa-solid fa-cart-shopping cart">
+            <span class="alert"></span>
+          </i>
+          <div class="profile">
+            <img class="avatar" src="img/avatar.png" alt="profile-picture" />
+            <ul class="profile-menu">
+              <li>Your account</li>
+              <li>Your orders</li>
+              <li>Your payment methods</li>
+              <li>Your addresses</li>
+              <li><a href="#">Sign out</a></li>
             </ul>
-          </ul>
-        </ul>
-        <ul class="collapsed">
-          <li><a href="#">Tops & Sets</a></li>
-        </ul>
-        <ul class="collapsed">
-          <li><a href="#">Accessories</a></li>
-        </ul>
-      </div>
-      <div class="side-menu colors">
-        <div class="header">Colors</div>
-        <ul>
-          <li color="gray"><a href="#">Gray(0)</a></li>
-          <li color="white"><a href="#">White(10)</a></li>
-          <li color="black"><a href="#">Black(5)</a></li>
-          <li color="camel"><a href="#">Camel(1)</a></li>
-          <li color="orange"><a href="#">Orange(1)</a></li>
-        </ul>
-      </div>
-    </aside>
-    <div class="display-settings">
-      <i class="active products-layout-icon fa-solid fa-table-cells"></i>
-      <i class="products-layout-icon fa-solid fa-bars"></i>
-      <span class="summary-label">Showing 1 to 9 of 20 (2 pages)</span>
-      <div class="products-count">
-        <span class="products-count-label">Show</span>
-        <select class="products-count-select" id="products-count-select">
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-        </select>
-      </div>
-      <div class="sort-by">
-        <span class="sort-by-label">Sort by</span>
-        <select class="sort-by-select" id="sort-by-select">
-          <option value="rating">Rating (Highest to Lowest)</option>
-          <option value="name">Name (A to Z)</option>
-          <option value="price">Price (Low to High)</option>
-        </select>
-      </div>
-    </div>
-    <div class="products">
-      <div class="product">
-        <div class="product-img-wrapper">
-          <img src="img/joystick.jpg" alt="joystick" />
-        </div>
-        <div class="details">
-          <span class="rating">
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star-half-stroke"></i>
-            <i class="rating-star fa-solid fa-star"></i>
-          </span>
-          <h3 class="title">Cale 6 Eu Accumsan Massa Facilisis Madden By Steve</h3>
-          <span class="stock">Availability: <span class="count">299</span> in stock</span>
-          <div class="price">
-            <span class="old">&euro;23.90</span>
-            <span class="current">&euro;21.90</span>
-          </div>
-          <!-- <p class="description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ipsam, doloribus nemo iusto enim provident
-            id illum impedit delectus inventore odio alias sunt exercitationem accusamus illo vel ullam cumque rem?
-          </p> -->
-          <div class="shortcuts-icons">
-            <i class="shortcut-icon fa-solid fa-cart-shopping"></i>
-            <i class="shortcut-icon fa-regular fa-heart"></i>
-            <i class="shortcut-icon fa-solid fa-sliders"></i>
-            <i class="shortcut-icon fa-solid fa-up-right-from-square"></i>
           </div>
         </div>
       </div>
-      <div class="product">
-        <div class="product-img-wrapper">
-          <img src="img/joystick.jpg" alt="joystick" />
+    </nav>
+    <div class="content">
+      <div class="overlay"></div>
+      <div class="cover-section">
+        <div class="container">
+          <div class="cover"></div>
         </div>
-        <div class="details">
-          <span class="rating">
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star-half-stroke"></i>
-            <i class="rating-star fa-solid fa-star"></i>
-          </span>
-          <h3 class="title">Cale 6 Eu Accumsan Massa Facilisis Madden By Steve</h3>
-          <span class="stock">Availability: <span class="count">299</span> in stock</span>
-          <div class="price">
-            <span class="old">&euro;23.90</span>
-            <span class="current">&euro;21.90</span>
-          </div>
-          <!-- <p class="description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ipsam, doloribus nemo iusto enim provident
-            id illum impedit delectus inventore odio alias sunt exercitationem accusamus illo vel ullam cumque rem?
-          </p> -->
-          <div class="shortcuts-icons">
-            <i class="shortcut-icon fa-solid fa-cart-shopping"></i>
-            <i class="shortcut-icon fa-regular fa-heart"></i>
-            <i class="shortcut-icon fa-solid fa-sliders"></i>
-            <i class="shortcut-icon fa-solid fa-up-right-from-square"></i>
+      </div>
+      <div class="display-settings-section">
+        <div class="container">
+          <div class="display-settings">
+            <div class="products-count">
+              <span class="products-count-label">Show</span>
+              <select class="products-count-select" id="products-count-select">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+            <div class="sort-by">
+              <span class="sort-by-label">Sort by</span>
+              <select class="sort-by-select" id="sort-by-select">
+                <option value="rating">Rating (Highest to Lowest)</option>
+                <option value="name">Name (A to Z)</option>
+                <option value="price">Price (Low to High)</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
-      <div class="product">
-        <div class="product-img-wrapper">
-          <img src="img/joystick.jpg" alt="joystick" />
-        </div>
-        <div class="details">
-          <span class="rating">
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star-half-stroke"></i>
-            <i class="rating-star fa-solid fa-star"></i>
-          </span>
-          <h3 class="title">Cale 6 Eu Accumsan Massa Facilisis Madden By Steve</h3>
-          <span class="stock">Availability: <span class="count">299</span> in stock</span>
-          <div class="price">
-            <span class="old">&euro;23.90</span>
-            <span class="current">&euro;21.90</span>
-          </div>
-          <!-- <p class="description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ipsam, doloribus nemo iusto enim provident
-            id illum impedit delectus inventore odio alias sunt exercitationem accusamus illo vel ullam cumque rem?
-          </p> -->
-          <div class="shortcuts-icons">
-            <i class="shortcut-icon fa-solid fa-cart-shopping"></i>
-            <i class="shortcut-icon fa-regular fa-heart"></i>
-            <i class="shortcut-icon fa-solid fa-sliders"></i>
-            <i class="shortcut-icon fa-solid fa-up-right-from-square"></i>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="product-img-wrapper">
-          <img src="img/joystick.jpg" alt="joystick" />
-        </div>
-        <div class="details">
-          <span class="rating">
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star-half-stroke"></i>
-            <i class="rating-star fa-solid fa-star"></i>
-          </span>
-          <h3 class="title">Cale 6 Eu Accumsan Massa Facilisis Madden By Steve</h3>
-          <span class="stock">Availability: <span class="count">299</span> in stock</span>
-          <div class="price">
-            <span class="old">&euro;23.90</span>
-            <span class="current">&euro;21.90</span>
-          </div>
-          <!-- <p class="description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ipsam, doloribus nemo iusto enim provident
-            id illum impedit delectus inventore odio alias sunt exercitationem accusamus illo vel ullam cumque rem?
-          </p> -->
-          <div class="shortcuts-icons">
-            <i class="shortcut-icon fa-solid fa-cart-shopping"></i>
-            <i class="shortcut-icon fa-regular fa-heart"></i>
-            <i class="shortcut-icon fa-solid fa-sliders"></i>
-            <i class="shortcut-icon fa-solid fa-up-right-from-square"></i>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="product-img-wrapper">
-          <img src="img/joystick.jpg" alt="joystick" />
-        </div>
-        <div class="details">
-          <span class="rating">
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star-half-stroke"></i>
-            <i class="rating-star fa-solid fa-star"></i>
-          </span>
-          <h3 class="title">Cale 6 Eu Accumsan Massa Facilisis Madden By Steve</h3>
-          <span class="stock">Availability: <span class="count">299</span> in stock</span>
-          <div class="price">
-            <span class="old">&euro;23.90</span>
-            <span class="current">&euro;21.90</span>
-          </div>
-          <!-- <p class="description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ipsam, doloribus nemo iusto enim provident
-            id illum impedit delectus inventore odio alias sunt exercitationem accusamus illo vel ullam cumque rem?
-          </p> -->
-          <div class="shortcuts-icons">
-            <i class="shortcut-icon fa-solid fa-cart-shopping"></i>
-            <i class="shortcut-icon fa-regular fa-heart"></i>
-            <i class="shortcut-icon fa-solid fa-sliders"></i>
-            <i class="shortcut-icon fa-solid fa-up-right-from-square"></i>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="product-img-wrapper">
-          <img src="img/joystick.jpg" alt="joystick" />
-        </div>
-        <div class="details">
-          <span class="rating">
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star-half-stroke"></i>
-            <i class="rating-star fa-solid fa-star"></i>
-          </span>
-          <h3 class="title">Cale 6 Eu Accumsan Massa Facilisis Madden By Steve</h3>
-          <span class="stock">Availability: <span class="count">299</span> in stock</span>
-          <div class="price">
-            <span class="old">&euro;23.90</span>
-            <span class="current">&euro;21.90</span>
-          </div>
-          <!-- <p class="description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ipsam, doloribus nemo iusto enim provident
-            id illum impedit delectus inventore odio alias sunt exercitationem accusamus illo vel ullam cumque rem?
-          </p> -->
-          <div class="shortcuts-icons">
-            <i class="shortcut-icon fa-solid fa-cart-shopping"></i>
-            <i class="shortcut-icon fa-regular fa-heart"></i>
-            <i class="shortcut-icon fa-solid fa-sliders"></i>
-            <i class="shortcut-icon fa-solid fa-up-right-from-square"></i>
-          </div>
-        </div>
-      </div>
-      <div class="product">
-        <div class="product-img-wrapper">
-          <img src="img/joystick.jpg" alt="joystick" />
-        </div>
-        <div class="details">
-          <span class="rating">
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star"></i>
-            <i class="rating-star colored fa-solid fa-star-half-stroke"></i>
-            <i class="rating-star fa-solid fa-star"></i>
-          </span>
-          <h3 class="title">Cale 6 Eu Accumsan Massa Facilisis Madden By Steve</h3>
-          <span class="stock">Availability: <span class="count">299</span> in stock</span>
-          <div class="price">
-            <span class="old">&euro;23.90</span>
-            <span class="current">&euro;21.90</span>
-          </div>
-          <!-- <p class="description">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam ipsam, doloribus nemo iusto enim provident
-            id illum impedit delectus inventore odio alias sunt exercitationem accusamus illo vel ullam cumque rem?
-          </p> -->
-          <div class="shortcuts-icons">
-            <i class="shortcut-icon fa-solid fa-cart-shopping"></i>
-            <i class="shortcut-icon fa-regular fa-heart"></i>
-            <i class="shortcut-icon fa-solid fa-sliders"></i>
-            <i class="shortcut-icon fa-solid fa-up-right-from-square"></i>
-          </div>
+      <div class="products-section">
+        <div class="container">
+          <div class="products"></div>
         </div>
       </div>
     </div>
   </body>
-  <script>
-    registerAsideCallbacks();
-    registerProductsLayoutIconsCallback();
-
-    function registerAsideCallbacks() {
-      document.querySelectorAll("aside i").forEach((arrow) => {
-        arrow.onclick = () => {
-          console.log("arrow click");
-          arrow.classList.toggle("active");
-          arrow.parentElement.parentElement.classList.toggle("collapsed");
-        };
-      });
-    }
-
-    function registerProductsLayoutIconsCallback() {
-      let icons = document.querySelectorAll(".products-layout-icon");
-      icons.forEach((icon) => {
-        icon.onclick = () => {
-          icons.forEach((element) => element.classList.remove("active"));
-          icon.classList.toggle("active");
-        };
-      });
-    }
-  </script>
+  <script src="main.js"></script>
 </html>
