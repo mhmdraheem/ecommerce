@@ -2,11 +2,11 @@ const products = [
   {
     id: 1,
     img: "img/joystick.jpg",
-    title: "Cale 6 Eu Accumsan Massa Facilisis Madden By Steve",
+    title: "Joystick 1",
     rating: 4.5,
     stock: 299,
     oldPrice: 23.9,
-    currentPrice: 21.9,
+    currentPrice: 2,
     discount: 20,
     freeShipping: true,
   },
@@ -22,10 +22,10 @@ const products = [
   {
     id: 3,
     img: "img/joystick.jpg",
-    title: "Cale 6 Eu Accumsan Massa Facilisis Madden By Steve",
+    title: "New item",
     rating: 5,
     stock: 40,
-    currentPrice: 21.9,
+    currentPrice: 200,
   },
 ];
 
@@ -128,40 +128,109 @@ function createProductElement(product) {
 
   // Cart Icons
   const cartIconsDiv = document.createElement("div");
-  cartIconsDiv.classList.add("cart-icons");
+  cartIconsDiv.classList.add("bottom-product-bar");
 
   // Remove from cart
-  const removeFromCartDiv = document.createElement("div");
-  removeFromCartDiv.classList.add("remove-from-cart");
-  removeFromCartDiv.addEventListener("click", () => {
-    removeFromCartDiv.classList.remove("active");
+  const cartRemoveDiv = document.createElement("div");
+  cartRemoveDiv.classList.add("cart-remove");
+  cartRemoveDiv.addEventListener("click", () => {
+    cartRemoveDiv.classList.remove("active");
     removeCartItem(product.id);
-    addToCartDiv.classList.remove("active");
+    cartAddDiv.classList.remove("active");
   });
 
-  const removeFromCartcartIcon = document.createElement("i");
-  removeFromCartcartIcon.classList.add("cart-icon", "fa-solid", "fa-trash");
-  removeFromCartcartIcon.setAttribute("aria-label", "Add to cart");
+  const cartRemoveIcon = document.createElement("i");
+  cartRemoveIcon.classList.add("trash-icon", "fa-solid", "fa-trash");
+  cartRemoveIcon.setAttribute("aria-label", "Add to cart");
 
-  removeFromCartDiv.appendChild(removeFromCartcartIcon);
+  cartRemoveDiv.appendChild(cartRemoveIcon);
 
-  // Add from cart
-  const addToCartDiv = document.createElement("div");
-  addToCartDiv.classList.add("add-to-cart");
-  addToCartDiv.addEventListener("click", () => {
-    addToCartDiv.classList.add("active");
-    addCartItem(product.id);
-    removeFromCartDiv.classList.add("active");
+  // Add to cart
+  const cartAddDiv = document.createElement("div");
+  cartAddDiv.classList.add("cart-add");
+
+  const spinner = document.createElement("i");
+  spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "spinner-icon", "hidden");
+
+  const cartAddIcon = document.createElement("i");
+  cartAddIcon.classList.add("fa-solid", "fa-cart-shopping", "cart-icon");
+  cartAddIcon.setAttribute("aria-label", "Add to cart");
+
+  const quantityInput = document.createElement("input");
+  quantityInput.type = "number";
+  quantityInput.min = 1;
+  quantityInput.max = product.stock;
+  quantityInput.value = 1;
+
+  quantityInput.addEventListener("input", (e) => {
+    const value = parseInt(e.target.value);
+    if (value < 1) {
+      e.target.value = 1;
+    } else if (value > product.stock) {
+      e.target.value = product.stock;
+    }
   });
 
-  const addToCartcartIcon = document.createElement("i");
-  addToCartcartIcon.classList.add("cart-icon", "fa-solid", "fa-cart-shopping");
-  addToCartcartIcon.setAttribute("aria-label", "Add to cart");
+  const decreaseBtn = document.createElement("button");
+  decreaseBtn.classList.add("decrease");
+  decreaseBtn.innerHTML = "-";
+  decreaseBtn.addEventListener("click", () => {
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  });
 
-  addToCartDiv.appendChild(addToCartcartIcon);
+  const increaseBtn = document.createElement("button");
+  increaseBtn.classList.add("increase");
+  increaseBtn.innerHTML = "+";
+  increaseBtn.addEventListener("click", () => {
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue < product.stock) {
+      quantityInput.value = currentValue + 1;
+    }
+  });
 
-  cartIconsDiv.appendChild(addToCartDiv);
-  cartIconsDiv.appendChild(removeFromCartDiv);
+  const quantityWrapper = document.createElement("div");
+  quantityWrapper.classList.add("quantity-wrapper", "hidden");
+  quantityWrapper.appendChild(decreaseBtn);
+  quantityWrapper.appendChild(quantityInput);
+  quantityWrapper.appendChild(increaseBtn);
+
+  cartAddDiv.addEventListener("click", async () => {
+    if (!cartAddDiv.classList.contains("active")) {
+      cartAddIcon.classList.add("hidden");
+      spinner.classList.remove("hidden");
+
+      try {
+        // Simulating backend call
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        cartAddDiv.classList.add("active");
+        cartRemoveDiv.classList.add("active");
+        spinner.classList.add("hidden");
+        quantityWrapper.classList.remove("hidden");
+        addCartItem(product.id);
+      } catch (err) {
+        spinner.classList.add("hidden");
+        cartAddIcon.classList.remove("hidden");
+      }
+    }
+  });
+
+  cartAddDiv.appendChild(spinner);
+  cartAddDiv.appendChild(quantityWrapper);
+
+  cartRemoveDiv.addEventListener("click", () => {
+    cartRemoveDiv.classList.remove("active");
+    quantityWrapper.classList.add("hidden");
+    cartAddIcon.classList.remove("hidden");
+  });
+
+  cartAddDiv.appendChild(cartAddIcon);
+
+  cartIconsDiv.appendChild(cartAddDiv);
+  cartIconsDiv.appendChild(cartRemoveDiv);
 
   // Append elements to details
   detailsDiv.appendChild(title);
@@ -183,6 +252,7 @@ function renderProducts() {
   products.forEach((product) => {
     productsContainer.appendChild(createProductElement(product));
   });
+  updateProductsDisplay();
 }
 
 renderProducts();
@@ -203,3 +273,43 @@ function removeCartItem(item) {
     document.querySelector(".cart .alert").classList.remove("visible");
   }
 }
+
+function sortProducts(products, sortBy) {
+  const sortedProducts = [...products];
+
+  switch (sortBy) {
+    case "rating":
+      sortedProducts.sort((a, b) => b.rating - a.rating);
+      break;
+    case "name":
+      sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    case "price":
+      sortedProducts.sort((a, b) => a.price - b.price);
+      break;
+  }
+
+  return sortedProducts;
+}
+
+function updateProductsDisplay() {
+  const productsCountSelect = document.getElementById("products-count-select");
+  const sortBySelect = document.getElementById("sort-by-select");
+  const productsContainer = document.querySelector(".products");
+
+  const selectedCount = parseInt(productsCountSelect.value);
+  const sortBy = sortBySelect.value;
+
+  // Clear current products
+  productsContainer.innerHTML = "";
+
+  // Sort and display selected number of products
+  const sortedProducts = sortProducts(products, sortBy);
+  sortedProducts.slice(0, selectedCount).forEach((product) => {
+    productsContainer.appendChild(createProductElement(product));
+  });
+}
+
+// Add event listeners
+document.getElementById("products-count-select").addEventListener("change", updateProductsDisplay);
+document.getElementById("sort-by-select").addEventListener("change", updateProductsDisplay);
