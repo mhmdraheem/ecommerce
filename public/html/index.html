@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="section-margin">
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <h1>Shopify</h1>
+            <p>One-click shopping</p>
+          </div>
+          <form action="search.html" method="get" target="_blank">
+            <input type="text" placeholder="Search products" name="query" id="search" />
+            <button type="submit">Search</button>
+          </form>
+          <a href="cart.html" target="_blank" class="cart">
+            <i class="fa-solid fa-cart-shopping">
+              <span class="alert"></span>
+            </i>
+          </a>
+          <div class="profile">
+            <img class="avatar" src="img/avatar.png" alt="profile-picture" />
+            <ul class="profile-menu">
+              <li>Your account</li>
+              <li>Your orders</li>
+              <li>Your payment methods</li>
+              <li>Your addresses</li>
+              <li><a href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="overlay"></div>
+    <div class="cover-section section-margin">
+      <div class="container">
+        <div class="cover"></div>
+      </div>
+    </div>
+    <div class="display-settings-section section-margin">
+      <div class="container">
+        <div class="display-settings">
+          <div class="products-count">
+            <span class="products-count-label">Show</span>
+            <select class="products-count-select" id="products-count-select">
+              <option value="5">5</option>
+              <option value="10">20</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+          <div class="sort-by">
+            <span class="sort-by-label">Sort by</span>
+            <select class="sort-by-select" id="sort-by-select">
+              <option value="rating">Rating (Highest to Lowest)</option>
+              <option value="name">Name (A to Z)</option>
+              <option value="price">Price (Low to High)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="products-section">
+      <div class="container">
+        <div class="products"></div>
+      </div>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>

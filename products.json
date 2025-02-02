@@ -1,0 +1,854 @@
+[
+  {
+    "id": 1,
+    "heading": {
+      "title": "Professional DSLR Camera",
+      "brand": "Canon",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 3
+    },
+    "stock": 15,
+    "images": ["img/product/camera-1.jpg"],
+    "price": {
+      "oldPrice": 1299.99,
+      "currentPrice": 999.99,
+      "discount": 23
+    },
+    "freeShipping": true,
+    "description": "Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system.",
+    "features": [
+      "24.1MP APS-C Sensor",
+      "4K Video Recording",
+      "45-point AF System",
+      "3.0-inch Vari-angle Touchscreen",
+      "Built-in Wi-Fi"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Mark Wilson",
+        "rating": 5,
+        "comment": "Excellent camera for both photography and videography. The image quality is outstanding.",
+        "date": "2024-01-15",
+        "verified": true
+      },
+      {
+        "reviewer": "Jane Smith",
+        "rating": 4,
+        "comment": "Great features and easy to use. Battery life could be better.",
+        "date": "2024-01-10",
+        "verified": true
+      },
+      {
+        "reviewer": "Tom Brown",
+        "rating": 5,
+        "comment": "Professional quality images. Worth every penny.",
+        "date": "2024-01-05",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "heading": {
+      "title": "Ergonomic Office Chair",
+      "brand": "ErgoComfort",
+      "category": "Furniture"
+    },
+    "rating": {
+      "stars": 4.25,
+      "reviews": 4
+    },
+    "stock": 25,
+    "images": ["img/product/chair-1.jpg"],
+    "price": {
+      "oldPrice": 299.99,
+      "currentPrice": 249.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Premium ergonomic office chair with adjustable lumbar support, breathable mesh back, and customizable armrests.",
+    "features": [
+      "Adjustable Lumbar Support",
+      "Breathable Mesh",
+      "360° Swivel",
+      "Height Adjustment",
+      "Ergonomic Design"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Sarah Chen",
+        "rating": 4,
+        "comment": "Very comfortable for long working hours. Great lumbar support.",
+        "date": "2024-01-10",
+        "verified": true
+      },
+      {
+        "reviewer": "Michael Lee",
+        "rating": 5,
+        "comment": "Best office chair I've owned. Assembly was easy.",
+        "date": "2024-01-08",
+        "verified": true
+      },
+      {
+        "reviewer": "Amanda White",
+        "rating": 4,
+        "comment": "Good quality and comfortable. Shipping was fast.",
+        "date": "2024-01-05",
+        "verified": true
+      },
+      {
+        "reviewer": "John Davis",
+        "rating": 4,
+        "comment": "Nice chair, helps with my back pain during work.",
+        "date": "2024-01-02",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "heading": {
+      "title": "Premium Energy Drink",
+      "brand": "PowerBoost",
+      "category": "Beverages"
+    },
+    "rating": {
+      "stars": 4.0,
+      "reviews": 2
+    },
+    "stock": 100,
+    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "price": {
+      "oldPrice": 3.99,
+      "currentPrice": 2.99,
+      "discount": 25
+    },
+    "freeShipping": false,
+    "description": "Natural energy drink packed with vitamins and minerals. Zero sugar, zero calories.",
+    "features": ["Sugar Free", "Natural Caffeine", "B-Vitamins", "Zero Calories", "Electrolytes"],
+    "reviews": [
+      {
+        "reviewer": "Mike Johnson",
+        "rating": 4,
+        "comment": "Great taste and energy boost without the crash.",
+        "date": "2024-01-05",
+        "verified": true
+      },
+      {
+        "reviewer": "Lisa Anderson",
+        "rating": 4,
+        "comment": "Good alternative to coffee, nice flavor.",
+        "date": "2024-01-03",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "heading": {
+      "title": "Wireless Earbuds",
+      "brand": "AudioTech",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 5
+    },
+    "stock": 45,
+    "images": ["img/product/ear-pods-1.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 149.99,
+      "discount": 25
+    },
+    "freeShipping": true,
+    "description": "True wireless earbuds with active noise cancellation and premium sound quality.",
+    "features": [
+      "Active Noise Cancellation",
+      "24Hr Battery Life",
+      "Touch Controls",
+      "Water Resistant",
+      "Wireless Charging"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Emily White",
+        "rating": 5,
+        "comment": "Amazing sound quality and the noise cancellation works great!",
+        "date": "2024-01-20",
+        "verified": true
+      },
+      {
+        "reviewer": "David Kim",
+        "rating": 5,
+        "comment": "Perfect for workouts, stays in place well.",
+        "date": "2024-01-18",
+        "verified": true
+      },
+      {
+        "reviewer": "Rachel Green",
+        "rating": 4,
+        "comment": "Good battery life and comfortable fit.",
+        "date": "2024-01-15",
+        "verified": true
+      },
+      {
+        "reviewer": "Steve Rogers",
+        "rating": 5,
+        "comment": "Crystal clear sound quality.",
+        "date": "2024-01-12",
+        "verified": true
+      },
+      {
+        "reviewer": "Maria Garcia",
+        "rating": 5,
+        "comment": "Worth every penny, great noise cancellation.",
+        "date": "2024-01-10",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "heading": {
+      "title": "Premium Gaming Headset",
+      "brand": "GameAudio",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.6,
+      "reviews": 7
+    },
+    "stock": 30,
+    "images": ["img/product/headphones-1.jpg"],
+    "price": {
+      "oldPrice": 179.99,
+      "currentPrice": 149.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Professional gaming headset with 7.1 surround sound and noise-canceling microphone.",
+    "features": [
+      "7.1 Surround Sound",
+      "Memory Foam Ear Cups",
+      "RGB Lighting",
+      "Detachable Mic",
+      "Multi-Platform Compatible"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Alex Thompson",
+        "rating": 5,
+        "comment": "Best gaming headset I've ever owned. Sound quality is incredible.",
+        "date": "2024-01-18",
+        "verified": true
+      },
+      {
+        "reviewer": "Peter Parker",
+        "rating": 4,
+        "comment": "Great surround sound, comfortable for long gaming sessions.",
+        "date": "2024-01-15",
+        "verified": true
+      },
+      {
+        "reviewer": "Tony Stark",
+        "rating": 5,
+        "comment": "Premium build quality and excellent mic clarity.",
+        "date": "2024-01-12",
+        "verified": true
+      },
+      {
+        "reviewer": "Bruce Wayne",
+        "rating": 4,
+        "comment": "Good value for money, nice RGB effects.",
+        "date": "2024-01-10",
+        "verified": true
+      },
+      {
+        "reviewer": "Diana Prince",
+        "rating": 5,
+        "comment": "Perfect for competitive gaming.",
+        "date": "2024-01-08",
+        "verified": true
+      },
+      {
+        "reviewer": "Clark Kent",
+        "rating": 4,
+        "comment": "Comfortable fit, good sound staging.",
+        "date": "2024-01-05",
+        "verified": true
+      },
+      {
+        "reviewer": "Wade Wilson",
+        "rating": 5,
+        "comment": "Amazing audio quality for gaming.",
+        "date": "2024-01-02",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "heading": {
+      "title": "Wireless Gaming Controller",
+      "brand": "GamePro",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.0,
+      "reviews": 1
+    },
+    "stock": 50,
+    "images": ["img/product/joystick.jpg"],
+    "price": {
+      "oldPrice": 69.99,
+      "currentPrice": 59.99,
+      "discount": 14
+    },
+    "freeShipping": true,
+    "description": "Professional gaming controller with customizable buttons and improved ergonomics.",
+    "features": [
+      "Wireless Connection",
+      "Customizable Buttons",
+      "Ergonomic Design",
+      "20Hr Battery Life",
+      "Vibration Feedback"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Chris Martinez",
+        "rating": 4,
+        "comment": "Great controller, very responsive and comfortable to use.",
+        "date": "2024-01-12",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "heading": {
+      "title": "Matte Lipstick",
+      "brand": "BeautyGlow",
+      "category": "Cosmetics"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 6
+    },
+    "stock": 75,
+    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "price": {
+      "oldPrice": 24.99,
+      "currentPrice": 19.99,
+      "discount": 20
+    },
+    "freeShipping": false,
+    "description": "Long-lasting matte lipstick with moisturizing formula and vibrant color payoff.",
+    "features": ["Long-lasting", "Moisturizing", "Cruelty-free", "Vitamin E Enriched", "Non-drying Formula"],
+    "reviews": [
+      {
+        "reviewer": "Lisa Brown",
+        "rating": 4,
+        "comment": "Beautiful color and stays on all day!",
+        "date": "2024-01-08",
+        "verified": true
+      },
+      {
+        "reviewer": "Emma Stone",
+        "rating": 5,
+        "comment": "Love the formula, very moisturizing.",
+        "date": "2024-01-06",
+        "verified": true
+      },
+      {
+        "reviewer": "Sophie Turner",
+        "rating": 4,
+        "comment": "Great pigmentation and long-lasting.",
+        "date": "2024-01-04",
+        "verified": true
+      },
+      {
+        "reviewer": "Mila Kunis",
+        "rating": 5,
+        "comment": "Perfect matte finish without drying.",
+        "date": "2024-01-02",
+        "verified": true
+      },
+      {
+        "reviewer": "Jennifer Lopez",
+        "rating": 4,
+        "comment": "Beautiful shade, smooth application.",
+        "date": "2023-12-30",
+        "verified": true
+      },
+      {
+        "reviewer": "Scarlett Johnson",
+        "rating": 5,
+        "comment": "Best matte lipstick I've tried.",
+        "date": "2023-12-28",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "heading": {
+      "title": "Premium Cut Meat",
+      "brand": "Prime Cuts",
+      "category": "Food"
+    },
+    "rating": {
+      "stars": 5.0,
+      "reviews": 8
+    },
+    "stock": 20,
+    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "price": {
+      "oldPrice": 49.99,
+      "currentPrice": 39.99,
+      "discount": 20
+    },
+    "freeShipping": false,
+    "description": "Premium grade, grass-fed beef with perfect marbling and rich flavor.",
+    "features": ["Grass-fed", "Hormone-free", "Premium Grade", "Vacuum Sealed", "Fresh Cut"],
+    "reviews": [
+      {
+        "reviewer": "Gordon Smith",
+        "rating": 5,
+        "comment": "Exceptional quality meat, perfect for special occasions.",
+        "date": "2024-01-22",
+        "verified": true
+      },
+      {
+        "reviewer": "Jamie Oliver",
+        "rating": 5,
+        "comment": "Outstanding marbling and flavor.",
+        "date": "2024-01-20",
+        "verified": true
+      },
+      {
+        "reviewer": "Wolfgang Puck",
+        "rating": 5,
+        "comment": "Restaurant quality meat.",
+        "date": "2024-01-18",
+        "verified": true
+      },
+      {
+        "reviewer": "Gordon Ramsay",
+        "rating": 5,
+        "comment": "Absolutely brilliant quality.",
+        "date": "2024-01-16",
+        "verified": true
+      },
+      {
+        "reviewer": "Bobby Flay",
+        "rating": 5,
+        "comment": "Perfect marbling, great taste.",
+        "date": "2024-01-14",
+        "verified": true
+      },
+      {
+        "reviewer": "Guy Fieri",
+        "rating": 5,
+        "comment": "Top-notch quality beef.",
+        "date": "2024-01-12",
+        "verified": true
+      },
+      {
+        "reviewer": "Emeril Lagasse",
+        "rating": 5,
+        "comment": "Excellent cut and packaging.",
+        "date": "2024-01-10",
+        "verified": true
+      },
+      {
+        "reviewer": "Anthony Bourdain",
+        "rating": 5,
+        "comment": "Simply perfect premium cut.",
+        "date": "2024-01-08",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "heading": {
+      "title": "Nike Air Max Sneakers",
+      "brand": "Nike",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.75,
+      "reviews": 4
+    },
+    "stock": 35,
+    "images": ["img/product/nike-sneaker-1.jpg"],
+    "price": {
+      "oldPrice": 159.99,
+      "currentPrice": 129.99,
+      "discount": 19
+    },
+    "freeShipping": true,
+    "description": "Classic Nike Air Max sneakers with improved comfort and modern design.",
+    "features": ["Air Cushioning", "Breathable Mesh", "Durable Sole", "Lightweight Design", "Premium Materials"],
+    "reviews": [
+      {
+        "reviewer": "James Wilson",
+        "rating": 5,
+        "comment": "Most comfortable sneakers I've ever worn!",
+        "date": "2024-01-16",
+        "verified": true
+      },
+      {
+        "reviewer": "Michael Jordan",
+        "rating": 5,
+        "comment": "Great comfort and style.",
+        "date": "2024-01-14",
+        "verified": true
+      },
+      {
+        "reviewer": "LeBron James",
+        "rating": 4,
+        "comment": "Excellent daily wear sneakers.",
+        "date": "2024-01-12",
+        "verified": true
+      },
+      {
+        "reviewer": "Kobe Bryant",
+        "rating": 5,
+        "comment": "Perfect fit and great design.",
+        "date": "2024-01-10",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "heading": {
+      "title": "Chanel No.5 Perfume",
+      "brand": "Chanel",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.67,
+      "reviews": 9
+    },
+    "stock": 25,
+    "images": ["img/product/perfume-channel-1.jpg"],
+    "price": {
+      "oldPrice": 135.99,
+      "currentPrice": 119.99,
+      "discount": 12
+    },
+    "freeShipping": true,
+    "description": "Iconic luxury fragrance with elegant floral notes and lasting impression.",
+    "features": ["Luxury Fragrance", "Long-lasting", "Iconic Scent", "Premium Packaging", "Authentic Product"],
+    "reviews": [
+      {
+        "reviewer": "Emma Davis",
+        "rating": 5,
+        "comment": "Classic fragrance that never goes out of style.",
+        "date": "2024-01-19",
+        "verified": true
+      },
+      {
+        "reviewer": "Victoria Adams",
+        "rating": 4,
+        "comment": "Timeless scent, elegant packaging.",
+        "date": "2024-01-17",
+        "verified": true
+      },
+      {
+        "reviewer": "Kate Moss",
+        "rating": 5,
+        "comment": "The perfect signature scent.",
+        "date": "2024-01-15",
+        "verified": true
+      },
+      {
+        "reviewer": "Gisele Bundchen",
+        "rating": 4,
+        "comment": "Sophisticated and long-lasting.",
+        "date": "2024-01-13",
+        "verified": true
+      },
+      {
+        "reviewer": "Naomi Campbell",
+        "rating": 5,
+        "comment": "Iconic fragrance, worth every penny.",
+        "date": "2024-01-11",
+        "verified": true
+      },
+      {
+        "reviewer": "Cindy Crawford",
+        "rating": 5,
+        "comment": "Luxurious scent that lasts all day.",
+        "date": "2024-01-09",
+        "verified": true
+      },
+      {
+        "reviewer": "Claudia Schiffer",
+        "rating": 4,
+        "comment": "Classic Chanel quality.",
+        "date": "2024-01-07",
+        "verified": true
+      },
+      {
+        "reviewer": "Linda Evangelista",
+        "rating": 5,
+        "comment": "Elegant and timeless.",
+        "date": "2024-01-05",
+        "verified": true
+      },
+      {
+        "reviewer": "Christy Turlington",
+        "rating": 5,
+        "comment": "The perfect luxury perfume.",
+        "date": "2024-01-03",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "heading": {
+      "title": "Digiora Essence Perfume",
+      "brand": "Digiora",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.0,
+      "reviews": 2
+    },
+    "stock": 40,
+    "images": ["img/product/perfume-digiora-1.jpg"],
+    "price": {
+      "oldPrice": 89.99,
+      "currentPrice": 69.99,
+      "discount": 22
+    },
+    "freeShipping": true,
+    "description": "Modern fragrance with fresh citrus notes and woody undertones.",
+    "features": ["Fresh Scent", "Natural Ingredients", "Modern Design", "Long-lasting", "Unisex Fragrance"],
+    "reviews": [
+      {
+        "reviewer": "Sophie Turner",
+        "rating": 4,
+        "comment": "Love the fresh scent, perfect for daily wear.",
+        "date": "2024-01-14",
+        "verified": true
+      },
+      {
+        "reviewer": "Maisie Williams",
+        "rating": 4,
+        "comment": "Nice everyday fragrance.",
+        "date": "2024-01-12",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "heading": {
+      "title": "Diamond Engagement Ring",
+      "brand": "LuxeJewels",
+      "category": "Jewelry"
+    },
+    "rating": {
+      "stars": 5.0,
+      "reviews": 3
+    },
+    "stock": 10,
+    "images": ["img/product/ring.jpg"],
+    "price": {
+      "oldPrice": 2999.99,
+      "currentPrice": 2499.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Elegant diamond engagement ring with 18K white gold band and certified diamond.",
+    "features": ["18K White Gold", "Certified Diamond", "Classic Design", "Perfect Cut", "Lifetime Warranty"],
+    "reviews": [
+      {
+        "reviewer": "Robert Johnson",
+        "rating": 5,
+        "comment": "Stunning ring, exactly as described. My fiancée loves it!",
+        "date": "2024-01-21",
+        "verified": true
+      },
+      {
+        "reviewer": "William Smith",
+        "rating": 5,
+        "comment": "Beautiful craftsmanship, excellent quality.",
+        "date": "2024-01-19",
+        "verified": true
+      },
+      {
+        "reviewer": "James Brown",
+        "rating": 5,
+        "comment": "Perfect engagement ring, great value.",
+        "date": "2024-01-17",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "heading": {
+      "title": "Designer Sunglasses",
+      "brand": "RayBan",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 4
+    },
+    "stock": 30,
+    "images": ["img/product/sunglasses-1.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 159.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Classic aviator sunglasses with polarized lenses and premium frame.",
+    "features": ["Polarized Lenses", "UV Protection", "Premium Frame", "Case Included", "Authentic Product"],
+    "reviews": [
+      {
+        "reviewer": "David Lee",
+        "rating": 5,
+        "comment": "Great quality and style, worth every penny!",
+        "date": "2024-01-17",
+        "verified": true
+      },
+      {
+        "reviewer": "Tom Cruise",
+        "rating": 4,
+        "comment": "Classic style, good UV protection.",
+        "date": "2024-01-15",
+        "verified": true
+      },
+      {
+        "reviewer": "Brad Pitt",
+        "rating": 4,
+        "comment": "Excellent build quality.",
+        "date": "2024-01-13",
+        "verified": true
+      },
+      {
+        "reviewer": "Leonardo DiCaprio",
+        "rating": 5,
+        "comment": "Perfect fit and great look.",
+        "date": "2024-01-11",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "heading": {
+      "title": "Luxury Watch",
+      "brand": "TimeMaster",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.4,
+      "reviews": 5
+    },
+    "stock": 15,
+    "images": ["img/product/white-watch-1.jpg"],
+    "price": {
+      "oldPrice": 499.99,
+      "currentPrice": 399.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Elegant white ceramic watch with Swiss movement and sapphire crystal.",
+    "features": ["Swiss Movement", "Sapphire Crystal", "Ceramic Band", "Water Resistant", "2-Year Warranty"],
+    "reviews": [
+      {
+        "reviewer": "Patricia Moore",
+        "rating": 5,
+        "comment": "Beautiful watch with excellent craftsmanship.",
+        "date": "2024-01-13",
+        "verified": true
+      },
+      {
+        "reviewer": "Richard Time",
+        "rating": 4,
+        "comment": "Great quality timepiece.",
+        "date": "2024-01-11",
+        "verified": true
+      },
+      {
+        "reviewer": "George Clock",
+        "rating": 4,
+        "comment": "Elegant design, accurate movement.",
+        "date": "2024-01-09",
+        "verified": true
+      },
+      {
+        "reviewer": "Sarah Watch",
+        "rating": 5,
+        "comment": "Love the ceramic band.",
+        "date": "2024-01-07",
+        "verified": true
+      },
+      {
+        "reviewer": "Michael Timer",
+        "rating": 4,
+        "comment": "Sophisticated look, good value.",
+        "date": "2024-01-05",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "heading": {
+      "title": "Designer High Heels",
+      "brand": "Elegance",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.33,
+      "reviews": 3
+    },
+    "stock": 25,
+    "images": ["img/product/woman-shoes-1.jpg"],
+    "price": {
+      "oldPrice": 299.99,
+      "currentPrice": 249.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Elegant designer high heels with genuine leather and comfortable design.",
+    "features": ["Genuine Leather", "Cushioned Insole", "4-inch Heel", "Anti-slip Sole", "Italian Design"],
+    "reviews": [
+      {
+        "reviewer": "Rachel Green",
+        "rating": 4,
+        "comment": "Beautiful and surprisingly comfortable for heels!",
+        "date": "2024-01-11",
+        "verified": true
+      },
+      {
+        "reviewer": "Monica Geller",
+        "rating": 5,
+        "comment": "Perfect for special occasions.",
+        "date": "2024-01-09",
+        "verified": true
+      },
+      {
+        "reviewer": "Phoebe Buffay",
+        "rating": 4,
+        "comment": "Stylish and well-made heels.",
+        "date": "2024-01-07",
+        "verified": true
+      }
+    ]
+  }
+]
