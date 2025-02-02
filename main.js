@@ -1,5 +1,6 @@
 const products = [
   {
+    id: 1,
     img: "img/joystick.jpg",
     title: "Cale 6 Eu Accumsan Massa Facilisis Madden By Steve",
     rating: 4.5,
@@ -10,6 +11,7 @@ const products = [
     freeShipping: true,
   },
   {
+    id: 2,
     img: "img/joystick.jpg",
     title: "Cale 6 Eu Accumsan Massa Facilisis Madden By Steve",
     rating: 3,
@@ -18,6 +20,7 @@ const products = [
     freeShipping: true,
   },
   {
+    id: 3,
     img: "img/joystick.jpg",
     title: "Cale 6 Eu Accumsan Massa Facilisis Madden By Steve",
     rating: 5,
@@ -63,8 +66,10 @@ function createProductElement(product) {
   productDiv.classList.add("product");
 
   // Image Wrapper
-  const imgWrapper = document.createElement("div");
+  const imgWrapper = document.createElement("a");
   imgWrapper.classList.add("product-img-wrapper");
+  imgWrapper.href = `product.html?id=${product.id}`;
+  imgWrapper.target = "_blank";
 
   const img = document.createElement("img");
   img.src = product.img;
@@ -86,9 +91,11 @@ function createProductElement(product) {
   const ratingElement = generateStars(product.rating);
 
   // Title
-  const title = document.createElement("h3");
+  const title = document.createElement("a");
   title.classList.add("title");
   title.textContent = product.title;
+  title.href = `product.html?id=${product.id}`;
+  title.target = "_blank";
 
   // Stock
   const stockSpan = document.createElement("span");
@@ -119,15 +126,42 @@ function createProductElement(product) {
     freeShippingSpan.textContent = "FREE shipping";
   }
 
-  // Cart Icon
-  const shortcutsDiv = document.createElement("div");
-  shortcutsDiv.classList.add("shortcuts-icons");
+  // Cart Icons
+  const cartIconsDiv = document.createElement("div");
+  cartIconsDiv.classList.add("cart-icons");
 
-  const cartIcon = document.createElement("i");
-  cartIcon.classList.add("shortcut-icon", "fa-solid", "fa-cart-shopping");
-  cartIcon.setAttribute("aria-label", "Add to cart");
+  // Remove from cart
+  const removeFromCartDiv = document.createElement("div");
+  removeFromCartDiv.classList.add("remove-from-cart");
+  removeFromCartDiv.addEventListener("click", () => {
+    removeFromCartDiv.classList.remove("active");
+    removeCartItem(product.id);
+    addToCartDiv.classList.remove("active");
+  });
 
-  shortcutsDiv.appendChild(cartIcon);
+  const removeFromCartcartIcon = document.createElement("i");
+  removeFromCartcartIcon.classList.add("cart-icon", "fa-solid", "fa-trash");
+  removeFromCartcartIcon.setAttribute("aria-label", "Add to cart");
+
+  removeFromCartDiv.appendChild(removeFromCartcartIcon);
+
+  // Add from cart
+  const addToCartDiv = document.createElement("div");
+  addToCartDiv.classList.add("add-to-cart");
+  addToCartDiv.addEventListener("click", () => {
+    addToCartDiv.classList.add("active");
+    addCartItem(product.id);
+    removeFromCartDiv.classList.add("active");
+  });
+
+  const addToCartcartIcon = document.createElement("i");
+  addToCartcartIcon.classList.add("cart-icon", "fa-solid", "fa-cart-shopping");
+  addToCartcartIcon.setAttribute("aria-label", "Add to cart");
+
+  addToCartDiv.appendChild(addToCartcartIcon);
+
+  cartIconsDiv.appendChild(addToCartDiv);
+  cartIconsDiv.appendChild(removeFromCartDiv);
 
   // Append elements to details
   detailsDiv.appendChild(title);
@@ -135,7 +169,7 @@ function createProductElement(product) {
   detailsDiv.appendChild(priceDiv);
   detailsDiv.appendChild(freeShippingSpan);
   detailsDiv.appendChild(stockSpan);
-  detailsDiv.appendChild(shortcutsDiv);
+  detailsDiv.appendChild(cartIconsDiv);
 
   // Append everything to product div
   productDiv.appendChild(imgWrapper);
@@ -152,3 +186,20 @@ function renderProducts() {
 }
 
 renderProducts();
+
+const cart = [];
+function addCartItem(item) {
+  cart.push(item);
+  document.querySelector(".cart .alert").classList.add("visible");
+}
+
+function removeCartItem(item) {
+  let idx = cart.indexOf(item);
+  if (idx > -1) {
+    cart.splice(idx, 1);
+  }
+
+  if (cart.length === 0) {
+    document.querySelector(".cart .alert").classList.remove("visible");
+  }
+}

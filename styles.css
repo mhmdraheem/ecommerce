@@ -12,9 +12,6 @@ a {
   color: black;
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
-}
 
 body {
   font-size: clamp(1rem, 2vw, 1.2rem);
@@ -29,7 +26,6 @@ h1 {
 }
 
 nav {
-  height: var(--nav-height);
   box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.14);
   position: sticky;
   top: 0;
@@ -40,10 +36,17 @@ nav {
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  display: grid;
+  grid-template-areas: "logo form cart profile";
+  grid-template-columns: auto 1fr auto auto;
   padding: 10px 0;
+  gap: 15px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .header {
+    grid-template-areas: "logo . cart profile" "form form form form";
+  }
 }
 .header h1 {
   font-size: 1.5rem;
@@ -54,10 +57,14 @@ nav {
           background-clip: text;
 }
 .header p {
-  font-size: 1rem;
+  font-size: 0.8rem;
   opacity: 0.8;
 }
+.header .logo {
+  grid-area: logo;
+}
 .header .cart {
+  grid-area: cart;
   margin-right: 0;
   margin-left: auto;
   font-size: 1.2rem;
@@ -77,6 +84,9 @@ nav {
 .header .cart .alert.visible {
   display: inline;
 }
+.header .profile {
+  grid-area: profile;
+}
 .header .avatar {
   max-width: 100%;
   border-radius: 50%;
@@ -87,6 +97,38 @@ nav {
 }
 .header .avatar:hover + .profile-menu {
   display: block;
+}
+.header form {
+  grid-area: form;
+  flex: 1;
+  height: 50px;
+  position: relative;
+}
+.header form input {
+  height: 100%;
+  width: 100%;
+  padding: 0 100px 0 10px;
+  border: none;
+  outline: 1px solid #cac8c8;
+  font-size: 1rem;
+}
+.header form input:focus {
+  outline: 2px solid orange;
+}
+.header form button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: block;
+  outline: none;
+  border: none;
+  width: 90px;
+  cursor: pointer;
+  background-color: orange;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 500;
 }
 .header .profile {
   position: relative;
@@ -113,7 +155,7 @@ nav {
 }
 .header .profile-menu li:hover {
   text-decoration: underline;
-  color: orangered;
+  color: orange;
 }
 
 .overlay {
@@ -126,6 +168,10 @@ nav {
   bottom: 0;
   left: 0;
   z-index: 999;
+}
+
+.section-margin {
+  margin-bottom: 10px;
 }
 
 .cover {
@@ -142,20 +188,6 @@ nav {
   gap: 10px;
   padding: 10px;
   background-color: #f2f2f2;
-}
-.display-settings .prodcuts-layout-icon {
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #c2c2c2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.display-settings .prodcuts-layout-icon.active {
-  background-color: black;
 }
 .display-settings .summary-label {
   min-width: 150px;
@@ -174,6 +206,7 @@ nav {
   background-color: white;
   border: none;
   outline: none;
+  font-size: 1rem;
 }
 .display-settings .sort-by-select {
   font-size: 1rem;
@@ -212,7 +245,7 @@ nav {
   border-radius: 50%;
   color: white;
   font-weight: 400;
-  background-color: orangered;
+  background-color: orange;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -242,7 +275,7 @@ nav {
   font-size: 1rem;
 }
 .products .stock {
-  margin: 5px 0;
+  margin: 5px 0 10px;
   font-size: 1rem;
   opacity: 0.6;
   color: red;
@@ -262,7 +295,7 @@ nav {
 .products .price .current {
   font-weight: 400;
   font-size: 1.5rem;
-  color: orangered;
+  color: orange;
 }
 .products .free-shipping {
   opacity: 0.6;
@@ -273,27 +306,49 @@ nav {
   line-height: 1.7;
   margin: 10px 0;
 }
-.products .shortcuts-icons {
+.products .cart-icons {
   display: flex;
   align-items: center;
   margin-top: auto;
+  transition: 0.3s;
+  width: 100%;
 }
-.products .shortcuts-icons:hover {
-  background-color: rgba(255, 69, 0, 0.8);
+.products .add-to-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: orange;
+  transition: 0.3s;
+  width: 100%;
 }
-.products .shortcut-icon {
+.products .add-to-cart.active {
+  background-color: green;
+  pointer-events: none;
+  width: 80%;
+}
+.products .cart-icon {
   width: 100%;
   height: 40px;
-  border: 1px solid #eeeeee;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+  color: #fff;
   padding: 25px 0;
 }
-.products .shortcut-icon:hover {
-  color: #fff;
+.products .remove-from-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  transition: 0.3s cubic-bezier(0.4, 0, 1, 1);
+  width: 0%;
+  display: none;
+}
+.products .remove-from-cart.active {
+  display: block;
+  width: 20%;
+  margin-left: 0.3rem;
 }
 
 .container {

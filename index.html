@@ -14,16 +14,22 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <nav>
+    <nav class="section-margin">
       <div class="container">
         <div class="header">
           <div class="logo">
             <h1>Shopify</h1>
             <p>One-click shopping</p>
           </div>
-          <i class="fa-solid fa-cart-shopping cart">
-            <span class="alert"></span>
-          </i>
+          <form action="search.html" method="get" target="_blank">
+            <input type="text" placeholder="Search products" name="query" id="search" />
+            <button type="submit">Search</button>
+          </form>
+          <a href="cart.html" target="_blank" class="cart">
+            <i class="fa-solid fa-cart-shopping">
+              <span class="alert"></span>
+            </i>
+          </a>
           <div class="profile">
             <img class="avatar" src="img/avatar.png" alt="profile-picture" />
             <ul class="profile-menu">
@@ -37,39 +43,37 @@
         </div>
       </div>
     </nav>
-    <div class="content">
-      <div class="overlay"></div>
-      <div class="cover-section">
-        <div class="container">
-          <div class="cover"></div>
-        </div>
+    <div class="overlay"></div>
+    <div class="cover-section section-margin">
+      <div class="container">
+        <div class="cover"></div>
       </div>
-      <div class="display-settings-section">
-        <div class="container">
-          <div class="display-settings">
-            <div class="products-count">
-              <span class="products-count-label">Show</span>
-              <select class="products-count-select" id="products-count-select">
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="30">30</option>
-              </select>
-            </div>
-            <div class="sort-by">
-              <span class="sort-by-label">Sort by</span>
-              <select class="sort-by-select" id="sort-by-select">
-                <option value="rating">Rating (Highest to Lowest)</option>
-                <option value="name">Name (A to Z)</option>
-                <option value="price">Price (Low to High)</option>
-              </select>
-            </div>
+    </div>
+    <div class="display-settings-section section-margin">
+      <div class="container">
+        <div class="display-settings">
+          <div class="products-count">
+            <span class="products-count-label">Show</span>
+            <select class="products-count-select" id="products-count-select">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+          <div class="sort-by">
+            <span class="sort-by-label">Sort by</span>
+            <select class="sort-by-select" id="sort-by-select">
+              <option value="rating">Rating (Highest to Lowest)</option>
+              <option value="name">Name (A to Z)</option>
+              <option value="price">Price (Low to High)</option>
+            </select>
           </div>
         </div>
       </div>
-      <div class="products-section">
-        <div class="container">
-          <div class="products"></div>
-        </div>
+    </div>
+    <div class="products-section">
+      <div class="container">
+        <div class="products"></div>
       </div>
     </div>
   </body>
