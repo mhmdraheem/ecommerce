@@ -22,9 +22,10 @@ function loadProducts() {
 // Products API endpoint
 app.get("/products", (req, res) => {
   try {
-    console.log("Fetching products", req.query);
+    console.log(req.query);
 
-    const numOfProducts = parseInt(req.query.numOfProducts) || 5;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
     const sortBy = req.query.sortBy || "rating";
 
     const products = loadProducts();
@@ -32,9 +33,35 @@ app.get("/products", (req, res) => {
     // Sort products based on sortBy parameter
     const sortedProducts = sortProducts([...products], sortBy);
 
-    // Return requested number of products
-    let response = sortedProducts.slice(0, numOfProducts);
-    res.json(response);
+    // Calculate pagination values
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    // Prepare pagination metadata
+    const pagination = {};
+    if (endIndex < sortedProducts.length) {
+      pagination.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+    if (startIndex > 0) {
+      pagination.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+
+    // Get paginated results
+    const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
+
+    res.json({
+      pagination,
+      currentPage: page,
+      totalPages: Math.ceil(sortedProducts.length / limit),
+      totalProducts: sortedProducts.length,
+      products: paginatedProducts,
+    });
   } catch (error) {
     console.error("Error serving products:", error);
     res.status(500).json({ error: "Failed to fetch products" });
@@ -47,13 +74,13 @@ function sortProducts(products, sortBy) {
 
   switch (sortBy) {
     case "rating":
-      sortedProducts.sort((a, b) => b.rating - a.rating);
+      sortedProducts.sort((a, b) => b.rating.stars - a.rating.stars);
       break;
     case "name":
-      sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+      sortedProducts.sort((a, b) => a.heading.title.localeCompare(b.heading.title));
       break;
     case "price":
-      sortedProducts.sort((a, b) => a.price - b.price);
+      sortedProducts.sort((a, b) => a.price.currentPrice - b.price.currentPrice);
       break;
   }
 

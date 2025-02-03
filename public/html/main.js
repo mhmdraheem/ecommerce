@@ -1,20 +1,29 @@
-let products = [];
-
-async function fetchProducts(numOfProducts = 5, sortBy = "rating") {
+const productsPerPage = 2;
+let sortBy = "rating";
+let page = 1;
+async function fetchProducts() {
   try {
-    const response = await fetch(`/products?numOfProducts=${numOfProducts}&sortBy=${sortBy}`);
+    const response = await fetch(`/products?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
     if (!response.ok) {
       throw new Error("Failed to fetch products");
     }
-    products = await response.json();
+    const data = await response.json();
+    return {
+      products: data.products,
+      totalPages: data.totalPages,
+      currentPage: data.currentPage,
+      pagination: data.pagination,
+    };
   } catch (error) {
     console.error("Error fetching products:", error);
-    products = [];
+    return {
+      products: [],
+      totalPages: 0,
+      currentPage: 1,
+      pagination: {},
+    };
   }
 }
-
-// Initialize products on page load
-fetchProducts();
 
 const profilePic = document.querySelector(".profile");
 const overlay = document.querySelector(".overlay");
@@ -231,15 +240,97 @@ function createProductElement(product) {
   return productDiv;
 }
 
-function renderProducts() {
+async function renderDisplay() {
+  const sortBySelect = document.getElementById("sort-by-select");
+  sortBy = sortBySelect.value;
+  let { products, totalPages, currentPage, pagination } = await fetchProducts();
+  renderPaginationBar(totalPages, currentPage, pagination);
+  renderProducts(products);
+}
+
+renderDisplay();
+
+function renderProducts(products) {
   const productsContainer = document.querySelector(".products");
+  productsContainer.innerHTML = "";
+
   products.forEach((product) => {
     productsContainer.appendChild(createProductElement(product));
   });
-  updateProductsDisplay();
 }
 
-renderProducts();
+function renderPaginationBar(totalPages, currentPage, pagination) {
+  const paginationContainer = document.querySelector(".pages");
+  paginationContainer.innerHTML = "";
+
+  const prevButton = document.getElementById("prev-page");
+  const nextButton = document.getElementById("next-page");
+
+  prevButton.disabled = !pagination.previous;
+  nextButton.disabled = !pagination.next;
+
+  if (totalPages <= 3) {
+    for (let i = 1; i <= totalPages; i++) {
+      const pageButton = document.createElement("button");
+      pageButton.classList.add("page-number");
+      pageButton.textContent = i;
+      if (i === currentPage) {
+        pageButton.classList.add("active");
+      }
+      pageButton.addEventListener("click", async () => {
+        page = i;
+        renderDisplay();
+      });
+      paginationContainer.appendChild(pageButton);
+    }
+  } else {
+    let startPage = currentPage;
+    if (currentPage === totalPages) {
+      startPage = currentPage - 2;
+    } else if (currentPage > 1) {
+      startPage = currentPage - 1;
+    }
+
+    for (let i = 0; i < 3; i++) {
+      if (startPage + i <= totalPages) {
+        const pageButton = document.createElement("button");
+        pageButton.classList.add("page-number");
+        pageButton.textContent = startPage + i;
+        if (startPage + i === currentPage) {
+          pageButton.classList.add("active");
+        }
+        pageButton.addEventListener("click", async () => {
+          page = startPage + i;
+          renderDisplay();
+        });
+        paginationContainer.appendChild(pageButton);
+      }
+    }
+  }
+
+  // Add event listeners for prev/next buttons
+  prevButton.addEventListener("click", async () => {
+    if (pagination.previous) {
+      page = currentPage - 1;
+      const productsContainer = document.querySelector(".products");
+      productsContainer.innerHTML = "";
+      const data = await fetchProducts();
+      renderPaginationBar(data.totalPages, data.currentPage, data.pagination);
+      renderProducts(data.products);
+    }
+  });
+
+  nextButton.addEventListener("click", async () => {
+    if (pagination.next) {
+      page = currentPage + 1;
+      const productsContainer = document.querySelector(".products");
+      productsContainer.innerHTML = "";
+      const data = await fetchProducts();
+      renderPaginationBar(data.totalPages, data.currentPage, data.pagination);
+      renderProducts(data.products);
+    }
+  });
+}
 
 const cart = [];
 function addCartItem(item) {
@@ -285,21 +376,6 @@ function removeCartItem(item) {
   }
 }
 
-async function updateProductsDisplay() {
-  const productsCountSelect = document.getElementById("products-count-select");
-  const sortBySelect = document.getElementById("sort-by-select");
-  const productsContainer = document.querySelector(".products");
-
-  const selectedCount = parseInt(productsCountSelect.value);
-  const sortBy = sortBySelect.value;
-  await fetchProducts(selectedCount, sortBy);
-
-  productsContainer.innerHTML = "";
-  products.forEach((product) => {
-    productsContainer.appendChild(createProductElement(product));
-  });
-}
-
 // Add event listeners
-document.getElementById("products-count-select").addEventListener("change", updateProductsDisplay);
-document.getElementById("sort-by-select").addEventListener("change", updateProductsDisplay);
+document.getElementById("products-count-select").addEventListener("change", renderDisplay);
+document.getElementById("sort-by-select").addEventListener("change", renderDisplay);
