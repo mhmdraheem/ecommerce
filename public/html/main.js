@@ -1,4 +1,4 @@
-const productsPerPage = 2;
+const productsPerPage = 15;
 let sortBy = "rating";
 let page = 1;
 async function fetchProducts() {

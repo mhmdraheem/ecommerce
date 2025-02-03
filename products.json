@@ -51,6 +51,148 @@
     ]
   },
   {
+    "id": 11,
+    "heading": {
+      "title": "Mirrorless Digital Camera",
+      "brand": "Sony",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 4
+    },
+    "stock": 12,
+    "images": ["img/product/camera-1.jpg"],
+    "price": {
+      "oldPrice": 1499.99,
+      "currentPrice": 1199.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Advanced mirrorless camera with full-frame sensor, in-body stabilization, and professional video features.",
+    "features": [
+      "Full-frame Sensor",
+      "5-axis Stabilization",
+      "Real-time Eye AF",
+      "4K HDR Video",
+      "Weather Sealed Body"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Chris Evans",
+        "rating": 5,
+        "comment": "Amazing image quality and autofocus performance.",
+        "date": "2024-01-16",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "heading": {
+      "title": "Compact Travel Camera",
+      "brand": "Fujifilm",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.3,
+      "reviews": 5
+    },
+    "stock": 20,
+    "images": ["img/product/camera-1.jpg"],
+    "price": {
+      "oldPrice": 899.99,
+      "currentPrice": 749.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Portable travel camera with retro design, advanced filters, and wireless connectivity.",
+    "features": [
+      "26MP X-Trans Sensor",
+      "Film Simulation Modes",
+      "Bluetooth Connectivity",
+      "Compact Design",
+      "Touch Screen"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Alice Cooper",
+        "rating": 4,
+        "comment": "Perfect travel companion, love the film simulations.",
+        "date": "2024-01-14",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 1111,
+    "heading": {
+      "title": "Action Sports Camera",
+      "brand": "GoPro",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.6,
+      "reviews": 6
+    },
+    "stock": 25,
+    "images": ["img/product/camera-1.jpg"],
+    "price": {
+      "oldPrice": 499.99,
+      "currentPrice": 399.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Rugged action camera with 5K video, waterproof design, and advanced stabilization.",
+    "features": [
+      "5K Video Recording",
+      "HyperSmooth Stabilization",
+      "Waterproof Design",
+      "Voice Control",
+      "Live Streaming"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Tony Hawk",
+        "rating": 5,
+        "comment": "Best action camera for extreme sports.",
+        "date": "2024-01-12",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 11111,
+    "heading": {
+      "title": "Professional Video Camera",
+      "brand": "Blackmagic",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 3
+    },
+    "stock": 8,
+    "images": ["img/product/camera-1.jpg"],
+    "price": {
+      "oldPrice": 1999.99,
+      "currentPrice": 1699.99,
+      "discount": 15
+    },
+    "freeShipping": true,
+    "description": "Cinema-grade video camera with RAW recording, professional audio inputs, and advanced color science.",
+    "features": ["6K RAW Recording", "Dual Native ISO", "XLR Audio Inputs", "ProRes Recording", "Cinema Mount"],
+    "reviews": [
+      {
+        "reviewer": "Steven Spielberg",
+        "rating": 5,
+        "comment": "Exceptional video quality for professional filmmaking.",
+        "date": "2024-01-13",
+        "verified": true
+      }
+    ]
+  },
+  {
     "id": 2,
     "heading": {
       "title": "Ergonomic Office Chair",
@@ -109,6 +251,132 @@
     ]
   },
   {
+    "id": 22,
+    "heading": {
+      "title": "Executive Gaming Chair",
+      "brand": "ErgoComfort",
+      "category": "Furniture"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 6
+    },
+    "stock": 30,
+    "images": ["img/product/chair-1.jpg"],
+    "price": {
+      "oldPrice": 399.99,
+      "currentPrice": 329.99,
+      "discount": 18
+    },
+    "freeShipping": true,
+    "description": "Premium gaming chair with racing-style design, neck pillow, and enhanced padding for extended gaming sessions.",
+    "features": [
+      "Racing Style Design",
+      "Neck Support Pillow",
+      "Reclining Function",
+      "Premium Padding",
+      "Footrest Extension"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Alex Gaming",
+        "rating": 5,
+        "comment": "Perfect for long gaming sessions. Super comfortable!",
+        "date": "2024-01-12",
+        "verified": true
+      },
+      {
+        "reviewer": "Pro Gamer",
+        "rating": 4,
+        "comment": "Great gaming chair with excellent support.",
+        "date": "2024-01-09",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 222,
+    "heading": {
+      "title": "Luxury Massage Chair",
+      "brand": "ErgoComfort",
+      "category": "Furniture"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 8
+    },
+    "stock": 15,
+    "images": ["img/product/chair-1.jpg"],
+    "price": {
+      "oldPrice": 899.99,
+      "currentPrice": 699.99,
+      "discount": 22
+    },
+    "freeShipping": true,
+    "description": "Advanced massage chair with multiple massage modes, heating function, and zero gravity positioning.",
+    "features": [
+      "Multiple Massage Modes",
+      "Heat Therapy",
+      "Zero Gravity Position",
+      "Bluetooth Speakers",
+      "Air Compression"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Relaxed User",
+        "rating": 5,
+        "comment": "Best investment for relaxation. Amazing features!",
+        "date": "2024-01-15",
+        "verified": true
+      },
+      {
+        "reviewer": "Stress Free",
+        "rating": 5,
+        "comment": "The massage functions are incredible.",
+        "date": "2024-01-11",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 2222,
+    "heading": {
+      "title": "Modern Dining Chair",
+      "brand": "ErgoComfort",
+      "category": "Furniture"
+    },
+    "rating": {
+      "stars": 4.3,
+      "reviews": 5
+    },
+    "stock": 40,
+    "images": ["img/product/chair-1.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 159.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Stylish dining chair with contemporary design, comfortable cushioning, and durable construction.",
+    "features": ["Contemporary Design", "Padded Seat", "Sturdy Frame", "Easy Assembly", "Stain Resistant"],
+    "reviews": [
+      {
+        "reviewer": "Home Designer",
+        "rating": 4,
+        "comment": "Beautiful chairs that complement my dining room perfectly.",
+        "date": "2024-01-14",
+        "verified": true
+      },
+      {
+        "reviewer": "Modern Home",
+        "rating": 5,
+        "comment": "Excellent quality and very comfortable.",
+        "date": "2024-01-10",
+        "verified": true
+      }
+    ]
+  },
+  {
     "id": 3,
     "heading": {
       "title": "Premium Energy Drink",
@@ -142,6 +410,130 @@
         "rating": 4,
         "comment": "Good alternative to coffee, nice flavor.",
         "date": "2024-01-03",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "heading": {
+      "title": "Sport Energy Drink",
+      "brand": "PowerBoost",
+      "category": "Beverages"
+    },
+    "rating": {
+      "stars": 4.2,
+      "reviews": 3
+    },
+    "stock": 150,
+    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "price": {
+      "oldPrice": 4.99,
+      "currentPrice": 3.99,
+      "discount": 20
+    },
+    "freeShipping": false,
+    "description": "High-performance sports drink with enhanced electrolytes for athletes. Low sugar formula.",
+    "features": ["Enhanced Electrolytes", "Low Sugar", "BCAAs", "Isotonic Formula", "Recovery Blend"],
+    "reviews": [
+      {
+        "reviewer": "John Athlete",
+        "rating": 4,
+        "comment": "Perfect for post-workout recovery.",
+        "date": "2024-01-15",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 333,
+    "heading": {
+      "title": "Organic Energy Drink",
+      "brand": "PowerBoost",
+      "category": "Beverages"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 4
+    },
+    "stock": 80,
+    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "price": {
+      "oldPrice": 5.99,
+      "currentPrice": 4.49,
+      "discount": 25
+    },
+    "freeShipping": false,
+    "description": "All-natural organic energy drink made with plant-based ingredients and natural sweeteners.",
+    "features": ["100% Organic", "Plant Based", "Natural Sweeteners", "Vegan", "Non-GMO"],
+    "reviews": [
+      {
+        "reviewer": "Sarah Green",
+        "rating": 5,
+        "comment": "Love that it's all organic and natural.",
+        "date": "2024-01-12",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 3333,
+    "heading": {
+      "title": "Focus Energy Drink",
+      "brand": "PowerBoost",
+      "category": "Beverages"
+    },
+    "rating": {
+      "stars": 4.3,
+      "reviews": 3
+    },
+    "stock": 120,
+    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "price": {
+      "oldPrice": 4.49,
+      "currentPrice": 3.49,
+      "discount": 22
+    },
+    "freeShipping": false,
+    "description": "Nootropic energy drink designed to enhance mental focus and cognitive performance.",
+    "features": ["Nootropics", "L-Theanine", "Green Tea Extract", "Memory Support", "Mental Clarity"],
+    "reviews": [
+      {
+        "reviewer": "Student Pro",
+        "rating": 4,
+        "comment": "Helps me stay focused during long study sessions.",
+        "date": "2024-01-08",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 33333,
+    "heading": {
+      "title": "Recovery Energy Drink",
+      "brand": "PowerBoost",
+      "category": "Beverages"
+    },
+    "rating": {
+      "stars": 4.1,
+      "reviews": 3
+    },
+    "stock": 90,
+    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "price": {
+      "oldPrice": 4.99,
+      "currentPrice": 3.99,
+      "discount": 20
+    },
+    "freeShipping": false,
+    "description": "Post-workout recovery drink with protein, amino acids, and essential nutrients.",
+    "features": ["20g Protein", "Amino Acids", "Collagen", "Joint Support", "Muscle Recovery"],
+    "reviews": [
+      {
+        "reviewer": "Gym Enthusiast",
+        "rating": 4,
+        "comment": "Great for muscle recovery after intense workouts.",
+        "date": "2024-01-10",
         "verified": true
       }
     ]
@@ -207,6 +599,99 @@
         "rating": 5,
         "comment": "Worth every penny, great noise cancellation.",
         "date": "2024-01-10",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "heading": {
+      "title": "Sport Wireless Earbuds",
+      "brand": "AudioTech",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.6,
+      "reviews": 4
+    },
+    "stock": 35,
+    "images": ["img/product/ear-pods-1.jpg"],
+    "price": {
+      "oldPrice": 179.99,
+      "currentPrice": 139.99,
+      "discount": 22
+    },
+    "freeShipping": true,
+    "description": "Sports-focused wireless earbuds with secure fit and sweat resistance.",
+    "features": ["Secure Fit Design", "IPX7 Waterproof", "20Hr Battery Life", "Heart Rate Monitor", "Voice Assistant"],
+    "reviews": [
+      {
+        "reviewer": "John Runner",
+        "rating": 5,
+        "comment": "Perfect for running, never falls out!",
+        "date": "2024-01-19",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 444,
+    "heading": {
+      "title": "Pro Studio Wireless Earbuds",
+      "brand": "AudioTech",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 3
+    },
+    "stock": 25,
+    "images": ["img/product/ear-pods-1.jpg"],
+    "price": {
+      "oldPrice": 249.99,
+      "currentPrice": 199.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Professional-grade wireless earbuds with studio-quality sound reproduction.",
+    "features": ["Hi-Res Audio", "Dual Drivers", "30Hr Battery Life", "Ambient Mode", "Custom EQ"],
+    "reviews": [
+      {
+        "reviewer": "Pro Producer",
+        "rating": 5,
+        "comment": "Studio quality sound in a portable package.",
+        "date": "2024-01-15",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 4444,
+    "heading": {
+      "title": "Gaming Wireless Earbuds",
+      "brand": "AudioTech",
+      "category": "Electronics"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 4
+    },
+    "stock": 40,
+    "images": ["img/product/ear-pods-1.jpg"],
+    "price": {
+      "oldPrice": 189.99,
+      "currentPrice": 159.99,
+      "discount": 16
+    },
+    "freeShipping": true,
+    "description": "Low-latency wireless earbuds optimized for mobile gaming.",
+    "features": ["Ultra-Low Latency", "Gaming Mode", "RGB Lighting", "Surround Sound", "Noise Isolation"],
+    "reviews": [
+      {
+        "reviewer": "Gamer Pro",
+        "rating": 5,
+        "comment": "No lag, perfect for mobile gaming!",
+        "date": "2024-01-17",
         "verified": true
       }
     ]
@@ -291,6 +776,105 @@
     ]
   },
   {
+    "id": 55,
+    "heading": {
+      "title": "Studio Professional Headset",
+      "brand": "GameAudio",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 4
+    },
+    "stock": 25,
+    "images": ["img/product/headphones-1.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 169.99,
+      "discount": 15
+    },
+    "freeShipping": true,
+    "description": "Studio-grade headset with precision audio tuning for professional content creation.",
+    "features": ["Studio Grade Audio", "Professional Mic", "Sound Isolation", "Flat Response", "Premium Build"],
+    "reviews": [
+      {
+        "reviewer": "Studio Pro",
+        "rating": 5,
+        "comment": "Perfect for content creation and streaming.",
+        "date": "2024-01-16",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 555,
+    "heading": {
+      "title": "Wireless Gaming Headset",
+      "brand": "GameAudio",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 3
+    },
+    "stock": 35,
+    "images": ["img/product/headphones-1.jpg"],
+    "price": {
+      "oldPrice": 189.99,
+      "currentPrice": 159.99,
+      "discount": 16
+    },
+    "freeShipping": true,
+    "description": "High-performance wireless gaming headset with low latency connection.",
+    "features": ["Wireless Freedom", "30Hr Battery", "Quick Charge", "Dual Wireless", "Game/Chat Mix"],
+    "reviews": [
+      {
+        "reviewer": "Wireless Gamer",
+        "rating": 5,
+        "comment": "No lag, great wireless performance!",
+        "date": "2024-01-14",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 5555,
+    "heading": {
+      "title": "Tournament Gaming Headset",
+      "brand": "GameAudio",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 5
+    },
+    "stock": 20,
+    "images": ["img/product/headphones-1.jpg"],
+    "price": {
+      "oldPrice": 229.99,
+      "currentPrice": 189.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Tournament-grade gaming headset with advanced audio positioning.",
+    "features": [
+      "Pro Audio Positioning",
+      "Tournament Ready",
+      "Noise Blocking",
+      "Lightweight Design",
+      "Team Chat Certified"
+    ],
+    "reviews": [
+      {
+        "reviewer": "ESports Pro",
+        "rating": 5,
+        "comment": "The perfect headset for competitive gaming.",
+        "date": "2024-01-15",
+        "verified": true
+      }
+    ]
+  },
+  {
     "id": 6,
     "heading": {
       "title": "Wireless Gaming Controller",
@@ -323,6 +907,111 @@
         "rating": 4,
         "comment": "Great controller, very responsive and comfortable to use.",
         "date": "2024-01-12",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "heading": {
+      "title": "Pro Gaming Controller Elite",
+      "brand": "GamePro",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 15
+    },
+    "stock": 30,
+    "images": ["img/product/joystick.jpg"],
+    "price": {
+      "oldPrice": 129.99,
+      "currentPrice": 99.99,
+      "discount": 23
+    },
+    "freeShipping": true,
+    "description": "Elite gaming controller with premium build quality and advanced customization options.",
+    "features": [
+      "Premium Build",
+      "Advanced Button Mapping",
+      "Hair Trigger Locks",
+      "40Hr Battery Life",
+      "Pro-Grade Components"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Pro Gamer",
+        "rating": 5,
+        "comment": "Best controller for competitive gaming!",
+        "date": "2024-01-15",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 666,
+    "heading": {
+      "title": "Tournament Gaming Controller",
+      "brand": "GamePro",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.6,
+      "reviews": 8
+    },
+    "stock": 25,
+    "images": ["img/product/joystick.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 169.99,
+      "discount": 15
+    },
+    "freeShipping": true,
+    "description": "Tournament-grade controller with ultra-responsive buttons and professional features.",
+    "features": ["Tournament Ready", "Zero Latency", "Mechanical Buttons", "Adjustable Weight", "Custom Profiles"],
+    "reviews": [
+      {
+        "reviewer": "Tournament Player",
+        "rating": 5,
+        "comment": "Perfect for competitive tournaments.",
+        "date": "2024-01-18",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 6666,
+    "heading": {
+      "title": "Limited Edition Gaming Controller",
+      "brand": "GamePro",
+      "category": "Gaming"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 12
+    },
+    "stock": 10,
+    "images": ["img/product/joystick.jpg"],
+    "price": {
+      "oldPrice": 299.99,
+      "currentPrice": 249.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Collector's edition gaming controller with unique design and premium features.",
+    "features": [
+      "Limited Edition Design",
+      "Premium Materials",
+      "RGB Lighting",
+      "60Hr Battery Life",
+      "Carrying Case Included"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Collector",
+        "rating": 5,
+        "comment": "Amazing collector's item and performs perfectly!",
+        "date": "2024-01-20",
         "verified": true
       }
     ]
@@ -389,6 +1078,99 @@
         "rating": 5,
         "comment": "Best matte lipstick I've tried.",
         "date": "2023-12-28",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "heading": {
+      "title": "Luxury Matte Lipstick",
+      "brand": "BeautyGlow",
+      "category": "Cosmetics"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 12
+    },
+    "stock": 45,
+    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "price": {
+      "oldPrice": 34.99,
+      "currentPrice": 29.99,
+      "discount": 14
+    },
+    "freeShipping": true,
+    "description": "Premium matte lipstick with gold-infused formula and intense color saturation.",
+    "features": ["24Hr Wear", "Gold-infused", "Luxury Packaging", "Anti-aging", "Hydrating Complex"],
+    "reviews": [
+      {
+        "reviewer": "Beauty Expert",
+        "rating": 5,
+        "comment": "Luxury quality with amazing staying power!",
+        "date": "2024-01-22",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 777,
+    "heading": {
+      "title": "Professional Matte Lipstick",
+      "brand": "BeautyGlow",
+      "category": "Cosmetics"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 18
+    },
+    "stock": 30,
+    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "price": {
+      "oldPrice": 44.99,
+      "currentPrice": 39.99,
+      "discount": 11
+    },
+    "freeShipping": true,
+    "description": "Professional-grade matte lipstick with advanced color technology and premium ingredients.",
+    "features": ["Pro Formula", "Color Lock", "Dermatologist Tested", "Premium Pigments", "Waterproof"],
+    "reviews": [
+      {
+        "reviewer": "Makeup Artist",
+        "rating": 5,
+        "comment": "Perfect for professional makeup applications!",
+        "date": "2024-01-25",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 7777,
+    "heading": {
+      "title": "Limited Collection Matte Lipstick",
+      "brand": "BeautyGlow",
+      "category": "Cosmetics"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 9
+    },
+    "stock": 15,
+    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "price": {
+      "oldPrice": 54.99,
+      "currentPrice": 49.99,
+      "discount": 9
+    },
+    "freeShipping": true,
+    "description": "Exclusive limited edition matte lipstick with rare ingredients and collector's packaging.",
+    "features": ["Limited Edition", "Rare Ingredients", "Collector's Case", "Diamond Powder", "Custom Shade"],
+    "reviews": [
+      {
+        "reviewer": "Beauty Collector",
+        "rating": 5,
+        "comment": "Stunning collector's piece with amazing formula!",
+        "date": "2024-01-28",
         "verified": true
       }
     ]
@@ -474,6 +1256,130 @@
     ]
   },
   {
+    "id": 88,
+    "heading": {
+      "title": "Wagyu Beef Premium Cut",
+      "brand": "Prime Cuts",
+      "category": "Food"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 12
+    },
+    "stock": 15,
+    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 179.99,
+      "discount": 10
+    },
+    "freeShipping": true,
+    "description": "Authentic Japanese Wagyu beef with exceptional marbling and tenderness.",
+    "features": ["A5 Grade", "Japanese Wagyu", "Marbling Score 8+", "Flash Frozen", "Certificate of Authenticity"],
+    "reviews": [
+      {
+        "reviewer": "Master Chef",
+        "rating": 5,
+        "comment": "The finest Wagyu I've worked with.",
+        "date": "2024-01-25",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 888,
+    "heading": {
+      "title": "Dry-Aged Prime Ribeye",
+      "brand": "Prime Cuts",
+      "category": "Food"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 6
+    },
+    "stock": 10,
+    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "price": {
+      "oldPrice": 89.99,
+      "currentPrice": 79.99,
+      "discount": 11
+    },
+    "freeShipping": false,
+    "description": "45-day dry-aged prime ribeye with concentrated flavor and buttery texture.",
+    "features": ["45-Day Aged", "USDA Prime", "Hand Selected", "Custom Cut", "Intense Flavor"],
+    "reviews": [
+      {
+        "reviewer": "Steak Connoisseur",
+        "rating": 5,
+        "comment": "The aging process creates incredible flavor.",
+        "date": "2024-01-24",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 8888,
+    "heading": {
+      "title": "Organic Grass-Fed Tenderloin",
+      "brand": "Prime Cuts",
+      "category": "Food"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 9
+    },
+    "stock": 25,
+    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "price": {
+      "oldPrice": 69.99,
+      "currentPrice": 59.99,
+      "discount": 14
+    },
+    "freeShipping": false,
+    "description": "Certified organic grass-fed beef tenderloin from sustainable farms.",
+    "features": ["Organic Certified", "Sustainable Farm", "No Antibiotics", "Grass-Fed", "Lean Cut"],
+    "reviews": [
+      {
+        "reviewer": "Health Enthusiast",
+        "rating": 5,
+        "comment": "Clean, healthy, and delicious meat.",
+        "date": "2024-01-23",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 88888,
+    "heading": {
+      "title": "Premium Tomahawk Steak",
+      "brand": "Prime Cuts",
+      "category": "Food"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 7
+    },
+    "stock": 8,
+    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "price": {
+      "oldPrice": 129.99,
+      "currentPrice": 109.99,
+      "discount": 15
+    },
+    "freeShipping": true,
+    "description": "Impressive 32-ounce Tomahawk ribeye steak with extended bone for presentation.",
+    "features": ["32oz Cut", "Long Bone-In", "Premium Marbling", "Wet Aged", "Show Stopper"],
+    "reviews": [
+      {
+        "reviewer": "Grill Master",
+        "rating": 5,
+        "comment": "Spectacular presentation and taste.",
+        "date": "2024-01-21",
+        "verified": true
+      }
+    ]
+  },
+  {
     "id": 9,
     "heading": {
       "title": "Nike Air Max Sneakers",
@@ -521,6 +1427,130 @@
         "rating": 5,
         "comment": "Perfect fit and great design.",
         "date": "2024-01-10",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "heading": {
+      "title": "Nike Air Max Pro Running Shoes",
+      "brand": "Nike",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 6
+    },
+    "stock": 25,
+    "images": ["img/product/nike-sneaker-1.jpg"],
+    "price": {
+      "oldPrice": 179.99,
+      "currentPrice": 149.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Professional-grade running shoes with enhanced Air Max cushioning system.",
+    "features": ["Enhanced Air Cushioning", "Runner's Mesh", "Anti-Slip Sole", "Race Ready", "Reflective Details"],
+    "reviews": [
+      {
+        "reviewer": "Pro Runner",
+        "rating": 5,
+        "comment": "Perfect for marathon training!",
+        "date": "2024-01-20",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 999,
+    "heading": {
+      "title": "Nike Air Max Elite Basketball Shoes",
+      "brand": "Nike",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 8
+    },
+    "stock": 20,
+    "images": ["img/product/nike-sneaker-1.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 169.99,
+      "discount": 15
+    },
+    "freeShipping": true,
+    "description": "High-performance basketball shoes with court-optimized Air Max technology.",
+    "features": ["Court Grip", "Ankle Support", "Impact Protection", "Quick Response", "Breathable Design"],
+    "reviews": [
+      {
+        "reviewer": "Basketball Pro",
+        "rating": 5,
+        "comment": "Excellent court performance!",
+        "date": "2024-01-22",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 9999,
+    "heading": {
+      "title": "Nike Air Max Limited Edition",
+      "brand": "Nike",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 5.0,
+      "reviews": 10
+    },
+    "stock": 15,
+    "images": ["img/product/nike-sneaker-1.jpg"],
+    "price": {
+      "oldPrice": 249.99,
+      "currentPrice": 199.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Exclusive limited edition Air Max with premium materials and unique colorway.",
+    "features": ["Limited Release", "Premium Leather", "Special Colorway", "Numbered Edition", "Collector's Box"],
+    "reviews": [
+      {
+        "reviewer": "Sneaker Collector",
+        "rating": 5,
+        "comment": "A must-have for collectors!",
+        "date": "2024-01-24",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 99999,
+    "heading": {
+      "title": "Nike Air Max Custom Design",
+      "brand": "Nike",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.95,
+      "reviews": 12
+    },
+    "stock": 10,
+    "images": ["img/product/nike-sneaker-1.jpg"],
+    "price": {
+      "oldPrice": 299.99,
+      "currentPrice": 259.99,
+      "discount": 13
+    },
+    "freeShipping": true,
+    "description": "Fully customizable Air Max sneakers with premium material options.",
+    "features": ["Custom Colors", "Material Choice", "Personal Branding", "Bespoke Fit", "Artisan Crafted"],
+    "reviews": [
+      {
+        "reviewer": "Design Enthusiast",
+        "rating": 5,
+        "comment": "Amazing customization options!",
+        "date": "2024-01-25",
         "verified": true
       }
     ]
@@ -613,6 +1643,130 @@
     ]
   },
   {
+    "id": 100,
+    "heading": {
+      "title": "Chanel No.5 Eau de Parfum",
+      "brand": "Chanel",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 15
+    },
+    "stock": 30,
+    "images": ["img/product/perfume-channel-1.jpg"],
+    "price": {
+      "oldPrice": 165.99,
+      "currentPrice": 149.99,
+      "discount": 10
+    },
+    "freeShipping": true,
+    "description": "Concentrated version of the iconic fragrance with enhanced floral notes.",
+    "features": ["Enhanced Formula", "Intense Scent", "Premium Bottle", "Gift Box", "Authenticity Card"],
+    "reviews": [
+      {
+        "reviewer": "Fragrance Lover",
+        "rating": 5,
+        "comment": "More intense than the original, perfect for special occasions.",
+        "date": "2024-01-22",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 1000,
+    "heading": {
+      "title": "Chanel No.5 Limited Edition",
+      "brand": "Chanel",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 8
+    },
+    "stock": 15,
+    "images": ["img/product/perfume-channel-1.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 179.99,
+      "discount": 10
+    },
+    "freeShipping": true,
+    "description": "Special edition with unique bottle design and enhanced fragrance notes.",
+    "features": ["Limited Release", "Collector's Bottle", "Enhanced Scent", "Luxury Box", "Numbered Edition"],
+    "reviews": [
+      {
+        "reviewer": "Perfume Collector",
+        "rating": 5,
+        "comment": "Beautiful collector's piece with amazing scent.",
+        "date": "2024-01-24",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 10000,
+    "heading": {
+      "title": "Chanel No.5 Parfum Crystal",
+      "brand": "Chanel",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 5.0,
+      "reviews": 6
+    },
+    "stock": 8,
+    "images": ["img/product/perfume-channel-1.jpg"],
+    "price": {
+      "oldPrice": 299.99,
+      "currentPrice": 259.99,
+      "discount": 13
+    },
+    "freeShipping": true,
+    "description": "Luxury crystal bottle edition with pure parfum concentration.",
+    "features": ["Crystal Bottle", "Pure Parfum", "Handcrafted", "Velvet Box", "Certificate"],
+    "reviews": [
+      {
+        "reviewer": "Luxury Enthusiast",
+        "rating": 5,
+        "comment": "The epitome of luxury fragrance.",
+        "date": "2024-01-26",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 100000,
+    "heading": {
+      "title": "Chanel No.5 Grand Extrait",
+      "brand": "Chanel",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 5.0,
+      "reviews": 4
+    },
+    "stock": 5,
+    "images": ["img/product/perfume-channel-1.jpg"],
+    "price": {
+      "oldPrice": 499.99,
+      "currentPrice": 449.99,
+      "discount": 10
+    },
+    "freeShipping": true,
+    "description": "Ultimate luxury edition with rare ingredients and baccarat crystal bottle.",
+    "features": ["Baccarat Crystal", "Rare Ingredients", "Leather Case", "White Glove Service", "VIP Experience"],
+    "reviews": [
+      {
+        "reviewer": "VIP Client",
+        "rating": 5,
+        "comment": "The most exquisite fragrance experience.",
+        "date": "2024-01-28",
+        "verified": true
+      }
+    ]
+  },
+  {
     "id": 11,
     "heading": {
       "title": "Digiora Essence Perfume",
@@ -646,6 +1800,130 @@
         "rating": 4,
         "comment": "Nice everyday fragrance.",
         "date": "2024-01-12",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "heading": {
+      "title": "Digiora Sport Perfume",
+      "brand": "Digiora",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.2,
+      "reviews": 5
+    },
+    "stock": 35,
+    "images": ["img/product/perfume-digiora-1.jpg"],
+    "price": {
+      "oldPrice": 99.99,
+      "currentPrice": 79.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Energetic fragrance with invigorating citrus and mint notes for active lifestyles.",
+    "features": ["Energetic Scent", "Sport Formula", "Sweat Resistant", "12Hr Lasting", "Active Wear"],
+    "reviews": [
+      {
+        "reviewer": "Active User",
+        "rating": 4,
+        "comment": "Perfect for post-workout freshness.",
+        "date": "2024-01-20",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 1100,
+    "heading": {
+      "title": "Digiora Evening Elegance",
+      "brand": "Digiora",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 8
+    },
+    "stock": 25,
+    "images": ["img/product/perfume-digiora-1.jpg"],
+    "price": {
+      "oldPrice": 129.99,
+      "currentPrice": 99.99,
+      "discount": 23
+    },
+    "freeShipping": true,
+    "description": "Sophisticated evening fragrance with deep floral notes and amber undertones.",
+    "features": ["Evening Wear", "Premium Blend", "Rich Notes", "Signature Scent", "Gift Box"],
+    "reviews": [
+      {
+        "reviewer": "Evening Enthusiast",
+        "rating": 5,
+        "comment": "Perfect for special occasions.",
+        "date": "2024-01-22",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 11000,
+    "heading": {
+      "title": "Digiora Limited Reserve",
+      "brand": "Digiora",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 6
+    },
+    "stock": 15,
+    "images": ["img/product/perfume-digiora-1.jpg"],
+    "price": {
+      "oldPrice": 199.99,
+      "currentPrice": 159.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Limited edition fragrance with rare ingredients and collector's packaging.",
+    "features": ["Limited Edition", "Rare Extracts", "Luxury Box", "Numbered Bottle", "Certificate"],
+    "reviews": [
+      {
+        "reviewer": "Collector",
+        "rating": 5,
+        "comment": "Exquisite limited edition scent.",
+        "date": "2024-01-25",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 110000,
+    "heading": {
+      "title": "Digiora Pure Parfum",
+      "brand": "Digiora",
+      "category": "Fragrances"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 4
+    },
+    "stock": 10,
+    "images": ["img/product/perfume-digiora-1.jpg"],
+    "price": {
+      "oldPrice": 299.99,
+      "currentPrice": 249.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Highest concentration pure parfum with precious ingredients and crystal bottle.",
+    "features": ["Pure Parfum", "Crystal Bottle", "Precious Oils", "Velvet Case", "VIP Service"],
+    "reviews": [
+      {
+        "reviewer": "Luxury Client",
+        "rating": 5,
+        "comment": "The ultimate Digiora experience.",
+        "date": "2024-01-28",
         "verified": true
       }
     ]
@@ -691,6 +1969,130 @@
         "rating": 5,
         "comment": "Perfect engagement ring, great value.",
         "date": "2024-01-17",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "heading": {
+      "title": "Sapphire Engagement Ring",
+      "brand": "LuxeJewels",
+      "category": "Jewelry"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 5
+    },
+    "stock": 8,
+    "images": ["img/product/ring.jpg"],
+    "price": {
+      "oldPrice": 3499.99,
+      "currentPrice": 2999.99,
+      "discount": 14
+    },
+    "freeShipping": true,
+    "description": "Stunning sapphire engagement ring with platinum band and diamond accents.",
+    "features": ["Platinum Band", "Natural Sapphire", "Diamond Accents", "Modern Design", "Lifetime Warranty"],
+    "reviews": [
+      {
+        "reviewer": "Luxury Buyer",
+        "rating": 5,
+        "comment": "Unique and beautiful alternative to traditional diamond rings.",
+        "date": "2024-01-25",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 1222,
+    "heading": {
+      "title": "Vintage Style Diamond Ring",
+      "brand": "LuxeJewels",
+      "category": "Jewelry"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 7
+    },
+    "stock": 5,
+    "images": ["img/product/ring.jpg"],
+    "price": {
+      "oldPrice": 3999.99,
+      "currentPrice": 3499.99,
+      "discount": 13
+    },
+    "freeShipping": true,
+    "description": "Art deco inspired engagement ring with intricate filigree and vintage details.",
+    "features": ["Rose Gold", "Antique Design", "Milgrain Details", "Conflict-free Diamonds", "Artisan Crafted"],
+    "reviews": [
+      {
+        "reviewer": "Vintage Lover",
+        "rating": 5,
+        "comment": "Exactly the vintage look I was searching for!",
+        "date": "2024-01-27",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 12222,
+    "heading": {
+      "title": "Three Stone Diamond Ring",
+      "brand": "LuxeJewels",
+      "category": "Jewelry"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 4
+    },
+    "stock": 6,
+    "images": ["img/product/ring.jpg"],
+    "price": {
+      "oldPrice": 4499.99,
+      "currentPrice": 3999.99,
+      "discount": 11
+    },
+    "freeShipping": true,
+    "description": "Luxurious three stone engagement ring symbolizing past, present and future.",
+    "features": ["Three Diamonds", "Platinum Setting", "VS Clarity", "Custom Sizing", "GIA Certified"],
+    "reviews": [
+      {
+        "reviewer": "Diamond Expert",
+        "rating": 5,
+        "comment": "Exceptional quality three stone design.",
+        "date": "2024-01-28",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 122222,
+    "heading": {
+      "title": "Halo Diamond Ring",
+      "brand": "LuxeJewels",
+      "category": "Jewelry"
+    },
+    "rating": {
+      "stars": 4.95,
+      "reviews": 6
+    },
+    "stock": 4,
+    "images": ["img/product/ring.jpg"],
+    "price": {
+      "oldPrice": 5999.99,
+      "currentPrice": 4999.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Spectacular halo engagement ring with micropavé diamonds and hidden details.",
+    "features": ["Halo Setting", "Hidden Diamonds", "Double Band", "Premium Cut", "Luxury Box"],
+    "reviews": [
+      {
+        "reviewer": "Fine Jewelry Collector",
+        "rating": 5,
+        "comment": "The sparkle is absolutely breathtaking!",
+        "date": "2024-01-29",
         "verified": true
       }
     ]
@@ -743,6 +2145,130 @@
         "rating": 5,
         "comment": "Perfect fit and great look.",
         "date": "2024-01-11",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "heading": {
+      "title": "Limited Edition Sunglasses",
+      "brand": "RayBan",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 6
+    },
+    "stock": 15,
+    "images": ["img/product/sunglasses-1.jpg"],
+    "price": {
+      "oldPrice": 299.99,
+      "currentPrice": 249.99,
+      "discount": 17
+    },
+    "freeShipping": true,
+    "description": "Limited edition aviators with gold-plated frame and premium leather case.",
+    "features": ["Gold Plated", "Crystal Lenses", "Leather Case", "Numbered Edition", "Certificate"],
+    "reviews": [
+      {
+        "reviewer": "Fashion Expert",
+        "rating": 5,
+        "comment": "Exceptional limited edition piece!",
+        "date": "2024-01-25",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 1333,
+    "heading": {
+      "title": "Sport Performance Sunglasses",
+      "brand": "RayBan",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 8
+    },
+    "stock": 25,
+    "images": ["img/product/sunglasses-1.jpg"],
+    "price": {
+      "oldPrice": 249.99,
+      "currentPrice": 199.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Athletic sunglasses with enhanced grip and anti-fog coating.",
+    "features": ["Anti-fog Coating", "Sport Grip", "Impact Resistant", "Lightweight", "Ventilated Frame"],
+    "reviews": [
+      {
+        "reviewer": "Pro Athlete",
+        "rating": 5,
+        "comment": "Perfect for outdoor sports!",
+        "date": "2024-01-22",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 13333,
+    "heading": {
+      "title": "Prescription Ready Sunglasses",
+      "brand": "RayBan",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.6,
+      "reviews": 7
+    },
+    "stock": 20,
+    "images": ["img/product/sunglasses-1.jpg"],
+    "price": {
+      "oldPrice": 279.99,
+      "currentPrice": 229.99,
+      "discount": 18
+    },
+    "freeShipping": true,
+    "description": "Customizable prescription sunglasses with blue light protection.",
+    "features": ["Prescription Ready", "Blue Light Filter", "Anti-glare", "Custom Fit", "Digital Protection"],
+    "reviews": [
+      {
+        "reviewer": "Eye Care Pro",
+        "rating": 5,
+        "comment": "Excellent prescription compatibility!",
+        "date": "2024-01-20",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 133333,
+    "heading": {
+      "title": "Smart Tech Sunglasses",
+      "brand": "RayBan",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 5
+    },
+    "stock": 10,
+    "images": ["img/product/sunglasses-1.jpg"],
+    "price": {
+      "oldPrice": 399.99,
+      "currentPrice": 349.99,
+      "discount": 13
+    },
+    "freeShipping": true,
+    "description": "Smart sunglasses with built-in audio and touch controls.",
+    "features": ["Bluetooth Audio", "Touch Controls", "Voice Assistant", "App Connected", "Smart Case"],
+    "reviews": [
+      {
+        "reviewer": "Tech Enthusiast",
+        "rating": 5,
+        "comment": "Amazing blend of style and technology!",
+        "date": "2024-01-28",
         "verified": true
       }
     ]
@@ -807,6 +2333,148 @@
     ]
   },
   {
+    "id": 144,
+    "heading": {
+      "title": "Sport Chronograph Watch",
+      "brand": "TimeMaster",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.6,
+      "reviews": 8
+    },
+    "stock": 20,
+    "images": ["img/product/white-watch-1.jpg"],
+    "price": {
+      "oldPrice": 599.99,
+      "currentPrice": 479.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Sports chronograph watch with tachymeter and multiple subdials.",
+    "features": [
+      "Chronograph Function",
+      "Tachymeter Scale",
+      "Stainless Steel",
+      "100m Water Resistance",
+      "Luminous Hands"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Sports Enthusiast",
+        "rating": 5,
+        "comment": "Perfect for timing activities!",
+        "date": "2024-01-15",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 1444,
+    "heading": {
+      "title": "Smart Digital Watch",
+      "brand": "TimeMaster",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 12
+    },
+    "stock": 25,
+    "images": ["img/product/white-watch-1.jpg"],
+    "price": {
+      "oldPrice": 699.99,
+      "currentPrice": 549.99,
+      "discount": 21
+    },
+    "freeShipping": true,
+    "description": "Advanced smartwatch with health monitoring and connectivity features.",
+    "features": [
+      "Heart Rate Monitor",
+      "GPS Tracking",
+      "Bluetooth Connection",
+      "Sleep Analysis",
+      "Smartphone Notifications"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Tech Lover",
+        "rating": 5,
+        "comment": "Amazing smart features!",
+        "date": "2024-01-20",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 14444,
+    "heading": {
+      "title": "Diving Professional Watch",
+      "brand": "TimeMaster",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 6
+    },
+    "stock": 18,
+    "images": ["img/product/white-watch-1.jpg"],
+    "price": {
+      "oldPrice": 799.99,
+      "currentPrice": 639.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Professional diving watch with 300m water resistance and helium escape valve.",
+    "features": ["300m Water Resistance", "Helium Escape Valve", "Rotating Bezel", "Super-LumiNova", "Rubber Strap"],
+    "reviews": [
+      {
+        "reviewer": "Pro Diver",
+        "rating": 5,
+        "comment": "Reliable underwater companion!",
+        "date": "2024-01-18",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 144444,
+    "heading": {
+      "title": "Skeleton Automatic Watch",
+      "brand": "TimeMaster",
+      "category": "Accessories"
+    },
+    "rating": {
+      "stars": 4.9,
+      "reviews": 7
+    },
+    "stock": 12,
+    "images": ["img/product/white-watch-1.jpg"],
+    "price": {
+      "oldPrice": 899.99,
+      "currentPrice": 719.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Luxury skeleton watch showcasing intricate automatic movement through transparent case.",
+    "features": [
+      "Visible Movement",
+      "Exhibition Caseback",
+      "Power Reserve Display",
+      "Hand-Wound Option",
+      "Limited Edition"
+    ],
+    "reviews": [
+      {
+        "reviewer": "Watch Collector",
+        "rating": 5,
+        "comment": "Mechanical beauty at its finest!",
+        "date": "2024-01-22",
+        "verified": true
+      }
+    ]
+  },
+  {
     "id": 15,
     "heading": {
       "title": "Designer High Heels",
@@ -847,6 +2515,130 @@
         "rating": 4,
         "comment": "Stylish and well-made heels.",
         "date": "2024-01-07",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "heading": {
+      "title": "Crystal Embellished High Heels",
+      "brand": "Elegance",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.8,
+      "reviews": 5
+    },
+    "stock": 15,
+    "images": ["img/product/woman-shoes-1.jpg"],
+    "price": {
+      "oldPrice": 399.99,
+      "currentPrice": 319.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Luxurious high heels adorned with Swarovski crystals for special occasions.",
+    "features": ["Swarovski Crystals", "Memory Foam Insole", "3.5-inch Heel", "Leather Lining", "Bridal Collection"],
+    "reviews": [
+      {
+        "reviewer": "Luxury Bride",
+        "rating": 5,
+        "comment": "Perfect wedding shoes!",
+        "date": "2024-01-25",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 1555,
+    "heading": {
+      "title": "Platform High Heels",
+      "brand": "Elegance",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.6,
+      "reviews": 8
+    },
+    "stock": 20,
+    "images": ["img/product/woman-shoes-1.jpg"],
+    "price": {
+      "oldPrice": 349.99,
+      "currentPrice": 279.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Modern platform heels combining style with enhanced comfort and stability.",
+    "features": ["1-inch Platform", "5-inch Heel", "Padded Footbed", "Ankle Strap", "Evening Wear"],
+    "reviews": [
+      {
+        "reviewer": "Fashion Blogger",
+        "rating": 5,
+        "comment": "Perfect height with amazing stability!",
+        "date": "2024-01-20",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 15555,
+    "heading": {
+      "title": "Metallic Strappy Heels",
+      "brand": "Elegance",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.7,
+      "reviews": 6
+    },
+    "stock": 18,
+    "images": ["img/product/woman-shoes-1.jpg"],
+    "price": {
+      "oldPrice": 329.99,
+      "currentPrice": 264.99,
+      "discount": 20
+    },
+    "freeShipping": true,
+    "description": "Glamorous metallic finish heels with intricate strappy design.",
+    "features": ["Metallic Leather", "Strappy Design", "3.75-inch Heel", "Golden Hardware", "Party Wear"],
+    "reviews": [
+      {
+        "reviewer": "Party Queen",
+        "rating": 5,
+        "comment": "These heels are show-stoppers!",
+        "date": "2024-01-22",
+        "verified": true
+      }
+    ]
+  },
+  {
+    "id": 155555,
+    "heading": {
+      "title": "Peep Toe High Heels",
+      "brand": "Elegance",
+      "category": "Footwear"
+    },
+    "rating": {
+      "stars": 4.5,
+      "reviews": 4
+    },
+    "stock": 22,
+    "images": ["img/product/woman-shoes-1.jpg"],
+    "price": {
+      "oldPrice": 289.99,
+      "currentPrice": 229.99,
+      "discount": 21
+    },
+    "freeShipping": true,
+    "description": "Classic peep toe design with modern comfort features.",
+    "features": ["Peep Toe Design", "Breathable Lining", "4.25-inch Heel", "Flexible Sole", "Summer Collection"],
+    "reviews": [
+      {
+        "reviewer": "Summer Style",
+        "rating": 4,
+        "comment": "Perfect summer evening heels!",
+        "date": "2024-01-24",
         "verified": true
       }
     ]
