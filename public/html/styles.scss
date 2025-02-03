@@ -6,7 +6,18 @@
   margin: 0;
   box-sizing: border-box;
 
+  --header-bg-color: #ffffff;
   --footer-text-color: rgba(255, 255, 255, 0.5);
+  --primary-color: orange;
+  --primary-hover-color: #ff6b00;
+  --accent-color: red;
+  --footer-bg-color: #333333;
+  --footer-dark-bg-color: #2b2b2b;
+  --social-facebook: #3c5a99;
+  --social-twitter: #00a2e8;
+  --social-youtube: #e52e2e;
+  --social-instagram: #815dc7;
+  --social-rss: #ffc338;
 }
 
 a {
@@ -40,9 +51,10 @@ nav {
   display: grid;
   grid-template-areas: "logo form cart profile";
   grid-template-columns: auto 1fr auto auto;
-  padding: 10px 0;
-  gap: 15px;
+  padding: 20px 0;
+  gap: 25px;
   align-items: center;
+  background-color: var(--header-bg-color);
 
   @media (max-width: 768px) {
     grid-template-areas:
@@ -51,16 +63,19 @@ nav {
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.2rem;
     font-weight: 800;
-    background-image: linear-gradient(red, orangered, orange);
-    color: transparent;
-    background-clip: text;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
   }
 
   p {
-    font-size: 0.8rem;
+    font-size: 1rem;
     opacity: 0.8;
+    font-weight: 400;
   }
 
   .logo {
@@ -80,7 +95,7 @@ nav {
       position: absolute;
       top: -5px;
       right: 0;
-      background-color: red;
+      background-color: var(--accent-color);
       width: 0.6rem;
       height: 0.6rem;
       border-radius: 50%;
@@ -125,7 +140,7 @@ nav {
   }
 
   form input:focus {
-    outline: 2px solid orange;
+    outline: 2px solid var(--primary-color);
   }
 
   form button {
@@ -138,7 +153,7 @@ nav {
     border: none;
     width: 90px;
     cursor: pointer;
-    background-color: orange;
+    background-color: var(--primary-color);
     font-size: 1rem;
     color: #fff;
     font-weight: 500;
@@ -245,7 +260,7 @@ nav {
     margin: 5px 0 10px;
     font-size: 1rem;
     opacity: 0.6;
-    color: red;
+    color: var(--accent-color);
   }
 
   .price {
@@ -268,13 +283,13 @@ nav {
     .current {
       font-weight: 400;
       font-size: 1.5rem;
-      color: orange;
+      color: var(--primary-color);
     }
 
     .discount-label {
       width: fit-content;
       border-radius: 5px;
-      color: orange;
+      color: var(--primary-color);
       font-weight: 400;
       background-color: rgb(255 165 0 / 20%);
       display: flex;
@@ -312,7 +327,7 @@ nav {
     justify-content: center;
     width: 100%;
     height: 40px;
-    background-color: orange;
+    background-color: var(--primary-color);
     cursor: pointer;
   }
 
@@ -426,7 +441,7 @@ nav {
     transition: 0.3s cubic-bezier(0.4, 0, 1, 1);
     width: 0%;
     height: 100%;
-    background-color: red;
+    background-color: var(--accent-color);
     cursor: pointer;
     transition: 0.3s;
 
@@ -458,7 +473,7 @@ nav {
 }
 
 .products-overlay-spinner {
-  color: orange;
+  color: var(--primary-color);
   animation: spin 1s linear infinite;
   font-size: 2.5rem;
 
@@ -536,8 +551,8 @@ nav {
     }
 
     &.active {
-      color: #ff6b00;
-      border-color: #ff6b00;
+      color: var(--primary-hover-color);
+      border-color: var(--primary-hover-color);
       cursor: default;
     }
   }
@@ -547,7 +562,7 @@ nav {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: orange;
+  background-color: var(--primary-color);
   color: white;
   border-radius: 50%;
   cursor: pointer;
@@ -558,11 +573,11 @@ nav {
   justify-content: center;
 
   &:hover {
-    background-color: #ff6b00;
+    background-color: var(--primary-hover-color);
   }
 
   &:active {
-    background-color: #ff6b00;
+    background-color: var(--primary-hover-color);
   }
 
   i {
@@ -570,15 +585,15 @@ nav {
   }
 }
 
-.site-info {
+.footer-area {
   padding: 30px 0;
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.5;
-  background-color: #333333;
+  background-color: var(--footer-bg-color);
   color: var(--footer-text-color);
 
-  .container {
+  .content {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
@@ -622,6 +637,10 @@ nav {
     display: block;
     color: var(--main-text-color);
     margin-bottom: 10px;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .newsletter {
@@ -647,7 +666,7 @@ nav {
       height: 30px;
       padding: 5px 20px;
       color: white;
-      background-color: #e52727;
+      background-color: var(--accent-color);
       border: none;
     }
 
@@ -678,27 +697,27 @@ nav {
 
     .icon-facebook {
       color: white;
-      background-color: #3c5a99;
+      background-color: var(--social-facebook);
     }
 
     .icon-twitter {
       color: white;
-      background-color: #00a2e8;
+      background-color: var(--social-twitter);
     }
 
     .icon-youtube {
       color: white;
-      background-color: #e52e2e;
+      background-color: var(--social-youtube);
     }
 
     .icon-instagram {
       color: white;
-      background-color: #815dc7;
+      background-color: var(--social-instagram);
     }
 
     .icon-rss {
       color: black;
-      background-color: #ffc338;
+      background-color: var(--social-rss);
     }
   }
 }
@@ -707,9 +726,9 @@ footer {
   font-size: 13px;
   padding: 20px 0;
   color: var(--footer-text-color);
-  background-color: #2b2b2b;
+  background-color: var(--footer-dark-bg-color);
 
-  .container {
+  .content {
     display: flex;
     align-items: center;
     justify-content: space-between;
