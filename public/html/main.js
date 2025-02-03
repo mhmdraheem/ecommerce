@@ -25,16 +25,6 @@ async function fetchProducts() {
   }
 }
 
-const profilePic = document.querySelector(".profile");
-const overlay = document.querySelector(".overlay");
-profilePic.addEventListener("mouseover", function () {
-  overlay.style.display = "block";
-});
-
-profilePic.addEventListener("mouseout", function () {
-  overlay.style.display = "none";
-});
-
 function generateStars(rating) {
   const starsContainer = document.createElement("span");
   starsContainer.classList.add("rating");
@@ -243,9 +233,34 @@ function createProductElement(product) {
 async function renderDisplay() {
   const sortBySelect = document.getElementById("sort-by-select");
   sortBy = sortBySelect.value;
+  createOverlay();
   let { products, totalPages, currentPage, pagination } = await fetchProducts();
-  renderPaginationBar(totalPages, currentPage, pagination);
   renderProducts(products);
+  renderPaginationBars(totalPages, currentPage, pagination);
+  removeOverlay();
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+function createOverlay() {
+  const overlay = document.createElement("div");
+  overlay.classList.add("products-overlay");
+  overlay.style.top = document.querySelector("nav").offsetHeight + "px";
+
+  const spinner = document.createElement("i");
+  spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "products-overlay-spinner");
+
+  overlay.appendChild(spinner);
+  document.body.appendChild(overlay);
+}
+
+function removeOverlay() {
+  document.querySelector(".products-overlay").remove();
 }
 
 renderDisplay();
@@ -257,79 +272,95 @@ function renderProducts(products) {
   products.forEach((product) => {
     productsContainer.appendChild(createProductElement(product));
   });
+
+  scrollToTop();
 }
 
-function renderPaginationBar(totalPages, currentPage, pagination) {
-  const paginationContainer = document.querySelector(".pages");
-  paginationContainer.innerHTML = "";
+function renderPaginationBars(totalPages, currentPage, pagination) {
+  const existingPagination = document.querySelectorAll(".pagination");
 
-  const prevButton = document.getElementById("prev-page");
-  const nextButton = document.getElementById("next-page");
+  for (let i = 0; i < 2; i++) {
+    const paginationDiv = existingPagination[i];
+    paginationDiv.innerHTML = "";
 
-  prevButton.disabled = !pagination.previous;
-  nextButton.disabled = !pagination.next;
+    paginationDiv.classList.add("pagination");
 
-  if (totalPages <= 3) {
-    for (let i = 1; i <= totalPages; i++) {
-      const pageButton = document.createElement("button");
-      pageButton.classList.add("page-number");
-      pageButton.textContent = i;
-      if (i === currentPage) {
-        pageButton.classList.add("active");
-      }
-      pageButton.addEventListener("click", async () => {
-        page = i;
-        renderDisplay();
-      });
-      paginationContainer.appendChild(pageButton);
-    }
-  } else {
-    let startPage = currentPage;
-    if (currentPage === totalPages) {
-      startPage = currentPage - 2;
-    } else if (currentPage > 1) {
-      startPage = currentPage - 1;
-    }
+    const prevButton = document.createElement("button");
+    prevButton.classList.add("page-btn-prev");
+    prevButton.disabled = !pagination.previous;
+    const prevIcon = document.createElement("i");
+    prevIcon.classList.add("fa-solid", "fa-chevron-left", "next-page-icon");
+    prevButton.appendChild(prevIcon);
 
-    for (let i = 0; i < 3; i++) {
-      if (startPage + i <= totalPages) {
+    const pagesDiv = document.createElement("div");
+    pagesDiv.classList.add("pages");
+
+    const nextButton = document.createElement("button");
+    nextButton.classList.add("page-btn-next");
+    nextButton.disabled = !pagination.next;
+    const nextIcon = document.createElement("i");
+    nextIcon.classList.add("fa-solid", "fa-chevron-right", "next-page-icon");
+    nextButton.appendChild(nextIcon);
+
+    // Add page buttons
+    if (totalPages <= 3) {
+      for (let i = 1; i <= totalPages; i++) {
         const pageButton = document.createElement("button");
         pageButton.classList.add("page-number");
-        pageButton.textContent = startPage + i;
-        if (startPage + i === currentPage) {
+        pageButton.textContent = i;
+        if (i === currentPage) {
           pageButton.classList.add("active");
         }
         pageButton.addEventListener("click", async () => {
-          page = startPage + i;
+          page = i;
           renderDisplay();
         });
-        paginationContainer.appendChild(pageButton);
+        pagesDiv.appendChild(pageButton);
+      }
+    } else {
+      let startPage = currentPage;
+      if (currentPage === totalPages) {
+        startPage = currentPage - 2;
+      } else if (currentPage > 1) {
+        startPage = currentPage - 1;
+      }
+
+      for (let i = 0; i < 3; i++) {
+        if (startPage + i <= totalPages) {
+          const pageButton = document.createElement("button");
+          pageButton.classList.add("page-number");
+          pageButton.textContent = startPage + i;
+          if (startPage + i === currentPage) {
+            pageButton.classList.add("active");
+          }
+          pageButton.addEventListener("click", async () => {
+            page = startPage + i;
+            renderDisplay();
+          });
+          pagesDiv.appendChild(pageButton);
+        }
       }
     }
+
+    // Add event listeners for prev/next buttons
+    prevButton.addEventListener("click", async () => {
+      if (pagination.previous) {
+        page = currentPage - 1;
+        renderDisplay();
+      }
+    });
+
+    nextButton.addEventListener("click", async () => {
+      if (pagination.next) {
+        page = currentPage + 1;
+        renderDisplay();
+      }
+    });
+
+    paginationDiv.appendChild(prevButton);
+    paginationDiv.appendChild(pagesDiv);
+    paginationDiv.appendChild(nextButton);
   }
-
-  // Add event listeners for prev/next buttons
-  prevButton.addEventListener("click", async () => {
-    if (pagination.previous) {
-      page = currentPage - 1;
-      const productsContainer = document.querySelector(".products");
-      productsContainer.innerHTML = "";
-      const data = await fetchProducts();
-      renderPaginationBar(data.totalPages, data.currentPage, data.pagination);
-      renderProducts(data.products);
-    }
-  });
-
-  nextButton.addEventListener("click", async () => {
-    if (pagination.next) {
-      page = currentPage + 1;
-      const productsContainer = document.querySelector(".products");
-      productsContainer.innerHTML = "";
-      const data = await fetchProducts();
-      renderPaginationBar(data.totalPages, data.currentPage, data.pagination);
-      renderProducts(data.products);
-    }
-  });
 }
 
 const cart = [];
@@ -377,5 +408,6 @@ function removeCartItem(item) {
 }
 
 // Add event listeners
-document.getElementById("products-count-select").addEventListener("change", renderDisplay);
 document.getElementById("sort-by-select").addEventListener("change", renderDisplay);
+
+document.querySelector(".scroll-to-top").addEventListener("click", scrollToTop);

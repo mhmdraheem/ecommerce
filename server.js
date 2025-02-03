@@ -20,8 +20,9 @@ function loadProducts() {
 }
 
 // Products API endpoint
-app.get("/products", (req, res) => {
+app.get("/products", async (req, res) => {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 500));
     console.log(req.query);
 
     const page = parseInt(req.query.page) || 1;

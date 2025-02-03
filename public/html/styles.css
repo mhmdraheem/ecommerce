@@ -5,7 +5,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  --nav-height: 70px;
+  --footer-text-color: rgba(255, 255, 255, 0.5);
 }
 
 a {
@@ -133,42 +133,6 @@ nav {
 .header .profile {
   position: relative;
 }
-.header .profile-menu {
-  display: none;
-  padding: 0.5rem 0;
-  width: 200px;
-  background-color: #fff;
-  z-index: 1000;
-  position: absolute;
-  bottom: 5px;
-  right: 0;
-  text-wrap: nowrap;
-  transform: translate(0, 100%);
-  font-size: 0.9rem;
-}
-.header .profile-menu:hover {
-  display: block;
-}
-.header .profile-menu li {
-  padding: 0.3rem 0.5rem;
-  cursor: pointer;
-}
-.header .profile-menu li:hover {
-  text-decoration: underline;
-  color: orange;
-}
-
-.overlay {
-  display: none;
-  width: 100%;
-  height: calc(100vh - var(--nav-height));
-  background-color: #000;
-  opacity: 0.5;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-}
 
 .section-margin {
   margin-bottom: 10px;
@@ -185,39 +149,22 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-end;
   padding: 10px;
   background-color: #f2f2f2;
-}
-.display-settings .summary-label {
-  min-width: 150px;
+  font-size: 1rem;
 }
 .display-settings .sort-by-label {
   min-width: 55px;
-}
-.display-settings .products-count {
-  font-size: 1rem;
-}
-.display-settings .sort-by {
-  min-width: 250px;
 }
 .display-settings select {
   height: 25px;
   background-color: white;
   border: none;
   outline: none;
-  font-size: 1rem;
 }
 .display-settings .sort-by-select {
   font-size: 1rem;
-}
-@media (max-width: 992px) {
-  .display-settings .summary-label {
-    width: calc(100% - 80px);
-  }
-  .display-settings .products-count {
-    margin-left: 0;
-  }
 }
 
 .products {
@@ -438,6 +385,33 @@ nav {
   color: #fff;
 }
 
+.products-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.products-overlay-spinner {
+  color: orange;
+  animation: spin 1s linear infinite;
+  font-size: 2.5rem;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .pagination {
   display: flex;
   align-items: center;
@@ -447,7 +421,16 @@ nav {
   width: -moz-fit-content;
   width: fit-content;
 }
-.pagination .page-btn {
+.pagination.pagination--bottom {
+  margin: 50px auto 50px;
+}
+.pagination.pagination--top {
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 0;
+}
+.pagination .page-btn-prev,
+.pagination .page-btn-next {
   background: none;
   border: none;
   font-size: 1.2rem;
@@ -455,36 +438,192 @@ nav {
   padding: 5px 10px;
   color: #333;
 }
-.pagination .page-btn:disabled {
+.pagination .page-btn-prev:disabled,
+.pagination .page-btn-next:disabled {
   color: #ccc;
   cursor: not-allowed;
 }
-.pagination .page-btn:not(:disabled):hover {
+.pagination .page-btn-prev:not(:disabled):hover,
+.pagination .page-btn-next:not(:disabled):hover {
   color: #666;
+}
+.pagination .next-page-icon {
+  font-size: 1.5rem;
 }
 .pagination .pages {
   display: flex;
   gap: 5px;
 }
 .pagination .page-number {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 40px;
   border: 1px solid #ccc;
   background: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 400;
   cursor: pointer;
 }
 .pagination .page-number:hover:not(.active) {
   background: #f5f5f5;
 }
 .pagination .page-number.active {
-  background: #ff6b00;
-  color: white;
+  color: #ff6b00;
   border-color: #ff6b00;
   cursor: default;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: orange;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-to-top:hover {
+  background-color: #ff6b00;
+}
+.scroll-to-top:active {
+  background-color: #ff6b00;
+}
+.scroll-to-top i {
+  font-size: 1.5rem;
+}
+
+.site-info {
+  padding: 30px 0;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  background-color: #333333;
+  color: var(--footer-text-color);
+}
+.site-info .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.site-info .footer-col {
+  display: flex;
+  flex-direction: column;
+}
+.site-info .contact-us-col {
+  max-width: 400px;
+}
+.site-info .newsletter-col {
+  max-width: 300px;
+}
+.site-info .footer-col-header {
+  font-weight: 300;
+  margin-bottom: 20px;
+  color: white;
+}
+.site-info .contact-us {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.site-info .contact-us .summary {
+  grid-column: 1/span 2;
+  margin-bottom: 10px;
+}
+.site-info .contact-us .address-type {
+  margin-bottom: 5px;
+}
+.site-info ul a {
+  display: block;
+  color: var(--main-text-color);
+  margin-bottom: 10px;
+}
+.site-info .newsletter form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.site-info .newsletter .form-description {
+  width: 100%;
+}
+.site-info .newsletter input[type=text] {
+  height: 30px;
+  padding: 5px;
+  max-width: 250px;
+}
+.site-info .newsletter input[type=submit] {
+  height: 30px;
+  padding: 5px 20px;
+  color: white;
+  background-color: #e52727;
+  border: none;
+}
+.site-info .newsletter .social-media-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+.site-info .newsletter .description {
+  width: 100%;
+}
+.site-info .newsletter a:hover {
+  text-decoration: none;
+}
+.site-info .newsletter .icon {
+  width: 25px;
+  height: 25px;
+  font-size: 13px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.site-info .newsletter .icon-facebook {
+  color: white;
+  background-color: #3c5a99;
+}
+.site-info .newsletter .icon-twitter {
+  color: white;
+  background-color: #00a2e8;
+}
+.site-info .newsletter .icon-youtube {
+  color: white;
+  background-color: #e52e2e;
+}
+.site-info .newsletter .icon-instagram {
+  color: white;
+  background-color: #815dc7;
+}
+.site-info .newsletter .icon-rss {
+  color: black;
+  background-color: #ffc338;
+}
+
+footer {
+  font-size: 13px;
+  padding: 20px 0;
+  color: var(--footer-text-color);
+  background-color: #2b2b2b;
+}
+footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+footer span:first-of-type a {
+  color: white;
+}
+footer img {
+  width: 40px;
 }
 
 .container {
