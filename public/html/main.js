@@ -249,18 +249,18 @@ function scrollToTop() {
 
 function createOverlay() {
   const overlay = document.createElement("div");
-  overlay.classList.add("products-overlay");
+  overlay.classList.add("page-overlay");
   overlay.style.top = document.querySelector("nav").offsetHeight + "px";
 
   const spinner = document.createElement("i");
-  spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "products-overlay-spinner");
+  spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "page-overlay-spinner");
 
   overlay.appendChild(spinner);
   document.body.appendChild(overlay);
 }
 
 function removeOverlay() {
-  document.querySelector(".products-overlay").remove();
+  document.querySelector(".page-overlay").remove();
 }
 
 renderDisplay();
