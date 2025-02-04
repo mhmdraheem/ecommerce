@@ -3,7 +3,7 @@ let sortBy = "rating";
 let page = 1;
 async function fetchProducts() {
   try {
-    const response = await fetch(`/products?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
+    const response = await fetch(`/api/products?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
     if (!response.ok) {
       throw new Error("Failed to fetch products");
     }

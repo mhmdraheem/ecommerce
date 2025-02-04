@@ -5,7 +5,9 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
+// Serve static files from public folder
 app.use(express.static("public/html"));
+app.use("/img", express.static(path.join(__dirname, "public/img")));
 
 // Cache for products data
 let productsCache = null;
@@ -20,7 +22,8 @@ function loadProducts() {
 }
 
 // Products API endpoint
-app.get("/products", async (req, res) => {
+app.use(express.static("public/html"));
+app.get("/api/products", async (req, res) => {
   try {
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.log(req.query);
@@ -114,6 +117,26 @@ app.get("/img/:type?/:imageName", (req, res) => {
   } catch (error) {
     console.error("Error serving image:", error);
     res.status(500).json({ error: "Failed to fetch image" });
+  }
+});
+
+// Serve HTML files
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/html/index.html"));
+});
+
+// Serve other HTML files
+app.get("/:page", (req, res) => {
+  const page = req.params.page;
+  const filePath = path.join(__dirname, "public/html", page);
+  
+  // If no extension is provided, assume .html
+  const fullPath = filePath.endsWith(".html") ? filePath : `${filePath}.html`;
+  
+  if (fs.existsSync(fullPath)) {
+    res.sendFile(fullPath);
+  } else {
+    res.status(404).sendFile(path.join(__dirname, "public/html/404.html"));
   }
 });
 
