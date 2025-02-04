@@ -204,12 +204,13 @@ nav {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-
+ 
   .product {
     border: 1px solid #e2e0e0;
     padding: 10px;
     border-radius: 2px;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
@@ -224,17 +225,27 @@ nav {
   }
 
   .product-img-wrapper {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    overflow: hidden;
+    margin-bottom: 20px;
   }
 
   img {
     max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50%;
   }
 
   .details {
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin-top: 20px;
   }
 
   .rating-star {

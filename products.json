@@ -11,7 +11,7 @@
       "reviews": 3
     },
     "stock": 15,
-    "images": ["img/product/camera-1.jpg"],
+    "images": ["img/product/camera-2.jpg"],
     "price": {
       "oldPrice": 1299.99,
       "currentPrice": 999.99,
