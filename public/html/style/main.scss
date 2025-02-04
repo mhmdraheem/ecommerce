@@ -14,7 +14,7 @@ nav {
 
 .cover {
   height: 120px;
-  background-image: url("img/ecommerce.png");
+  background-image: url("/img/ecommerce.png");
   background-size: cover;
   background-position: left;
 }
@@ -176,16 +176,6 @@ nav {
     height: 40px;
   }
 
-  .cart-add {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 40px;
-    background-color: var(--primary-color);
-    cursor: pointer;
-  }
-
   .cart-icon {
     color: #fff;
 
@@ -204,9 +194,21 @@ nav {
 
   .cart-add {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary-color);
+    cursor: pointer;
     transition: width 0.3s ease-in-out;
 
     &.active {
+      // cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    &.success {
       width: fit-content;
     }
   }
@@ -231,7 +233,7 @@ nav {
     position: relative;
     display: flex;
     align-items: center;
-    width: 100%;
+    width: fit-content;
     height: 100%;
     border: 1px solid #ccc;
 

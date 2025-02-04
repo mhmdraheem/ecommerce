@@ -1,13 +1,12 @@
-async function addToCart(product) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-}
-
 async function decreaseItemCount(product) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
 }
 
 const cart = [];
-function addCartItem(item) {
+async function addCartItem(item) {
+    console.log("Call started");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log("Call ended");
   const existingItem = cart.find((cartItem) => cartItem.id === item);
   if (existingItem) {
     existingItem.quantity++;
@@ -18,6 +17,18 @@ function addCartItem(item) {
     });
   }
   showHeaderCartAlert();
+}
+
+async function removeCartItem() {
+    console.log("Call started");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log("Call ended");
+}
+
+async function updateCartItem() {
+    console.log("Call started");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log("Call ended");
 }
 
 function decreaseCartItem(item) {
@@ -41,14 +52,14 @@ function decreaseCartItem(item) {
   }
 }
 
-function removeCartItem(item) {
-  const idx = cart.indexOf(item);
-  cart.splice(idx, 1);
+// function removeCartItem(item) {
+//   const idx = cart.indexOf(item);
+//   cart.splice(idx, 1);
 
-  if (cart.length === 0) {
-    hideHeaderCartAlert();
-  }
-}
+//   if (cart.length === 0) {
+//     hideHeaderCartAlert();
+//   }
+// }
 
 function showHeaderCartAlert() {
   document.querySelector(".cart .alert").classList.add("visible");

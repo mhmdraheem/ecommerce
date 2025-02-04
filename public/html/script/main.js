@@ -116,6 +116,28 @@ function createProductElement(product) {
   // Add to cart
   const cartAddDiv = document.createElement("div");
   cartAddDiv.classList.add("cart-add");
+  cartAddDiv.addEventListener("click", async () => {
+    // if(cartAddDiv.classList.contains("active")) {
+    //   return;
+    // }
+    
+    cartAddDiv.classList.add("active");
+    cartAddIcon.classList.add("hidden");
+    spinner.classList.remove("hidden");
+
+    try {
+      await addCartItem(product.id);
+
+      cartAddDiv.classList.add("success");
+      spinner.classList.add("hidden");
+      quantityWrapper.classList.remove("hidden");
+      quantityInput.value = 1;
+    } catch (err) {
+      spinner.classList.add("hidden");
+      cartAddIcon.classList.remove("hidden");
+      cartAddDiv.classList.remove("active");
+    }
+  });
 
   const spinner = document.createElement("i");
   spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "spinner-icon", "hidden");
@@ -143,24 +165,23 @@ function createProductElement(product) {
   decreaseBtn.addEventListener("click", async (e) => {
     e.stopPropagation();
     const currentValue = parseInt(quantityInput.value);
-    if (currentValue > 0) {
-      quantityInput.value = currentValue - 1;
-      let count = decreaseCartItem(product.id);
+    const newQuantity = currentValue - 1;
 
-      if (count <= 0) {
-        quantityWrapper.classList.add("hidden");
-        spinner.classList.remove("hidden");
-        cartAddDiv.classList.remove("active");
-        try {
-          // Simulating backend call
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          cartAddIcon.classList.remove("hidden");
-        } catch (err) {
-          quantityWrapper.classList.remove("hidden");
-          cartAddDiv.classList.add("active");
-        } finally {
-          spinner.classList.add("hidden");
-        }
+    if (newQuantity >= 1) {
+      await updateCartItem(product.id, newQuantity);
+      quantityInput.value = newQuantity;
+    } else {
+      quantityWrapper.classList.add("hidden");
+      spinner.classList.remove("hidden");
+      cartAddDiv.classList.remove("active");
+      try {
+        await removeCartItem(product.id, 0);
+        cartAddIcon.classList.remove("hidden");
+      } catch (err) {
+        quantityWrapper.classList.remove("hidden");
+        cartAddDiv.classList.add("active");
+      } finally {
+        spinner.classList.add("hidden");
       }
     }
   });
@@ -168,11 +189,13 @@ function createProductElement(product) {
   const increaseBtn = document.createElement("button");
   increaseBtn.classList.add("increase");
   increaseBtn.innerHTML = "+";
-  increaseBtn.addEventListener("click", () => {
+  increaseBtn.addEventListener("click", async (e) => {
+    e.stopPropagation();
     const currentValue = parseInt(quantityInput.value);
     if (currentValue < product.stock) {
       quantityInput.value = currentValue + 1;
-      addCartItem(product.id);
+      // addCartItem(product.id);
+      await updateCartItem(product.id, quantityInput.value);
     }
   });
 
@@ -181,27 +204,6 @@ function createProductElement(product) {
   quantityWrapper.appendChild(decreaseBtn);
   quantityWrapper.appendChild(quantityInput);
   quantityWrapper.appendChild(increaseBtn);
-
-  cartAddDiv.addEventListener("click", async () => {
-    if (!cartAddDiv.classList.contains("active")) {
-      cartAddIcon.classList.add("hidden");
-      spinner.classList.remove("hidden");
-
-      try {
-        // Simulating backend call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        cartAddDiv.classList.add("active");
-        spinner.classList.add("hidden");
-        quantityWrapper.classList.remove("hidden");
-        quantityInput.value = 1;
-        addCartItem(product.id);
-      } catch (err) {
-        spinner.classList.add("hidden");
-        cartAddIcon.classList.remove("hidden");
-      }
-    }
-  });
 
   cartAddDiv.appendChild(spinner);
   cartAddDiv.appendChild(quantityWrapper);
