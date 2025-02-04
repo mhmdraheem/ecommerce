@@ -25,7 +25,7 @@ function loadProducts() {
 app.use(express.static("public/html"));
 app.get("/api/products", async (req, res) => {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log(req.query);
 
     const page = parseInt(req.query.page) || 1;
