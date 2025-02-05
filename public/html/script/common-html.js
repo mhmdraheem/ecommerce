@@ -1,3 +1,6 @@
+//const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
+const imgUrl = "http://localhost:3000/img";
+
 function createNav() {
   const nav = document.createElement('nav');
   nav.className = 'section-margin';
@@ -19,7 +22,7 @@ function createNav() {
           </i>
         </a>
         <a href="profile.html" target="_blank" class="profile">
-          <img class="avatar" src="img/avatar.png" alt="profile-picture" />
+          <img class="avatar" src='${imgUrl}/avatar.png' alt="profile-picture" />
         </a>
       </div>
     </div>
@@ -139,10 +142,10 @@ function createFooter() {
     <div class="content">
       <span>Powered By <a href="#">Tech</a> - Designed by <a href="#">Mohamed Raheem</a></span>
       <span>
-        <img src="img/visa.jpg" alt="payment-method-visa" />
-        <img src="img/paypal.png" alt="payment-method-paypal" />
-        <img src="img/mastercard.png" alt="payment-method-mastercard" />
-        <img src="img/westernunion.webp" alt="payment-method-westernunion" />
+        <img src='${imgUrl}/visa.jpg' alt="payment-method-visa" />
+        <img src='${imgUrl}/paypal.png' alt="payment-method-paypal" />
+        <img src='${imgUrl}/mastercard.png' alt="payment-method-mastercard" />
+        <img src='${imgUrl}/westernunion.webp' alt="payment-method-westernunion" />
       </span>
     </div>
   `;

@@ -11,7 +11,7 @@
       "reviews": 3
     },
     "stock": 15,
-    "images": ["img/product/camera-2.jpg"],
+    "images": ["camera-2.jpg"],
     "price": {
       "oldPrice": 1299.99,
       "currentPrice": 999.99,
@@ -62,7 +62,7 @@
       "reviews": 4
     },
     "stock": 12,
-    "images": ["img/product/camera-1.jpg"],
+    "images": ["camera-1.jpg"],
     "price": {
       "oldPrice": 1499.99,
       "currentPrice": 1199.99,
@@ -99,7 +99,7 @@
       "reviews": 5
     },
     "stock": 20,
-    "images": ["img/product/camera-1.jpg"],
+    "images": ["camera-1.jpg"],
     "price": {
       "oldPrice": 899.99,
       "currentPrice": 749.99,
@@ -136,7 +136,7 @@
       "reviews": 6
     },
     "stock": 25,
-    "images": ["img/product/camera-1.jpg"],
+    "images": ["camera-1.jpg"],
     "price": {
       "oldPrice": 499.99,
       "currentPrice": 399.99,
@@ -173,7 +173,7 @@
       "reviews": 3
     },
     "stock": 8,
-    "images": ["img/product/camera-1.jpg"],
+    "images": ["camera-1.jpg"],
     "price": {
       "oldPrice": 1999.99,
       "currentPrice": 1699.99,
@@ -204,7 +204,7 @@
       "reviews": 4
     },
     "stock": 25,
-    "images": ["img/product/chair-1.jpg"],
+    "images": ["chair-1.jpg"],
     "price": {
       "oldPrice": 299.99,
       "currentPrice": 249.99,
@@ -262,7 +262,7 @@
       "reviews": 6
     },
     "stock": 30,
-    "images": ["img/product/chair-1.jpg"],
+    "images": ["chair-1.jpg"],
     "price": {
       "oldPrice": 399.99,
       "currentPrice": 329.99,
@@ -306,7 +306,7 @@
       "reviews": 8
     },
     "stock": 15,
-    "images": ["img/product/chair-1.jpg"],
+    "images": ["chair-1.jpg"],
     "price": {
       "oldPrice": 899.99,
       "currentPrice": 699.99,
@@ -350,7 +350,7 @@
       "reviews": 5
     },
     "stock": 40,
-    "images": ["img/product/chair-1.jpg"],
+    "images": ["chair-1.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 159.99,
@@ -388,7 +388,7 @@
       "reviews": 2
     },
     "stock": 100,
-    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "images": ["drink-1.jpg", "drink-2.jpg", "drink-3.jpg"],
     "price": {
       "oldPrice": 3.99,
       "currentPrice": 2.99,
@@ -426,7 +426,7 @@
       "reviews": 3
     },
     "stock": 150,
-    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "images": ["drink-1.jpg", "drink-2.jpg", "drink-3.jpg"],
     "price": {
       "oldPrice": 4.99,
       "currentPrice": 3.99,
@@ -457,7 +457,7 @@
       "reviews": 4
     },
     "stock": 80,
-    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "images": ["drink-1.jpg", "drink-2.jpg", "drink-3.jpg"],
     "price": {
       "oldPrice": 5.99,
       "currentPrice": 4.49,
@@ -488,7 +488,7 @@
       "reviews": 3
     },
     "stock": 120,
-    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "images": ["drink-1.jpg", "drink-2.jpg", "drink-3.jpg"],
     "price": {
       "oldPrice": 4.49,
       "currentPrice": 3.49,
@@ -519,7 +519,7 @@
       "reviews": 3
     },
     "stock": 90,
-    "images": ["img/product/drink-1.jpg", "img/product/drink-2.jpg", "img/product/drink-3.jpg"],
+    "images": ["drink-1.jpg", "drink-2.jpg", "drink-3.jpg"],
     "price": {
       "oldPrice": 4.99,
       "currentPrice": 3.99,
@@ -550,7 +550,7 @@
       "reviews": 5
     },
     "stock": 45,
-    "images": ["img/product/ear-pods-1.jpg"],
+    "images": ["ear-pods-1.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 149.99,
@@ -615,7 +615,7 @@
       "reviews": 4
     },
     "stock": 35,
-    "images": ["img/product/ear-pods-1.jpg"],
+    "images": ["ear-pods-1.jpg"],
     "price": {
       "oldPrice": 179.99,
       "currentPrice": 139.99,
@@ -646,7 +646,7 @@
       "reviews": 3
     },
     "stock": 25,
-    "images": ["img/product/ear-pods-1.jpg"],
+    "images": ["ear-pods-1.jpg"],
     "price": {
       "oldPrice": 249.99,
       "currentPrice": 199.99,
@@ -677,7 +677,7 @@
       "reviews": 4
     },
     "stock": 40,
-    "images": ["img/product/ear-pods-1.jpg"],
+    "images": ["ear-pods-1.jpg"],
     "price": {
       "oldPrice": 189.99,
       "currentPrice": 159.99,
@@ -708,7 +708,7 @@
       "reviews": 7
     },
     "stock": 30,
-    "images": ["img/product/headphones-1.jpg"],
+    "images": ["headphones-1.jpg"],
     "price": {
       "oldPrice": 179.99,
       "currentPrice": 149.99,
@@ -787,7 +787,7 @@
       "reviews": 4
     },
     "stock": 25,
-    "images": ["img/product/headphones-1.jpg"],
+    "images": ["headphones-1.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 169.99,
@@ -818,7 +818,7 @@
       "reviews": 3
     },
     "stock": 35,
-    "images": ["img/product/headphones-1.jpg"],
+    "images": ["headphones-1.jpg"],
     "price": {
       "oldPrice": 189.99,
       "currentPrice": 159.99,
@@ -849,7 +849,7 @@
       "reviews": 5
     },
     "stock": 20,
-    "images": ["img/product/headphones-1.jpg"],
+    "images": ["headphones-1.jpg"],
     "price": {
       "oldPrice": 229.99,
       "currentPrice": 189.99,
@@ -886,7 +886,7 @@
       "reviews": 1
     },
     "stock": 50,
-    "images": ["img/product/joystick.jpg"],
+    "images": ["joystick.jpg"],
     "price": {
       "oldPrice": 69.99,
       "currentPrice": 59.99,
@@ -923,7 +923,7 @@
       "reviews": 15
     },
     "stock": 30,
-    "images": ["img/product/joystick.jpg"],
+    "images": ["joystick.jpg"],
     "price": {
       "oldPrice": 129.99,
       "currentPrice": 99.99,
@@ -960,7 +960,7 @@
       "reviews": 8
     },
     "stock": 25,
-    "images": ["img/product/joystick.jpg"],
+    "images": ["joystick.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 169.99,
@@ -991,7 +991,7 @@
       "reviews": 12
     },
     "stock": 10,
-    "images": ["img/product/joystick.jpg"],
+    "images": ["joystick.jpg"],
     "price": {
       "oldPrice": 299.99,
       "currentPrice": 249.99,
@@ -1028,7 +1028,7 @@
       "reviews": 6
     },
     "stock": 75,
-    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "images": ["lipstick-orange-1.jpg", "lipstick-orange-2.jpg"],
     "price": {
       "oldPrice": 24.99,
       "currentPrice": 19.99,
@@ -1094,7 +1094,7 @@
       "reviews": 12
     },
     "stock": 45,
-    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "images": ["lipstick-orange-1.jpg", "lipstick-orange-2.jpg"],
     "price": {
       "oldPrice": 34.99,
       "currentPrice": 29.99,
@@ -1125,7 +1125,7 @@
       "reviews": 18
     },
     "stock": 30,
-    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "images": ["lipstick-orange-1.jpg", "lipstick-orange-2.jpg"],
     "price": {
       "oldPrice": 44.99,
       "currentPrice": 39.99,
@@ -1156,7 +1156,7 @@
       "reviews": 9
     },
     "stock": 15,
-    "images": ["img/product/lipstick-orange-1.jpg", "img/product/lipstick-orange-2.jpg"],
+    "images": ["lipstick-orange-1.jpg", "lipstick-orange-2.jpg"],
     "price": {
       "oldPrice": 54.99,
       "currentPrice": 49.99,
@@ -1187,7 +1187,7 @@
       "reviews": 8
     },
     "stock": 20,
-    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "images": ["meat-1.jpg", "meat-2.jpg"],
     "price": {
       "oldPrice": 49.99,
       "currentPrice": 39.99,
@@ -1267,7 +1267,7 @@
       "reviews": 12
     },
     "stock": 15,
-    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "images": ["meat-1.jpg", "meat-2.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 179.99,
@@ -1298,7 +1298,7 @@
       "reviews": 6
     },
     "stock": 10,
-    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "images": ["meat-1.jpg", "meat-2.jpg"],
     "price": {
       "oldPrice": 89.99,
       "currentPrice": 79.99,
@@ -1329,7 +1329,7 @@
       "reviews": 9
     },
     "stock": 25,
-    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "images": ["meat-1.jpg", "meat-2.jpg"],
     "price": {
       "oldPrice": 69.99,
       "currentPrice": 59.99,
@@ -1360,7 +1360,7 @@
       "reviews": 7
     },
     "stock": 8,
-    "images": ["img/product/meat-1.jpg", "img/product/meat-2.jpg"],
+    "images": ["meat-1.jpg", "meat-2.jpg"],
     "price": {
       "oldPrice": 129.99,
       "currentPrice": 109.99,
@@ -1391,7 +1391,7 @@
       "reviews": 4
     },
     "stock": 35,
-    "images": ["img/product/nike-sneaker-1.jpg"],
+    "images": ["nike-sneaker-1.jpg"],
     "price": {
       "oldPrice": 159.99,
       "currentPrice": 129.99,
@@ -1443,7 +1443,7 @@
       "reviews": 6
     },
     "stock": 25,
-    "images": ["img/product/nike-sneaker-1.jpg"],
+    "images": ["nike-sneaker-1.jpg"],
     "price": {
       "oldPrice": 179.99,
       "currentPrice": 149.99,
@@ -1474,7 +1474,7 @@
       "reviews": 8
     },
     "stock": 20,
-    "images": ["img/product/nike-sneaker-1.jpg"],
+    "images": ["nike-sneaker-1.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 169.99,
@@ -1505,7 +1505,7 @@
       "reviews": 10
     },
     "stock": 15,
-    "images": ["img/product/nike-sneaker-1.jpg"],
+    "images": ["nike-sneaker-1.jpg"],
     "price": {
       "oldPrice": 249.99,
       "currentPrice": 199.99,
@@ -1536,7 +1536,7 @@
       "reviews": 12
     },
     "stock": 10,
-    "images": ["img/product/nike-sneaker-1.jpg"],
+    "images": ["nike-sneaker-1.jpg"],
     "price": {
       "oldPrice": 299.99,
       "currentPrice": 259.99,
@@ -1567,7 +1567,7 @@
       "reviews": 9
     },
     "stock": 25,
-    "images": ["img/product/perfume-channel-1.jpg"],
+    "images": ["perfume-channel-1.jpg"],
     "price": {
       "oldPrice": 135.99,
       "currentPrice": 119.99,
@@ -1654,7 +1654,7 @@
       "reviews": 15
     },
     "stock": 30,
-    "images": ["img/product/perfume-channel-1.jpg"],
+    "images": ["perfume-channel-1.jpg"],
     "price": {
       "oldPrice": 165.99,
       "currentPrice": 149.99,
@@ -1685,7 +1685,7 @@
       "reviews": 8
     },
     "stock": 15,
-    "images": ["img/product/perfume-channel-1.jpg"],
+    "images": ["perfume-channel-1.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 179.99,
@@ -1716,7 +1716,7 @@
       "reviews": 6
     },
     "stock": 8,
-    "images": ["img/product/perfume-channel-1.jpg"],
+    "images": ["perfume-channel-1.jpg"],
     "price": {
       "oldPrice": 299.99,
       "currentPrice": 259.99,
@@ -1747,7 +1747,7 @@
       "reviews": 4
     },
     "stock": 5,
-    "images": ["img/product/perfume-channel-1.jpg"],
+    "images": ["perfume-channel-1.jpg"],
     "price": {
       "oldPrice": 499.99,
       "currentPrice": 449.99,
@@ -1778,7 +1778,7 @@
       "reviews": 2
     },
     "stock": 40,
-    "images": ["img/product/perfume-digiora-1.jpg"],
+    "images": ["perfume-digiora-1.jpg"],
     "price": {
       "oldPrice": 89.99,
       "currentPrice": 69.99,
@@ -1816,7 +1816,7 @@
       "reviews": 5
     },
     "stock": 35,
-    "images": ["img/product/perfume-digiora-1.jpg"],
+    "images": ["perfume-digiora-1.jpg"],
     "price": {
       "oldPrice": 99.99,
       "currentPrice": 79.99,
@@ -1847,7 +1847,7 @@
       "reviews": 8
     },
     "stock": 25,
-    "images": ["img/product/perfume-digiora-1.jpg"],
+    "images": ["perfume-digiora-1.jpg"],
     "price": {
       "oldPrice": 129.99,
       "currentPrice": 99.99,
@@ -1878,7 +1878,7 @@
       "reviews": 6
     },
     "stock": 15,
-    "images": ["img/product/perfume-digiora-1.jpg"],
+    "images": ["perfume-digiora-1.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 159.99,
@@ -1909,7 +1909,7 @@
       "reviews": 4
     },
     "stock": 10,
-    "images": ["img/product/perfume-digiora-1.jpg"],
+    "images": ["perfume-digiora-1.jpg"],
     "price": {
       "oldPrice": 299.99,
       "currentPrice": 249.99,
@@ -1940,7 +1940,7 @@
       "reviews": 3
     },
     "stock": 10,
-    "images": ["img/product/ring.jpg"],
+    "images": ["ring.jpg"],
     "price": {
       "oldPrice": 2999.99,
       "currentPrice": 2499.99,
@@ -1985,7 +1985,7 @@
       "reviews": 5
     },
     "stock": 8,
-    "images": ["img/product/ring.jpg"],
+    "images": ["ring.jpg"],
     "price": {
       "oldPrice": 3499.99,
       "currentPrice": 2999.99,
@@ -2016,7 +2016,7 @@
       "reviews": 7
     },
     "stock": 5,
-    "images": ["img/product/ring.jpg"],
+    "images": ["ring.jpg"],
     "price": {
       "oldPrice": 3999.99,
       "currentPrice": 3499.99,
@@ -2047,7 +2047,7 @@
       "reviews": 4
     },
     "stock": 6,
-    "images": ["img/product/ring.jpg"],
+    "images": ["ring.jpg"],
     "price": {
       "oldPrice": 4499.99,
       "currentPrice": 3999.99,
@@ -2078,7 +2078,7 @@
       "reviews": 6
     },
     "stock": 4,
-    "images": ["img/product/ring.jpg"],
+    "images": ["ring.jpg"],
     "price": {
       "oldPrice": 5999.99,
       "currentPrice": 4999.99,
@@ -2109,7 +2109,7 @@
       "reviews": 4
     },
     "stock": 30,
-    "images": ["img/product/sunglasses-1.jpg"],
+    "images": ["sunglasses-1.jpg"],
     "price": {
       "oldPrice": 199.99,
       "currentPrice": 159.99,
@@ -2161,7 +2161,7 @@
       "reviews": 6
     },
     "stock": 15,
-    "images": ["img/product/sunglasses-1.jpg"],
+    "images": ["sunglasses-1.jpg"],
     "price": {
       "oldPrice": 299.99,
       "currentPrice": 249.99,
@@ -2192,7 +2192,7 @@
       "reviews": 8
     },
     "stock": 25,
-    "images": ["img/product/sunglasses-1.jpg"],
+    "images": ["sunglasses-1.jpg"],
     "price": {
       "oldPrice": 249.99,
       "currentPrice": 199.99,
@@ -2223,7 +2223,7 @@
       "reviews": 7
     },
     "stock": 20,
-    "images": ["img/product/sunglasses-1.jpg"],
+    "images": ["sunglasses-1.jpg"],
     "price": {
       "oldPrice": 279.99,
       "currentPrice": 229.99,
@@ -2254,7 +2254,7 @@
       "reviews": 5
     },
     "stock": 10,
-    "images": ["img/product/sunglasses-1.jpg"],
+    "images": ["sunglasses-1.jpg"],
     "price": {
       "oldPrice": 399.99,
       "currentPrice": 349.99,
@@ -2285,7 +2285,7 @@
       "reviews": 5
     },
     "stock": 15,
-    "images": ["img/product/white-watch-1.jpg"],
+    "images": ["white-watch-1.jpg"],
     "price": {
       "oldPrice": 499.99,
       "currentPrice": 399.99,
@@ -2344,7 +2344,7 @@
       "reviews": 8
     },
     "stock": 20,
-    "images": ["img/product/white-watch-1.jpg"],
+    "images": ["white-watch-1.jpg"],
     "price": {
       "oldPrice": 599.99,
       "currentPrice": 479.99,
@@ -2381,7 +2381,7 @@
       "reviews": 12
     },
     "stock": 25,
-    "images": ["img/product/white-watch-1.jpg"],
+    "images": ["white-watch-1.jpg"],
     "price": {
       "oldPrice": 699.99,
       "currentPrice": 549.99,
@@ -2418,7 +2418,7 @@
       "reviews": 6
     },
     "stock": 18,
-    "images": ["img/product/white-watch-1.jpg"],
+    "images": ["white-watch-1.jpg"],
     "price": {
       "oldPrice": 799.99,
       "currentPrice": 639.99,
@@ -2449,7 +2449,7 @@
       "reviews": 7
     },
     "stock": 12,
-    "images": ["img/product/white-watch-1.jpg"],
+    "images": ["white-watch-1.jpg"],
     "price": {
       "oldPrice": 899.99,
       "currentPrice": 719.99,
@@ -2486,7 +2486,7 @@
       "reviews": 3
     },
     "stock": 25,
-    "images": ["img/product/woman-shoes-1.jpg"],
+    "images": ["woman-shoes-1.jpg"],
     "price": {
       "oldPrice": 299.99,
       "currentPrice": 249.99,
@@ -2531,7 +2531,7 @@
       "reviews": 5
     },
     "stock": 15,
-    "images": ["img/product/woman-shoes-1.jpg"],
+    "images": ["woman-shoes-1.jpg"],
     "price": {
       "oldPrice": 399.99,
       "currentPrice": 319.99,
@@ -2562,7 +2562,7 @@
       "reviews": 8
     },
     "stock": 20,
-    "images": ["img/product/woman-shoes-1.jpg"],
+    "images": ["woman-shoes-1.jpg"],
     "price": {
       "oldPrice": 349.99,
       "currentPrice": 279.99,
@@ -2593,7 +2593,7 @@
       "reviews": 6
     },
     "stock": 18,
-    "images": ["img/product/woman-shoes-1.jpg"],
+    "images": ["woman-shoes-1.jpg"],
     "price": {
       "oldPrice": 329.99,
       "currentPrice": 264.99,
@@ -2624,7 +2624,7 @@
       "reviews": 4
     },
     "stock": 22,
-    "images": ["img/product/woman-shoes-1.jpg"],
+    "images": ["woman-shoes-1.jpg"],
     "price": {
       "oldPrice": 289.99,
       "currentPrice": 229.99,

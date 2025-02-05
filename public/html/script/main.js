@@ -1,9 +1,12 @@
 const productsPerPage = 15;
 let sortBy = "rating";
 let page = 1;
+//const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
+//const imgUrl = "http://localhost:3000/img";
+
 async function fetchProducts() {
   try {
-    const response = await fetch(`/api/products?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
+    const response = await fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
     if (!response.ok) {
       throw new Error("Failed to fetch products");
     }
@@ -57,7 +60,7 @@ function createProductElement(product) {
 
   const img = document.createElement("img");
   img.loading = "lazy";
-  img.src = product.images[0];
+  img.src = imgUrl + "/product/" + product.images[0];
   img.alt = product.heading.title;
   imgWrapper.appendChild(img);
 
@@ -117,9 +120,9 @@ function createProductElement(product) {
   const cartAddDiv = document.createElement("div");
   cartAddDiv.classList.add("cart-add");
   cartAddDiv.addEventListener("click", async () => {
-    // if(cartAddDiv.classList.contains("active")) {
-    //   return;
-    // }
+    if(cartAddDiv.classList.contains("active")) {
+      return;
+    }
     
     cartAddDiv.classList.add("active");
     cartAddIcon.classList.add("hidden");
@@ -127,8 +130,7 @@ function createProductElement(product) {
 
     try {
       await addCartItem(product.id);
-
-      cartAddDiv.classList.add("success");
+      cartAddDiv.classList.add("hidden");
       spinner.classList.add("hidden");
       quantityWrapper.classList.remove("hidden");
       quantityInput.value = 1;
@@ -163,7 +165,6 @@ function createProductElement(product) {
   decreaseBtn.classList.add("decrease");
   decreaseBtn.innerHTML = "-";
   decreaseBtn.addEventListener("click", async (e) => {
-    e.stopPropagation();
     const currentValue = parseInt(quantityInput.value);
     const newQuantity = currentValue - 1;
 
@@ -174,6 +175,7 @@ function createProductElement(product) {
       quantityWrapper.classList.add("hidden");
       spinner.classList.remove("hidden");
       cartAddDiv.classList.remove("active");
+      cartAddDiv.classList.remove("hidden");
       try {
         await removeCartItem(product.id, 0);
         cartAddIcon.classList.remove("hidden");
@@ -206,11 +208,10 @@ function createProductElement(product) {
   quantityWrapper.appendChild(increaseBtn);
 
   cartAddDiv.appendChild(spinner);
-  cartAddDiv.appendChild(quantityWrapper);
-
   cartAddDiv.appendChild(cartAddIcon);
 
   bottomProductBarDiv.appendChild(cartAddDiv);
+  bottomProductBarDiv.appendChild(quantityWrapper);
 
   // Append elements to details
   detailsDiv.appendChild(title);

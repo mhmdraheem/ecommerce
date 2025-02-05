@@ -167,13 +167,13 @@ nav {
   }
 
   .bottom-product-bar {
+    width: 100%;
+    height: 40px;
     display: flex;
     gap: 10px;
     align-items: center;
     justify-content: center;
     transition: 0.3s;
-    width: 100%;
-    height: 40px;
   }
 
   .cart-icon {
@@ -194,38 +194,16 @@ nav {
 
   .cart-add {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 40px;
     background-color: var(--primary-color);
     cursor: pointer;
     transition: width 0.3s ease-in-out;
 
-    &.active {
-      // cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    &.success {
-      width: fit-content;
-    }
-  }
-
-  .cart-remove {
-    transform: translateX(100%);
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-
-    &.active {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    &:not(.active) {
-      width: 0;
-      transition: width 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    &.hidden {
+      display: none;
     }
   }
 
