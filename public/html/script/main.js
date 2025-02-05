@@ -1,31 +1,33 @@
 const productsPerPage = 15;
 let sortBy = "rating";
 let page = 1;
-//const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
-//const imgUrl = "http://localhost:3000/img";
+
+// async function fetchProducts() {
+//   try {
+//     const response = await fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch products");
+//     }
+//     const data = await response.json();
+//     return {
+//       products: data.products,
+//       totalPages: data.totalPages,
+//       currentPage: data.currentPage,
+//       pagination: data.pagination,
+//     };
+//   } catch (error) {
+//     console.error("Error fetching products:", error);
+//     return {
+//       products: [],
+//       totalPages: 0,
+//       currentPage: 1,
+//       pagination: {},
+//     };
+//   }
+// }
 
 async function fetchProducts() {
-  try {
-    const response = await fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch products");
-    }
-    const data = await response.json();
-    return {
-      products: data.products,
-      totalPages: data.totalPages,
-      currentPage: data.currentPage,
-      pagination: data.pagination,
-    };
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return {
-      products: [],
-      totalPages: 0,
-      currentPage: 1,
-      pagination: {},
-    };
-  }
+  return fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`);
 }
 
 function generateStars(rating) {
@@ -129,7 +131,22 @@ function createProductElement(product) {
     spinner.classList.remove("hidden");
 
     try {
-      await addCartItem(product.id);
+      fetch(`/api/cart/${product.id}`, {
+        method: 'POST'
+      })
+        .then(response => {
+          if (!response.ok) {
+            console.log(response);
+            throw new Error("Failed to add item to cart");
+          }
+          return response.json();
+        })
+        .then(cart => {
+          console.log(cart);
+        }).catch(err => {
+          console.error(err);
+        });
+
       cartAddDiv.classList.add("hidden");
       spinner.classList.add("hidden");
       quantityWrapper.classList.remove("hidden");
@@ -169,15 +186,28 @@ function createProductElement(product) {
     const newQuantity = currentValue - 1;
 
     if (newQuantity >= 1) {
-      await updateCartItem(product.id, newQuantity);
-      quantityInput.value = newQuantity;
+      updateProductQuantity(product.id, quantityInput, newQuantity);
     } else {
       quantityWrapper.classList.add("hidden");
       spinner.classList.remove("hidden");
       cartAddDiv.classList.remove("active");
       cartAddDiv.classList.remove("hidden");
       try {
-        await removeCartItem(product.id, 0);
+        fetch(`/api/cart/${product.id}`, {
+          method: 'DELETE'
+        })
+          .then(response => {
+            if (!response.ok) {
+              console.log(response);
+              throw new Error("Failed to remove item from cart");
+            }
+            return response.json();
+          })
+          .then(cart => {
+            console.log(cart);
+          }).catch(err => {
+            console.error(err);
+          });
         cartAddIcon.classList.remove("hidden");
       } catch (err) {
         quantityWrapper.classList.remove("hidden");
@@ -192,12 +222,10 @@ function createProductElement(product) {
   increaseBtn.classList.add("increase");
   increaseBtn.innerHTML = "+";
   increaseBtn.addEventListener("click", async (e) => {
-    e.stopPropagation();
     const currentValue = parseInt(quantityInput.value);
     if (currentValue < product.stock) {
-      quantityInput.value = currentValue + 1;
-      // addCartItem(product.id);
-      await updateCartItem(product.id, quantityInput.value);
+      const newQuantity = currentValue + 1;
+      updateProductQuantity(product.id, quantityInput, newQuantity);
     }
   });
 
@@ -234,14 +262,50 @@ function createProductElement(product) {
   return productDiv;
 }
 
+async function updateProductQuantity(productId, quantityInput, quantity) {
+  return fetch(`/api/cart/${productId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ quantity })
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error("Failed to update cart");
+    }
+    return response.json();
+  }).then(cart => {
+    console.log(cart);
+    quantityInput.value = quantity;
+  }).catch(err => {
+    console.error(err);
+  });
+}
+
 async function renderDisplay() {
   const sortBySelect = document.getElementById("sort-by-select");
   sortBy = sortBySelect.value;
   createOverlay();
-  let { products, totalPages, currentPage, pagination } = await fetchProducts();
-  renderProducts(products);
-  renderPaginationBars(totalPages, currentPage, pagination);
-  removeOverlay();
+  fetchProducts()
+  .then(response => {
+    if(response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Failed to fetch products");
+    }
+  }).then(data => {
+    const products = data.products;
+    renderProducts(products);
+
+    const totalPages = data.totalPages;
+    const currentPage = data.currentPage;
+    const pagination = data.pagination;
+    renderPaginationBars(totalPages, currentPage, pagination);
+
+    removeOverlay();
+  }).catch(err => {
+    console.error(err);
+  });
 }
 
 function scrollToTop() {

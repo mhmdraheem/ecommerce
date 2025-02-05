@@ -14,7 +14,7 @@ function loadProducts() {
   
 router.get("/", async (req, res) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       console.log(req.query);
   
       const page = parseInt(req.query.page) || 1;

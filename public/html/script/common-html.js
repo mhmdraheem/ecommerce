@@ -29,6 +29,26 @@ function createNav() {
   `;
   
   document.body.prepend(nav);
+
+  try {
+    fetch(`/api/cart/`, {
+      method: 'GET'
+    })
+      .then(response => {
+        if (!response.ok) {
+          console.log(response);
+          throw new Error("Failed to add item to cart");
+        }
+        return response.json();
+      })
+      .then(cart => {
+        console.log(cart);
+      }).catch(err => {
+        console.error(err);
+      });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function createFooterArea() {

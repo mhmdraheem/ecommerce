@@ -11,6 +11,10 @@
       "src": "/(.*)",
       "dest": "server.js"
     }
-  ]
+  ],
+  "env": {
+    "REDIS_URL": "@redis-kv-url",
+    "SESSION_SECRET": "@session-secret"
+  }
 }
 

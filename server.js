@@ -1,62 +1,111 @@
+require('dotenv').config();
 const express = require("express");
+const session = require('express-session');
+const { RedisStore } = require('connect-redis');
+const { createClient } = require('redis');
 const fs = require("fs");
 const path = require("path");
+const helmet = require('helmet');
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-const PORT = 3000;
+app.use(express.json());
 
-const cartRoutes = require('./routes/cart');
-const productsRoutes = require('./routes/product');
+// Security Middleware
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "*.fontawesome.com"],
+      styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"], // Allow FontAwesome fonts
+      connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
+    },
+  },
+}));
 
-app.use('/api/cart', cartRoutes);
-app.use('/api/product', productsRoutes);
 
-// Serve static files from public folder
+// Initialize Redis Client
+const redisClient = createClient({
+  url: process.env.REDIS_URL,
+  socket: {
+      reconnectStrategy: (retries) => Math.min(retries * 50, 1000),
+  },
+});
+
+redisClient.on('error', err => console.error('Redis error:', err));
+redisClient.on('connect', () => console.log('Redis connected'));
+
+(async () => {
+  await redisClient.connect();
+})();
+
+// Configure Session with Redis Store
+app.use(
+  session({
+      store: new RedisStore({ client: redisClient, prefix: "sess:" }),
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: { secure: process.env.NODE_ENV === 'production', httpOnly: true, maxAge: 1000 * 60 * 60 * 24 },
+  })
+);
+
 app.use(express.static("public/html"));
 app.use("/img", express.static(path.join(__dirname, "public/img")));
 
-app.get("/img/:type?/:imageName", (req, res) => {
-    try {
-      const imageName = req.params.imageName;
-      const type = req.params.type;
-  
-      const imagePath =
-        type === "product"
-          ? path.join(__dirname, "public/img/product", imageName)
-          : path.join(__dirname, "public/img", imageName);
-  
-      // Check if file exists
-      if (!fs.existsSync(imagePath)) {
-        return res.status(404).json({ error: "Image not found" });
-      }
-  
-      // Send the image file
-      res.sendFile(imagePath);
-    } catch (error) {
-      console.error("Error serving image:", error);
-      res.status(500).json({ error: "Failed to fetch image" });
-    }
-  });
-  
-  // Serve HTML files
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/html/index.html"));
-  });
-  
-  // Serve other HTML files
-  app.get("/:page", (req, res) => {
-    const page = req.params.page;
-    const filePath = path.join(__dirname, "public/html", page);
-    
-    // If no extension is provided, assume .html
-    const fullPath = filePath.endsWith(".html") ? filePath : `${filePath}.html`;
-    
-    if (fs.existsSync(fullPath)) {
-      res.sendFile(fullPath);
-    } else {
+// Custom Middleware
+app.use((req, res, next) => {
+  if (!req.session) {
+      console.error("❌ Session object is missing!");
+      return res.status(500).json({ error: "Session is not initialized properly" });
+  }
+
+  if (!req.session.userId) {
+      req.session.userId = `user-${Date.now()}`;
+      req.session.cart = [];
+      console.log("✅ New session created:", req.session.userId);
+  } else {
+      console.log("🔄 Existing session:", req.session.userId);
+  }
+
+  next();
+});
+
+// Routes
+app.use('/api/cart', require('./routes/cart'));
+app.use('/api/product', require('./routes/product'));
+
+app.get("/", (req, res) => {
+  console.log(req.session);
+  res.sendFile(path.join(__dirname, "public/html/index.html"));
+});
+
+app.get("/:page", (req, res) => {
+  const page = req.params.page.replace(/[^a-zA-Z0-9-]/g, '');
+  const filePath = path.join(__dirname, "public/html", `${page}.html`);
+
+  if (fs.existsSync(filePath)) {
+      res.sendFile(filePath);
+  } else {
       res.status(404).sendFile(path.join(__dirname, "public/html/404.html"));
-    }
+  }
+});
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Something went wrong!" });
+});
+
+// Graceful Shutdown
+process.on('SIGINT', () => {
+  redisClient.quit().then(() => {
+      console.log('Redis connection closed');
+      process.exit(0);
   });
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
