@@ -166,6 +166,7 @@ function createProductElement(product) {
   cartAddIcon.setAttribute("aria-label", "Add to cart");
 
   const quantityInput = document.createElement("input");
+  quantityInput.classList.add("loading");
   quantityInput.type = "number";
   quantityInput.min = 0;
   quantityInput.max = product.stock;
@@ -192,7 +193,7 @@ function createProductElement(product) {
       spinner.classList.remove("hidden");
       cartAddDiv.classList.remove("active");
       cartAddDiv.classList.remove("hidden");
-      try {
+
         fetch(`/api/cart/${product.id}`, {
           method: 'DELETE'
         })
@@ -205,16 +206,16 @@ function createProductElement(product) {
           })
           .then(cart => {
             console.log(cart);
+            cartAddIcon.classList.remove("hidden");
+            spinner.classList.add("hidden");
           }).catch(err => {
             console.error(err);
+
+            quantityWrapper.classList.remove("hidden");
+          spinner.classList.add("hidden");
+      cartAddDiv.classList.add("hidden");
           });
-        cartAddIcon.classList.remove("hidden");
-      } catch (err) {
-        quantityWrapper.classList.remove("hidden");
-        cartAddDiv.classList.add("active");
-      } finally {
-        spinner.classList.add("hidden");
-      }
+      
     }
   });
 

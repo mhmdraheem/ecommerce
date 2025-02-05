@@ -24,17 +24,17 @@ router.post('/:itemId', (req, res) => {
     
     res.json(req.session.cart);
 });
-
+ 
 // Remove item from cart
-router.delete('/:itemId', (req, res) => {
-    const itemId = req.params.itemId;
-    req.session.cart = req.session.cart.filter(item => item.id !== itemId);
-    res.json(req.session.cart);
+router.delete('/:itemId', (req, res, next) => {
+  const itemId = req.params.itemId;
+  req.session.cart = req.session.cart.filter(item => item.id !== itemId);
+  throw new Error("Failed to remove item from cart");
+  res.json(req.session.cart);
 });
 
 // Update item quantity
-router.put('/:itemId', async (req, res) => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+router.put('/:itemId', (req, res) => {
     const itemId = req.params.itemId;
     console.log(req.body);
     

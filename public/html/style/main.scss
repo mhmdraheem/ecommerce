@@ -218,7 +218,7 @@ nav {
     &.hidden {
       display: none;
     }
-
+ 
     input {
       width: 50px;
       height: 100%;
@@ -267,6 +267,16 @@ nav {
       &.increase {
         right: 0;
         border-left: 1px solid #ccc;
+      }
+
+      &:disabled {
+        background: #f8f8f8;
+        cursor: not-allowed;
+        opacity: 0.5;
+        
+        &:hover {
+          background: #f8f8f8;
+        }
       }
     }
   }

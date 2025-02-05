@@ -73,6 +73,18 @@ app.use((req, res, next) => {
   next();
 });
 
+// API Error Handling Middleware
+app.use('/api', (err, req, res, next) => {
+  try {
+    next(); 
+  } catch (error) {
+    console.error('API Error:', err);
+    res.status(500).json({
+      error: 'Internal Server Error'
+    });
+  }
+});
+
 // Routes
 app.use('/api/cart', require('./routes/cart'));
 app.use('/api/product', require('./routes/product'));
