@@ -1,18 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
-const { RedisStore } = require("connect-redis");
-const { createClient } = require("redis");
 const fs = require("fs");
 const path = require("path");
 const helmet = require("helmet");
-
+const { redisClient, redisStore } = require("./redis");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Security Middleware
+// start of defining middlewares
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -27,25 +25,9 @@ app.use(
   })
 );
 
-// Initialize Redis Client
-const redisClient = createClient({
-  url: process.env.REDIS_URL,
-  socket: {
-    reconnectStrategy: (retries) => Math.min(retries * 50, 1000),
-  },
-});
-
-redisClient.on("error", (err) => console.error("Redis error:", err));
-redisClient.on("connect", () => console.log("Redis connected"));
-
-(async () => {
-  await redisClient.connect();
-})();
-
-// Configure Session with Redis Store
 app.use(
   session({
-    store: new RedisStore({ client: redisClient, prefix: "sess:" }),
+    store: redisStore,
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -53,10 +35,6 @@ app.use(
   })
 );
 
-app.use(express.static("public/html"));
-app.use("/img", express.static(path.join(__dirname, "public/img")));
-
-// Custom Middleware
 app.use((req, res, next) => {
   if (!req.session) {
     console.error("❌ Session object is missing!");
@@ -74,17 +52,28 @@ app.use((req, res, next) => {
   next();
 });
 
-// API Error Handling Middleware
-app.use("/api", (err, req, res, next) => {
-  try {
+app.use("/api", (req, res, next) => {
+  setTimeout(() => {
     next();
+  }, 3000);
+});
+
+app.use((req, res, next) => {
+  try {
+    if (!req.originalUrl.match(/^\/(style|img|script)/)) {
+      console.log(
+        `Recieved request" ${req.originalUrl}. ${req.method}, ${req.session.userId}, ${JSON.stringify(req.body)}`
+      );
+    }
   } catch (error) {
-    console.error("API Error:", err);
-    res.status(500).json({
-      error: "Internal Server Error",
-    });
+    console.error(error);
+  } finally {
+    next();
   }
 });
+
+app.use(express.static("public/html"));
+app.use("/img", express.static(path.join(__dirname, "public/img")));
 
 // Routes
 app.use("/api/cart", require("./routes/cart"));
@@ -106,10 +95,11 @@ app.get("/:page", (req, res) => {
   }
 });
 
-// Error Handling Middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong!" });
+  res.status(500).json({
+    error: err.message || "Internal server error",
+  });
 });
 
 // Graceful Shutdown

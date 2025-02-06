@@ -13,51 +13,43 @@ function loadProducts() {
 }
 
 router.get("/", (req, res) => {
-  try {
-    console.log(req.query);
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 5;
+  const sortBy = req.query.sortBy || "rating";
 
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 5;
-    const sortBy = req.query.sortBy || "rating";
+  const products = loadProducts();
 
-    const products = loadProducts();
+  // Sort products based on sortBy parameter
+  const sortedProducts = sortProducts([...products], sortBy);
 
-    // Sort products based on sortBy parameter
-    const sortedProducts = sortProducts([...products], sortBy);
+  // Calculate pagination values
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
 
-    // Calculate pagination values
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
-
-    // Prepare pagination metadata
-    const pagination = {};
-    if (endIndex < sortedProducts.length) {
-      pagination.next = {
-        page: page + 1,
-        limit: limit,
-      };
-    }
-    if (startIndex > 0) {
-      pagination.previous = {
-        page: page - 1,
-        limit: limit,
-      };
-    }
-
-    // Get paginated results
-    const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
-
-    res.json({
-      pagination,
-      currentPage: page,
-      totalPages: Math.ceil(sortedProducts.length / limit),
-      totalProducts: sortedProducts.length,
-      products: paginatedProducts,
-    });
-  } catch (error) {
-    console.error("Error serving products:", error);
-    res.status(500).json({ error: "Failed to fetch products" });
+  // Prepare pagination metadata
+  const pagination = {};
+  if (endIndex < sortedProducts.length) {
+    pagination.next = {
+      page: page + 1,
+      limit: limit,
+    };
   }
+  if (startIndex > 0) {
+    pagination.previous = {
+      page: page - 1,
+      limit: limit,
+    };
+  }
+
+  // Get paginated results
+  const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
+  res.json({
+    pagination,
+    currentPage: page,
+    totalPages: Math.ceil(sortedProducts.length / limit),
+    totalProducts: sortedProducts.length,
+    products: paginatedProducts,
+  });
 });
 
 // Sort products based on sortBy parameter
