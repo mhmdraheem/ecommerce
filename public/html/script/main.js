@@ -122,28 +122,29 @@ function createProductElement(product) {
   const cartAddDiv = document.createElement("div");
   cartAddDiv.classList.add("cart-add");
   cartAddDiv.addEventListener("click", async () => {
-    if(cartAddDiv.classList.contains("active")) {
+    if (cartAddDiv.classList.contains("active")) {
       return;
     }
-    
+
     cartAddDiv.classList.add("active");
     cartAddIcon.classList.add("hidden");
     spinner.classList.remove("hidden");
 
     try {
       fetch(`/api/cart/${product.id}`, {
-        method: 'POST'
+        method: "POST",
       })
-        .then(response => {
+        .then((response) => {
           if (!response.ok) {
             console.log(response);
             throw new Error("Failed to add item to cart");
           }
           return response.json();
         })
-        .then(cart => {
+        .then((cart) => {
           console.log(cart);
-        }).catch(err => {
+        })
+        .catch((err) => {
           console.error(err);
         });
 
@@ -194,28 +195,28 @@ function createProductElement(product) {
       cartAddDiv.classList.remove("active");
       cartAddDiv.classList.remove("hidden");
 
-        fetch(`/api/cart/${product.id}`, {
-          method: 'DELETE'
+      fetch(`/api/cart/${product.id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (!response.ok) {
+            console.log(response);
+            throw new Error("Failed to remove item from cart");
+          }
+          return response.json();
         })
-          .then(response => {
-            if (!response.ok) {
-              console.log(response);
-              throw new Error("Failed to remove item from cart");
-            }
-            return response.json();
-          })
-          .then(cart => {
-            console.log(cart);
-            cartAddIcon.classList.remove("hidden");
-            spinner.classList.add("hidden");
-          }).catch(err => {
-            console.error(err);
-
-            quantityWrapper.classList.remove("hidden");
+        .then((cart) => {
+          console.log(cart);
+          cartAddIcon.classList.remove("hidden");
           spinner.classList.add("hidden");
-      cartAddDiv.classList.add("hidden");
-          });
-      
+        })
+        .catch((err) => {
+          console.error(err);
+
+          quantityWrapper.classList.remove("hidden");
+          spinner.classList.add("hidden");
+          cartAddDiv.classList.add("hidden");
+        });
     }
   });
 
@@ -265,22 +266,25 @@ function createProductElement(product) {
 
 async function updateProductQuantity(productId, quantityInput, quantity) {
   return fetch(`/api/cart/${productId}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify({ quantity })
-  }).then(response => {
-    if (!response.ok) {
-      throw new Error("Failed to update cart");
-    }
-    return response.json();
-  }).then(cart => {
-    console.log(cart);
-    quantityInput.value = quantity;
-  }).catch(err => {
-    console.error(err);
-  });
+    body: JSON.stringify({ quantity }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to update cart");
+      }
+      return response.json();
+    })
+    .then((cart) => {
+      console.log(cart);
+      quantityInput.value = quantity;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 async function renderDisplay() {
@@ -288,25 +292,27 @@ async function renderDisplay() {
   sortBy = sortBySelect.value;
   createOverlay();
   fetchProducts()
-  .then(response => {
-    if(response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Failed to fetch products");
-    }
-  }).then(data => {
-    const products = data.products;
-    renderProducts(products);
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to fetch products");
+      }
+    })
+    .then((data) => {
+      const products = data.products;
+      renderProducts(products);
 
-    const totalPages = data.totalPages;
-    const currentPage = data.currentPage;
-    const pagination = data.pagination;
-    renderPaginationBars(totalPages, currentPage, pagination);
+      const totalPages = data.totalPages;
+      const currentPage = data.currentPage;
+      const pagination = data.pagination;
+      renderPaginationBars(totalPages, currentPage, pagination);
 
-    removeOverlay();
-  }).catch(err => {
-    console.error(err);
-  });
+      removeOverlay();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 function scrollToTop() {
@@ -434,6 +440,5 @@ function renderPaginationBars(totalPages, currentPage, pagination) {
 
 // Add event listeners
 document.getElementById("sort-by-select").addEventListener("change", renderDisplay);
-
 
 document.querySelector(".scroll-to-top").addEventListener("click", scrollToTop);

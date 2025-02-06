@@ -2,9 +2,9 @@
 const imgUrl = "http://localhost:3000/img";
 
 function createNav() {
-  const nav = document.createElement('nav');
-  nav.className = 'section-margin';
-  
+  const nav = document.createElement("nav");
+  nav.className = "section-margin";
+
   nav.innerHTML = `
     <div class="container">
       <div class="header">
@@ -27,23 +27,24 @@ function createNav() {
       </div>
     </div>
   `;
-  
+
   document.body.prepend(nav);
 
   try {
     fetch(`/api/cart/`, {
-      method: 'GET'
+      method: "GET",
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
           console.log(response);
           throw new Error("Failed to add item to cart");
         }
         return response.json();
       })
-      .then(cart => {
+      .then((cart) => {
         console.log(cart);
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.error(err);
       });
   } catch (err) {
@@ -52,9 +53,9 @@ function createNav() {
 }
 
 function createFooterArea() {
-  const footerArea = document.createElement('div');
-  footerArea.className = 'footer-area';
-  
+  const footerArea = document.createElement("div");
+  footerArea.className = "footer-area";
+
   footerArea.innerHTML = `
     <div class="content">
       <div class="footer-col contact-us-col">
@@ -151,13 +152,13 @@ function createFooterArea() {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(footerArea);
 }
 
 function createFooter() {
-  const footer = document.createElement('footer');
-  
+  const footer = document.createElement("footer");
+
   footer.innerHTML = `
     <div class="content">
       <span>Powered By <a href="#">Tech</a> - Designed by <a href="#">Mohamed Raheem</a></span>
@@ -169,27 +170,27 @@ function createFooter() {
       </span>
     </div>
   `;
-  
+
   document.body.appendChild(footer);
 }
 
 function createScrollToTop() {
-  const scrollToTop = document.createElement('span');
-  scrollToTop.className = 'scroll-to-top';
-  
+  const scrollToTop = document.createElement("span");
+  scrollToTop.className = "scroll-to-top";
+
   scrollToTop.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
-  
-  scrollToTop.addEventListener('click', () => {
+
+  scrollToTop.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   });
-  
+
   document.body.appendChild(scrollToTop);
 }
 
 createNav();
-createFooterArea(); 
+createFooterArea();
 createFooter();
 createScrollToTop();
