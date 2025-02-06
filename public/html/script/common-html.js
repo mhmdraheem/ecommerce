@@ -8,10 +8,10 @@ function createNav() {
   nav.innerHTML = `
     <div class="container">
       <div class="header">
-        <div class="logo">
+        <a href="index.html" class="logo">
           <h1>Shoppify</h1>
           <p>One-click shopping</p>
-        </div>
+        </a>
         <form action="search.html" method="get" target="_blank">
           <input type="text" placeholder="Search products" name="query" id="search" />
           <button type="submit">Search</button>

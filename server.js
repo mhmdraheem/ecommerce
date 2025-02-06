@@ -37,7 +37,6 @@ app.use(
 
 app.use((req, res, next) => {
   if (!req.session) {
-    console.error("❌ Session object is missing!");
     return res.status(500).json({ error: "Session is not initialized properly" });
   }
 
@@ -45,8 +44,6 @@ app.use((req, res, next) => {
     req.session.userId = `user-${Date.now()}`;
     req.session.cart = [];
     console.log("✅ New session created:", req.session.userId);
-  } else {
-    console.log("🔄 Existing session:", req.session.userId);
   }
 
   next();
