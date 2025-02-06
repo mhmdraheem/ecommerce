@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 app.use("/api", (req, res, next) => {
   setTimeout(() => {
     next();
-  }, 3000);
+  }, 1);
 });
 
 app.use((req, res, next) => {

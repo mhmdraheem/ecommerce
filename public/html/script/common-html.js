@@ -1,5 +1,6 @@
 //const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
 const imgUrl = "http://localhost:3000/img";
+let cart = [];
 
 function createNav() {
   const nav = document.createElement("nav");
@@ -16,11 +17,21 @@ function createNav() {
           <input type="text" placeholder="Search products" name="query" id="search" />
           <button type="submit">Search</button>
         </form>
-        <a href="cart.html" target="_blank" class="cart">
-          <i class="fa-solid fa-cart-shopping">
-            <span class="alert"></span>
-          </i>
-        </a>
+        <div class="cart-dropdown">
+          <button class="cart-button">
+            <i class="fa-solid fa-cart-shopping cart-menu-icon">
+              <span class="alert"></span>
+            </i>
+          </button>
+          <div class="cart-menu">
+            <div class="cart-items">
+              <!-- Cart items will be inserted here dynamically -->
+            </div>
+            <div class="cart-footer">
+              <a href="cart.html" target="_blank" class="view-cart-button">View Cart</a>
+            </div>
+          </div>
+        </div>
         <a href="profile.html" target="_blank" class="profile">
           <img class="avatar" src='${imgUrl}/avatar.png' alt="profile-picture" />
         </a>
@@ -29,27 +40,71 @@ function createNav() {
   `;
 
   document.body.prepend(nav);
+  document.querySelector(".cart-button").addEventListener("click", (e) => {
+    const cartMenu = document.querySelector(".cart-menu");
+    if (!cartMenu.classList.contains("active")) {
+      updateCartMenu();
+      cartMenu.classList.add("active");
+    } else {
+      cartMenu.classList.remove("active");
+    }
+  });
 
-  try {
-    fetch(`/api/cart/`, {
-      method: "GET",
+  updateCartMenu();
+}
+
+function updateCartMenu() {
+  const cartMenu = document.querySelector(".cart-menu");
+  const cartItems = document.querySelector(".cart-items");
+  const alert = document.querySelector(".cart-button .alert");
+
+  document.addEventListener("click", function closeCart(e) {
+    if (!cartMenu.contains(e.target) && !e.target.closest(".cart-button")) {
+      cartMenu.classList.remove("active");
+      document.removeEventListener("click", closeCart);
+    }
+  });
+
+  fetch("/api/cart")
+    .then((response) => response.json())
+    .then((cartJson) => {
+      cartItems.innerHTML = "";
+      cart = cartJson;
+
+      if (cartJson && cartJson.length > 0) {
+        alert.classList.add("visible");
+        createCartItems(cartJson, cartItems);
+      } else {
+        alert.classList.remove("visible");
+        cartItems.innerHTML = '<div class="empty-cart">No items in your cart yet. Start shopping!</div>';
+      }
     })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response);
-          throw new Error("Failed to add item to cart");
-        }
-        return response.json();
-      })
-      .then((cart) => {
-        console.log(cart);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+    .catch((err) => {
+      console.error("Failed to fetch cart:", err);
+      cartItems.innerHTML = '<div class="cart-error">Failed to load cart</div>';
+    });
+}
+
+function createCartItems(cart, cartItems) {
+  cart.forEach((item) => {
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
+    cartItem.setAttribute("data-id", item.id);
+    cartItem.innerHTML = `
+      <a href="product.html?id=${item.id}" target="_blank" class="cart-item-link">
+        <div class="cart-item-thumbnail">
+          <img src="${imgUrl}/product/${item.image}" alt="Product ${item.title} thumbnail">
+        </div>
+        <div class="cart-item-details">
+          <div class="cart-item-name">${item.title}</div>
+          <div class="cart-item-price">Price: ${item.price} <span class="currency">EGP</span></div>
+          <div class="cart-item-quantity" data-quantity="${item.quantity}">Quantity: ${item.quantity} item(s)</div>
+        </div>
+      </a>
+    `;
+
+    cartItems.appendChild(cartItem);
+  });
 }
 
 function createFooterArea() {

@@ -8,9 +8,9 @@ router.get("/", (req, res) => {
 
 // Add item to cart
 router.post("/:itemId", (req, res) => {
-  console.log("Add item to cart");
   const itemId = req.params.itemId;
   const existingItem = req.session.cart.find((item) => item.id === itemId);
+  const { primaryImage, title, price } = req.body;
 
   if (existingItem) {
     existingItem.quantity++;
@@ -18,10 +18,11 @@ router.post("/:itemId", (req, res) => {
     req.session.cart.push({
       id: itemId,
       quantity: 1,
+      image: primaryImage,
+      title: title,
+      price: price,
     });
   }
-  console.log(req.session.cart);
-
   res.json(req.session.cart);
 });
 
@@ -29,15 +30,12 @@ router.post("/:itemId", (req, res) => {
 router.delete("/:itemId", (req, res, next) => {
   const itemId = req.params.itemId;
   req.session.cart = req.session.cart.filter((item) => item.id !== itemId);
-  throw new Error("Failed to remove item from cart");
   res.json(req.session.cart);
 });
 
 // Update item quantity
 router.put("/:itemId", (req, res) => {
   const itemId = req.params.itemId;
-  console.log(req.body);
-
   const { quantity } = req.body;
 
   const item = req.session.cart.find((item) => item.id === itemId);

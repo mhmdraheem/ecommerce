@@ -44,11 +44,20 @@ nav {
   }
 }
 
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
- 
+
   .product {
     border: 1px solid #e2e0e0;
     padding: 10px;
@@ -184,41 +193,53 @@ nav {
     }
   }
 
-  .spinner-icon {
-    color: #fff;
-
-    &.hidden {
-      display: none;
-    }
-  }
-
-  .cart-add {
+  .add-to-cart {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     background-color: var(--primary-color);
     cursor: pointer;
     transition: width 0.3s ease-in-out;
 
-    &.hidden {
-      display: none;
+    &.active {
+      display: flex;
     }
+  }
+
+  .add-to-cart-spinner-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    display: none;
+    position: relative;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .add-to-cart-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    animation: spin 1s linear infinite;
   }
 
   .quantity-wrapper {
     position: relative;
-    display: flex;
+    display: none;
     align-items: center;
     width: fit-content;
     height: 100%;
     border: 1px solid #ccc;
 
-    &.hidden {
-      display: none;
+    &.active {
+      display: flex;
     }
- 
+
     input {
       width: 50px;
       height: 100%;
@@ -273,7 +294,7 @@ nav {
         background: #f8f8f8;
         cursor: not-allowed;
         opacity: 0.5;
-        
+
         &:hover {
           background: #f8f8f8;
         }
@@ -281,25 +302,25 @@ nav {
     }
   }
 
-  .cart-remove {
-    display: none;
-    transition: 0.3s cubic-bezier(0.4, 0, 1, 1);
-    width: 0%;
+  .quantity-wrapper-spinner-wrapper {
+    width: 100%;
     height: 100%;
-    background-color: var(--accent-color);
-    cursor: pointer;
-    transition: 0.3s;
+    background-color: #ffffffb0;
+    position: absolute;
+    display: none;
 
     &.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50%;
+      display: block;
     }
   }
 
-  .trash-icon {
-    color: #fff;
+  .quantity-wrapper-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    animation: spin 1s linear infinite;
   }
 }
 
@@ -373,4 +394,3 @@ nav {
     }
   }
 }
-

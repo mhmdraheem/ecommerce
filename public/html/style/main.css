@@ -41,6 +41,14 @@ nav {
   font-size: 1rem;
 }
 
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -74,8 +82,10 @@ nav {
 .products img {
   max-width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50%;
+     object-position: 50%;
 }
 .products .details {
   display: flex;
@@ -125,6 +135,7 @@ nav {
   color: var(--primary-color);
 }
 .products .price .discount-label {
+  width: -moz-fit-content;
   width: fit-content;
   border-radius: 5px;
   color: var(--primary-color);
@@ -160,35 +171,47 @@ nav {
 .products .cart-icon.hidden {
   display: none;
 }
-.products .spinner-icon {
-  color: #fff;
-}
-.products .spinner-icon.hidden {
-  display: none;
-}
-.products .cart-add {
+.products .add-to-cart {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background-color: var(--primary-color);
   cursor: pointer;
   transition: width 0.3s ease-in-out;
 }
-.products .cart-add.hidden {
+.products .add-to-cart.active {
+  display: flex;
+}
+.products .add-to-cart-spinner-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
   display: none;
+  position: relative;
+}
+.products .add-to-cart-spinner-wrapper.active {
+  display: block;
+}
+.products .add-to-cart-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  animation: spin 1s linear infinite;
 }
 .products .quantity-wrapper {
   position: relative;
-  display: flex;
+  display: none;
   align-items: center;
+  width: -moz-fit-content;
   width: fit-content;
   height: 100%;
   border: 1px solid #ccc;
 }
-.products .quantity-wrapper.hidden {
-  display: none;
+.products .quantity-wrapper.active {
+  display: flex;
 }
 .products .quantity-wrapper input {
   width: 50px;
@@ -241,23 +264,23 @@ nav {
 .products .quantity-wrapper button:disabled:hover {
   background: #f8f8f8;
 }
-.products .cart-remove {
-  display: none;
-  transition: 0.3s cubic-bezier(0.4, 0, 1, 1);
-  width: 0%;
+.products .quantity-wrapper-spinner-wrapper {
+  width: 100%;
   height: 100%;
-  background-color: var(--accent-color);
-  cursor: pointer;
-  transition: 0.3s;
+  background-color: rgba(255, 255, 255, 0.6901960784);
+  position: absolute;
+  display: none;
 }
-.products .cart-remove.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
+.products .quantity-wrapper-spinner-wrapper.active {
+  display: block;
 }
-.products .trash-icon {
-  color: #fff;
+.products .quantity-wrapper-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  animation: spin 1s linear infinite;
 }
 
 .pagination {
