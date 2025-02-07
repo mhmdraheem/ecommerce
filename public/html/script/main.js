@@ -27,6 +27,7 @@ function createProductElement(product) {
   // Product container
   const productDiv = document.createElement("div");
   productDiv.classList.add("product");
+  productDiv.setAttribute("data-id", product.id);
 
   // Image Wrapper
   const imgWrapper = document.createElement("a");

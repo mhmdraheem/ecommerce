@@ -29,10 +29,15 @@ function createNav() {
             <div class="cart-footer">
               <a href="cart.html" target="_blank" class="view-cart-button">View Cart</a>
             </div>
+            <div class="cart-menu-overlay">
+                <i class="fa-solid fa-spinner fa-spin cart-menu-overlay-spinner"></i>
+            </div>
           </div>
         </div>
         <a href="profile.html" target="_blank" class="profile">
+
           <img class="avatar" src='${imgUrl}/avatar.png' alt="profile-picture" />
+
         </a>
       </div>
     </div>
@@ -69,8 +74,12 @@ function updateCartMenu() {
     }
   });
 
+  const cartMenuOverlay = document.querySelector(".cart-menu-overlay");
+  cartMenuOverlay.classList.add("active");
+
   fetch("/api/cart")
     .then((response) => response.json())
+
     .then((cartJson) => {
       cartItems.innerHTML = "";
       if (cartJson && cartJson.length > 0) {
@@ -86,6 +95,9 @@ function updateCartMenu() {
     .catch((err) => {
       console.error("Failed to fetch cart:", err);
       cartItems.innerHTML = '<div class="cart-error">Failed to load cart</div>';
+    })
+    .finally(() => {
+      cartMenuOverlay.classList.remove("active");
     });
 }
 
@@ -133,14 +145,24 @@ function createCartItems(cart, cartItems) {
       e.preventDefault();
       const cartItem = e.target.closest(".cart-item");
       const itemId = cartItem.getAttribute("data-id");
+      const cartMenuOverlay = document.querySelector(".cart-menu-overlay");
+      cartMenuOverlay.classList.add("active");
+
       callDeleteAPI(
         { id: itemId },
         () => {
           cartItem.remove();
+          cartMenuOverlay.classList.remove("active");
           updateCartMenu();
+          console.log(itemId);
+
+          const productDiv = document.querySelector(`.product[data-id="${itemId}"]`);
+          const addToCart = productDiv.querySelector(".add-to-cart");
+          activateCartElement(productDiv, addToCart);
         },
         (err) => {
           console.error(err);
+          cartMenuOverlay.classList.remove("active");
         }
       );
     });

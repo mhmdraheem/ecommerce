@@ -40,6 +40,15 @@ h1 {
   margin: 0;
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 nav {
   box-shadow: 2px 3px 5px 0px rgb(0 0 0 / 14%);
   position: sticky;
@@ -154,11 +163,12 @@ nav {
     }
 
     .cart-items {
-      min-height: 300px;
+      min-height: 100px;
       max-height: 400px;
       overflow-y: auto;
       width: 450px;
       max-width: 100%;
+      position: relative;
 
       .cart-item {
         padding: 0.5rem;
@@ -258,6 +268,29 @@ nav {
           background: var(--primary-color);
           opacity: 0.8;
         }
+      }
+    }
+
+    .cart-menu-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.5);
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+
+      &.active {
+        display: flex;
+      }
+      .cart-menu-overlay-spinner {
+        animation: spin 1s linear infinite;
+        color: var(--primary-color);
+        font-size: 2rem;
       }
     }
   }
@@ -364,15 +397,6 @@ nav {
   color: var(--primary-color);
   animation: spin 1s linear infinite;
   font-size: 2.5rem;
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 }
 
 .scroll-to-top {
