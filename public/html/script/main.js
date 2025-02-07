@@ -91,7 +91,7 @@ function createProductElement(product) {
   cartAddIcon.setAttribute("aria-label", "Add to cart");
 
   const addToCartDiv = document.createElement("div");
-  addToCartDiv.classList.add("add-to-cart", "cart-add-wrapper");
+  addToCartDiv.classList.add("add-to-cart", "cart-add-wrapper", "active");
   addToCartDiv.appendChild(cartAddIcon);
   addToCartDiv.addEventListener("click", addToCartCallback(product, productDiv));
 
@@ -106,8 +106,13 @@ function createProductElement(product) {
   quantityInput.type = "number";
   quantityInput.min = 0;
   quantityInput.max = product.stock;
-  quantityInput.value = 1;
+  quantityInput.value = 0;
   quantityInput.addEventListener("input", quantityInputCallback(product));
+  getCartItem(product, (item) => {
+    if (item) {
+      quantityInput.value = item.quantity;
+    }
+  });
 
   const decreaseBtn = document.createElement("button");
   decreaseBtn.classList.add("decrease");
@@ -132,14 +137,6 @@ function createProductElement(product) {
   quantityWrapper.appendChild(quantityInput);
   quantityWrapper.appendChild(increaseBtn);
   quantityWrapper.appendChild(quantityWrapperSpinner);
-
-  const cartItem = document.querySelector(`.cart-item[data-id="${product.id}"]`);
-  if (cartItem) {
-    quantityWrapper.classList.add("active");
-    quantityInput.value = cartItem.querySelector(".cart-item-quantity").getAttribute("data-quantity");
-  } else {
-    addToCartDiv.classList.add("active");
-  }
 
   const bottomProductBarDiv = document.createElement("div");
   bottomProductBarDiv.classList.add("bottom-product-bar");
@@ -168,6 +165,13 @@ function createProductElement(product) {
   return productDiv;
 }
 
+function getCartItem(product, onSuccess) {
+  fetch(`/api/cart/${product.id}`)
+    .then((response) => toJson(response))
+    .then(onSuccess)
+    .catch((e) => console.error(e));
+}
+
 function addToCartCallback(product, productDiv) {
   return (e) => {
     const addToCart = productDiv.querySelector(".add-to-cart");
@@ -177,29 +181,53 @@ function addToCartCallback(product, productDiv) {
 
     activateCartElement(productDiv, spinner);
 
-    fetch(`/api/cart/${product.id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        primaryImage: product.images[0],
-        title: product.heading.title,
-        price: product.price.currentPrice,
-      }),
-    })
-      .then((response) => toJson(response))
-
-      .then((cart) => {
-        console.log(cart);
-        activateCartElement(productDiv, quantityWrapper);
-        quantityInput.value = 1;
-      })
-      .catch((err) => {
-        console.error(err);
-        activateCartElement(productDiv, addToCart);
-      });
+    getCartItem(product, (item) => {
+      if (item) {
+        callUpdateProductQuantityAPI(
+          product,
+          item.quantity + 1,
+          (updatedItem) => {
+            activateCartElement(productDiv, quantityWrapper);
+            quantityInput.value = updatedItem.quantity;
+            updateCartAlert();
+          },
+          (err) => {
+            console.error(err);
+          }
+        );
+      } else {
+        callAddToCartAPI(
+          product,
+          (newItem) => {
+            activateCartElement(productDiv, quantityWrapper);
+            quantityInput.value = newItem.quantity;
+            updateCartAlert();
+          },
+          (err) => {
+            console.error(err);
+            activateCartElement(productDiv, addToCart);
+          }
+        );
+      }
+    });
   };
+}
+
+function callAddToCartAPI(product, onSuccess, onError) {
+  fetch(`/api/cart/${product.id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      primaryImage: product.images[0],
+      title: product.heading.title,
+      price: product.price.currentPrice,
+    }),
+  })
+    .then((response) => toJson(response))
+    .then(onSuccess)
+    .catch(onError);
 }
 
 function activateCartElement(productDiv, element) {
@@ -215,45 +243,78 @@ function decreaseQuantityCallback(product, productDiv) {
     const spinner = productDiv.querySelector(".add-to-cart-spinner-wrapper");
     const quantityWrapper = productDiv.querySelector(".quantity-wrapper");
     const quantityInput = productDiv.querySelector(".quantity-wrapper input");
-
+    const quantityWrapperSpinner = productDiv.querySelector(".quantity-wrapper .quantity-wrapper-spinner-wrapper");
     const newQuantity = parseInt(quantityInput.value) - 1;
 
     if (newQuantity >= 1) {
-      updateProductQuantity(product, productDiv, newQuantity);
+      quantityWrapperSpinner.classList.add("active");
+      callUpdateProductQuantityAPI(
+        product,
+        newQuantity,
+        (updatedItem) => {
+          quantityInput.value = updatedItem.quantity;
+          quantityWrapperSpinner.classList.remove("active");
+          updateCartAlert();
+        },
+        (err) => {
+          console.error(err);
+          quantityWrapperSpinner.classList.remove("active");
+        }
+      );
     } else {
       activateCartElement(productDiv, spinner);
-
-      fetch(`/api/cart/${product.id}`, {
-        method: "DELETE",
-      })
-        .then((response) => toJson(response))
-        .then((cart) => {
-          console.log(cart);
+      callDeleteAPI(
+        product,
+        () => {
           activateCartElement(productDiv, addToCart);
-        })
-        .catch((err) => {
+          updateCartAlert();
+        },
+        (err) => {
           console.error(err);
           activateCartElement(productDiv, quantityWrapper);
-        });
+        }
+      );
     }
   };
 }
 
+function callDeleteAPI(product, onSuccess, onError) {
+  fetch(`/api/cart/${product.id}`, {
+    method: "DELETE",
+  })
+    .then((response) => toJson(response))
+    .then(onSuccess)
+    .catch(onError);
+}
+
 function toJson(response) {
   if (response.ok) {
-    console.log(response);
     return response.json();
   } else {
-    throw new Error("Failed to update cart");
+    throw new Error("API error occured");
   }
 }
 
 function increaseQuantityCallback(product, productDiv) {
   return (e) => {
     const quantityInput = productDiv.querySelector(".quantity-wrapper input");
+    const quantityWrapperSpinner = productDiv.querySelector(".quantity-wrapper .quantity-wrapper-spinner-wrapper");
     const currentValue = parseInt(quantityInput.value);
     if (currentValue < product.stock) {
-      updateProductQuantity(product, productDiv, currentValue + 1);
+      quantityWrapperSpinner.classList.add("active");
+      callUpdateProductQuantityAPI(
+        product,
+        currentValue + 1,
+        (updatedItem) => {
+          quantityInput.value = updatedItem.quantity;
+          quantityWrapperSpinner.classList.remove("active");
+          updateCartAlert();
+        },
+        (err) => {
+          console.error(err);
+          quantityWrapperSpinner.classList.remove("active");
+        }
+      );
     }
   };
 }
@@ -267,11 +328,7 @@ function quantityInputCallback(product) {
   };
 }
 
-function updateProductQuantity(product, productDiv, newQuantity) {
-  const quantityInput = productDiv.querySelector(".quantity-wrapper input");
-  const quantityWrapperSpinner = productDiv.querySelector(".quantity-wrapper .quantity-wrapper-spinner-wrapper");
-  quantityWrapperSpinner.classList.add("active");
-  console.log(product);
+function callUpdateProductQuantityAPI(product, newQuantity, onSuccess, onError) {
   fetch(`/api/cart/${product.id}`, {
     method: "PUT",
     headers: {
@@ -280,16 +337,8 @@ function updateProductQuantity(product, productDiv, newQuantity) {
     body: JSON.stringify({ quantity: newQuantity }),
   })
     .then((response) => toJson(response))
-    .then((cart) => {
-      console.log(cart);
-      quantityInput.value = newQuantity;
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-    .finally(() => {
-      quantityWrapperSpinner.classList.remove("active");
-    });
+    .then(onSuccess)
+    .catch(onError);
 }
 
 function renderDisplay() {

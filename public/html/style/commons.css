@@ -102,8 +102,8 @@ nav {
 .header .cart-button .alert {
   display: none;
   position: absolute;
-  top: -5px;
-  right: 0;
+  top: 0px;
+  right: 2px;
   background-color: var(--accent-color);
   width: 0.6rem;
   height: 0.6rem;
@@ -111,6 +111,15 @@ nav {
 }
 .header .cart-button .alert.visible {
   display: inline;
+}
+.header .cart-item-remove {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--accent-color);
+}
+.header .cart-item-remove:hover {
+  text-decoration: underline;
 }
 .header .cart-menu-icon {
   font-size: 1.3rem;
@@ -200,6 +209,10 @@ nav {
   padding-top: 1rem;
   border-top: 1px solid #eee;
   text-align: center;
+  display: none;
+}
+.header .cart-menu .cart-footer.visible {
+  display: block;
 }
 .header .cart-menu .cart-footer .view-cart-button {
   display: inline-block;

@@ -1,6 +1,5 @@
 //const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
 const imgUrl = "http://localhost:3000/img";
-let cart = [];
 
 function createNav() {
   const nav = document.createElement("nav");
@@ -40,6 +39,7 @@ function createNav() {
   `;
 
   document.body.prepend(nav);
+
   document.querySelector(".cart-button").addEventListener("click", (e) => {
     const cartMenu = document.querySelector(".cart-menu");
     if (!cartMenu.classList.contains("active")) {
@@ -50,13 +50,17 @@ function createNav() {
     }
   });
 
+  document.querySelector(".view-cart-button").addEventListener("click", (e) => {
+    const cartMenu = document.querySelector(".cart-menu");
+    cartMenu.classList.remove("active");
+  });
+
   updateCartMenu();
 }
 
 function updateCartMenu() {
   const cartMenu = document.querySelector(".cart-menu");
   const cartItems = document.querySelector(".cart-items");
-  const alert = document.querySelector(".cart-button .alert");
 
   document.addEventListener("click", function closeCart(e) {
     if (!cartMenu.contains(e.target) && !e.target.closest(".cart-button")) {
@@ -69,19 +73,36 @@ function updateCartMenu() {
     .then((response) => response.json())
     .then((cartJson) => {
       cartItems.innerHTML = "";
-      cart = cartJson;
-
       if (cartJson && cartJson.length > 0) {
-        alert.classList.add("visible");
         createCartItems(cartJson, cartItems);
+        document.querySelector(".cart-footer").classList.add("visible");
+        updateCartAlert();
       } else {
-        alert.classList.remove("visible");
         cartItems.innerHTML = '<div class="empty-cart">No items in your cart yet. Start shopping!</div>';
+        document.querySelector(".cart-footer").classList.remove("visible");
+        updateCartAlert();
       }
     })
     .catch((err) => {
       console.error("Failed to fetch cart:", err);
       cartItems.innerHTML = '<div class="cart-error">Failed to load cart</div>';
+    });
+}
+
+function updateCartAlert() {
+  const alert = document.querySelector(".cart-button .alert");
+  fetch("/api/cart/count")
+    .then((response) => response.json())
+    .then((count) => {
+      if (count > 0) {
+        alert.classList.add("visible");
+      } else {
+        alert.classList.remove("visible");
+      }
+    })
+    .catch((err) => {
+      console.error("Failed to fetch cart count:", err);
+      alert.classList.remove("visible");
     });
 }
 
@@ -98,12 +119,31 @@ function createCartItems(cart, cartItems) {
         <div class="cart-item-details">
           <div class="cart-item-name">${item.title}</div>
           <div class="cart-item-price">Price: ${item.price} <span class="currency">EGP</span></div>
-          <div class="cart-item-quantity" data-quantity="${item.quantity}">Quantity: ${item.quantity} item(s)</div>
+          <div class="cart-item-quantity">Quantity: ${item.quantity} item(s)</div>
+          <div class="cart-item-actions">
+            <button class="cart-item-remove">Remove</button>
+          </div>
         </div>
       </a>
     `;
 
     cartItems.appendChild(cartItem);
+
+    cartItem.querySelector(".cart-item-remove").addEventListener("click", (e) => {
+      e.preventDefault();
+      const cartItem = e.target.closest(".cart-item");
+      const itemId = cartItem.getAttribute("data-id");
+      callDeleteAPI(
+        { id: itemId },
+        () => {
+          cartItem.remove();
+          updateCartMenu();
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    });
   });
 }
 

@@ -15,6 +15,7 @@
   "dependencies": {
     "connect-redis": "^8.0.1",
     "dotenv": "^16.4.7",
+    "ecommerce": "file:",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "helmet": "^8.0.0",

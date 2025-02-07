@@ -109,8 +109,8 @@ nav {
     .alert {
       display: none;
       position: absolute;
-      top: -5px;
-      right: 0;
+      top: 0px;
+      right: 2px;
       background-color: var(--accent-color);
       width: 0.6rem;
       height: 0.6rem;
@@ -119,6 +119,16 @@ nav {
 
     .alert.visible {
       display: inline;
+    }
+  }
+
+  .cart-item-remove {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--accent-color);
+    &:hover {
+      text-decoration: underline;
     }
   }
 
@@ -226,6 +236,11 @@ nav {
       padding-top: 1rem;
       border-top: 1px solid #eee;
       text-align: center;
+      display: none;
+
+      &.visible {
+        display: block;
+      }
 
       .view-cart-button {
         display: inline-block;
@@ -233,6 +248,7 @@ nav {
         background: var(--primary-color);
         color: white;
         text-decoration: none;
+
         border-radius: 4px;
         width: 100%;
         font-size: 1.3rem;
