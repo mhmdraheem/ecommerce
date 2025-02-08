@@ -71,6 +71,8 @@ app.use((req, res, next) => {
 
 app.use(express.static("public/html"));
 app.use("/img", express.static(path.join(__dirname, "public/img")));
+app.use("/script", express.static(path.join(__dirname, "public/script")));
+app.use("/style", express.static(path.join(__dirname, "public/style")));
 
 // Routes
 app.use("/api/cart", require("./routes/cart"));
