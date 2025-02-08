@@ -11,19 +11,19 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // start of defining middlewares
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "*.fontawesome.com"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"], // Allow FontAwesome fonts
-        connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
-      },
-    },
-  })
-);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         defaultSrc: ["'self'"],
+//         scriptSrc: ["'self'", "*.fontawesome.com"],
+//         styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
+//         fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"], // Allow FontAwesome fonts
+//         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
+//       },
+//     },
+//   })
+// );
 
 app.use(
   session({
