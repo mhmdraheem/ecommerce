@@ -13,8 +13,8 @@
     }
   ],
   "env": {
-    "REDIS_URL": "@redis-kv-url",
-    "SESSION_SECRET": "@session-secret"
+    "REDIS_URL": "@redis_kv_REDIS_URL",
+    "SESSION_SECRET": "@session_secret",
+    "NODE_ENV": "production"
   }
 }
-
