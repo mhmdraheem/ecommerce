@@ -37,18 +37,13 @@ app.use(
 app.use(require("./middleware/sessionHandler"));
 
 // API Routes
+app.use("/api", require("./middleware/apiDelay"));
+app.use("/api", require("./middleware/logger"));
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/product", require("./routes/product"));
+app.use("/api", require("./middleware/errorHandler"));
 
 app.use(express.static(path.join(__dirname, "public")));
-
-// Global Error Handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    error: err.message || "Internal server error",
-  });
-});
 
 // Graceful Shutdown for Redis
 process.on("SIGINT", () => {
@@ -63,5 +58,4 @@ if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 }
 
-// Export for Vercel Deployment
 module.exports = app;

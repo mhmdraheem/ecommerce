@@ -16,6 +16,6 @@ redisClient.on("connect", () => console.log("Redis connected"));
   await redisClient.connect();
 })();
 
-const redisStore = new RedisStore({ client: redisClient, prefix: "sess:", ttl: 0 });
+const redisStore = new RedisStore({ client: redisClient, prefix: "sess:", disableTTL: true });
 
 module.exports = { redisClient, redisStore };

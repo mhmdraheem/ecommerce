@@ -1,4 +1,6 @@
 module.exports = (req, res, next) => {
+  let message = `Checking for session at ${req.url} => `;
+
   if (!req.session) {
     return res.status(500).json({ error: "Session is not initialized properly" });
   }
@@ -6,7 +8,12 @@ module.exports = (req, res, next) => {
   if (!req.session.userId) {
     req.session.userId = `user-${Math.random().toString(36).substring(7)}`;
     req.session.cart = [];
-    console.log("✅ New session created:", req.session.userId);
+    message += `No session found, creating new one ✅ ${req.session.userId}`;
+  } else {
+    message += `Session found: ${req.session.userId}`;
   }
+
+  console.log(message);
+
   next();
 };
