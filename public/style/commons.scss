@@ -54,14 +54,14 @@ nav {
   position: sticky;
   top: 0;
   background-color: #ffffff;
-  z-index: 1000;
+  z-index: 1001;
   display: flex;
   align-items: center;
 }
 
 .header {
   display: grid;
-  grid-template-areas: "logo form cart profile";
+  grid-template-areas: "logo form profile cart";
   grid-template-columns: auto 1fr auto auto;
   padding: 20px 0;
   gap: 10px;
@@ -70,13 +70,18 @@ nav {
 
   @media (max-width: 768px) {
     grid-template-areas:
-      "logo cart profile"
+      "logo profile cart"
       "form form form";
+    padding: 0 0 10px;
+  }
+
+  @media (min-width: 769px) {
+    position: relative;
   }
 
   h1 {
     font-family: "Montserrat", sans-serif;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: -1px;
     text-transform: uppercase;
@@ -97,16 +102,9 @@ nav {
 
   .cart {
     grid-area: cart;
-    margin-right: 0;
-    margin-left: auto;
     font-size: 1.2rem;
     cursor: pointer;
     position: relative;
-  }
-
-  .cart-dropdown {
-    position: relative;
-    margin-left: auto;
   }
 
   .cart-button {
@@ -149,15 +147,20 @@ nav {
   .cart-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% - 25px);
     right: 0;
-
     background: white;
     border: 1px solid #eee;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 1001;
     padding: 1rem;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      top: calc(50% - 10px);
+      padding: 0.5rem;
+    }
 
     &.active {
       display: block;
@@ -167,8 +170,8 @@ nav {
       min-height: 100px;
       max-height: 400px;
       overflow-y: auto;
-      width: 450px;
-      max-width: 100%;
+      width: 100%;
+      // max-width: 100%;
       position: relative;
 
       .cart-item {
@@ -262,7 +265,7 @@ nav {
 
         border-radius: 4px;
         width: 100%;
-        font-size: 1.3rem;
+        font-size: 1rem;
         font-weight: 500;
 
         &:hover {
@@ -298,6 +301,7 @@ nav {
 
   .profile {
     grid-area: profile;
+    margin-left: auto;
   }
 
   .avatar {
@@ -305,7 +309,6 @@ nav {
     border-radius: 50%;
     outline: 5px solid white;
     width: 2rem;
-    height: 2rem;
     cursor: pointer;
 
     &:hover + .profile-menu {
@@ -390,7 +393,7 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;

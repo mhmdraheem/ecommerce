@@ -35,9 +35,7 @@ function createNav() {
           </div>
         </div>
         <a href="profile.html" target="_blank" class="profile">
-
           <img class="avatar" src='${imgUrl}/avatar.png' alt="profile-picture" />
-
         </a>
       </div>
     </div>
@@ -50,8 +48,10 @@ function createNav() {
     if (!cartMenu.classList.contains("active")) {
       updateCartMenu();
       cartMenu.classList.add("active");
+      createOverlay(false);
     } else {
       cartMenu.classList.remove("active");
+      removeOverlay();
     }
   });
 

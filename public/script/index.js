@@ -393,7 +393,7 @@ function scrollToTop() {
   });
 }
 
-function createOverlay() {
+function createOverlay(showSpinner = true) {
   const overlay = document.createElement("div");
   overlay.classList.add("page-overlay");
   overlay.style.top = document.querySelector("nav").offsetHeight + "px";
@@ -401,7 +401,9 @@ function createOverlay() {
   const spinner = document.createElement("i");
   spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "page-overlay-spinner");
 
-  overlay.appendChild(spinner);
+  if (showSpinner) {
+    overlay.appendChild(spinner);
+  }
   document.body.appendChild(overlay);
 }
 
