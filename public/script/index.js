@@ -109,11 +109,18 @@ function createProductElement(product) {
   quantityInput.max = product.stock;
   quantityInput.value = 0;
   quantityInput.addEventListener("input", quantityInputCallback(product));
-  getCartItem(product, (item) => {
-    if (item) {
-      quantityInput.value = item.quantity;
+  getCartItem(
+    product,
+    (item) => {
+      if (item) {
+        quantityInput.value = item.quantity;
+      }
+    },
+    (err) => {
+      console.error(err);
+      quantityInput.value = 0;
     }
-  });
+  );
 
   const decreaseBtn = document.createElement("button");
   decreaseBtn.classList.add("decrease");
@@ -166,11 +173,11 @@ function createProductElement(product) {
   return productDiv;
 }
 
-function getCartItem(product, onSuccess) {
+function getCartItem(product, onSuccess, onError) {
   fetch(`/api/cart/${product.id}`)
     .then((response) => toJson(response))
     .then(onSuccess)
-    .catch((e) => console.error(e));
+    .catch(onError);
 }
 
 function addToCartCallback(product, productDiv) {
@@ -182,35 +189,45 @@ function addToCartCallback(product, productDiv) {
 
     activateCartElement(productDiv, spinner);
 
-    getCartItem(product, (item) => {
-      if (item) {
-        callUpdateProductQuantityAPI(
-          product,
-          item.quantity + 1,
-          (updatedItem) => {
-            activateCartElement(productDiv, quantityWrapper);
-            quantityInput.value = updatedItem.quantity;
-            updateCartAlert();
-          },
-          (err) => {
-            console.error(err);
-          }
-        );
-      } else {
-        callAddToCartAPI(
-          product,
-          (newItem) => {
-            activateCartElement(productDiv, quantityWrapper);
-            quantityInput.value = newItem.quantity;
-            updateCartAlert();
-          },
-          (err) => {
-            console.error(err);
-            activateCartElement(productDiv, addToCart);
-          }
-        );
+    getCartItem(
+      product,
+      (item) => {
+        if (item) {
+          callUpdateProductQuantityAPI(
+            product,
+            item.quantity + 1,
+            (updatedItem) => {
+              activateCartElement(productDiv, quantityWrapper);
+              quantityInput.value = updatedItem.quantity;
+              updateCartAlert();
+            },
+            (err) => {
+              console.error(err);
+              showErrorToast();
+            }
+          );
+        } else {
+          callAddToCartAPI(
+            product,
+            (newItem) => {
+              activateCartElement(productDiv, quantityWrapper);
+              quantityInput.value = newItem.quantity;
+              updateCartAlert();
+            },
+            (err) => {
+              console.error(err);
+              activateCartElement(productDiv, addToCart);
+              showErrorToast();
+            }
+          );
+        }
+      },
+      (err) => {
+        console.error(err);
+        activateCartElement(productDiv, addToCart);
+        showErrorToast();
       }
-    });
+    );
   };
 }
 
@@ -260,6 +277,7 @@ function decreaseQuantityCallback(product, productDiv) {
         (err) => {
           console.error(err);
           quantityWrapperSpinner.classList.remove("active");
+          showErrorToast();
         }
       );
     } else {
@@ -273,6 +291,7 @@ function decreaseQuantityCallback(product, productDiv) {
         (err) => {
           console.error(err);
           activateCartElement(productDiv, quantityWrapper);
+          showErrorToast();
         }
       );
     }
@@ -314,6 +333,7 @@ function increaseQuantityCallback(product, productDiv) {
         (err) => {
           console.error(err);
           quantityWrapperSpinner.classList.remove("active");
+          showErrorToast();
         }
       );
     }
@@ -361,6 +381,8 @@ function renderDisplay() {
     })
     .catch((err) => {
       console.error(err);
+      removeOverlay();
+      showErrorToast();
     });
 }
 

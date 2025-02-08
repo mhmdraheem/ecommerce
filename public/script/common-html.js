@@ -308,6 +308,19 @@ function createScrollToTop() {
   document.body.appendChild(scrollToTop);
 }
 
+function showErrorToast() {
+  Swal.fire({
+    text: "Something went wrong!",
+    position: "top-end",
+    background: "#000",
+    color: "#fff",
+    width: "fit-content",
+    showConfirmButton: false,
+    timer: 1500,
+    toast: true,
+  });
+}
+
 createNav();
 createFooterArea();
 createFooter();

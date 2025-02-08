@@ -71,9 +71,4 @@ function sortProducts(products, sortBy) {
   return sortedProducts;
 }
 
-function readFile(file) {
-  const filePath = path.join(__dirname, "json/no_website/", file);
-  return JSON.parse(fs.readFileSync(filePath, "utf8"));
-}
-
 module.exports = router;

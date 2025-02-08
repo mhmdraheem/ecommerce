@@ -42,7 +42,6 @@ router.delete("/:itemId", (req, res, next) => {
 router.put("/:itemId", (req, res) => {
   const itemId = req.params.itemId;
   const { quantity } = req.body;
-
   const item = req.session.cart.find((item) => item.id === itemId);
   if (item) {
     item.quantity = parseInt(quantity) || 1;
