@@ -1,15 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
-const fs = require("fs");
-const path = require("path");
 const helmet = require("helmet");
-const { redisClient, redisStore } = require("./redis");
+const { redisClient, redisStore } = require("./config/redis");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(express.json());
-
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -17,13 +16,12 @@ app.use(
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "*.fontawesome.com"],
         styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"], // Allow FontAwesome fonts
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
       },
     },
   })
 );
-
 app.use(
   session({
     store: redisStore,
@@ -34,49 +32,17 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  console.log("🔄 Existing session:", req.session.userId);
+// Custom Session Middleware
+app.use(require("./middleware/sessionHandler"));
 
-  if (!req.session.userId) {
-    if (!req.session.isNew) {
-      console.log("🔄 Existing session:", req.session.userId);
-    } else {
-      req.session.userId = `user-${Math.random().toString(36).substring(7)}`;
-      req.session.cart = [];
-      console.log("✅ New session created:", req.session.userId);
-    }
-  }
-
-  next();
-});
-
-app.use("/api", (req, res, next) => {
-  setTimeout(() => {
-    next();
-  }, 1);
-});
-
-app.use((req, res, next) => {
-  try {
-    if (!req.originalUrl.match(/^\/(style|img|script)/)) {
-      console.log(
-        `Recieved request" ${req.originalUrl}. ${req.method}, ${req.session.userId}, ${JSON.stringify(req.body)}`
-      );
-    }
-  } catch (error) {
-    console.error(error);
-  } finally {
-    next();
-  }
-});
-
-app.use("/img", express.static(path.join(__dirname, "public/img")));
-app.use("/", express.static("public"));
-
-// Routes
+// API Routes
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/product", require("./routes/product"));
 
+// Serve Static Files
+app.use(express.static("public"));
+
+// Global Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
@@ -84,7 +50,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Graceful Shutdown
+// Graceful Shutdown for Redis
 process.on("SIGINT", () => {
   redisClient.quit().then(() => {
     console.log("Redis connection closed");
@@ -92,6 +58,10 @@ process.on("SIGINT", () => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Start Server (Only for Local Development)
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+
+// Export for Vercel Deployment
+module.exports = app;
