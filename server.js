@@ -69,30 +69,27 @@ app.use((req, res, next) => {
   }
 });
 
-app.use(express.static("public/html"));
+app.use(express.static("public"));
 app.use("/img", express.static(path.join(__dirname, "public/img")));
-app.use("/script", express.static(path.join(__dirname, "public/script")));
-app.use("/style", express.static(path.join(__dirname, "public/style")));
 
 // Routes
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/product", require("./routes/product"));
 
 app.get("/", (req, res) => {
-  console.log(req.session);
-  res.sendFile(path.join(__dirname, "public/html/index.html"));
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-app.get("/:page", (req, res) => {
-  const page = req.params.page.replace(/[^a-zA-Z0-9-]/g, "");
-  const filePath = path.join(__dirname, "public/html", `${page}.html`);
+// app.get("/:page", (req, res) => {
+//   const page = req.params.page.replace(/[^a-zA-Z0-9-]/g, "");
+//   const filePath = path.join(__dirname, "public/html", `${page}.html`);
 
-  if (fs.existsSync(filePath)) {
-    res.sendFile(filePath);
-  } else {
-    res.status(404).sendFile(path.join(__dirname, "public/html/404.html"));
-  }
-});
+//   if (fs.existsSync(filePath)) {
+//     res.sendFile(filePath);
+//   } else {
+//     res.status(404).sendFile(path.join(__dirname, "public/html/404.html"));
+//   }
+// });
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
