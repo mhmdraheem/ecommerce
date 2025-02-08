@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const helmet = require("helmet");
 const { redisClient, redisStore } = require("./config/redis");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,8 +40,7 @@ app.use(require("./middleware/sessionHandler"));
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/product", require("./routes/product"));
 
-// Serve Static Files
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Global Error Handler
 app.use((err, req, res, next) => {

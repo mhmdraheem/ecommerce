@@ -8,6 +8,15 @@
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(style|script|img|fonts)/(.*)",
+      "headers": { "Cache-Control": "public, max-age=31536000, immutable" },
+      "dest": "/public/$1/$2"
+    },
+    {
       "src": "/(.*)",
       "dest": "server.js"
     }
