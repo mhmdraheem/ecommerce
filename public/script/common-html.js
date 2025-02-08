@@ -154,11 +154,12 @@ function createCartItems(cart, cartItems) {
           cartItem.remove();
           cartMenuOverlay.classList.remove("active");
           updateCartMenu();
-          console.log(itemId);
 
           const productDiv = document.querySelector(`.product[data-id="${itemId}"]`);
-          const addToCart = productDiv.querySelector(".add-to-cart");
-          activateCartElement(productDiv, addToCart);
+          if (productDiv) {
+            const addToCart = productDiv.querySelector(".add-to-cart");
+            activateCartElement(productDiv, addToCart);
+          }
         },
         (err) => {
           console.error(err);

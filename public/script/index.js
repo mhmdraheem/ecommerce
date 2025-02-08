@@ -1,4 +1,4 @@
-const productsPerPage = 15;
+const productsPerPage = 50;
 let sortBy = "rating";
 let page = 1;
 

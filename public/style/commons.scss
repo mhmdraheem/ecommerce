@@ -64,14 +64,14 @@ nav {
   grid-template-areas: "logo form cart profile";
   grid-template-columns: auto 1fr auto auto;
   padding: 20px 0;
-  gap: 25px;
+  gap: 10px;
   align-items: center;
   background-color: var(--header-bg-color);
 
   @media (max-width: 768px) {
     grid-template-areas:
-      "logo . cart profile"
-      "form form form form";
+      "logo cart profile"
+      "form form form";
   }
 
   h1 {
@@ -106,6 +106,7 @@ nav {
 
   .cart-dropdown {
     position: relative;
+    margin-left: auto;
   }
 
   .cart-button {
@@ -317,6 +318,11 @@ nav {
     flex: 1;
     height: 50px;
     position: relative;
+    margin: 0 20px;
+
+    @media (max-width: 768px) {
+      margin: 0;
+    }
   }
 
   form input {
