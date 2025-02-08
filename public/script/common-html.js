@@ -1,5 +1,5 @@
-const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
-// const imgUrl = "http://localhost:3000/img";
+// const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
+const imgUrl = "http://localhost:3000/img";
 
 function createNav() {
   const nav = document.createElement("nav");
