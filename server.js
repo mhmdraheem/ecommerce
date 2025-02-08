@@ -35,6 +35,8 @@ app.use(
 );
 
 app.use((req, res, next) => {
+  console.log("🔄 Existing session:", req.session.userId);
+
   if (!req.session.userId) {
     if (!req.session.isNew) {
       console.log("🔄 Existing session:", req.session.userId);
