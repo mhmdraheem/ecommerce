@@ -13,8 +13,9 @@
     />
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
-    <link rel="stylesheet" href="style/commons.css" type="text/css" />
-    <link rel="stylesheet" href="style/index.css" type="text/css" />
+    <link rel="stylesheet" href="style/elements.css" type="text/css" />
+    <link rel="stylesheet" href="style/products.css" type="text/css" />
+    <link rel="stylesheet" href="style/catalog.css" type="text/css" />
   </head>
   <body>
     <nav class="section-margin">
@@ -47,15 +48,18 @@
             </div>
           </div>
           <a href="profile.html" target="_blank" class="profile">
-            <img class="avatar" alt="profile-picture" />
+            <img class="avatar" src="img/avatar.png" alt="profile-picture" />
           </a>
         </div>
       </div>
     </nav>
     <div class="page-content">
-      <div class="heading-section">
+      <div class="search-header-section section-margin">
         <div class="container">
-          <h1 class="search-results-heading">Search results for: <span class="search-query"></span></h1>
+          <h1 class="search-results-heading hidden">
+            <span class="search-results-heading-text">Search results for:</span>
+            <span class="search-query"></span>
+          </h1>
         </div>
       </div>
       <div class="display-settings-section section-margin">
@@ -81,7 +85,17 @@
       </div>
       <div class="no-results-section hidden">
         <div class="container">
-          <div class="no-results-message">No results found</div>
+          <div class="no-results-message">
+            <figure class="not-found-image-container">
+              <img class="not-found-image" src="/img/not-found.png" alt="page not found" />
+              <figcaption>Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></figcaption>
+            </figure>
+            <div class="no-results-message-text">
+              <p>No results found for: <span class="search-query"></span></p>
+              <p>Please try again with a different search term.</p>
+              <a href="index.html" class="go-back-to-home-button">Home page</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -185,10 +199,10 @@
       <div class="content container">
         <span>Powered By <a href="#">Tech</a> - Designed by <a href="#">Mohamed Raheem</a></span>
         <span>
-          <img imgName='visa.jpg' alt="payment-method-visa" loading="lazy"/>
-          <img imgName='paypal.png' alt="payment-method-paypal" loading="lazy"/>
-          <img imgName='mastercard.png' alt="payment-method-mastercard" loading="lazy"/>
-          <img imgName='westernunion.webp' alt="payment-method-westernunion" loading="lazy"/>
+          <img imgName='img/visa.jpg' alt="payment-method-visa" loading="lazy"/>
+          <img imgName='img/paypal.png' alt="payment-method-paypal" loading="lazy"/>
+          <img imgName='img/mastercard.png' alt="payment-method-mastercard" loading="lazy"/>
+          <img imgName='img/westernunion.webp' alt="payment-method-westernunion" loading="lazy"/>
         </span>
       </div>
     </footer>

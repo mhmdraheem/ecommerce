@@ -7,7 +7,7 @@ const imgUrl = util.imgUrl;
     document.querySelector(".search-form input").value = util.query;
   }
   
-  document.querySelector(".avatar").src = `${imgUrl}/avatar.png`;
+  // document.querySelector(".avatar").src = `${imgUrl}/avatar.png`;
 
   document.querySelector(".cart-button").addEventListener("click", (e) => {
     const cartMenu = document.querySelector(".cart-menu");
@@ -38,7 +38,7 @@ const imgUrl = util.imgUrl;
 (function footerImageUpdate() {
   const images = document.querySelectorAll("footer img");
   images.forEach((img) => {
-    img.src = `${imgUrl}/${img.getAttribute("imgName")}`;
+    // img.src = `${imgUrl}/${img.getAttribute("imgName")}`;
   });
 })();
 

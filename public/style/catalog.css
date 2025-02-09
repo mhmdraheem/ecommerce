@@ -1,0 +1,52 @@
+h1 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.search-results-heading {
+  margin: 20px 0 0;
+}
+
+figure.not-found-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+figure.not-found-image-container img {
+  max-width: 100%;
+}
+
+figcaption {
+  font-size: 12px;
+  text-align: center;
+  font-style: italic;
+}
+
+.no-results-message-text {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+  text-align: center;
+}
+
+.search-query {
+  font-weight: 600;
+}
+
+.go-back-to-home-button {
+  display: block;
+  margin: 50px auto;
+  border: 2px solid var(--primary-color);
+  width: fit-content;
+  padding: 10px 20px;
+}
+.go-back-to-home-button:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}/*# sourceMappingURL=catalog.css.map */

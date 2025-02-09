@@ -49,8 +49,8 @@ h1 {
   }
 }
 
-.hidden {
-  display: none;
+.section-margin {
+  margin-bottom: 10px;
 }
 
 nav {
@@ -310,7 +310,7 @@ nav {
     grid-area: profile;
     margin-left: auto;
   }
-
+ 
   .avatar {
     max-width: 100%;
     border-radius: 50%;
@@ -611,4 +611,8 @@ footer {
   @media (max-width: 768px) {
     width: 95%;
   }
+}
+
+.hidden {
+  display: none;
 }

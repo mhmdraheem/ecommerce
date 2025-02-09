@@ -47,8 +47,8 @@ h1 {
     transform: rotate(360deg);
   }
 }
-.hidden {
-  display: none;
+.section-margin {
+  margin-bottom: 10px;
 }
 
 nav {
@@ -538,4 +538,8 @@ footer img {
   .container {
     width: 95%;
   }
-}/*# sourceMappingURL=commons.css.map */
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=elements.css.map */

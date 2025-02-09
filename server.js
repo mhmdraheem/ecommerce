@@ -19,6 +19,7 @@ app.use(
         styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
         fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
+        imgSrc: ["'self'", "https://www.flaticon.com"],
       },
     },
   })

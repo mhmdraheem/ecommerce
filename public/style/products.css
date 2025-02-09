@@ -2,10 +2,6 @@
   margin-bottom: 10px;
 }
 
-.hidden {
-  display: none;
-}
-
 .cover {
   height: 120px;
   background-image: url("/img/ecommerce.png");
@@ -312,4 +308,4 @@
   color: var(--primary-hover-color);
   border-color: var(--primary-hover-color);
   cursor: default;
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=products.css.map */

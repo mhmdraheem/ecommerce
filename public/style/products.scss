@@ -2,10 +2,6 @@
   margin-bottom: 10px;
 }
 
-.hidden {
-  display: none;
-}
-
 .cover {
   height: 120px;
   background-image: url("/img/ecommerce.png");
@@ -21,7 +17,7 @@
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-
+ 
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

@@ -370,7 +370,8 @@ export function fetchProducts(callbacks = {}) {
     .then((data) => {
       const products = data.products;
       if (products.length > 0) {
-        callbacks.onSuccess?.(data) || defaultOnSuccess(data);
+        defaultOnSuccess(data);
+        callbacks.onSuccess?.(data);
       } else {        
         callbacks.onNoProducts?.() || defaultOnNoProducts();
       }
