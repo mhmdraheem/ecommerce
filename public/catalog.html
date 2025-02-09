@@ -12,17 +12,12 @@
       rel="stylesheet"
     />
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
     <link rel="stylesheet" href="style/commons.css" type="text/css" />
     <link rel="stylesheet" href="style/index.css" type="text/css" />
   </head>
   <body>
     <div class="page-content">
-      <div class="cover-section section-margin">
-        <div class="container">
-          <div class="cover"></div>
-        </div>
-      </div>
+      <h1 class="search-results-heading">Search results for: <span id="search-query"></span></h1>
       <div class="display-settings-section section-margin">
         <div class="container">
           <div class="display-settings hidden">
@@ -42,6 +37,11 @@
           <div class="pagination pagination--top hidden"></div>
           <div class="products"></div>
           <div class="pagination pagination--bottom hidden"></div>
+        </div>
+      </div>
+      <div class="no-results-section hidden">
+        <div class="container">
+          <div class="no-results-message">No results found for <span id="search-query"></span></div>
         </div>
       </div>
     </div>

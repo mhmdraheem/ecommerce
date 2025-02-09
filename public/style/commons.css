@@ -47,6 +47,10 @@ h1 {
     transform: rotate(360deg);
   }
 }
+.hidden {
+  display: none;
+}
+
 nav {
   box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.14);
   position: sticky;
@@ -186,8 +190,7 @@ nav {
 .header .cart-menu .cart-items .cart-item .cart-item-thumbnail img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 4px;
 }
 .header .cart-menu .cart-items .cart-item .cart-item-details {

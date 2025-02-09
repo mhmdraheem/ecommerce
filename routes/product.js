@@ -16,11 +16,17 @@ router.get("/", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 5;
   const sortBy = req.query.sortBy || "rating";
+  const name = req.query.query || "";
 
   const products = loadProducts();
-
-  // Sort products based on sortBy parameter
-  const sortedProducts = sortProducts([...products], sortBy);
+  let filteredProducts = products;
+  if (name) {
+    console.log(`Filtering by ${name}`);
+    console.log(products.length);
+    filteredProducts = products.filter(filterProducts(name));
+    console.log(filteredProducts.length);
+  }
+  const sortedProducts = sortProducts([...filteredProducts], sortBy);
 
   // Calculate pagination values
   const startIndex = (page - 1) * limit;
@@ -51,6 +57,11 @@ router.get("/", (req, res) => {
     products: paginatedProducts,
   });
 });
+
+function filterProducts(query) {
+  return (product) =>
+    product.heading.title.toLowerCase().includes(query.toLowerCase());
+}
 
 // Sort products based on sortBy parameter
 function sortProducts(products, sortBy) {

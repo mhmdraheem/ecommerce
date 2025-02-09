@@ -1,6 +1,8 @@
 const productsPerPage = 50;
 let sortBy = "rating";
 let page = 1;
+fetchProducts();
+document.getElementById("sort-by-select").addEventListener("change", fetchProducts);
 
 function generateStars(rating) {
   const starsContainer = document.createElement("span");
@@ -307,14 +309,6 @@ function callDeleteAPI(product, onSuccess, onError) {
     .catch(onError);
 }
 
-function toJson(response) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    throw new Error("API error occured");
-  }
-}
-
 function increaseQuantityCallback(product, productDiv) {
   return (e) => {
     const quantityInput = productDiv.querySelector(".quantity-wrapper input");
@@ -362,56 +356,39 @@ function callUpdateProductQuantityAPI(product, newQuantity, onSuccess, onError) 
     .catch(onError);
 }
 
-function renderDisplay() {
+function fetchProducts() {
   const sortBySelect = document.getElementById("sort-by-select");
   sortBy = sortBySelect.value;
-  createOverlay();
-  fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}`)
+
+  createFullPageOverlay();
+
+  let url = new URL(window.location.href);
+  let params = new URLSearchParams(url.search);
+  query = params.get('query') || '';
+
+  fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&query=${query}`)
     .then((response) => toJson(response))
     .then((data) => {
       const products = data.products;
-      renderProducts(products);
 
-      const totalPages = data.totalPages;
-      const currentPage = data.currentPage;
-      const pagination = data.pagination;
-      renderPaginationBars(totalPages, currentPage, pagination);
+      if (products.length > 0) {
+        document.querySelector(".display-settings").classList.remove("hidden");
+        renderProducts(products);
 
-      removeOverlay();
+        const totalPages = data.totalPages;
+        const currentPage = data.currentPage;
+        const pagination = data.pagination;
+        renderPaginationBars(totalPages, currentPage, pagination);
+      }
+
+      removeFullPageOverlay();
     })
     .catch((err) => {
       console.error(err);
-      removeOverlay();
+      removeFullPageOverlay();
       showErrorToast();
     });
 }
-
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
-
-function createOverlay(showSpinner = true) {
-  const overlay = document.createElement("div");
-  overlay.classList.add("page-overlay");
-  overlay.style.top = document.querySelector("nav").offsetHeight + "px";
-
-  const spinner = document.createElement("i");
-  spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "page-overlay-spinner");
-
-  if (showSpinner) {
-    overlay.appendChild(spinner);
-  }
-  document.body.appendChild(overlay);
-}
-
-function removeOverlay() {
-  document.querySelector(".page-overlay").remove();
-}
-
-renderDisplay();
 
 function renderProducts(products) {
   const productsContainer = document.querySelector(".products");
@@ -429,6 +406,7 @@ function renderPaginationBars(totalPages, currentPage, pagination) {
 
   for (let i = 0; i < 2; i++) {
     const paginationDiv = existingPagination[i];
+    paginationDiv.classList.remove("hidden");
     paginationDiv.innerHTML = "";
 
     paginationDiv.classList.add("pagination");
@@ -461,7 +439,7 @@ function renderPaginationBars(totalPages, currentPage, pagination) {
         }
         pageButton.addEventListener("click", () => {
           page = i;
-          renderDisplay();
+          fetchProducts();
         });
         pagesDiv.appendChild(pageButton);
       }
@@ -483,7 +461,7 @@ function renderPaginationBars(totalPages, currentPage, pagination) {
           }
           pageButton.addEventListener("click", () => {
             page = startPage + i;
-            renderDisplay();
+            fetchProducts();
           });
           pagesDiv.appendChild(pageButton);
         }
@@ -494,14 +472,14 @@ function renderPaginationBars(totalPages, currentPage, pagination) {
     prevButton.addEventListener("click", () => {
       if (pagination.previous) {
         page = currentPage - 1;
-        renderDisplay();
+        fetchProducts();
       }
     });
 
     nextButton.addEventListener("click", () => {
       if (pagination.next) {
         page = currentPage + 1;
-        renderDisplay();
+        fetchProducts();
       }
     });
 
@@ -510,6 +488,3 @@ function renderPaginationBars(totalPages, currentPage, pagination) {
     paginationDiv.appendChild(nextButton);
   }
 }
-
-document.getElementById("sort-by-select").addEventListener("change", renderDisplay);
-document.querySelector(".scroll-to-top").addEventListener("click", scrollToTop);

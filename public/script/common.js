@@ -1,6 +1,11 @@
 // const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
 const imgUrl = "http://localhost:3000/img";
 
+createNav();
+createFooterArea();
+createFooter();
+createScrollToTop();
+
 function createNav() {
   const nav = document.createElement("nav");
   nav.className = "section-margin";
@@ -12,7 +17,7 @@ function createNav() {
           <h1>Shoppify</h1>
           <p>One-click shopping</p>
         </a>
-        <form action="search.html" method="get" target="_blank">
+        <form class="search-form" method="get">
           <input type="text" placeholder="Search products" name="query" id="search" />
           <button type="submit">Search</button>
         </form>
@@ -48,10 +53,10 @@ function createNav() {
     if (!cartMenu.classList.contains("active")) {
       updateCartMenu();
       cartMenu.classList.add("active");
-      createOverlay(false);
+      createFullPageOverlay(false);
     } else {
       cartMenu.classList.remove("active");
-      removeOverlay();
+      removeFullPageOverlay();
     }
   });
 
@@ -59,6 +64,12 @@ function createNav() {
     const cartMenu = document.querySelector(".cart-menu");
     cartMenu.classList.remove("active");
   });
+
+  document.querySelector(".search-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const searchInput = document.querySelector("#search");
+    window.location.href = `catalog.html?query=${searchInput.value}`;
+  }); 
 
   updateCartMenu();
 }
@@ -70,6 +81,7 @@ function updateCartMenu() {
   document.addEventListener("click", function closeCart(e) {
     if (!cartMenu.contains(e.target) && !e.target.closest(".cart-button")) {
       cartMenu.classList.remove("active");
+      removeFullPageOverlay();
       document.removeEventListener("click", closeCart);
     }
   });
@@ -173,11 +185,9 @@ function createCartItems(cart, cartItems) {
 function createFooterArea() {
   const footerArea = document.createElement("div");
   footerArea.className = "footer-area";
- console.log();
  
   footerArea.innerHTML = `
     <div class="content container">
-    
       <div class="footer-col contact-us-col">
         <h3 class="footer-col-header">Contact Us</h3>
         <div class="contact-us">
@@ -296,19 +306,20 @@ function createFooter() {
 }
 
 function createScrollToTop() {
-  const scrollToTop = document.createElement("span");
-  scrollToTop.className = "scroll-to-top";
+  const scrollToTopSpan = document.createElement("span");
+  scrollToTopSpan.className = "scroll-to-top";
 
-  scrollToTop.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
+  scrollToTopSpan.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
 
-  scrollToTop.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+  scrollToTopSpan.addEventListener("click", scrollToTop);
+  document.body.appendChild(scrollToTopSpan);
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
   });
-
-  document.body.appendChild(scrollToTop);
 }
 
 function showErrorToast() {
@@ -324,7 +335,30 @@ function showErrorToast() {
   });
 }
 
-createNav();
-createFooterArea();
-createFooter();
-createScrollToTop();
+function createFullPageOverlay(showSpinner = true) {
+  const overlay = document.createElement("div");
+  overlay.classList.add("page-overlay");
+  overlay.style.top = document.querySelector("nav").offsetHeight + "px";
+
+  const spinner = document.createElement("i");
+  spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "page-overlay-spinner");
+
+  if (showSpinner) {
+    overlay.appendChild(spinner);
+  }
+  document.body.appendChild(overlay);
+}
+
+function removeFullPageOverlay() {
+  if (document.querySelector(".page-overlay")) {
+    document.querySelector(".page-overlay").remove();
+  }
+}
+
+function toJson(response) {
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error("API error occured");
+  }
+}
