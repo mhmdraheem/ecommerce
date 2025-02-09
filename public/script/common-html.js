@@ -175,7 +175,8 @@ function createFooterArea() {
   footerArea.className = "footer-area";
 
   footerArea.innerHTML = `
-    <div class="content">
+    <div class="content container">
+    
       <div class="footer-col contact-us-col">
         <h3 class="footer-col-header">Contact Us</h3>
         <div class="contact-us">
@@ -268,6 +269,7 @@ function createFooterArea() {
           </ul>
         </div>
       </div>
+      
     </div>
   `;
 
