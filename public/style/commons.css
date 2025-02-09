@@ -163,8 +163,13 @@ nav {
   min-height: 100px;
   max-height: 400px;
   overflow-y: auto;
-  width: 100%;
+  width: 400px;
   position: relative;
+}
+@media (max-width: 768px) {
+  .header .cart-menu .cart-items {
+    width: 100%;
+  }
 }
 .header .cart-menu .cart-items .cart-item {
   padding: 0.5rem;
@@ -277,7 +282,8 @@ nav {
   max-width: 100%;
   border-radius: 50%;
   outline: 5px solid white;
-  width: 2rem;
+  width: 32px;
+  height: 30px;
   cursor: pointer;
 }
 .header .avatar:hover + .profile-menu {

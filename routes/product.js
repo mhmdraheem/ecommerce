@@ -21,13 +21,10 @@ router.get("/", (req, res) => {
   const products = loadProducts();
   let filteredProducts = products;
   if (name) {
-    console.log(`Filtering by ${name}`);
-    console.log(products.length);
     filteredProducts = products.filter(filterProducts(name));
-    console.log(filteredProducts.length);
   }
   const sortedProducts = sortProducts([...filteredProducts], sortBy);
-
+  // sortedProducts = [];
   // Calculate pagination values
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;

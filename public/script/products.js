@@ -1,7 +1,9 @@
+import * as util from "./util.js";
+
 const productsPerPage = 50;
 let sortBy = "rating";
 let page = 1;
-fetchProducts();
+
 document.getElementById("sort-by-select").addEventListener("change", fetchProducts);
 
 function generateStars(rating) {
@@ -37,7 +39,7 @@ function createProductElement(product) {
 
   const img = document.createElement("img");
   img.loading = "lazy";
-  img.src = imgUrl + "/product/" + product.images[0];
+  img.src = util.imgUrl + "/product/" + product.images[0];
   img.alt = product.heading.title;
   imgWrapper.appendChild(img);
 
@@ -177,7 +179,7 @@ function createProductElement(product) {
 
 function getCartItem(product, onSuccess, onError) {
   fetch(`/api/cart/${product.id}`)
-    .then((response) => toJson(response))
+    .then((response) => util.toJson(response))
     .then(onSuccess)
     .catch(onError);
 }
@@ -189,7 +191,7 @@ function addToCartCallback(product, productDiv) {
     const quantityWrapper = productDiv.querySelector(".quantity-wrapper");
     const quantityInput = productDiv.querySelector(".quantity-wrapper input");
 
-    activateCartElement(productDiv, spinner);
+    util.activateCartElement(productDiv, spinner);
 
     getCartItem(
       product,
@@ -199,35 +201,35 @@ function addToCartCallback(product, productDiv) {
             product,
             item.quantity + 1,
             (updatedItem) => {
-              activateCartElement(productDiv, quantityWrapper);
+              util.activateCartElement(productDiv, quantityWrapper);
               quantityInput.value = updatedItem.quantity;
-              updateCartAlert();
+              util.updateCartAlert();
             },
             (err) => {
               console.error(err);
-              showErrorToast();
+              util.showErrorToast();
             }
           );
         } else {
           callAddToCartAPI(
             product,
             (newItem) => {
-              activateCartElement(productDiv, quantityWrapper);
+              util.activateCartElement(productDiv, quantityWrapper);
               quantityInput.value = newItem.quantity;
-              updateCartAlert();
+              util.updateCartAlert();
             },
             (err) => {
               console.error(err);
-              activateCartElement(productDiv, addToCart);
-              showErrorToast();
+              util.activateCartElement(productDiv, addToCart);
+              util.showErrorToast();
             }
           );
         }
       },
       (err) => {
         console.error(err);
-        activateCartElement(productDiv, addToCart);
-        showErrorToast();
+        util.activateCartElement(productDiv, addToCart);
+        util.showErrorToast();
       }
     );
   };
@@ -245,16 +247,9 @@ function callAddToCartAPI(product, onSuccess, onError) {
       price: product.price.currentPrice,
     }),
   })
-    .then((response) => toJson(response))
+    .then((response) => util.toJson(response))
     .then(onSuccess)
     .catch(onError);
-}
-
-function activateCartElement(productDiv, element) {
-  productDiv.querySelectorAll(".cart-add-wrapper").forEach((wrapper) => {
-    wrapper.classList.remove("active");
-  });
-  element.classList.add("active");
 }
 
 function decreaseQuantityCallback(product, productDiv) {
@@ -274,39 +269,30 @@ function decreaseQuantityCallback(product, productDiv) {
         (updatedItem) => {
           quantityInput.value = updatedItem.quantity;
           quantityWrapperSpinner.classList.remove("active");
-          updateCartAlert();
+          util.updateCartAlert();
         },
         (err) => {
           console.error(err);
           quantityWrapperSpinner.classList.remove("active");
-          showErrorToast();
+          util.showErrorToast();
         }
       );
     } else {
-      activateCartElement(productDiv, spinner);
-      callDeleteAPI(
+      util.activateCartElement(productDiv, spinner);
+      util.callDeleteAPI(
         product,
         () => {
-          activateCartElement(productDiv, addToCart);
-          updateCartAlert();
+          util.activateCartElement(productDiv, addToCart);
+          util.updateCartAlert();
         },
         (err) => {
           console.error(err);
-          activateCartElement(productDiv, quantityWrapper);
-          showErrorToast();
+          util.activateCartElement(productDiv, quantityWrapper);
+          util.showErrorToast();
         }
       );
     }
   };
-}
-
-function callDeleteAPI(product, onSuccess, onError) {
-  fetch(`/api/cart/${product.id}`, {
-    method: "DELETE",
-  })
-    .then((response) => toJson(response))
-    .then(onSuccess)
-    .catch(onError);
 }
 
 function increaseQuantityCallback(product, productDiv) {
@@ -322,12 +308,12 @@ function increaseQuantityCallback(product, productDiv) {
         (updatedItem) => {
           quantityInput.value = updatedItem.quantity;
           quantityWrapperSpinner.classList.remove("active");
-          updateCartAlert();
+          util.updateCartAlert();
         },
         (err) => {
           console.error(err);
           quantityWrapperSpinner.classList.remove("active");
-          showErrorToast();
+          util.showErrorToast();
         }
       );
     }
@@ -351,42 +337,49 @@ function callUpdateProductQuantityAPI(product, newQuantity, onSuccess, onError) 
     },
     body: JSON.stringify({ quantity: newQuantity }),
   })
-    .then((response) => toJson(response))
+    .then((response) => util.toJson(response))
     .then(onSuccess)
     .catch(onError);
 }
 
-function fetchProducts() {
+const defaultOnSuccess = (data) => {
+  document.querySelector(".display-settings").classList.remove("hidden");
+  renderProducts(data.products);
+
+  const totalPages = data.totalPages;
+  const currentPage = data.currentPage;
+  const pagination = data.pagination;
+  renderPaginationBars(totalPages, currentPage, pagination);
+}
+
+const defaultOnNoProducts = () => {}
+
+const defaultOnError = (err) => {
+  console.error(err);
+  util.showErrorToast();
+}
+
+export function fetchProducts(callbacks) {
   const sortBySelect = document.getElementById("sort-by-select");
   sortBy = sortBySelect.value;
 
-  createFullPageOverlay();
+  util.createFullPageOverlay();
 
-  let url = new URL(window.location.href);
-  let params = new URLSearchParams(url.search);
-  query = params.get('query') || '';
-
-  fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&query=${query}`)
-    .then((response) => toJson(response))
+  fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&query=${util.query}`)
+    .then((response) => util.toJson(response))
     .then((data) => {
       const products = data.products;
 
       if (products.length > 0) {
-        document.querySelector(".display-settings").classList.remove("hidden");
-        renderProducts(products);
-
-        const totalPages = data.totalPages;
-        const currentPage = data.currentPage;
-        const pagination = data.pagination;
-        renderPaginationBars(totalPages, currentPage, pagination);
+        callbacks.onSuccess?.(data) || defaultOnSuccess(data);
+      } else {        
+        callbacks.onNoProducts?.() || defaultOnNoProducts();
       }
-
-      removeFullPageOverlay();
     })
     .catch((err) => {
-      console.error(err);
-      removeFullPageOverlay();
-      showErrorToast();
+      callbacks.onError?.(err) || defaultOnError(err);
+    }).finally(() => {
+      util.removeFullPageOverlay();
     });
 }
 
@@ -398,7 +391,7 @@ function renderProducts(products) {
     productsContainer.appendChild(createProductElement(product));
   });
 
-  scrollToTop();
+  util.scrollToTop();
 }
 
 function renderPaginationBars(totalPages, currentPage, pagination) {
