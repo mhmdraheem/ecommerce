@@ -1,0 +1,71 @@
+.profile-section {
+  margin-bottom: 30px;
+}
+.profile-section h2 {
+  color: #3498db;
+  margin-bottom: 20px;
+}
+
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.avatar-section .avatar {
+  text-align: center;
+}
+.avatar-section .avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.avatar-section .avatar button {
+  margin-top: 10px;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.avatar-section .avatar button:hover {
+  background: #217dbb;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+form label {
+  font-weight: bold;
+}
+form input, form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+form .form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+form .form-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+form .form-buttons button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.collapsed {
+  display: none;
+}
+
+.payment-option {
+  margin-bottom: 10px;
+}/*# sourceMappingURL=profile.css.map */

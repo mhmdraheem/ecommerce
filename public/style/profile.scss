@@ -1,0 +1,96 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$error-color: #e74c3c;
+$disabled-color: #bdc3c7;
+
+// .profile-container {
+//   max-width: 800px;
+//   margin: 0 auto;
+//   background: #fff;
+//   padding: 20px;
+//   border-radius: 8px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+// }
+
+.profile-section {
+  margin-bottom: 30px;
+
+  h2 {
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+}
+
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .avatar {
+    text-align: center;
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    button {
+      margin-top: 10px;
+      background: $primary-color;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background: darken($primary-color, 10%);
+      }
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    font-weight: bold;
+  }
+
+  input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:disabled {
+        background: $disabled-color;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.collapsed {
+  display: none;
+}
+
+.payment-option {
+  margin-bottom: 10px;
+}

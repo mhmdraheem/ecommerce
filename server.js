@@ -43,6 +43,7 @@ app.use("/api", require("./middleware/logger"));
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/product", require("./routes/product"));
 app.use("/api", require("./middleware/errorHandler"));
+app.use("/api/profile", require("./routes/profile"));
 
 app.use(express.static(path.join(__dirname, "public")));
 
