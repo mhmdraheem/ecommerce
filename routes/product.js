@@ -16,7 +16,11 @@ router.get("/", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 5;
   const sortBy = req.query.sortBy || "rating";
-  const name = req.query.query || "";
+  
+  let name = null;
+  if(req.query.query && req.query.query !== "null") {
+    name = req.query.query;
+  }
 
   const products = loadProducts();
   let filteredProducts = products;

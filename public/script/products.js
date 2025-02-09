@@ -359,7 +359,7 @@ const defaultOnError = (err) => {
   util.showErrorToast();
 }
 
-export function fetchProducts(callbacks) {
+export function fetchProducts(callbacks = {}) {
   const sortBySelect = document.getElementById("sort-by-select");
   sortBy = sortBySelect.value;
 
@@ -369,14 +369,13 @@ export function fetchProducts(callbacks) {
     .then((response) => util.toJson(response))
     .then((data) => {
       const products = data.products;
-
       if (products.length > 0) {
         callbacks.onSuccess?.(data) || defaultOnSuccess(data);
       } else {        
         callbacks.onNoProducts?.() || defaultOnNoProducts();
       }
     })
-    .catch((err) => {
+    .catch((err) => {      
       callbacks.onError?.(err) || defaultOnError(err);
     }).finally(() => {
       util.removeFullPageOverlay();
