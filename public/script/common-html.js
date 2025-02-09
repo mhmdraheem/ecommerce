@@ -173,7 +173,8 @@ function createCartItems(cart, cartItems) {
 function createFooterArea() {
   const footerArea = document.createElement("div");
   footerArea.className = "footer-area";
-
+ console.log();
+ 
   footerArea.innerHTML = `
     <div class="content container">
     
