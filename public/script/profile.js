@@ -21,9 +21,7 @@ document.getElementById('avatar-upload').addEventListener('change', async (e) =>
       });
       const result = await response.json();
       if (response.ok) {
-        console.log(result);
-        document.getElementById('avatar-img').src = result.filePath;
-        alert('Avatar uploaded successfully!');
+        document.getElementById('avatar-img').src = result.filePath.replace('public', '');
       } else {
         throw new Error(result.message || 'Failed to upload avatar');
       }
@@ -35,13 +33,7 @@ document.getElementById('avatar-upload').addEventListener('change', async (e) =>
 
 // Personal Info Form
 const personalForm = document.getElementById('personal-info-form');
-const editPersonalBtn = document.getElementById('edit-personal');
 const savePersonalBtn = document.getElementById('save-personal');
-
-editPersonalBtn.addEventListener('click', () => {
-  personalForm.querySelectorAll('input').forEach(input => input.disabled = false);
-  savePersonalBtn.disabled = false;
-});
 
 personalForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -61,8 +53,6 @@ personalForm.addEventListener('submit', async (e) => {
     });
     const result = await response.json();
     if (response.ok) {
-      personalForm.querySelectorAll('input').forEach(input => input.disabled = true);
-      savePersonalBtn.disabled = true;
     } else {
       throw new Error(result.message || 'Failed to save personal info');
     }
@@ -73,13 +63,7 @@ personalForm.addEventListener('submit', async (e) => {
 
 // Address Form
 const addressForm = document.getElementById('address-form');
-const editAddressBtn = document.getElementById('edit-address');
 const saveAddressBtn = document.getElementById('save-address');
-
-editAddressBtn.addEventListener('click', () => {
-  addressForm.querySelectorAll('input, select').forEach(input => input.disabled = false);
-  saveAddressBtn.disabled = false;
-});
 
 addressForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -99,8 +83,6 @@ addressForm.addEventListener('submit', async (e) => {
     });
     const result = await response.json();
     if (response.ok) {
-      addressForm.querySelectorAll('input, select').forEach(input => input.disabled = true);
-      saveAddressBtn.disabled = true;
     } else {
       throw new Error(result.message || 'Failed to save address');
     }
@@ -111,7 +93,6 @@ addressForm.addEventListener('submit', async (e) => {
 
 // Payment Form
 const paymentForm = document.getElementById('payment-form');
-const editPaymentBtn = document.getElementById('edit-payment');
 const savePaymentBtn = document.getElementById('save-payment');
 const cardDetails = document.getElementById('card-details');
 
@@ -123,11 +104,6 @@ document.querySelectorAll('input[name="payment"]').forEach(radio => {
       cardDetails.classList.add('collapsed');
     }
   });
-});
-
-editPaymentBtn.addEventListener('click', () => {
-  paymentForm.querySelectorAll('input').forEach(input => input.disabled = false);
-  savePaymentBtn.disabled = false;
 });
 
 paymentForm.addEventListener('submit', async (e) => {
@@ -146,12 +122,39 @@ paymentForm.addEventListener('submit', async (e) => {
     });
     const result = await response.json();
     if (response.ok) {
-      paymentForm.querySelectorAll('input').forEach(input => input.disabled = true);
-      savePaymentBtn.disabled = true;
     } else {
       throw new Error(result.message || 'Failed to save payment info');
     }
   } catch (error) {
     console.error('Error saving payment info:', error);
   }
+});
+
+function toggleDropdown() {
+  let dropdownList = document.querySelector(".dropdown-list");
+  dropdownList.classList.toggle("show");
+}
+
+function selectCountry(value, flagUrl, countryName) {
+  let selectedDiv = document.querySelector(".dropdown-selected");
+  selectedDiv.innerHTML = `<img src="${flagUrl}" alt="${countryName}">
+                          <span>${countryName}</span>
+                          <i class="fa-solid fa-chevron-down arrow"></i>`;
+  document.querySelector(".dropdown-list").classList.remove("show");
+}
+
+// Close dropdown when clicking outside
+document.addEventListener("click", function(event) {
+  let dropdown = document.querySelector(".custom-dropdown");
+  if (!dropdown.contains(event.target)) {
+    document.querySelector(".dropdown-list").classList.remove("show");
+  }
+});
+
+document.querySelector('.dropdown-selected').addEventListener('click', toggleDropdown);
+
+document.querySelectorAll('.dropdown-item').forEach(item => {
+  item.addEventListener('click', () => {
+    selectCountry(item.getAttribute('data-value'), item.getAttribute('data-url'), item.textContent);
+  });
 });

@@ -2,19 +2,24 @@ const multer = require('multer');
 const path = require('path');
 const fs = require("fs");
 
+
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'public/img/profiles/');
+        const filePath = `public/img/profiles/${req.session.userId}`;
+        if (!fs.existsSync(filePath)) {
+            fs.mkdirSync(filePath, { recursive: true });
+        } else {
+            fs.readdirSync(filePath).forEach(f => fs.rmSync(`${filePath}/${f}`));
+        }
+
+        cb(null, filePath);
     },
     filename: (req, file, cb) => {
-        cb(null, path.extname(file.originalname));
+        cb(null, file.originalname);
     },
 });
   
 const upload = multer({ storage });
-
-if (!fs.existsSync('public/img/profiles')) {
-    fs.mkdirSync('public/img/profiles', { recursive: true });
-}
 
 module.exports = upload;

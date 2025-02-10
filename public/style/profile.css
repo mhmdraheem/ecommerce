@@ -1,71 +1,192 @@
+h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.profile-button {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: #fff;
+}
+
 .profile-section {
   margin-bottom: 30px;
 }
 .profile-section h2 {
-  color: #3498db;
   margin-bottom: 20px;
 }
 
-.avatar-section {
+.personal-info-section {
   display: flex;
-  align-items: center;
+  margin-top: 20px;
+  gap: 50px;
+}
+@media (max-width: 768px) {
+  .personal-info-section {
+    flex-direction: column;
+  }
+}
+.personal-info-section .avatar-wrapper {
+  flex: 1;
+  width: 100%;
   gap: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.avatar-section .avatar {
-  text-align: center;
+@media (max-width: 768px) {
+  .personal-info-section .avatar-wrapper {
+    border: none;
+  }
 }
-.avatar-section .avatar img {
-  width: 100px;
-  height: 100px;
+.personal-info-section .avatar {
+  width: clamp(100px, 25vw, 300px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.personal-info-section .avatar img {
+  max-width: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
-.avatar-section .avatar button {
-  margin-top: 10px;
-  background: #3498db;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.avatar-section .avatar button:hover {
-  background: #217dbb;
+
+.personal-info {
+  flex: 1;
+  width: 100%;
 }
 
-form {
+.personal-info-form {
+  flex: 1;
+}
+
+.profile-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
-form label {
-  font-weight: bold;
-}
-form input, form select {
+.profile-form input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-form .form-buttons {
+.profile-form .form-buttons {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
-form .form-buttons button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
+
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+  /* Arrow Styling */
+}
+.custom-dropdown .dropdown-selected {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.custom-dropdown .arrow {
+  margin-left: auto;
+  font-size: 14px;
+  color: #555;
+  transition: transform 0.2s;
+}
+.custom-dropdown .dropdown-selected img,
+.custom-dropdown .dropdown-item img {
+  width: 20px;
+  height: 15px;
+}
+.custom-dropdown .dropdown-list {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+.custom-dropdown .dropdown-item {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 10px;
+}
+.custom-dropdown .dropdown-item:hover {
+  background: #f0f0f0;
+}
+.custom-dropdown .show {
+  display: block;
+}
+
+.address-section {
+  display: flex;
+  width: 100%;
+  gap: 50px;
+}
+@media (max-width: 768px) {
+  .address-section {
+    flex-direction: column;
+  }
+}
+
+.address {
+  flex: 1;
+  width: 100%;
+}
+
+.payment-options {
+  flex: 1;
+  width: 100%;
+}
+.payment-options label {
   cursor: pointer;
 }
-form .form-buttons button:disabled {
-  background: #bdc3c7;
-  cursor: not-allowed;
+.payment-options input[type=radio] {
+  width: 15px;
+  height: 15px;
+}
+
+.payment-option {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-details {
+  width: 100%;
 }
 
 .collapsed {
   display: none;
 }
 
-.payment-option {
-  margin-bottom: 10px;
+.cvv {
+  width: 50px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
 }/*# sourceMappingURL=profile.css.map */

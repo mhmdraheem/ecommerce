@@ -16,10 +16,10 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
+        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
         fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
-        imgSrc: ["'self'", "https://www.flaticon.com"],
+        imgSrc: ["'self'", "https://www.flaticon.com", "https://flagcdn.com"],
       },
     },
   })

@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
     filteredProducts = products.filter(filterProducts(name));
   }
   const sortedProducts = sortProducts([...filteredProducts], sortBy);
-  // sortedProducts = [];
+  
   // Calculate pagination values
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
