@@ -1,3 +1,5 @@
+import * as util from './util.js';
+
 // API Endpoints
 const API_BASE_URL = 'http://localhost:3000/api/profile';
 const UPLOAD_AVATAR_URL = `${API_BASE_URL}/upload-avatar`;
@@ -96,7 +98,6 @@ addressForm.addEventListener('submit', async (e) => {
 
 // Payment Form
 const paymentForm = document.getElementById('payment-form');
-const savePaymentBtn = document.getElementById('save-payment');
 const cardDetails = document.getElementById('card-details');
 
 document.querySelectorAll('input[name="payment"]').forEach(radio => {
@@ -141,9 +142,7 @@ function toggleDropdown() {
 function selectCountry(value, flagUrl, countryName) {
   let selectedDiv = document.querySelector(".dropdown-selected");
   selectedDiv.setAttribute("data-value", value);
-  selectedDiv.innerHTML = `<img src="${flagUrl}" alt="${countryName}">
-                          <span>${countryName}</span>
-                          <i class="fa-solid fa-chevron-down arrow"></i>`;
+  selectedDiv.innerHTML = `<img src="${flagUrl}" alt="${countryName}"><span>${countryName}</span><i class="fa-solid fa-chevron-down arrow"></i>`;
   document.querySelector(".dropdown-list").classList.remove("show");
 }
 
@@ -160,5 +159,30 @@ document.querySelector('.dropdown-selected').addEventListener('click', toggleDro
 document.querySelectorAll('.dropdown-item').forEach(item => {
   item.addEventListener('click', () => {
     selectCountry(item.getAttribute('data-value'), item.getAttribute('data-url'), item.textContent);
+    item.classList.add('selected');
   });
 });
+
+(function loadProfile() {
+  util.getUserProfile().then((profile) => {
+    document.getElementById('first-name').value = profile.personalInfo.firstName;
+    document.getElementById('last-name').value = profile.personalInfo.lastName;
+    document.getElementById('email').value = profile.personalInfo.email;
+    document.getElementById('phone').value = profile.personalInfo.phone;
+  
+    document.getElementById('address-line1').value = profile.address.addressLine1;
+    document.getElementById('address-line2').value = profile.address.addressLine2;
+    document.querySelector(".dropdown-item[data-value='"+profile.address.country+"']").click();
+    document.getElementById('city').value = profile.address.city;
+    document.getElementById('zip-code').value = profile.address.zipCode;
+  
+    if(profile.paymentMethod.type === 'card') {
+      document.getElementById('card').checked = true;
+      document.getElementById('card-details').classList.remove('collapsed');
+      document.getElementById('card-number').value = profile.paymentMethod.cardNumber;
+      document.getElementById('cvv').value = profile.paymentMethod.cvv;
+    } else {
+      document.getElementById('cod').checked = true;
+    }
+  });
+})();

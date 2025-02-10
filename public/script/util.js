@@ -96,11 +96,9 @@ export function getUserProfile() {
     });
 }
 
-export function updateUserAvatars() {
+export function updateAvatar(avatarElem) {
   getUserProfile().then((profile) => {
-    const avatarValue = (profile.userData && profile.userData.avatar)? `${imgUrl}/${profile.userData.avatar}`: `${imgUrl}/avatar.png`;
-    document.querySelectorAll(".user-avatar").forEach(avatar => {
-      avatar.src = avatarValue;
-    });
+    const avatarValue = profile.avatar? `${profile.avatar}`: `${imgUrl}/avatar.png`;
+    avatarElem.src = avatarValue;
   });
 }

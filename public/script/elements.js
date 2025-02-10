@@ -7,6 +7,8 @@ const imgUrl = util.imgUrl;
     document.querySelector(".search-form input").value = util.query;
   }
 
+  util.updateAvatar(document.querySelector("nav .user-avatar"));
+
   document.querySelector(".cart-button").addEventListener("click", (e) => {
     const cartMenu = document.querySelector(".cart-menu");
     if (!cartMenu.classList.contains("active")) {
@@ -133,5 +135,3 @@ function createCartItems(cart, cartItems) {
     });
   });
 }
-
-util.updateUserAvatars();
