@@ -21,7 +21,10 @@ document.getElementById('avatar-upload').addEventListener('change', async (e) =>
       });
       const result = await response.json();
       if (response.ok) {
-        document.getElementById('avatar-img').src = result.filePath.replace('public', '');
+        document.querySelectorAll('.user-avatar').forEach(avatar => {
+          avatar.src = result.filePath.replace('public', '');
+        });
+
       } else {
         throw new Error(result.message || 'Failed to upload avatar');
       }
