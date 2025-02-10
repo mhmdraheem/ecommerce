@@ -85,3 +85,22 @@ export function updateCartAlert() {
       alert.classList.remove("visible");
     });
 }
+
+export function getUserProfile() {
+  return fetch("/api/profile")
+    .then((response) => response.json())
+    .then((result) => result)
+    .catch((err) => {
+      console.error("Failed to get profile:", err);
+      return null;
+    });
+}
+
+export function updateUserAvatars() {
+  getUserProfile().then((profile) => {
+    const avatarValue = profile.avatar || `${imgUrl}/avatar.png`;
+    document.querySelectorAll(".user-avatar").forEach(avatar => {
+      avatar.src = avatarValue;
+    });
+  });
+}

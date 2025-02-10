@@ -1,6 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../config/uploader");
+const fs = require("fs");
+
+router.get('/', (req, res) => {
+    const userId = req.session.userId;
+    res.json({ avatar: getAvatar(userId) });
+});
+
+function getAvatar(userId) {
+    const filePath = `public/img/profiles/${userId}`;
+    if (fs.existsSync(filePath)) {
+        return `profiles/${userId}/${fs.readdirSync(filePath)[0]}`  ;
+    } else {
+        return null;
+    }
+}
 
 router.post('/upload-avatar', upload.single('avatar'), (req, res) => {
     if (!req.file) {

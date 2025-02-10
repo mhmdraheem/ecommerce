@@ -6,8 +6,6 @@ const imgUrl = util.imgUrl;
   if(util.query) {
     document.querySelector(".search-form input").value = util.query;
   }
-  
-  // document.querySelector(".avatar").src = `${imgUrl}/avatar.png`;
 
   document.querySelector(".cart-button").addEventListener("click", (e) => {
     const cartMenu = document.querySelector(".cart-menu");
@@ -135,3 +133,5 @@ function createCartItems(cart, cartItems) {
     });
   });
 }
+
+util.updateUserAvatars();
