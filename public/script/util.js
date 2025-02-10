@@ -98,7 +98,7 @@ export function getUserProfile() {
 
 export function updateUserAvatars() {
   getUserProfile().then((profile) => {
-    const avatarValue = profile.avatar || `${imgUrl}/avatar.png`;
+    const avatarValue = `${imgUrl}/${profile.avatar}` || `${imgUrl}/avatar.png`;
     document.querySelectorAll(".user-avatar").forEach(avatar => {
       avatar.src = avatarValue;
     });

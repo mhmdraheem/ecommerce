@@ -136,6 +136,7 @@ nav {
 }
 .header .cart-menu-icon {
   font-size: 1.3rem;
+  color: var(--primary-color);
 }
 .header .cart-menu {
   display: none;
