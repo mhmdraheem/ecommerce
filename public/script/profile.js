@@ -157,9 +157,9 @@ document.addEventListener("click", function(event) {
 document.querySelector('.dropdown-selected').addEventListener('click', toggleDropdown);
 
 document.querySelectorAll('.dropdown-item').forEach(item => {
-  item.addEventListener('click', () => {
+  item.addEventListener('click', (e) => {
     selectCountry(item.getAttribute('data-value'), item.getAttribute('data-url'), item.textContent);
-    item.classList.add('selected');
+    document.querySelector('.dropdown-selected').classList.add('selected', 'user-valid');
   });
 });
 
@@ -173,6 +173,7 @@ document.querySelectorAll('.dropdown-item').forEach(item => {
     document.getElementById('address-line1').value = profile.address.addressLine1;
     document.getElementById('address-line2').value = profile.address.addressLine2;
     document.querySelector(".dropdown-item[data-value='"+profile.address.country+"']").click();
+    document.querySelector('.dropdown-selected').classList.remove('user-valid');
     document.getElementById('city').value = profile.address.city;
     document.getElementById('zip-code').value = profile.address.zipCode;
   
