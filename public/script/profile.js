@@ -22,7 +22,7 @@ document.getElementById('avatar-upload').addEventListener('change', async (e) =>
       const result = await response.json();
       if (response.ok) {
         document.querySelectorAll('.user-avatar').forEach(avatar => {
-          avatar.src = result.filePath.replace('public', '');
+          avatar.src = result.filePath;
         });
 
       } else {
@@ -73,7 +73,7 @@ addressForm.addEventListener('submit', async (e) => {
   const address = {
     addressLine1: document.getElementById('address-line1').value,
     addressLine2: document.getElementById('address-line2').value,
-    country: document.getElementById('country').value,
+    country: document.querySelector('.dropdown-selected').getAttribute('data-value'),
     city: document.getElementById('city').value,
     zipCode: document.getElementById('zip-code').value,
   };
@@ -140,6 +140,7 @@ function toggleDropdown() {
 
 function selectCountry(value, flagUrl, countryName) {
   let selectedDiv = document.querySelector(".dropdown-selected");
+  selectedDiv.setAttribute("data-value", value);
   selectedDiv.innerHTML = `<img src="${flagUrl}" alt="${countryName}">
                           <span>${countryName}</span>
                           <i class="fa-solid fa-chevron-down arrow"></i>`;

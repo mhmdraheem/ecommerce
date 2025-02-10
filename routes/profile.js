@@ -4,30 +4,29 @@ const upload = require("../config/uploader");
 const fs = require("fs");
 
 router.get('/', (req, res) => {
-    const userId = req.session.userId;
-    res.json({ avatar: getAvatar(userId) });
+    res.json(req.session.userData);
 });
-
-function getAvatar(userId) {
-    const filePath = `public/img/profiles/${userId}`;
-    if (fs.existsSync(filePath)) {
-        return `profiles/${userId}/${fs.readdirSync(filePath)[0]}`  ;
-    } else {
-        return null;
-    }
-}
 
 router.post('/upload-avatar', upload.single('avatar'), (req, res) => {
-    if (!req.file) {
+    if (req.file) {
+        req.session.userData.avatar = req.file.path.replace('public', '');
+        res.json({ message: 'File uploaded successfully', filePath: req.session.userData.avatar });
+    } else {
         return res.status(400).json({ message: 'No file uploaded' });
     }
-    res.json({ message: 'File uploaded successfully', filePath: req.file.path });
 });
-
 
 router.post('/submit-info', (req, res) => {
     const { personalInfo, address, paymentMethod } = req.body;
-    console.log('Received data:', { personalInfo, address, paymentMethod });
+    if(personalInfo) {
+        req.session.userData.personalInfo = personalInfo;
+    }
+    if(address) {
+        req.session.userData.address = address;
+    }
+    if(paymentMethod) {
+        req.session.userData.paymentMethod = paymentMethod;
+    }
     res.json({ message: 'Data received successfully' });
 });
 
