@@ -82,6 +82,16 @@
   }
 }
 
+.button-spinner {
+  margin-left: 10px;
+  animation: spin 1s linear infinite;
+  display: none;
+
+  &.active {
+    display: inline-block;
+  }
+}
+
 .custom-dropdown {
   position: relative;
   width: 100%;

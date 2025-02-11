@@ -10,12 +10,14 @@ document.getElementById('upload-btn').addEventListener('click', () => {
   document.getElementById('avatar-upload').click();
 });
 
+const uploadBtn = document.getElementById('upload-btn');
 document.getElementById('avatar-upload').addEventListener('change', async (e) => {
   const file = e.target.files[0];
   if (file) {
     const formData = new FormData();
     formData.append('avatar', file);
 
+    uploadBtn.querySelector(".button-spinner").classList.add("active");
     try {
       const response = await fetch(UPLOAD_AVATAR_URL, {
         method: 'POST',
@@ -32,6 +34,9 @@ document.getElementById('avatar-upload').addEventListener('change', async (e) =>
       }
     } catch (error) {
       console.error('Error uploading avatar:', error);
+      util.showErrorToast();
+    } finally {
+      uploadBtn.querySelector(".button-spinner").classList.remove("active");
     }
   }
 });
@@ -50,7 +55,7 @@ personalForm.addEventListener('submit', async (e) => {
   };
 
   try {
-    console.log(personalInfo);
+    savePersonalBtn.querySelector(".button-spinner").classList.add("active");
     const response = await fetch(SUBMIT_INFO_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -63,6 +68,9 @@ personalForm.addEventListener('submit', async (e) => {
     }
   } catch (error) {
     console.error('Error saving personal info:', error);
+    util.showErrorToast();
+  } finally {
+    savePersonalBtn.querySelector(".button-spinner").classList.remove("active");
   }
 });
 
@@ -80,6 +88,7 @@ addressForm.addEventListener('submit', async (e) => {
     zipCode: document.getElementById('zip-code').value,
   };
 
+  saveAddressBtn.querySelector(".button-spinner").classList.add("active");
   try {
     const response = await fetch(SUBMIT_INFO_URL, {
       method: 'POST',
@@ -93,6 +102,9 @@ addressForm.addEventListener('submit', async (e) => {
     }
   } catch (error) {
     console.error('Error saving address:', error);
+    util.showErrorToast();
+  } finally {
+    saveAddressBtn.querySelector(".button-spinner").classList.remove("active");
   }
 });
 
@@ -104,11 +116,21 @@ document.querySelectorAll('input[name="payment"]').forEach(radio => {
   radio.addEventListener('change', (e) => {
     if (e.target.value === 'card') {
       cardDetails.classList.remove('collapsed');
+      setCardDetailsRequired(true);
     } else {
       cardDetails.classList.add('collapsed');
+      setCardDetailsRequired(false);
     }
   });
 });
+
+function setCardDetailsRequired(required) {
+  cardDetails.querySelectorAll('input').forEach(input => {
+    input.required = required;
+  });
+}
+
+const savePaymentBtn = document.getElementById('save-payment');
 
 paymentForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -118,6 +140,7 @@ paymentForm.addEventListener('submit', async (e) => {
     cvv: document.getElementById('cvv').value,
   };
 
+  savePaymentBtn.querySelector(".button-spinner").classList.add("active");
   try {
     const response = await fetch(SUBMIT_INFO_URL, {
       method: 'POST',
@@ -131,6 +154,9 @@ paymentForm.addEventListener('submit', async (e) => {
     }
   } catch (error) {
     console.error('Error saving payment info:', error);
+    util.showErrorToast();
+  } finally {
+    savePaymentBtn.querySelector(".button-spinner").classList.remove("active");
   }
 });
 
@@ -164,26 +190,45 @@ document.querySelectorAll('.dropdown-item').forEach(item => {
 });
 
 (function loadProfile() {
+  util.createFullPageOverlay(true);
   util.getUserProfile().then((profile) => {
-    document.getElementById('first-name').value = profile.personalInfo.firstName;
-    document.getElementById('last-name').value = profile.personalInfo.lastName;
-    document.getElementById('email').value = profile.personalInfo.email;
-    document.getElementById('phone').value = profile.personalInfo.phone;
-  
-    document.getElementById('address-line1').value = profile.address.addressLine1;
-    document.getElementById('address-line2').value = profile.address.addressLine2;
-    document.querySelector(".dropdown-item[data-value='"+profile.address.country+"']").click();
-    document.querySelector('.dropdown-selected').classList.remove('user-valid');
-    document.getElementById('city').value = profile.address.city;
-    document.getElementById('zip-code').value = profile.address.zipCode;
-  
-    if(profile.paymentMethod.type === 'card') {
-      document.getElementById('card').checked = true;
-      document.getElementById('card-details').classList.remove('collapsed');
-      document.getElementById('card-number').value = profile.paymentMethod.cardNumber;
-      document.getElementById('cvv').value = profile.paymentMethod.cvv;
-    } else {
-      document.getElementById('cod').checked = true;
+
+    if(profile.avatar && profile.avatar !== '') {
+      document.querySelectorAll('.user-avatar').forEach(avatar => {
+        avatar.src = profile.avatar;
+      });
     }
+
+    if(profile.personalInfo) {
+      document.getElementById('first-name').value = profile.personalInfo.firstName;
+      document.getElementById('last-name').value = profile.personalInfo.lastName;
+      document.getElementById('email').value = profile.personalInfo.email;
+      document.getElementById('phone').value = profile.personalInfo.phone;
+    }
+
+    if(profile.address) {
+      document.getElementById('address-line1').value = profile.address.addressLine1;
+      document.getElementById('address-line2').value = profile.address.addressLine2;
+      document.querySelector(".dropdown-item[data-value='"+profile.address.country+"']").click();
+      document.querySelector('.dropdown-selected').classList.remove('user-valid');
+      document.getElementById('city').value = profile.address.city;
+      document.getElementById('zip-code').value = profile.address.zipCode;
+    }
+
+    if(profile.paymentMethod) {
+      if(profile.paymentMethod.type === 'card') {
+        document.getElementById('card').checked = true;
+        document.getElementById('card-details').classList.remove('collapsed');
+        document.getElementById('card-number').value = profile.paymentMethod.cardNumber;
+        document.getElementById('cvv').value = profile.paymentMethod.cvv;
+        setCardDetailsRequired(true);
+      } else {
+        document.getElementById('cod').checked = true;
+        setCardDetailsRequired(false);
+      }
+
+    }
+  }).finally(() => {
+    util.removeFullPageOverlay();
   });
 })();

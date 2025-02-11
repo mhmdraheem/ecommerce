@@ -44,6 +44,7 @@ export function createFullPageOverlay(showSpinner = true) {
 
   if (showSpinner) {
     overlay.appendChild(spinner);
+    overlay.style.backgroundColor = "rgba(255, 255, 255, 0.4)";
   }
   document.body.appendChild(overlay);
 }

@@ -78,6 +78,15 @@
   margin-top: 10px;
 }
 
+.button-spinner {
+  margin-left: 10px;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+.button-spinner.active {
+  display: inline-block;
+}
+
 .custom-dropdown {
   position: relative;
   width: 100%;
