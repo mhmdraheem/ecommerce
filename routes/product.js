@@ -83,4 +83,17 @@ function sortProducts(products, sortBy) {
   return sortedProducts;
 }
 
+router.get('/:id', (req, res) => {
+  const product = loadProducts().find(product => product.id === parseInt(req.params.id));
+  res.json(product);
+});
+
+router.get('/:id/related-products', (req, res) => {
+  const relatedProducts = [
+    { "id": 11, "title": "Dior Sauvage", "image": "perfume-channel-1.jpg", "price": 99.99 },
+    { "id": 12, "title": "Gucci Bloom", "image": "perfume-channel-1.jpg", "price": 89.99 }
+  ];
+  res.json(relatedProducts);
+});
+
 module.exports = router;

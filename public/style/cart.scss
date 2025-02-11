@@ -1,0 +1,156 @@
+@keyframes center-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.bottom-product-bar {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.cart-icon {
+  color: #fff;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.add-to-cart {
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  transition: width 0.3s ease-in-out;
+
+  &.active {
+    display: flex;
+  }
+}
+
+.add-to-cart-spinner-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  display: none;
+  position: relative;
+
+  &.active {
+    display: block;
+  }
+}
+
+.add-to-cart-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  animation: center-spin 1s linear infinite;
+}
+
+.quantity-wrapper {
+  position: relative;
+  display: none;
+  align-items: center;
+  width: fit-content;
+  height: 100%;
+  border: 1px solid #ccc;
+
+  &.active {
+    display: flex;
+  }
+
+  input {
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    border: none;
+    color: #333;
+    font-size: 1rem;
+    -moz-appearance: textfield;
+    display: block;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  button {
+    height: 100%;
+    width: 40px;
+    border: none;
+    background: #f0f0f0;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #e0e0e0;
+    }
+
+    &.decrease {
+      left: 0;
+      border-right: 1px solid #ccc;
+    }
+
+    &.increase {
+      right: 0;
+      border-left: 1px solid #ccc;
+    }
+
+    &:disabled {
+      background: #f8f8f8;
+      cursor: not-allowed;
+      opacity: 0.5;
+
+      &:hover {
+        background: #f8f8f8;
+      }
+    }
+  }
+}
+
+.quantity-wrapper-spinner-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffffb0;
+  position: absolute;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.quantity-wrapper-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  animation: center-spin 1s linear infinite;
+}

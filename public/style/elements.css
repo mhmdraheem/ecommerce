@@ -543,4 +543,16 @@ footer img {
 
 .hidden {
   display: none;
+}
+
+.rating-star {
+  font-size: 0.9rem;
+  margin-right: 0.1rem;
+  display: inline-block;
+}
+.rating-star.colored--golden {
+  color: gold;
+}
+.rating-star.colored--grey {
+  color: rgb(228, 227, 227);
 }/*# sourceMappingURL=elements.css.map */

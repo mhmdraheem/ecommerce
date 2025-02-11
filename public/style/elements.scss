@@ -617,3 +617,17 @@ footer {
 .hidden {
   display: none;
 }
+
+.rating-star {
+  font-size: 0.9rem;
+  margin-right: 0.1rem;
+  display: inline-block;
+
+  &.colored--golden {
+    color: gold;
+  }
+
+  &.colored--grey {
+    color: rgb(228 227 227);
+  }
+}

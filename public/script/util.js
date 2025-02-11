@@ -1,9 +1,11 @@
 // export const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
 export const imgUrl = "http://localhost:3000/img";
+export const query = getQueryParam('query');
 
-let url = new URL(window.location.href);
-let params = new URLSearchParams(url.search);
-export const query = params.get('query');
+export function getQueryParam(param) {
+  let url = new URL(window.location.href);
+  return new URLSearchParams(url.search).get(param);
+}
 
 export function callDeleteAPI(product, onSuccess, onError) {
   fetch(`/api/cart/${product.id}`, {
@@ -102,4 +104,28 @@ export function updateAvatar(avatarElem) {
     const avatarValue = profile.avatar? `${profile.avatar}`: `${imgUrl}/avatar.png`;
     avatarElem.src = avatarValue;
   });
+}
+
+export function generateStars(rating, includeReviews = false) {
+  const starsContainer = document.createElement("span");
+
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement("i");
+    star.classList.add("rating-star", "fa-solid");
+
+    if (i <= Math.floor(rating.stars)) {
+      star.classList.add("colored--golden", "fa-star");
+    } else if (i - rating.stars < 1) {
+      star.classList.add("colored--golden", "fa-star-half-stroke");
+    } else {
+      star.classList.add("colored--grey", "fa-star");
+    }
+
+    starsContainer.appendChild(star);
+  }
+  if (includeReviews) {
+    starsContainer.appendChild(document.createElement("span"));
+    starsContainer.appendChild(document.createTextNode(` (${rating.reviews} reviews)`));
+  }
+  return starsContainer;
 }

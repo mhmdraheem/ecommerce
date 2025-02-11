@@ -1,31 +1,11 @@
 import * as util from "./util.js";
+import * as addToCart from "./addToCart.js";
 
 const productsPerPage = 50;
 let sortBy = "rating";
 let page = 1;
 
 document.getElementById("sort-by-select").addEventListener("change", fetchProducts);
-
-function generateStars(rating) {
-  const starsContainer = document.createElement("span");
-  starsContainer.classList.add("rating");
-
-  for (let i = 1; i <= 5; i++) {
-    const star = document.createElement("i");
-    star.classList.add("rating-star", "fa-solid");
-
-    if (i <= Math.floor(rating)) {
-      star.classList.add("colored--golden", "fa-star");
-    } else if (i - rating < 1) {
-      star.classList.add("colored--golden", "fa-star-half-stroke");
-    } else {
-      star.classList.add("colored--grey", "fa-star");
-    }
-
-    starsContainer.appendChild(star);
-  }
-  return starsContainer;
-}
 
 function createProductElement(product) {
   // Product container
@@ -48,7 +28,7 @@ function createProductElement(product) {
   detailsDiv.classList.add("details");
 
   // Rating
-  const ratingElement = generateStars(product.rating.stars);
+  const ratingElement = util.generateStars(product.rating);
 
   // Title
   const title = document.createElement("a");
@@ -91,70 +71,7 @@ function createProductElement(product) {
     freeShippingSpan.textContent = "FREE shipping";
   }
 
-  const cartAddIcon = document.createElement("i");
-  cartAddIcon.classList.add("fa-solid", "fa-cart-shopping", "cart-icon");
-  cartAddIcon.setAttribute("aria-label", "Add to cart");
-
-  const addToCartDiv = document.createElement("div");
-  addToCartDiv.classList.add("add-to-cart", "cart-add-wrapper", "active");
-  addToCartDiv.appendChild(cartAddIcon);
-  addToCartDiv.addEventListener("click", addToCartCallback(product, productDiv));
-
-  const addToCartspinner = document.createElement("i");
-  addToCartspinner.classList.add("fa-solid", "fa-spinner", "add-to-cart-spinner");
-
-  const addToCartSpinnerDiv = document.createElement("div");
-  addToCartSpinnerDiv.classList.add("add-to-cart-spinner-wrapper", "cart-add-wrapper");
-  addToCartSpinnerDiv.appendChild(addToCartspinner);
-
-  const quantityInput = document.createElement("input");
-  quantityInput.type = "number";
-  quantityInput.min = 0;
-  quantityInput.max = product.stock;
-  quantityInput.value = 0;
-  quantityInput.addEventListener("input", quantityInputCallback(product));
-  getCartItem(
-    product,
-    (item) => {
-      if (item) {
-        quantityInput.value = item.quantity;
-      }
-    },
-    (err) => {
-      console.error(err);
-      quantityInput.value = 0;
-    }
-  );
-
-  const decreaseBtn = document.createElement("button");
-  decreaseBtn.classList.add("decrease");
-  decreaseBtn.innerHTML = "-";
-  decreaseBtn.addEventListener("click", decreaseQuantityCallback(product, productDiv));
-
-  const increaseBtn = document.createElement("button");
-  increaseBtn.classList.add("increase");
-  increaseBtn.innerHTML = "+";
-  increaseBtn.addEventListener("click", increaseQuantityCallback(product, productDiv));
-
-  const quantityWrapperSpinner = document.createElement("div");
-  quantityWrapperSpinner.classList.add("quantity-wrapper-spinner-wrapper");
-
-  const quantityWrapperSpinnerIcon = document.createElement("i");
-  quantityWrapperSpinnerIcon.classList.add("fa-solid", "fa-spinner", "quantity-wrapper-spinner");
-  quantityWrapperSpinner.appendChild(quantityWrapperSpinnerIcon);
-
-  const quantityWrapper = document.createElement("div");
-  quantityWrapper.classList.add("quantity-wrapper", "cart-add-wrapper");
-  quantityWrapper.appendChild(decreaseBtn);
-  quantityWrapper.appendChild(quantityInput);
-  quantityWrapper.appendChild(increaseBtn);
-  quantityWrapper.appendChild(quantityWrapperSpinner);
-
-  const bottomProductBarDiv = document.createElement("div");
-  bottomProductBarDiv.classList.add("bottom-product-bar");
-  bottomProductBarDiv.appendChild(addToCartDiv);
-  bottomProductBarDiv.appendChild(addToCartSpinnerDiv);
-  bottomProductBarDiv.appendChild(quantityWrapper);
+  const bottomProductBarDiv = addToCart.create(product);
 
   // Append elements to details
   detailsDiv.appendChild(title);
@@ -175,171 +92,6 @@ function createProductElement(product) {
   productDiv.appendChild(bottomProductBarDiv);
 
   return productDiv;
-}
-
-function getCartItem(product, onSuccess, onError) {
-  fetch(`/api/cart/${product.id}`)
-    .then((response) => util.toJson(response))
-    .then(onSuccess)
-    .catch(onError);
-}
-
-function addToCartCallback(product, productDiv) {
-  return (e) => {
-    const addToCart = productDiv.querySelector(".add-to-cart");
-    const spinner = productDiv.querySelector(".add-to-cart-spinner-wrapper");
-    const quantityWrapper = productDiv.querySelector(".quantity-wrapper");
-    const quantityInput = productDiv.querySelector(".quantity-wrapper input");
-
-    util.activateCartElement(productDiv, spinner);
-
-    getCartItem(
-      product,
-      (item) => {
-        if (item) {
-          callUpdateProductQuantityAPI(
-            product,
-            item.quantity + 1,
-            (updatedItem) => {
-              util.activateCartElement(productDiv, quantityWrapper);
-              quantityInput.value = updatedItem.quantity;
-              util.updateCartAlert();
-            },
-            (err) => {
-              console.error(err);
-              util.showErrorToast();
-            }
-          );
-        } else {
-          callAddToCartAPI(
-            product,
-            (newItem) => {
-              util.activateCartElement(productDiv, quantityWrapper);
-              quantityInput.value = newItem.quantity;
-              util.updateCartAlert();
-            },
-            (err) => {
-              console.error(err);
-              util.activateCartElement(productDiv, addToCart);
-              util.showErrorToast();
-            }
-          );
-        }
-      },
-      (err) => {
-        console.error(err);
-        util.activateCartElement(productDiv, addToCart);
-        util.showErrorToast();
-      }
-    );
-  };
-}
-
-function callAddToCartAPI(product, onSuccess, onError) {
-  fetch(`/api/cart/${product.id}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      primaryImage: product.images[0],
-      title: product.heading.title,
-      price: product.price.currentPrice,
-    }),
-  })
-    .then((response) => util.toJson(response))
-    .then(onSuccess)
-    .catch(onError);
-}
-
-function decreaseQuantityCallback(product, productDiv) {
-  return (e) => {
-    const addToCart = productDiv.querySelector(".add-to-cart");
-    const spinner = productDiv.querySelector(".add-to-cart-spinner-wrapper");
-    const quantityWrapper = productDiv.querySelector(".quantity-wrapper");
-    const quantityInput = productDiv.querySelector(".quantity-wrapper input");
-    const quantityWrapperSpinner = productDiv.querySelector(".quantity-wrapper .quantity-wrapper-spinner-wrapper");
-    const newQuantity = parseInt(quantityInput.value) - 1;
-
-    if (newQuantity >= 1) {
-      quantityWrapperSpinner.classList.add("active");
-      callUpdateProductQuantityAPI(
-        product,
-        newQuantity,
-        (updatedItem) => {
-          quantityInput.value = updatedItem.quantity;
-          quantityWrapperSpinner.classList.remove("active");
-          util.updateCartAlert();
-        },
-        (err) => {
-          console.error(err);
-          quantityWrapperSpinner.classList.remove("active");
-          util.showErrorToast();
-        }
-      );
-    } else {
-      util.activateCartElement(productDiv, spinner);
-      util.callDeleteAPI(
-        product,
-        () => {
-          util.activateCartElement(productDiv, addToCart);
-          util.updateCartAlert();
-        },
-        (err) => {
-          console.error(err);
-          util.activateCartElement(productDiv, quantityWrapper);
-          util.showErrorToast();
-        }
-      );
-    }
-  };
-}
-
-function increaseQuantityCallback(product, productDiv) {
-  return (e) => {
-    const quantityInput = productDiv.querySelector(".quantity-wrapper input");
-    const quantityWrapperSpinner = productDiv.querySelector(".quantity-wrapper .quantity-wrapper-spinner-wrapper");
-    const currentValue = parseInt(quantityInput.value);
-    if (currentValue < product.stock) {
-      quantityWrapperSpinner.classList.add("active");
-      callUpdateProductQuantityAPI(
-        product,
-        currentValue + 1,
-        (updatedItem) => {
-          quantityInput.value = updatedItem.quantity;
-          quantityWrapperSpinner.classList.remove("active");
-          util.updateCartAlert();
-        },
-        (err) => {
-          console.error(err);
-          quantityWrapperSpinner.classList.remove("active");
-          util.showErrorToast();
-        }
-      );
-    }
-  };
-}
-
-function quantityInputCallback(product) {
-  return (e) => {
-    const value = parseInt(e.target.value);
-    if (value > product.stock) {
-      e.target.value = product.stock;
-    }
-  };
-}
-
-function callUpdateProductQuantityAPI(product, newQuantity, onSuccess, onError) {
-  fetch(`/api/cart/${product.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ quantity: newQuantity }),
-  })
-    .then((response) => util.toJson(response))
-    .then(onSuccess)
-    .catch(onError);
 }
 
 const defaultOnSuccess = (data) => {
