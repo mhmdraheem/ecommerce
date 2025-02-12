@@ -1,10 +1,10 @@
 // export const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
 export const imgUrl = "http://localhost:3000/img";
-export const query = getQueryParam("query");
+export const queryParams = getQueryParams();
 
-export function getQueryParam(param) {
+export function getQueryParams() {
   let url = new URL(window.location.href);
-  return new URLSearchParams(url.search).get(param);
+  return new URLSearchParams(url.search);
 }
 
 export function callDeleteAPI(product, onSuccess, onError) {

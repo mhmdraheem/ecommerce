@@ -3,7 +3,7 @@ import * as util from "./util.js";
 const imgUrl = util.imgUrl;
 
 (function navEvents() {
-  if(util.query) {
+  if (util.query) {
     document.querySelector(".search-form input").value = util.query;
   }
 
@@ -29,8 +29,8 @@ const imgUrl = util.imgUrl;
   document.querySelector(".search-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const searchInput = document.querySelector("#search");
-    window.location.href = `catalog.html?query=${searchInput.value}`;
-  }); 
+    window.location.href = `catalog.html?name=${searchInput.value}`;
+  });
 
   util.updateCartAlert();
 })();

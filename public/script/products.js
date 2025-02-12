@@ -102,14 +102,14 @@ const defaultOnSuccess = (data) => {
   const currentPage = data.currentPage;
   const pagination = data.pagination;
   renderPaginationBars(totalPages, currentPage, pagination);
-}
+};
 
-const defaultOnNoProducts = () => {}
+const defaultOnNoProducts = () => {};
 
 const defaultOnError = (err) => {
   console.error(err);
   util.showErrorToast();
-}
+};
 
 export function fetchProducts(callbacks = {}) {
   const sortBySelect = document.getElementById("sort-by-select");
@@ -117,20 +117,21 @@ export function fetchProducts(callbacks = {}) {
 
   util.createFullPageOverlay();
 
-  fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&query=${util.query}`)
+  fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&${util.queryParams}`)
     .then((response) => util.toJson(response))
     .then((data) => {
       const products = data.products;
       if (products.length > 0) {
         defaultOnSuccess(data);
         callbacks.onSuccess?.(data);
-      } else {        
+      } else {
         callbacks.onNoProducts?.() || defaultOnNoProducts();
       }
     })
-    .catch((err) => {      
+    .catch((err) => {
       callbacks.onError?.(err) || defaultOnError(err);
-    }).finally(() => {
+    })
+    .finally(() => {
       util.removeFullPageOverlay();
     });
 }

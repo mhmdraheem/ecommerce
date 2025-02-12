@@ -1,7 +1,7 @@
 import * as util from "./util.js";
 import * as addToCart from "./addToCart.js";
 
-const productId = util.getQueryParam("id");
+const productId = util.queryParams.get("id");
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -197,15 +197,17 @@ function createReviewsSection(product) {
 }
 
 async function createRecentProductsSection() {
-  const recentContainer = document.getElementById("recent-products");
-
-  const recentProductsTitle = document.createElement("h2");
-  recentProductsTitle.innerText = "Recently Viewed Products";
-  recentContainer.appendChild(recentProductsTitle);
-
   try {
     const recentRes = await fetch(`/api/product/${productId}/recent-products`);
     const recentProducts = await recentRes.json();
+
+    if (recentProducts.length === 0) return;
+
+    const recentContainer = document.getElementById("recent-products");
+
+    const recentProductsTitle = document.createElement("h2");
+    recentProductsTitle.innerText = "Recently Viewed Products";
+    recentContainer.appendChild(recentProductsTitle);
 
     const recentProductsWrapper = document.createElement("div");
     recentProductsWrapper.classList.add("recent-products-wrapper");
@@ -214,13 +216,18 @@ async function createRecentProductsSection() {
       const recentProductLink = document.createElement("a");
       recentProductLink.classList.add("recent-product-link");
       recentProductLink.href = `/product.html?id=${prod.id}`;
-      recentProductLink.innerHTML = `<img src="${util.imgUrl}/product/${prod.image}">`;
+      recentProductLink.innerHTML = `<img src="${util.imgUrl}/product/${prod.images[0]}">`;
 
       const productTitle = document.createElement("span");
       productTitle.classList.add("product-title");
-      productTitle.innerText = prod.title;
+      productTitle.innerText = prod.heading.title;
+
+      const productPrice = document.createElement("span");
+      productPrice.classList.add("product-price");
+      productPrice.innerText = `${prod.price.currentPrice} EGP`;
 
       recentProductLink.appendChild(productTitle);
+      recentProductLink.appendChild(productPrice);
       recentProductsWrapper.appendChild(recentProductLink);
     });
 

@@ -280,7 +280,6 @@
 }
 .recent-products .recent-products-wrapper .recent-product-link span {
   font-size: 0.8rem;
-  height: 20px;
   width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;

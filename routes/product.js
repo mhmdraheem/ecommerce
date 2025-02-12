@@ -17,15 +17,19 @@ router.get("/", (req, res) => {
   const limit = parseInt(req.query.limit) || 5;
   const sortBy = req.query.sortBy || "rating";
 
-  let name = null;
-  if (req.query.query && req.query.query !== "null") {
-    name = req.query.query;
+  let filterBy = {};
+  if (req.query.name) {
+    filterBy.key = "name";
+    filterBy.value = req.query.name;
+  } else if (req.query.brand) {
+    filterBy.key = "brand";
+    filterBy.value = req.query.brand;
   }
 
   const products = loadProducts();
   let filteredProducts = products;
-  if (name) {
-    filteredProducts = products.filter(filterProducts(name));
+  if (filterBy.key) {
+    filteredProducts = products.filter(filterProducts(filterBy));
   }
   const sortedProducts = sortProducts([...filteredProducts], sortBy);
 
@@ -59,8 +63,13 @@ router.get("/", (req, res) => {
   });
 });
 
-function filterProducts(query) {
-  return (product) => product.heading.title.toLowerCase().includes(query.toLowerCase());
+function filterProducts(filterBy) {
+  if (filterBy.key == "name") {
+    ``;
+    return (product) => product.heading.title.toLowerCase().includes(filterBy.value.toLowerCase());
+  } else if (filterBy.key == "brand") {
+    return (product) => product.heading.brand.toLowerCase().includes(filterBy.value.toLowerCase());
+  }
 }
 
 // Sort products based on sortBy parameter
@@ -84,22 +93,14 @@ function sortProducts(products, sortBy) {
 
 router.get("/:id", (req, res) => {
   const product = loadProducts().find((product) => product.id === parseInt(req.params.id));
+  req.session.viewedProducts.push(req.params.id);
   res.json(product);
 });
 
 router.get("/:id/recent-products", (req, res) => {
-  const recentProducts = [
-    { id: 11, title: "Dior Sauvage", image: "perfume-channel-1.jpg", price: 99.99 },
-    { id: 12, title: "Gucci Bloom", image: "perfume-channel-1.jpg", price: 89.99 },
-    { id: 13, title: "Chanel No.5", image: "perfume-channel-1.jpg", price: 109.99 },
-    { id: 14, title: "Hermes Terre d'Hermes", image: "perfume-channel-1.jpg", price: 119.99 },
-    { id: 15, title: "Dior Homme", image: "perfume-channel-1.jpg", price: 129.99 },
-    { id: 16, title: "Dior Sauvage", image: "perfume-channel-1.jpg", price: 99.99 },
-    { id: 17, title: "Gucci Bloom", image: "perfume-channel-1.jpg", price: 89.99 },
-    { id: 18, title: "Chanel No.5", image: "perfume-channel-1.jpg", price: 109.99 },
-    { id: 19, title: "Hermes Terre d'Hermes", image: "perfume-channel-1.jpg", price: 119.99 },
-    { id: 20, title: "Dior Homme", image: "perfume-channel-1.jpg", price: 129.99 },
-  ];
+  const recentProducts = req.session.viewedProducts
+    .filter((prodId) => prodId !== req.params.id)
+    .map((prodId) => loadProducts().find((product) => product.id == prodId));
   res.json(recentProducts);
 });
 
