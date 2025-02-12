@@ -2,10 +2,19 @@
   display: flex;
   gap: 2rem;
 }
+@media (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+  }
+}
 .main-section .product-title {
-  font-weight: 500;
+  font-weight: 300;
   line-height: 1.1;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+}
+.main-section .subheader {
+  display: flex;
+  justify-content: space-between;
 }
 .main-section .subheader a:hover {
   text-decoration: underline;
@@ -14,18 +23,72 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  width: 100%;
+  max-width: 500px;
 }
-.main-section .product-price .new {
+.main-section .details .product-title,
+.main-section .details .subheader {
+  display: none;
+}
+@media (min-width: 768px) {
+  .main-section .details .product-title,
+  .main-section .details .subheader {
+    display: block;
+  }
+}
+.main-section .details .subheader {
+  margin-bottom: 1rem;
+}
+.main-section .product-rating {
+  font-size: 0.8rem;
+}
+.main-section .bottom-product-bar {
+  max-width: 350px;
+  margin-top: 1rem;
+}
+@media (max-width: 768px) {
+  .main-section .bottom-product-bar {
+    max-width: 100%;
+  }
+}
+.main-section .product-price {
+  margin: 0 0 1rem;
+}
+.main-section .product-price .current {
   font-size: 1rem;
   font-weight: 500;
 }
+.main-section .product-price .current sup {
+  font-size: 0.8rem;
+}
+.main-section .product-price .current .value {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
 .main-section .product-price .old {
   font-size: 0.8rem;
+  opacity: 0.7;
   text-decoration: line-through;
 }
+.main-section .images {
+  width: 100%;
+  flex: 1.2;
+}
+.main-section .images .product-title,
+.main-section .images .subheader {
+  display: none;
+}
+@media (max-width: 767px) {
+  .main-section .images .product-title,
+  .main-section .images .subheader {
+    display: block;
+  }
+}
+.main-section .images .subheader {
+  margin-bottom: 1rem;
+}
 .main-section .image-wrapper {
-  width: 300px;
+  width: 100%;
   height: 300px;
   cursor: pointer;
 }
@@ -53,12 +116,20 @@
   object-position: 50%;
 }
 .main-section .alt-image-wrapper.active {
-  border: 2px solid #000;
+  border: 1px solid #000;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .benifits {
   display: flex;
   gap: 10px;
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+  .benifits {
+    justify-content: space-between;
+  }
 }
 .benifits .benifit {
   display: flex;
@@ -66,6 +137,10 @@
   align-items: center;
   text-align: center;
   gap: 5px;
+  font-size: 1.5rem;
+}
+.benifits .benifit.hidden {
+  display: none;
 }
 .benifits .benifit span {
   font-size: 0.8rem;

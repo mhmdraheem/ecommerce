@@ -125,7 +125,7 @@ export function generateStars(rating, includeReviews = false) {
   }
   if (includeReviews) {
     starsContainer.appendChild(document.createElement("span"));
-    starsContainer.appendChild(document.createTextNode(` (${rating.reviews} reviews)`));
+    starsContainer.appendChild(document.createTextNode(` (${rating.reviews})`));
   }
   return starsContainer;
 }

@@ -18,7 +18,12 @@
       "discount": 23
     },
     "freeShipping": true,
-    "description": "Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system.",
+    "returns": true,
+    "warranty": true,
+    "description": {
+      "short": "Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system.",
+      "long": "Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system. Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system. Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system."
+    },
     "features": [
       "24.1MP APS-C Sensor",
       "4K Video Recording",

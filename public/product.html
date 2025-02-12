@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shoppify</title>
@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous" type="text/javascript"></script>
     <link rel="stylesheet" href="style/elements.css" type="text/css" />
@@ -44,7 +44,7 @@
                 <a href="cart.html" target="_blank" class="view-cart-button">View Cart</a>
               </div>
               <div class="cart-menu-overlay">
-                  <i class="fa-solid fa-spinner fa-spin cart-menu-overlay-spinner"></i>
+                <i class="fa-solid fa-spinner fa-spin cart-menu-overlay-spinner"></i>
               </div>
             </div>
           </div>
@@ -55,67 +55,59 @@
       </div>
     </nav>
     <div class="page-content container product">
-        <div class="main-section">
-            <div class="images">
-            <div class="image-wrapper">
-                <img id="product-image" src="" alt="Product Image">
-              </div>
-              <div class="alt-images">
-              </div> 
-            </div> 
-            <div class="details">
-                <h1 id="product-title" class="product-title"></h1>
-                <div class="subheader">
-                  <a id="product-brand" target="_blank"></a>
-                </div>
-                <div id="product-rating" class="product-rating"></div>
-                <div id="product-price" class="product-price">
-                  <span class="current">
-                    <sup>EGP</sup>
-                    <span class="value"></span>
-                  </span>
-                  <span class="old hidden">
-                    <span class="value"></span>
-                  </span>
-                </div>
-                <div class="benifits">
-                  <div class="benifit free-shipping">
-                    <i class="fa-solid fa-truck-fast"></i>
-                    <span>Free Shipping</span>
-                  </div>
-                  <div class="benifit returns">
-                    <i class="fa-solid fa-money-bill"></i>
-                    <span>Money back guarantee</span>
-                  </div>
-                  <div class="benifit warranty">
-                    <i class="fa-solid fa-shield-heart"></i>
-                    <span>3 months warranty</span>
-                  </div>
-                </div>
-                <div class="product-description">
-                  <span class="short">
-                    <span class="text"></span>
-                    <span class="show-more">Show more</span>
-                  </span>
-                  <span class="long hidden">
-                    <span class="text"></span>
-                    <span class="show-less">Show less</span>
-                  </span>
-                </div>
+      <div class="main-section">
+        <div class="images">
+          <h1 class="product-title"></h1>
+          <div class="subheader">
+            <a class="product-brand" target="_blank"></a>
+            <span class="product-rating"></span>
+          </div>
+          <div class="image-wrapper">
+            <img id="product-image" src="" alt="Product Image" />
+          </div>
+          <div class="alt-images"></div>
+        </div>
+        <div class="details">
+          <h1 class="product-title"></h1>
+          <div class="subheader">
+            <a class="product-brand" target="_blank"></a>
+            <span class="product-rating"></span>
+          </div>
+          <div class="product-price">
+            <span class="current">
+              <sup></sup>
+              <span class="value"></span>
+            </span>
+            <span class="old hidden">
+              <span class="value"></span>
+            </span>
+          </div>
+          <div class="benifits">
+            <div class="benifit free-shipping hidden">
+              <i class="fa-solid fa-truck-fast"></i>
+              <span>Free Shipping</span>
             </div>
+            <div class="benifit returns hidden">
+              <i class="fa-solid fa-money-bill"></i>
+              <span>Money back guarantee</span>
+            </div>
+            <div class="benifit warranty hidden">
+              <i class="fa-solid fa-shield-heart"></i>
+              <span>3 months warranty</span>
+            </div>
+          </div>
+          <div class="product-description">
+            <span class="short">
+              <span class="text"></span>
+              <span class="show-more"></span>
+            </span>
+            <span class="long hidden">
+              <span class="text"></span>
+              <span class="show-less"></span>
+            </span>
+          </div>
         </div>
-        <!-- <div class="features-section">
-            <h2>Product Details</h2>
-            <ul id="product-features"></ul>
-        </div>
-        <div class="reviews-section">
-            <h2>Reviews</h2>
-            <div id="reviews"></div>
-        </div>
-        <div class="related-products">
-            <h2>Related Products</h2>
-            <div id="related-container"></div>
-        </div> -->
+      </div>
     </div>
     <div class="footer-area">
       <div class="content container">
@@ -217,10 +209,10 @@
       <div class="content container">
         <span>Powered By <a href="#">Tech</a> - Designed by <a href="#">Mohamed Raheem</a></span>
         <span>
-          <img src="img/visa.jpg" alt="payment-method-visa" loading="lazy"/>
-          <img src="img/paypal.png" alt="payment-method-paypal" loading="lazy"/>
-          <img src="img/mastercard.png" alt="payment-method-mastercard" loading="lazy"/>
-          <img src="img/westernunion.webp" alt="payment-method-westernunion" loading="lazy"/>
+          <img src="img/visa.jpg" alt="payment-method-visa" loading="lazy" />
+          <img src="img/paypal.png" alt="payment-method-paypal" loading="lazy" />
+          <img src="img/mastercard.png" alt="payment-method-mastercard" loading="lazy" />
+          <img src="img/westernunion.webp" alt="payment-method-westernunion" loading="lazy" />
         </span>
       </div>
     </footer>
@@ -231,3 +223,16 @@
     <script src="script/product.js" type="module"></script>
   </body>
 </html>
+
+<!-- <div class="features-section">
+            <h2>Product Details</h2>
+            <ul id="product-features"></ul>
+        </div>
+        <div class="reviews-section">
+            <h2>Reviews</h2>
+            <div id="reviews"></div>
+        </div>
+        <div class="related-products">
+            <h2>Related Products</h2>
+            <div id="related-container"></div>
+        </div> -->
