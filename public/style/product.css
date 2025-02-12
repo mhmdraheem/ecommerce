@@ -24,7 +24,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
 }
 .main-section .details .product-title,
 .main-section .details .subheader {
@@ -33,7 +32,7 @@
 @media (min-width: 768px) {
   .main-section .details .product-title,
   .main-section .details .subheader {
-    display: block;
+    display: flex;
   }
 }
 .main-section .details .subheader {
@@ -42,14 +41,12 @@
 .main-section .product-rating {
   font-size: 0.8rem;
 }
-.main-section .bottom-product-bar {
-  max-width: 350px;
-  margin-top: 1rem;
+.main-section .product-rating:hover {
+  text-decoration: none;
 }
-@media (max-width: 768px) {
-  .main-section .bottom-product-bar {
-    max-width: 100%;
-  }
+.main-section .bottom-product-bar {
+  margin: 1rem 0;
+  width: 100%;
 }
 .main-section .product-price {
   margin: 0 0 1rem;
@@ -81,11 +78,11 @@
 @media (max-width: 767px) {
   .main-section .images .product-title,
   .main-section .images .subheader {
-    display: block;
+    display: flex;
   }
 }
 .main-section .images .subheader {
-  margin-bottom: 1rem;
+  margin: 0.3rem 0 1rem;
 }
 .main-section .image-wrapper {
   width: 100%;
@@ -162,7 +159,130 @@
   display: inline;
 }
 
-.related-products {
+.features-section h2 {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+.features-section .table-container {
+  width: 100%;
+  max-width: 800px;
+}
+.features-section .features-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+.features-section .features-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.features-section .features-table .feature-name {
+  font-weight: 400;
+  background-color: #f8f8f8;
+  white-space: wrap;
+}
+
+.reviews-section h2 {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+.reviews-section .review {
   display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.reviews-section .review .review-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.reviews-section .review .review-header {
+  display: flex;
+  align-items: center;
+}
+.reviews-section .review .review-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.reviews-section .review .review-info .reviewer-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.reviews-section .review .review-info .verified-badge {
+  color: green;
+  margin-left: 5px;
+}
+.reviews-section .review .review-info .verified-badge-text {
+  color: #444;
+  font-size: 0.8rem;
+  margin-left: 2px;
+}
+.reviews-section .review .review-info .review-text {
+  margin: 5px 0;
+  color: #444;
+}
+.reviews-section .review .review-info .review-date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.recent-products {
+  margin-bottom: 2rem;
+}
+.recent-products h2 {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+.recent-products .recent-products-wrapper {
+  display: flex;
+  gap: 10px;
   overflow-x: auto;
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #bcb9b9 #f1f1f1;
+}
+.recent-products .recent-products-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.recent-products .recent-products-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.recent-products .recent-products-wrapper::-webkit-scrollbar-thumb {
+  background: #bcb9b9;
+  border-radius: 10px;
+}
+.recent-products .recent-products-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.recent-products .recent-products-wrapper .recent-product-link {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.recent-products .recent-products-wrapper .recent-product-link img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.recent-products .recent-products-wrapper .recent-product-link span {
+  font-size: 0.8rem;
+  height: 20px;
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }/*# sourceMappingURL=product.css.map */

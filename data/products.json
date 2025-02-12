@@ -25,30 +25,47 @@
       "long": "Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system. Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system. Professional grade DSLR camera with 24.1MP sensor, 4K video recording capability, and advanced autofocus system."
     },
     "features": [
-      "24.1MP APS-C Sensor",
-      "4K Video Recording",
-      "45-point AF System",
-      "3.0-inch Vari-angle Touchscreen",
-      "Built-in Wi-Fi"
+      {
+        "title": "Technical Details", 
+        "description": "24.1MP APS-C Sensor, 4K Video Recording, 45-point AF System, 3.0-inch Vari-angle Touchscreen"
+      },
+      {
+        "title": "dimentions",
+        "description": "13.1 x 10.3 x 7.6 cm"
+      },
+      {
+        "title": "country",
+        "description": "China"
+      },
+      {
+        "title": "weight",
+        "description": "1.5 kg"
+      }
     ],
     "reviews": [
       {
         "reviewer": "Mark Wilson",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Excellent camera for both photography and videography. The image quality is outstanding.",
         "date": "2024-01-15",
-        "verified": true
+        "verified": true,
+        "avatar": "avatar.png"
       },
       {
         "reviewer": "Jane Smith",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Great features and easy to use. Battery life could be better.",
-        "date": "2024-01-10",
-        "verified": true
+        "date": "2024-01-10"
       },
       {
         "reviewer": "Tom Brown",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Professional quality images. Worth every penny.",
         "date": "2024-01-05",
         "verified": true

@@ -1,6 +1,6 @@
 // export const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
 export const imgUrl = "http://localhost:3000/img";
-export const query = getQueryParam('query');
+export const query = getQueryParam("query");
 
 export function getQueryParam(param) {
   let url = new URL(window.location.href);
@@ -101,13 +101,17 @@ export function getUserProfile() {
 
 export function updateAvatar(avatarElem) {
   getUserProfile().then((profile) => {
-    const avatarValue = profile.avatar? `${profile.avatar}`: `${imgUrl}/avatar.png`;
+    const avatarValue = profile.avatar ? `${profile.avatar}` : `${imgUrl}/avatar.png`;
     avatarElem.src = avatarValue;
   });
 }
 
 export function generateStars(rating, includeReviews = false) {
   const starsContainer = document.createElement("span");
+
+  if (includeReviews) {
+    starsContainer.appendChild(document.createTextNode(`${rating.stars} `));
+  }
 
   for (let i = 1; i <= 5; i++) {
     const star = document.createElement("i");
@@ -123,8 +127,8 @@ export function generateStars(rating, includeReviews = false) {
 
     starsContainer.appendChild(star);
   }
+
   if (includeReviews) {
-    starsContainer.appendChild(document.createElement("span"));
     starsContainer.appendChild(document.createTextNode(` (${rating.reviews})`));
   }
   return starsContainer;
