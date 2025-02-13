@@ -28,6 +28,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 250px;
   aspect-ratio: 1/1.5;
   overflow: hidden;
   margin-bottom: 20px;
@@ -49,6 +50,10 @@
 .products .title {
   font-weight: 400;
   font-size: 1rem;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .products .stock {
   margin: 5px 0 10px;
@@ -90,9 +95,9 @@
   padding: 3px 6px;
 }
 .products .free-shipping {
-  opacity: 0.6;
   font-size: 0.95rem;
-  margin-bottom: 5px;
+  margin: 10px 0 5px 0;
+  color: var(--accent-color);
 }
 .products .description {
   line-height: 1.7;
@@ -157,7 +162,7 @@
   background: #f5f5f5;
 }
 .pagination .page-number.active {
-  color: var(--primary-hover-color);
-  border-color: var(--primary-hover-color);
+  background-color: var(--primary-color);
+  color: #fff;
   cursor: default;
 }/*# sourceMappingURL=products-list.css.map */

@@ -59,13 +59,13 @@ nav {
   z-index: 1001;
   display: flex;
   align-items: center;
+  padding: 5px 0;
 }
 
 .header {
   display: grid;
   grid-template-areas: "logo form profile cart";
   grid-template-columns: auto 1fr auto auto;
-  gap: 10px;
   align-items: center;
   background-color: var(--header-bg-color);
 }
@@ -272,20 +272,31 @@ nav {
 .header .profile {
   position: relative;
   display: flex;
+  align-items: center;
+  gap: 0.6rem;
   grid-area: profile;
-  margin-left: auto;
-  margin-left: 1rem;
+  margin: 0 1rem 0 3rem;
+}
+@media (max-width: 768px) {
+  .header .profile {
+    margin: 0 0.5rem 0 auto;
+  }
 }
 .header .profile .user-name {
   display: flex;
   flex-direction: column;
   font-size: 1rem;
 }
+@media (max-width: 768px) {
+  .header .profile .user-name {
+    flex-direction: row;
+  }
+}
 .header .avatar {
   max-width: 100%;
   border-radius: 50%;
   outline: 5px solid white;
-  width: 32px;
+  width: 30px;
   height: 30px;
   cursor: pointer;
 }
@@ -294,13 +305,13 @@ nav {
 }
 .header form {
   grid-area: form;
-  width: 450px;
+  width: 100%;
   height: 35px;
   position: relative;
-  margin: 0 20px;
-  border-radius: 25px;
+  border-radius: 5px;
   overflow: hidden;
   border: 1px solid;
+  margin-left: 1rem;
 }
 @media (max-width: 768px) {
   .header form {
@@ -333,26 +344,31 @@ nav {
   font-weight: 500;
 }
 
+.display-settings-section {
+  margin: 30px 0 15px;
+}
+
 .display-settings {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: flex-end;
-  padding: 10px;
-  background-color: #f2f2f2;
-  font-size: 1rem;
 }
 .display-settings .sort-by-label {
-  min-width: 55px;
+  margin-right: 0.5rem;
 }
-.display-settings select {
-  height: 25px;
-  background-color: white;
-  border: none;
-  outline: none;
+.display-settings .sort-by {
+  display: flex;
+  align-items: center;
 }
-.display-settings .sort-by-select {
-  font-size: 1rem;
+.display-settings .option {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  cursor: pointer;
+  font-weight: 400;
+}
+.display-settings .option.active {
+  border-color: rgb(0, 0, 0);
+  opacity: 1;
 }
 
 .page-overlay {
@@ -531,7 +547,6 @@ footer img {
 }
 
 .container {
-  padding: 5px 10px;
   margin: 0 auto;
   width: 90%;
   max-width: 1200px;

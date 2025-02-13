@@ -1,23 +1,22 @@
-@keyframes center-spin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+.fa-spin {
+  animation-duration: 1s;
 }
+
 .bottom-product-bar {
   width: 100%;
-  height: 40px;
+  height: 50px;
   display: flex;
   gap: 10px;
   align-items: center;
   justify-content: center;
   transition: 0.3s;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .cart-icon {
   color: #fff;
+  font-weight: 400;
 }
 .cart-icon.hidden {
   display: none;
@@ -42,18 +41,15 @@
   height: 100%;
   background-color: var(--primary-color);
   display: none;
-  position: relative;
+  align-items: center;
+  justify-content: center;
 }
 .add-to-cart-spinner-wrapper.active {
-  display: block;
+  display: flex;
 }
 
 .add-to-cart-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   color: #fff;
-  animation: center-spin 1s linear infinite;
 }
 
 .quantity-wrapper {
@@ -124,18 +120,16 @@
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.6901960784);
-  position: absolute;
   display: none;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
 }
 .quantity-wrapper-spinner-wrapper.active {
-  display: block;
+  display: flex;
 }
 
 .quantity-wrapper-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   font-size: 1.3rem;
   color: var(--primary-color);
-  animation: center-spin 1s linear infinite;
 }/*# sourceMappingURL=cart.css.map */

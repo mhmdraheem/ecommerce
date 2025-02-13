@@ -77,13 +77,10 @@ function sortProducts(products, sortBy) {
   const sortedProducts = [...products];
 
   switch (sortBy) {
-    case "rating":
+    case "Rating":
       sortedProducts.sort((a, b) => b.rating.stars - a.rating.stars);
       break;
-    case "name":
-      sortedProducts.sort((a, b) => a.heading.title.localeCompare(b.heading.title));
-      break;
-    case "price":
+    case "Price":
       sortedProducts.sort((a, b) => a.price.currentPrice - b.price.currentPrice);
       break;
   }

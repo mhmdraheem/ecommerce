@@ -1,11 +1,9 @@
 import * as util from "./util.js";
 import * as addToCart from "./addToCart.js";
 
-const productsPerPage = 8;
-let sortBy = "rating";
+const productsPerPage = 5;
+let sortBy = "Rating";
 let page = 1;
-
-document.getElementById("sort-by-select").addEventListener("change", fetchProducts);
 
 function createProductElement(product) {
   // Product container
@@ -67,8 +65,8 @@ function createProductElement(product) {
 
   const freeShippingSpan = document.createElement("span");
   freeShippingSpan.classList.add("free-shipping");
-  if (product.freeShipping) {
-    freeShippingSpan.textContent = "FREE shipping";
+  if (product.shipping?.free) {
+    freeShippingSpan.textContent = "Free shipping";
   }
 
   const bottomProductBarDiv = addToCart.create(product);
@@ -94,8 +92,20 @@ function createProductElement(product) {
   return productDiv;
 }
 
+document.querySelectorAll(".display-settings .option").forEach((option) => {
+  option.addEventListener("click", () => {
+    if (!option.classList.contains("active")) {
+      document.querySelector(".display-settings .option.active").classList.remove("active");
+      option.classList.add("active");
+      sortBy = option.textContent;
+      fetchProducts();
+    }
+  });
+});
+
 const defaultOnSuccess = (data) => {
   document.querySelector(".display-settings").classList.remove("hidden");
+
   renderProducts(data.products);
 
   const totalPages = data.totalPages;
@@ -112,9 +122,6 @@ const defaultOnError = (err) => {
 };
 
 export function fetchProducts(callbacks = {}) {
-  const sortBySelect = document.getElementById("sort-by-select");
-  sortBy = sortBySelect.value;
-
   util.createFullPageOverlay();
 
   fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&${util.queryParams}`)
@@ -150,7 +157,7 @@ function renderProducts(products) {
 function renderPaginationBars(totalPages, currentPage, pagination) {
   const existingPagination = document.querySelectorAll(".pagination");
 
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < existingPagination.length; i++) {
     const paginationDiv = existingPagination[i];
     paginationDiv.classList.remove("hidden");
     paginationDiv.innerHTML = "";
