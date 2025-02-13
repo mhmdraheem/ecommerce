@@ -2,22 +2,19 @@
   display: flex;
   gap: 2rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .main-section {
     flex-direction: column;
+    gap: 1rem;
   }
 }
 .main-section .product-title {
   font-weight: 300;
   line-height: 1.1;
-  font-size: 1.7rem;
+  font-size: 1.2rem;
 }
 .main-section .subheader {
-  display: flex;
-  justify-content: space-between;
-}
-.main-section .subheader a:hover {
-  text-decoration: underline;
+  margin-top: 0.5rem;
 }
 .main-section .details {
   flex: 1;
@@ -25,92 +22,106 @@
   flex-direction: column;
   width: 100%;
 }
-.main-section .details .product-title,
-.main-section .details .subheader {
+.main-section .details .product-title {
   display: none;
 }
-@media (min-width: 768px) {
-  .main-section .details .product-title,
-  .main-section .details .subheader {
+@media (min-width: 900px) {
+  .main-section .details .product-title {
     display: flex;
   }
 }
-.main-section .details .subheader {
-  margin-bottom: 1rem;
+@media (max-width: 899px) {
+  .main-section .details .subheader {
+    display: none;
+  }
+}
+.main-section .product-brand {
+  margin: 0.2rem 0.5rem 0.5rem 0;
+  font-size: 1.1rem;
+  text-decoration: underline;
+  color: grey;
 }
 .main-section .product-rating {
   font-size: 0.8rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
-.main-section .product-rating:hover {
-  text-decoration: none;
+.main-section .product-rating i {
+  font-size: 1rem;
 }
 .main-section .bottom-product-bar {
   margin: 1rem 0;
   width: 100%;
 }
 .main-section .product-price {
-  margin: 0 0 1rem;
+  margin: 1.5rem 0;
+}
+@media (max-width: 900px) {
+  .main-section .product-price {
+    margin-top: 0;
+  }
 }
 .main-section .product-price .current {
   font-size: 1rem;
   font-weight: 500;
 }
-.main-section .product-price .current sup {
-  font-size: 0.8rem;
-}
 .main-section .product-price .current .value {
-  font-size: 1.7rem;
+  font-size: clamp(1rem, 12vw, 4rem);
   font-weight: 400;
 }
 .main-section .product-price .old {
-  font-size: 0.8rem;
+  font-size: clamp(1rem, 5vw, 1.5rem);
   opacity: 0.7;
   text-decoration: line-through;
+  margin-left: 10px;
 }
 .main-section .images {
-  width: 100%;
-  flex: 1.2;
+  max-width: 50%;
+  flex: 1;
 }
-.main-section .images .product-title,
-.main-section .images .subheader {
-  display: none;
-}
-@media (max-width: 767px) {
-  .main-section .images .product-title,
-  .main-section .images .subheader {
-    display: flex;
+@media (max-width: 900px) {
+  .main-section .images {
+    display: none;
   }
-}
-.main-section .images .subheader {
-  margin: 0.3rem 0 1rem;
 }
 .main-section .image-wrapper {
   width: 100%;
-  height: 300px;
   cursor: pointer;
 }
 .main-section .image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50%;
+     object-position: 50%;
 }
 .main-section .alt-images {
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   margin-top: 10px;
+  overflow-x: auto;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .main-section .alt-images {
+    display: none;
+  }
 }
 .main-section .alt-image-wrapper {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   overflow: hidden;
   cursor: pointer;
 }
 .main-section .alt-image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50%;
+     object-position: 50%;
 }
 .main-section .alt-image-wrapper.active {
   border: 1px solid #000;
@@ -118,12 +129,41 @@
   overflow: hidden;
 }
 
+.swiper {
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+}
+.swiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.swiper .swiper-button-next,
+.swiper .swiper-button-prev {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+}
+.swiper .swiper-pagination-bullet-active {
+  background: var(--primary-color);
+}
+@media (max-width: 899px) {
+  .swiper {
+    display: block;
+  }
+}
+
 .benifits {
   display: flex;
-  gap: 10px;
-  margin-bottom: 1rem;
+  gap: 2rem;
+  margin: 1rem 0;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .benifits {
     justify-content: space-between;
   }
@@ -133,34 +173,29 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 5px;
+  gap: 10px;
   font-size: 1.5rem;
 }
 .benifits .benifit.hidden {
   display: none;
 }
+.benifits .benifit i {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
 .benifits .benifit span {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  max-width: 100px;
+  word-wrap: break-word;
 }
 
-.product-description .show-more,
-.product-description .show-less {
-  font-size: 0.9rem;
-}
-.product-description .show-more:hover,
-.product-description .show-less:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-.product-description .short.visible {
-  display: inline;
-}
-.product-description .long.visible {
-  display: inline;
+.product-description {
+  margin: 1rem 0;
+  font-weight: 400;
 }
 
 .features-section h2 {
-  margin: 1rem 0;
+  margin: 2rem 0 1rem;
   font-size: 1.5rem;
 }
 .features-section .table-container {
@@ -181,9 +216,21 @@
   background-color: #f8f8f8;
   white-space: wrap;
 }
+.features-section .cover-image-wrapper {
+  width: 100%;
+  margin: 1rem 0;
+}
+.features-section .cover-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50%;
+     object-position: 50%;
+}
 
 .reviews-section h2 {
-  margin: 1rem 0;
+  margin: 2rem 0 1rem;
   font-size: 1.5rem;
 }
 .reviews-section .review {
@@ -200,7 +247,8 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .reviews-section .review .review-header {
   display: flex;
@@ -237,7 +285,7 @@
   margin-bottom: 2rem;
 }
 .recent-products h2 {
-  margin: 1rem 0;
+  margin: 2rem 0 1rem;
   font-size: 1.5rem;
 }
 .recent-products .recent-products-wrapper {
@@ -276,7 +324,8 @@
 .recent-products .recent-products-wrapper .recent-product-link img {
   width: 100px;
   height: 100px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .recent-products .recent-products-wrapper .recent-product-link span {
   font-size: 0.8rem;

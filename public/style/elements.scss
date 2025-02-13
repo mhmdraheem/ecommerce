@@ -5,6 +5,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 
   --header-bg-color: #ffffff;
   --footer-text-color: rgba(255, 255, 255, 0.5);
@@ -146,7 +147,7 @@ nav {
 
   .cart-menu-icon {
     font-size: 1.3rem;
-    color: var(--primary-color)
+    color: var(--primary-color);
   }
 
   .cart-menu {
@@ -311,7 +312,7 @@ nav {
     grid-area: profile;
     margin-left: auto;
   }
- 
+
   .avatar {
     max-width: 100%;
     border-radius: 50%;
@@ -616,6 +617,18 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.revirew-stars {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.2rem;
+  color: gray;
+}
+
+.reviews-count {
+  font-size: 0.9rem;
+  color: gray;
 }
 
 .rating-star {

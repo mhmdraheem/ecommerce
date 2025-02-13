@@ -10,20 +10,20 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
-        connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
-        imgSrc: ["'self'", "https://www.flaticon.com", "https://flagcdn.com"],
-      },
-    },
-  })
-);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         defaultSrc: ["'self'"],
+//         scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net"],
+//         styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+//         fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
+//         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
+//         imgSrc: ["'self'", "https://www.flaticon.com", "https://flagcdn.com"],
+//       },
+//     },
+//   })
+// );
 app.use(
   session({
     store: redisStore,
@@ -45,7 +45,6 @@ app.use("/api/product", require("./routes/product"));
 app.use("/api/profile", require("./routes/profile"));
 
 app.use("/api", require("./middleware/errorHandler"));
-
 
 app.use(express.static(path.join(__dirname, "public")));
 

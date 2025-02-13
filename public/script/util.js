@@ -110,7 +110,10 @@ export function generateStars(rating, includeReviews = false) {
   const starsContainer = document.createElement("span");
 
   if (includeReviews) {
-    starsContainer.appendChild(document.createTextNode(`${rating.stars} `));
+    const stars = document.createElement("span");
+    stars.classList.add("revirew-stars");
+    stars.textContent = `${rating.stars}`;
+    starsContainer.appendChild(stars);
   }
 
   for (let i = 1; i <= 5; i++) {
@@ -129,7 +132,10 @@ export function generateStars(rating, includeReviews = false) {
   }
 
   if (includeReviews) {
-    starsContainer.appendChild(document.createTextNode(` (${rating.reviews})`));
+    const reviews = document.createElement("span");
+    reviews.classList.add("reviews-count");
+    reviews.textContent = ` (${rating.reviews})`;
+    starsContainer.appendChild(reviews);
   }
   return starsContainer;
 }

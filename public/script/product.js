@@ -1,6 +1,5 @@
 import * as util from "./util.js";
 import * as addToCart from "./addToCart.js";
-
 const productId = util.queryParams.get("id");
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -26,7 +25,9 @@ function createMainSection(product) {
   productImage.addEventListener("click", () => {
     console.log("zoom");
   });
+
   createAltImages(product.images);
+  initSwiper(product.images);
 
   document.querySelectorAll(".product-title").forEach((title) => {
     title.innerText = product.heading.title;
@@ -41,11 +42,10 @@ function createMainSection(product) {
     rating.appendChild(util.generateStars(product.rating, true));
   });
 
-  document.querySelector(".product-price .current sup").innerText = "EGP";
-  document.querySelector(".product-price .current .value").innerText = product.price.currentPrice;
+  document.querySelector(".product-price .current .value").innerText = "EGP" + product.price.currentPrice;
 
   if (product.price.discount) {
-    document.querySelector(".product-price .old .value").innerText = product.price.oldPrice;
+    document.querySelector(".product-price .old .value").innerText = "EGP" + product.price.oldPrice;
     document.querySelector(".product-price .old").classList.remove("hidden");
   }
 
@@ -53,21 +53,7 @@ function createMainSection(product) {
   if (product.returns) document.querySelector(".benifit.returns").classList.remove("hidden");
   if (product.warranty) document.querySelector(".benifit.warranty").classList.remove("hidden");
 
-  document.querySelector(".product-description .short .text").innerText = product.description.short;
-  document.querySelector(".product-description .short .show-more").innerText = "Show more";
-
-  document.querySelector(".product-description .long .text").innerText = product.description.long;
-  document.querySelector(".product-description .long .show-less").innerText = "Show less";
-
-  document.querySelector(".product-description .show-more").addEventListener("click", () => {
-    document.querySelector(".product-description .short").classList.add("hidden");
-    document.querySelector(".product-description .long").classList.remove("hidden");
-  });
-
-  document.querySelector(".product-description .show-less").addEventListener("click", () => {
-    document.querySelector(".product-description .short").classList.remove("hidden");
-    document.querySelector(".product-description .long").classList.add("hidden");
-  });
+  document.querySelector(".product-description").innerText = product.description.short;
 
   const addToCartDiv = addToCart.create(product);
   document.querySelector(".product-description").after(addToCartDiv);
@@ -75,26 +61,54 @@ function createMainSection(product) {
 
 function createAltImages(imagesArr) {
   const altImages = document.querySelector(".alt-images");
-  imagesArr.forEach((img, index) => {
-    const altImageWrapperDiv = document.createElement("div");
-    altImageWrapperDiv.classList.add("alt-image-wrapper");
-    altImageWrapperDiv.addEventListener("click", () => {
-      document.getElementById("product-image").src = `${util.imgUrl}/product/${img}`;
-      altImages.querySelectorAll(".alt-image-wrapper").forEach((wrapper) => {
-        wrapper.classList.remove("active");
+  imagesArr
+    .filter((img) => !img.includes("cover"))
+    .forEach((img, index) => {
+      const altImageWrapperDiv = document.createElement("div");
+      altImageWrapperDiv.classList.add("alt-image-wrapper");
+      altImageWrapperDiv.addEventListener("click", () => {
+        document.getElementById("product-image").src = `${util.imgUrl}/product/${img}`;
+        altImages.querySelectorAll(".alt-image-wrapper").forEach((wrapper) => {
+          wrapper.classList.remove("active");
+        });
+        altImageWrapperDiv.classList.add("active");
       });
-      altImageWrapperDiv.classList.add("active");
+
+      const altImage = document.createElement("img");
+      altImage.classList.add("alt-product-image");
+      altImage.src = `${util.imgUrl}/product/${img}`;
+
+      altImageWrapperDiv.appendChild(altImage);
+      altImages.appendChild(altImageWrapperDiv);
     });
 
-    const altImage = document.createElement("img");
-    altImage.classList.add("alt-product-image");
-    altImage.src = `${util.imgUrl}/product/${img}`;
-
-    altImageWrapperDiv.appendChild(altImage);
-    altImages.appendChild(altImageWrapperDiv);
-  });
-
   altImages.querySelector(".alt-image-wrapper").classList.add("active");
+}
+
+function initSwiper(imagesArr) {
+  const swiperWrapper = document.querySelector(".swiper-wrapper");
+  imagesArr
+    .filter((img) => !img.includes("cover"))
+    .forEach((img) => {
+      const swiperSlide = document.createElement("img");
+      swiperSlide.classList.add("swiper-slide");
+      swiperSlide.src = `${util.imgUrl}/product/${img}`;
+      swiperWrapper.appendChild(swiperSlide);
+    });
+
+  const swiper = new Swiper(".swiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    autoplay: {
+      enabled: false,
+    },
+  });
 }
 
 function createFeaturesSection(product) {
@@ -103,6 +117,15 @@ function createFeaturesSection(product) {
   const featuresTitle = document.createElement("h2");
   featuresTitle.innerText = "Product Details";
   featuresSection.appendChild(featuresTitle);
+
+  const coverImageWrapper = document.createElement("div");
+  coverImageWrapper.classList.add("cover-image-wrapper");
+
+  const coverImage = document.createElement("img");
+  coverImage.classList.add("cover-image");
+  coverImage.src = `${util.imgUrl}/product/${product.images[product.images.length - 1]}`;
+  coverImageWrapper.appendChild(coverImage);
+  featuresSection.appendChild(coverImageWrapper);
 
   const scrollWrapper = document.createElement("div");
   scrollWrapper.classList.add("table-container");

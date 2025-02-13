@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="style/elements.css" type="text/css" />
     <link rel="stylesheet" href="style/product.css" type="text/css" />
     <link rel="stylesheet" href="style/cart.css" type="text/css" />
@@ -37,9 +39,7 @@
               </i>
             </button>
             <div class="cart-menu">
-              <div class="cart-items">
-                <!-- Cart items will be inserted here dynamically -->
-              </div>
+              <div class="cart-items"></div>
               <div class="cart-footer">
                 <a href="cart.html" target="_blank" class="view-cart-button">View Cart</a>
               </div>
@@ -57,25 +57,29 @@
     <div class="page-content container product">
       <div class="main-section">
         <div class="images">
-          <h1 class="product-title"></h1>
-          <div class="subheader">
-            <a class="product-brand" target="_blank"></a>
-            <a href="#reviews" class="product-rating"></a>
-          </div>
           <div class="image-wrapper">
             <img id="product-image" src="" />
           </div>
           <div class="alt-images"></div>
         </div>
+        <div class="swiper hidden">
+          <h1 class="product-title"></h1>
+          <div class="subheader">
+            <a class="product-brand" target="_blank"></a>-
+            <a href="#reviews" class="product-rating"></a>
+          </div>
+          <div class="swiper-wrapper"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
         <div class="details">
           <h1 class="product-title"></h1>
           <div class="subheader">
-            <a class="product-brand" target="_blank"></a>
-            <a href="#reviews" class="product-rating"></a>
+            <a class="product-brand" target="_blank"></a>-<a href="#reviews" class="product-rating"></a>
           </div>
           <div class="product-price">
             <span class="current">
-              <sup></sup>
               <span class="value"></span>
             </span>
             <span class="old hidden">
@@ -96,16 +100,7 @@
               <span>3 months warranty</span>
             </div>
           </div>
-          <div class="product-description">
-            <span class="short">
-              <span class="text"></span>
-              <span class="show-more"></span>
-            </span>
-            <span class="long hidden">
-              <span class="text"></span>
-              <span class="show-less"></span>
-            </span>
-          </div>
+          <div class="product-description"></div>
         </div>
       </div>
       <div id="features" class="features-section"></div>
