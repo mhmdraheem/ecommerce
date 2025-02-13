@@ -9,7 +9,7 @@
 
   --header-bg-color: #ffffff;
   --footer-text-color: rgba(255, 255, 255, 0.5);
-  --primary-color: orange;
+  --primary-color: #000000;
   --primary-hover-color: #ff6b00;
   --accent-color: red;
   --footer-bg-color: #333333;
@@ -55,7 +55,6 @@ h1 {
 }
 
 nav {
-  box-shadow: 2px 3px 5px 0px rgb(0 0 0 / 14%);
   position: sticky;
   top: 0;
   background-color: #ffffff;
@@ -68,7 +67,6 @@ nav {
   display: grid;
   grid-template-areas: "logo form profile cart";
   grid-template-columns: auto 1fr auto auto;
-  padding: 20px 0;
   gap: 10px;
   align-items: center;
   background-color: var(--header-bg-color);
@@ -85,13 +83,7 @@ nav {
   }
 
   h1 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-    color: var(--primary-color);
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
   }
 
   p {
@@ -122,8 +114,8 @@ nav {
     .alert {
       display: none;
       position: absolute;
-      top: 0px;
-      right: 2px;
+      top: 5px;
+      right: 5px;
       background-color: var(--accent-color);
       width: 0.6rem;
       height: 0.6rem;
@@ -145,9 +137,9 @@ nav {
     }
   }
 
-  .cart-menu-icon {
-    font-size: 1.3rem;
-    color: var(--primary-color);
+  .cart-menu-img {
+    width: 25px;
+    height: 25px;
   }
 
   .cart-menu {
@@ -309,8 +301,16 @@ nav {
   }
 
   .profile {
+    position: relative;
+    display: flex;
     grid-area: profile;
     margin-left: auto;
+    margin-left: 1rem;
+    .user-name {
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+    }
   }
 
   .avatar {
@@ -328,10 +328,13 @@ nav {
 
   form {
     grid-area: form;
-    flex: 1;
-    height: 50px;
+    width: 450px;
+    height: 35px;
     position: relative;
     margin: 0 20px;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid;
 
     @media (max-width: 768px) {
       margin: 0;
@@ -343,7 +346,6 @@ nav {
     width: 100%;
     padding: 0 100px 0 10px;
     border: none;
-    outline: 1px solid #cac8c8;
     font-size: 1rem;
   }
 
@@ -365,10 +367,6 @@ nav {
     font-size: 1rem;
     color: #fff;
     font-weight: 500;
-  }
-
-  .profile {
-    position: relative;
   }
 }
 
@@ -607,7 +605,7 @@ footer {
 .container {
   padding: 5px 10px;
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
 
   @media (max-width: 768px) {

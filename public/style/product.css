@@ -130,6 +130,18 @@
   border-radius: 3px;
   overflow: hidden;
 }
+.main-section .order-details {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 300px;
+}
+@media (max-width: 900px) {
+  .main-section .order-details {
+    width: 100%;
+  }
+}
 
 .swiper {
   width: 100%;

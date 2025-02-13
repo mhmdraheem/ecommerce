@@ -55,14 +55,44 @@ function createMainSection(product) {
     document.querySelector(".product-price .old").classList.remove("hidden");
   }
 
-  if (product.freeShipping) document.querySelector(".benifit.free-shipping").classList.remove("hidden");
-  if (product.returns) document.querySelector(".benifit.returns").classList.remove("hidden");
-  if (product.warranty) document.querySelector(".benifit.warranty").classList.remove("hidden");
+  if (product.shipping.free) {
+    const freeShipping = document.createElement("div");
+    freeShipping.classList.add("benifit", "free-shipping");
+    freeShipping.innerHTML = `<i class="fa-solid fa-truck-fast"></i>
+    <span>Free Shipping</span>`;
+    document.querySelector(".benifits").appendChild(freeShipping);
+  }
+  // if (product.returns) document.querySelector(".benifit.returns").classList.remove("hidden");
+  // if (product.warranty) document.querySelector(".benifit.warranty").classList.remove("hidden");
 
   document.querySelector(".product-description").innerText = product.description.short;
+}
+
+function createOrderDetails(product) {
+  const orderDetails = document.querySelector(".order-details");
+
+  const soldBy = document.createElement("div");
+  soldBy.classList.add("sold-by");
+  soldBy.innerText = `Sold by: ${product.soldBy}`;
+  orderDetails.appendChild(soldBy);
+
+  const returns = document.createElement("div");
+  returns.classList.add("returns");
+  returns.innerText = `Returns: ${product.returns}`;
+  orderDetails.appendChild(returns);
+
+  const warranty = document.createElement("div");
+  warranty.classList.add("warranty");
+  warranty.innerText = `${product.warranty}`;
+  orderDetails.appendChild(warranty);
+
+  const shipping = document.createElement("div");
+  shipping.classList.add("shipping");
+  shipping.innerText = `${product.shipping}`;
+  orderDetails.appendChild(shipping);
 
   const addToCartDiv = addToCart.create(product);
-  document.querySelector(".product-description").after(addToCartDiv);
+  orderDetails.appendChild(addToCartDiv);
 }
 
 function createAltImages(imagesArr) {
