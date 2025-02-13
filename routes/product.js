@@ -97,11 +97,12 @@ router.get("/:id", (req, res) => {
   res.json(product);
 });
 
-router.get("/:id/recent-products", (req, res) => {
-  const recentProducts = req.session.viewedProducts
-    .filter((prodId) => prodId !== req.params.id)
-    .map((prodId) => loadProducts().find((product) => product.id == prodId));
-  res.json(recentProducts);
+router.get("/:id/related-products", (req, res) => {
+  const productCategory = loadProducts().find((product) => product.id === parseInt(req.params.id)).heading.category;
+  const relatedProducts = loadProducts()
+    .filter((product) => product.heading.category === productCategory)
+    .filter((p) => p.id != parseInt(req.params.id));
+  res.json(relatedProducts);
 });
 
 module.exports = router;

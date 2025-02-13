@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
     req.session.userId = `user-${Math.random().toString(36).substring(7)}`;
     req.session.cart = [];
     req.session.userData = {};
-    req.session.viewedProducts = [];
     message += `No session found, creating new one ✅ ${req.session.userId}`;
   } else {
     message += `Session found: ${req.session.userId}`;

@@ -1,7 +1,7 @@
 import * as util from "./util.js";
 import * as addToCart from "./addToCart.js";
 
-const productsPerPage = 50;
+const productsPerPage = 8;
 let sortBy = "rating";
 let page = 1;
 

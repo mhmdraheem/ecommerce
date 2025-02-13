@@ -4,27 +4,33 @@ const productId = util.queryParams.get("id");
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
+    util.createFullPageOverlay(true);
+
     const productRes = await fetch(`/api/product/${productId}`);
     const product = await productRes.json();
 
     createMainSection(product);
     createFeaturesSection(product);
     createReviewsSection(product);
-    createRecentProductsSection(product);
+    createRelatedProductsSection(product);
   } catch (e) {
     console.error(e);
     util.showErrorToast();
+  } finally {
+    util.removeFullPageOverlay();
   }
 });
 
 function createMainSection(product) {
   document.querySelector(".product").setAttribute("data-id", productId);
 
-  const productImage = document.getElementById("product-image");
+  const productImageWrapper = document.querySelector(".image-wrapper");
+
+  const productImage = document.createElement("img");
+  productImage.id = "product-image";
   productImage.src = `${util.imgUrl}/product/${product.images[0]}`;
-  productImage.addEventListener("click", () => {
-    console.log("zoom");
-  });
+
+  productImageWrapper.appendChild(productImage);
 
   createAltImages(product.images);
   initSwiper(product.images);
@@ -118,13 +124,22 @@ function createFeaturesSection(product) {
   featuresTitle.innerText = "Product Details";
   featuresSection.appendChild(featuresTitle);
 
+  const featuresSummary = document.createElement("p");
+  featuresSummary.classList.add("features-summary");
+  featuresSummary.innerText = product.description.long;
+  featuresSection.appendChild(featuresSummary);
+
   const coverImageWrapper = document.createElement("div");
   coverImageWrapper.classList.add("cover-image-wrapper");
 
-  const coverImage = document.createElement("img");
-  coverImage.classList.add("cover-image");
-  coverImage.src = `${util.imgUrl}/product/${product.images[product.images.length - 1]}`;
-  coverImageWrapper.appendChild(coverImage);
+  product.images
+    .filter((img) => img.includes("cover"))
+    .forEach((img) => {
+      const coverImage = document.createElement("img");
+      coverImage.classList.add("cover-image");
+      coverImage.src = `${util.imgUrl}/product/${img}`;
+      coverImageWrapper.appendChild(coverImage);
+    });
   featuresSection.appendChild(coverImageWrapper);
 
   const scrollWrapper = document.createElement("div");
@@ -219,27 +234,27 @@ function createReviewsSection(product) {
   });
 }
 
-async function createRecentProductsSection() {
+async function createRelatedProductsSection() {
   try {
-    const recentRes = await fetch(`/api/product/${productId}/recent-products`);
-    const recentProducts = await recentRes.json();
+    const relatedRes = await fetch(`/api/product/${productId}/related-products`);
+    const relatedProducts = await relatedRes.json();
 
-    if (recentProducts.length === 0) return;
+    if (relatedProducts.length === 0) return;
 
-    const recentContainer = document.getElementById("recent-products");
+    const relatedContainer = document.getElementById("related-products");
 
-    const recentProductsTitle = document.createElement("h2");
-    recentProductsTitle.innerText = "Recently Viewed Products";
-    recentContainer.appendChild(recentProductsTitle);
+    const relatedProductsTitle = document.createElement("h2");
+    relatedProductsTitle.innerText = "Related Products";
+    relatedContainer.appendChild(relatedProductsTitle);
 
-    const recentProductsWrapper = document.createElement("div");
-    recentProductsWrapper.classList.add("recent-products-wrapper");
+    const relatedProductsWrapper = document.createElement("div");
+    relatedProductsWrapper.classList.add("related-products-wrapper");
 
-    recentProducts.forEach((prod) => {
-      const recentProductLink = document.createElement("a");
-      recentProductLink.classList.add("recent-product-link");
-      recentProductLink.href = `/product.html?id=${prod.id}`;
-      recentProductLink.innerHTML = `<img src="${util.imgUrl}/product/${prod.images[0]}">`;
+    relatedProducts.forEach((prod) => {
+      const relatedProductLink = document.createElement("a");
+      relatedProductLink.classList.add("related-product-link");
+      relatedProductLink.href = `/product.html?id=${prod.id}`;
+      relatedProductLink.innerHTML = `<img src="${util.imgUrl}/product/${prod.images[0]}">`;
 
       const productTitle = document.createElement("span");
       productTitle.classList.add("product-title");
@@ -249,12 +264,12 @@ async function createRecentProductsSection() {
       productPrice.classList.add("product-price");
       productPrice.innerText = `${prod.price.currentPrice} EGP`;
 
-      recentProductLink.appendChild(productTitle);
-      recentProductLink.appendChild(productPrice);
-      recentProductsWrapper.appendChild(recentProductLink);
+      relatedProductLink.appendChild(productTitle);
+      relatedProductLink.appendChild(productPrice);
+      relatedProductsWrapper.appendChild(relatedProductLink);
     });
 
-    recentContainer.appendChild(recentProductsWrapper);
+    relatedContainer.appendChild(relatedProductsWrapper);
   } catch (e) {
     console.error(e);
     util.showErrorToast();
