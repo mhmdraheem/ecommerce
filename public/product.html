@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shoppify</title>
+    <title>Product | WebMart</title>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,26 +21,7 @@
     <link rel="stylesheet" href="style/cart.css" type="text/css" />
   </head>
   <body>
-    <nav>
-      <div class="container">
-        <div class="header">
-          <a href="index.html" class="logo">
-            <h1>WebMart</h1>
-          </a>
-          <form class="search-form" method="get">
-            <input type="text" placeholder="Search products" name="query" id="search" />
-            <button type="submit">Search</button>
-          </form>
-          <a href="cart.html" class="cart-button cart-menu-icon">
-            <img src="img/cart.png" alt="cart" class="cart-menu-img" />
-            <span class="alert"></span>
-          </a>
-          <a href="profile.html" target="_blank" class="profile">
-            <img class="avatar user-avatar" src="img/avatar.png" alt="profile-picture" />
-          </a>
-        </div>
-      </div>
-    </nav>
+    <script src="script/header-template.js"></script>
     <div class="page-content container product">
       <div class="main-section">
         <div class="images">
@@ -72,7 +53,6 @@
             </span>
           </div>
           <div class="discount"></div>
-          <div class="free-shipping"></div>
           <div class="quantity"></div>
           <div class="product-description">
             <h3></h3>
@@ -85,117 +65,7 @@
       <div id="reviews" class="reviews-section"></div>
       <div id="related-products" class="related-products"></div>
     </div>
-    <div class="footer-area">
-      <div class="content container">
-        <div class="footer-col contact-us-col">
-          <h3 class="footer-col-header">Contact Us</h3>
-          <div class="contact-us">
-            <div class="summary">
-              Hi, we are always open for cooperation and suggestions, contact us in one of the ways below
-            </div>
-            <address>
-              <div class="address-type footer-col-header">Phone Number</div>
-              <div class="address-value">+1 (800) 060-07-30</div>
-            </address>
-            <address>
-              <div class="address-type footer-col-header">Email Address</div>
-              <div class="address-value">us@example.com</div>
-            </address>
-            <address>
-              <div class="address-type footer-col-header">Our Location</div>
-              <div class="address-value">
-                715 Fake Street, New York<br />
-                10012 USA
-              </div>
-            </address>
-            <address>
-              <div class="address-type footer-col-header">Working Hours</div>
-              <div class="address-value">Mon-Sat 10:00am - 07:00pm</div>
-            </address>
-          </div>
-        </div>
-        <div class="footer-col information-col">
-          <h3 class="footer-col-header">Information</h3>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Delivery Information</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Brands</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Refunds</a></li>
-            <li><a href="#">Site Map</a></li>
-          </ul>
-        </div>
-        <div class="footer-col my-account-col">
-          <h3 class="footer-col-header">My Account</h3>
-          <ul>
-            <li><a href="#">Store Location</a></li>
-            <li><a href="#">Order History</a></li>
-            <li><a href="#">Wish List</a></li>
-            <li><a href="#">Newsletter</a></li>
-            <li><a href="#">Special Offers</a></li>
-            <li><a href="#">Gift Certificates</a></li>
-            <li><a href="#">Affiliate</a></li>
-          </ul>
-        </div>
-        <div class="footer-col newsletter-col">
-          <h3 class="footer-col-header">Newsletter</h3>
-          <div class="newsletter">
-            <form action="#">
-              <div class="form-description">
-                Enter your email address below to subscribe to our newsletter and keep up to date with discounts and
-                special offers
-              </div>
-              <input type="text" id="email-input" name="email" placeholder="user@example.com" />
-              <input type="submit" value="Subscribe" />
-            </form>
-            <ul class="social-media-links">
-              <div class="description">Follow us on social media networks</div>
-              <li>
-                <a href="https://www.facebook.com" target="_blank">
-                  <i class="icon icon-facebook fa-brands fa-facebook-f"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.twitter.com" target="_blank">
-                  <i class="icon icon-twitter fa-brands fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com" target="_blank">
-                  <i class="icon icon-youtube fa-brands fa-youtube"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com" target="_blank">
-                  <i class="icon icon-instagram fa-brands fa-instagram"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank">
-                  <i class="icon icon-rss fa-solid fa-rss"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <footer>
-      <div class="content container">
-        <span>Powered By <a href="#">Tech</a> - Designed by <a href="#">Mohamed Raheem</a></span>
-        <span>
-          <img src="img/visa.jpg" alt="payment-method-visa" loading="lazy" />
-          <img src="img/paypal.png" alt="payment-method-paypal" loading="lazy" />
-          <img src="img/mastercard.png" alt="payment-method-mastercard" loading="lazy" />
-          <img src="img/westernunion.webp" alt="payment-method-westernunion" loading="lazy" />
-        </span>
-      </div>
-    </footer>
-    <span class="scroll-to-top">
-      <i class="fa-solid fa-chevron-up"></i>
-    </span>
-    <script src="script/elements.js" type="module"></script>
+    <script src="script/footer-template.js"></script>
     <script src="script/product.js" type="module"></script>
   </body>
 </html>

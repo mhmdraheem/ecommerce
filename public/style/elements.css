@@ -89,6 +89,11 @@ nav {
 .header h1 {
   font-weight: 500;
 }
+.header h1 .highlight {
+  color: var(--primary-hover-color);
+  font-weight: 500;
+  font-style: italic;
+}
 .header p {
   font-size: 1rem;
   opacity: 0.8;

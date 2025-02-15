@@ -90,6 +90,11 @@ nav {
 
   h1 {
     font-weight: 500;
+    .highlight {
+      color: var(--primary-hover-color);
+      font-weight: 500;
+      font-style: italic;
+    }
   }
 
   p {

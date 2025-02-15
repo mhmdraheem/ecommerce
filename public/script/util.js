@@ -1,10 +1,13 @@
 // export const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
 export const imgUrl = "http://localhost:3000/img";
+
+let url = new URL(window.location.href);
+let searchParams = new URLSearchParams(url.search);
+
 export const queryParams = getQueryParams();
 
 export function getQueryParams() {
-  let url = new URL(window.location.href);
-  return new URLSearchParams(url.search);
+  return searchParams;
 }
 
 export function callDeleteAPI(product, onSuccess, onError) {
@@ -139,3 +142,23 @@ export function generateStars(rating, includeReviews = false) {
   }
   return starsContainer;
 }
+
+(function navEvents() {
+  if (queryParams.get("name")) {
+    document.querySelector(".search-form input").value = queryParams.get("name");
+  }
+
+  updateAvatar(document.querySelector("nav .user-avatar"));
+
+  document.querySelector(".search-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const searchInput = document.querySelector("#search");
+    window.location.href = `catalog.html?name=${searchInput.value}`;
+  });
+
+  updateCartAlert();
+})();
+
+(function scrollToTopEvent() {
+  document.querySelector(".scroll-to-top").addEventListener("click", scrollToTop);
+})();

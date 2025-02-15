@@ -48,10 +48,10 @@ function createMainSection(product) {
     rating.appendChild(util.generateStars(product.rating, true));
   });
 
-  document.querySelector(".product-price .current .value").innerText = "EGP" + product.price.currentPrice;
+  document.querySelector(".product-price .current .value").innerText = product.price.currentPrice + " EGP";
 
   if (product.price.discount) {
-    document.querySelector(".product-price .old .value").innerText = "EGP" + product.price.oldPrice;
+    document.querySelector(".product-price .old .value").innerText = product.price.oldPrice + " EGP";
     document.querySelector(".product-price .old").classList.remove("hidden");
   }
 
@@ -60,13 +60,6 @@ function createMainSection(product) {
     discount.classList.add("discount");
     discount.innerHTML = `<span>${product.price.discount}% off!</span>`;
     document.querySelector(".discount").appendChild(discount);
-  }
-
-  if (product.shipping.free) {
-    const freeShipping = document.createElement("div");
-    freeShipping.classList.add("free-shipping");
-    freeShipping.innerHTML = `<span>Free Shipping</span>`;
-    document.querySelector(".free-shipping").appendChild(freeShipping);
   }
 
   const quantity = document.createElement("div");
@@ -123,7 +116,7 @@ function createOrderDetailsCard(product) {
       <label class="shipping-option-label" for="free">
         <span>Free Shipping</span>
       </label>
-      <span class="shipping-option-price">${product.shipping.free.price}EGP</span>
+      <span class="shipping-option-price">${product.shipping.free.price} EGP</span>
       <div class="shipping-option-duration">Arrives within ${product.shipping.free.duration} days</div>
     </div>
     <div class="shipping-option"> 
@@ -131,7 +124,7 @@ function createOrderDetailsCard(product) {
       <label class="shipping-option-label" for="standard">
         <span>Standard Shipping</span>
       </label>
-      <span class="shipping-option-price">${product.shipping.standard.price}EGP</span>
+      <span class="shipping-option-price">${product.shipping.standard.price} EGP</span>
       <div class="shipping-option-duration">Arrives within ${product.shipping.standard.duration} days</div>
     </div>
     <div class="shipping-option">
@@ -139,7 +132,7 @@ function createOrderDetailsCard(product) {
       <label class="shipping-option-label" for="express">
         <span>Express Shipping</span>
       </label>
-      <span class="shipping-option-price">${product.shipping.express.price}EGP</span>
+      <span class="shipping-option-price">${product.shipping.express.price} EGP</span>
       <div class="shipping-option-duration">Arrives within ${product.shipping.express.duration} days</div>
     </div>
     </div>
@@ -157,11 +150,11 @@ function createOrderDetailsCard(product) {
     <h3 class="order-card-title">Total price</h3>
     <div class="item-price">
       <span>Item price</span> 
-      <span>EGP ${product.price.currentPrice}</span>
+      <span>${product.price.currentPrice} EGP</span>
     </div>
     <div class="shipping-price">
       <span>Shipping</span>
-      <span>EGP ${product.shipping.free.price}</span>
+      <span>${product.shipping.free.price} EGP</span>
     </div>
     <div class="total-price-value">
       <span>Total</span>
@@ -180,6 +173,21 @@ function createOrderDetailsCard(product) {
   });
 
   const addToCartDiv = addToCart.create(product);
+
+  addToCartDiv.querySelector(".quantity-wrapper .increase").addEventListener("click", () => {
+    const quantity = ++addToCartDiv.querySelector(".quantity-wrapper input[type='number']").value;
+    const shippingOption = orderDetailsCard.querySelector(".shipping-option input:checked").getAttribute("value");
+    document.querySelector(".item-price span:last-child").innerText = `${quantity} x ${product.price.currentPrice} EGP`;
+    document.querySelector(".total-price-value-value").innerText =
+      +shippingOption + +product.price.currentPrice * quantity + " EGP";
+  });
+  addToCartDiv.querySelector(".quantity-wrapper .decrease").addEventListener("click", () => {
+    const quantity = --addToCartDiv.querySelector(".quantity-wrapper input[type='number']").value;
+    const shippingOption = orderDetailsCard.querySelector(".shipping-option input:checked").getAttribute("value");
+    document.querySelector(".item-price span:last-child").innerText = `${quantity} x ${product.price.currentPrice} EGP`;
+    document.querySelector(".total-price-value-value").innerText =
+      +shippingOption + +product.price.currentPrice * quantity + " EGP";
+  });
 
   const buyNowButton = document.createElement("a");
   buyNowButton.classList.add("buy-now-button");

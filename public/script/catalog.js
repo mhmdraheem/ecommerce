@@ -11,6 +11,15 @@ fetchProducts({
     document.querySelector(".products-section").classList.add("hidden");
   },
   onSuccess: () => {
+    const headingText = document.querySelector(".search-results-heading-text");
+    if (util.queryParams.has("name")) {
+      headingText.textContent = `Search results for: `;
+    } else if (util.queryParams.has("brand")) {
+      headingText.textContent = `Brand: `;
+    }
+
+    document.querySelector(".search-query").textContent = util.queryParams.values().next().value;
+
     document.querySelector(".search-results-heading").classList.remove("hidden");
   },
 });

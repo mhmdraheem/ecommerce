@@ -65,8 +65,9 @@ router.get("/", (req, res) => {
 
 function filterProducts(filterBy) {
   if (filterBy.key == "name") {
-    ``;
-    return (product) => product.heading.title.toLowerCase().includes(filterBy.value.toLowerCase());
+    return (product) =>
+      product.heading.title.toLowerCase().includes(filterBy.value.toLowerCase()) ||
+      product.heading.brand.toLowerCase().includes(filterBy.value.toLowerCase());
   } else if (filterBy.key == "brand") {
     return (product) => product.heading.brand.toLowerCase().includes(filterBy.value.toLowerCase());
   }

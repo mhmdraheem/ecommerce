@@ -32,6 +32,7 @@ function createProductElement(product) {
   const title = document.createElement("a");
   title.classList.add("title");
   title.textContent = product.heading.title;
+  title.title = product.heading.title;
 
   // Stock
   const stockSpan = document.createElement("span");
