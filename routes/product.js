@@ -90,7 +90,6 @@ function sortProducts(products, sortBy) {
 
 router.get("/:id", (req, res) => {
   const product = loadProducts().find((product) => product.id === parseInt(req.params.id));
-  req.session.viewedProducts.push(req.params.id);
   res.json(product);
 });
 

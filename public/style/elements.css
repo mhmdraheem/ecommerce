@@ -78,6 +78,7 @@ nav {
   .header {
     grid-template-areas: "logo profile cart" "form form form";
     padding: 0 0 10px;
+    row-gap: 5px;
   }
 }
 @media (min-width: 769px) {

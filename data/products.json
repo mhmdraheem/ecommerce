@@ -35,11 +35,11 @@
       },
       "standard": {
         "duration": "3 days",
-        "price": "25EGP"
+        "price": "25"
       },
       "express": {
         "duration": "1 day",
-        "price": "50EGP"
+        "price": "50"
       }
     },
     "description": {

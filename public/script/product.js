@@ -55,44 +55,144 @@ function createMainSection(product) {
     document.querySelector(".product-price .old").classList.remove("hidden");
   }
 
+  if (product.price.discount) {
+    const discount = document.createElement("div");
+    discount.classList.add("discount");
+    discount.innerHTML = `<span>${product.price.discount}% off!</span>`;
+    document.querySelector(".discount").appendChild(discount);
+  }
+
   if (product.shipping.free) {
     const freeShipping = document.createElement("div");
-    freeShipping.classList.add("benifit", "free-shipping");
-    freeShipping.innerHTML = `<i class="fa-solid fa-truck-fast"></i>
-    <span>Free Shipping</span>`;
-    document.querySelector(".benifits").appendChild(freeShipping);
+    freeShipping.classList.add("free-shipping");
+    freeShipping.innerHTML = `<span>Free Shipping</span>`;
+    document.querySelector(".free-shipping").appendChild(freeShipping);
   }
-  // if (product.returns) document.querySelector(".benifit.returns").classList.remove("hidden");
-  // if (product.warranty) document.querySelector(".benifit.warranty").classList.remove("hidden");
 
-  document.querySelector(".product-description").innerText = product.description.short;
+  const quantity = document.createElement("div");
+  quantity.classList.add("quantity");
+  if (product.stock <= 5) {
+    quantity.innerHTML = `<span class="low-stock">Only ${product.stock} items(s) left. Order now!</span>`;
+  } else {
+    quantity.innerHTML = `<span>${product.stock} items(s) in stock</span>`;
+  }
+  document.querySelector(".quantity").appendChild(quantity);
+
+  document.querySelector(".product-description h3").innerText = "Description:";
+  document.querySelector(".product-description p").innerText = product.description.short;
+
+  const orderDetails = document.querySelector(".order-details");
+  orderDetails.appendChild(createOrderDetailsCard(product));
 }
 
-function createOrderDetails(product) {
-  const orderDetails = document.querySelector(".order-details");
+function createOrderDetailsCard(product) {
+  const orderDetailsCard = document.createElement("div");
+  orderDetailsCard.classList.add("order-details-card");
+
+  const price = document.createElement("div");
+  price.classList.add("price");
+  price.innerText = `EGP ${product.price.currentPrice}`;
+  orderDetailsCard.appendChild(price);
 
   const soldBy = document.createElement("div");
   soldBy.classList.add("sold-by");
   soldBy.innerText = `Sold by: ${product.soldBy}`;
-  orderDetails.appendChild(soldBy);
+  orderDetailsCard.appendChild(soldBy);
 
   const returns = document.createElement("div");
   returns.classList.add("returns");
-  returns.innerText = `Returns: ${product.returns}`;
-  orderDetails.appendChild(returns);
+  returns.innerText = `Free returns within 15 days`;
+  orderDetailsCard.appendChild(returns);
 
   const warranty = document.createElement("div");
   warranty.classList.add("warranty");
-  warranty.innerText = `${product.warranty}`;
-  orderDetails.appendChild(warranty);
+  warranty.innerText = `6-month warranty`;
+  orderDetailsCard.appendChild(warranty);
 
   const shipping = document.createElement("div");
   shipping.classList.add("shipping");
-  shipping.innerText = `${product.shipping}`;
-  orderDetails.appendChild(shipping);
+
+  shipping.innerHTML = `
+    <h3 class="order-card-title">
+      Shipping
+      <i class="fa-solid fa-chevron-up"></i>
+    </h3>
+    <div class="shipping-options">
+      <div class="shipping-option">
+      <input type="radio" id="free" name="shipping" value="${product.shipping.free.price}" checked>
+      <label class="shipping-option-label" for="free">
+        <span>Free Shipping</span>
+      </label>
+      <span class="shipping-option-price">${product.shipping.free.price}EGP</span>
+      <div class="shipping-option-duration">Arrives within ${product.shipping.free.duration} days</div>
+    </div>
+    <div class="shipping-option"> 
+      <input type="radio" id="standard" name="shipping" value="${product.shipping.standard.price}">
+      <label class="shipping-option-label" for="standard">
+        <span>Standard Shipping</span>
+      </label>
+      <span class="shipping-option-price">${product.shipping.standard.price}EGP</span>
+      <div class="shipping-option-duration">Arrives within ${product.shipping.standard.duration} days</div>
+    </div>
+    <div class="shipping-option">
+      <input type="radio" id="express" name="shipping" value="${product.shipping.express.price}">
+      <label class="shipping-option-label" for="express">
+        <span>Express Shipping</span>
+      </label>
+      <span class="shipping-option-price">${product.shipping.express.price}EGP</span>
+      <div class="shipping-option-duration">Arrives within ${product.shipping.express.duration} days</div>
+    </div>
+    </div>
+  `;
+
+  orderDetailsCard.appendChild(shipping);
+  orderDetailsCard.querySelector("h3").addEventListener("click", () => {
+    orderDetailsCard.querySelector("h3 i").classList.toggle("down");
+    orderDetailsCard.querySelector(".shipping-options").classList.toggle("inactive");
+  });
+
+  const totalPrice = document.createElement("div");
+  totalPrice.classList.add("total-price");
+  totalPrice.innerHTML = `
+    <h3 class="order-card-title">Total price</h3>
+    <div class="item-price">
+      <span>Item price</span> 
+      <span>EGP ${product.price.currentPrice}</span>
+    </div>
+    <div class="shipping-price">
+      <span>Shipping</span>
+      <span>EGP ${product.shipping.free.price}</span>
+    </div>
+    <div class="total-price-value">
+      <span>Total</span>
+      <span class="total-price-value-value">${product.price.currentPrice} EGP</span>
+    </div>
+  `;
+  orderDetailsCard.appendChild(totalPrice);
+
+  orderDetailsCard.querySelectorAll(".shipping-option input").forEach((input) => {
+    input.addEventListener("change", () => {
+      const shippingOption = input.getAttribute("value");
+      document.querySelector(".shipping-price span:last-child").innerText = shippingOption + " EGP";
+      document.querySelector(".total-price-value-value").innerText =
+        +shippingOption + +product.price.currentPrice + " EGP";
+    });
+  });
 
   const addToCartDiv = addToCart.create(product);
-  orderDetails.appendChild(addToCartDiv);
+
+  const buyNowButton = document.createElement("a");
+  buyNowButton.classList.add("buy-now-button");
+  buyNowButton.innerText = "Buy Now";
+  buyNowButton.href = `checkout.html?id=${productId}`;
+  buyNowButton.addEventListener("click", () => {
+    addToCart.addToCart(product);
+  });
+
+  orderDetailsCard.appendChild(addToCartDiv);
+  orderDetailsCard.appendChild(buyNowButton);
+
+  return orderDetailsCard;
 }
 
 function createAltImages(imagesArr) {
@@ -147,7 +247,7 @@ function initSwiper(imagesArr) {
   });
 }
 
-function createFeaturesSection(product) {
+async function createFeaturesSection(product) {
   const featuresSection = document.getElementById("features");
 
   const featuresTitle = document.createElement("h2");
@@ -200,7 +300,7 @@ function createFeaturesSection(product) {
   featuresSection.appendChild(scrollWrapper);
 }
 
-function createReviewsSection(product) {
+async function createReviewsSection(product) {
   const reviewsContainer = document.getElementById("reviews");
 
   const reviewsTitle = document.createElement("h2");
