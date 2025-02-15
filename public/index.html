@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="style/cart.css" type="text/css" />
   </head>
   <body>
-    <nav class="section-margin">
+    <nav>
       <div class="container">
         <div class="header">
           <a href="index.html" class="logo">
@@ -29,27 +29,12 @@
             <input type="text" placeholder="Search products" name="query" id="search" />
             <button type="submit">Search</button>
           </form>
-          <div class="cart-dropdown">
-            <button class="cart-button cart-menu-icon">
-              <img src="img/cart.png" alt="cart" class="cart-menu-img" />
-              <span class="alert"></span>
-            </button>
-            <div class="cart-menu">
-              <div class="cart-items"></div>
-              <div class="cart-footer">
-                <a href="cart.html" target="_blank" class="view-cart-button">View Cart</a>
-              </div>
-              <div class="cart-menu-overlay">
-                <i class="fa-solid fa-spinner fa-spin cart-menu-overlay-spinner"></i>
-              </div>
-            </div>
-          </div>
+          <a href="cart.html" class="cart-button cart-menu-icon">
+            <img src="img/cart.png" alt="cart" class="cart-menu-img" />
+            <span class="alert"></span>
+          </a>
           <a href="profile.html" target="_blank" class="profile">
             <img class="avatar user-avatar" src="img/avatar.png" alt="profile-picture" />
-            <span class="user-name">
-              <span>Welcome,</span>
-              <span>User</span>
-            </span>
           </a>
         </div>
       </div>
