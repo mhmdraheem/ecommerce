@@ -19,13 +19,14 @@ router.get("/:itemId", (req, res) => {
 // Add item to cart
 router.post("/:itemId", (req, res) => {
   const itemId = req.params.itemId;
-  const { primaryImage, title, price } = req.body;
+  const { primaryImage, title, price, stock } = req.body;
   const item = {
     id: itemId,
     quantity: 1,
     image: primaryImage,
     title: title,
     price: price,
+    stock: stock,
   };
   req.session.cart.push(item);
   res.json(item);
@@ -41,10 +42,14 @@ router.delete("/:itemId", (req, res, next) => {
 // Update item quantity
 router.put("/:itemId", (req, res) => {
   const itemId = req.params.itemId;
-  const { quantity } = req.body;
+  const { type } = req.body;
   const item = req.session.cart.find((item) => item.id === itemId);
   if (item) {
-    item.quantity = parseInt(quantity) || 1;
+    if (type === "increase" && item.quantity < item.stock) {
+      item.quantity++;
+    } else if (type === "decrease") {
+      item.quantity--;
+    }
   }
 
   res.json(item);

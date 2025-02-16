@@ -30,12 +30,12 @@ export function create(product, options = { showQuantityIfCartItem: false }) {
 
   const decreaseBtn = document.createElement("button");
   decreaseBtn.classList.add("decrease");
-  decreaseBtn.innerHTML = "-";
+  decreaseBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
   decreaseBtn.addEventListener("click", decreaseQuantityCallback(product, bottomProductBarDiv));
 
   const increaseBtn = document.createElement("button");
   increaseBtn.classList.add("increase");
-  increaseBtn.innerHTML = "+";
+  increaseBtn.innerHTML = `<i class="fa-solid fa-plus"></i>`;
   increaseBtn.addEventListener("click", increaseQuantityCallback(product, bottomProductBarDiv));
 
   const quantityWrapperSpinner = document.createElement("div");
@@ -62,10 +62,16 @@ export function create(product, options = { showQuantityIfCartItem: false }) {
       (item) => {
         if (item) {
           quantityInput.value = item.quantity;
+          console.log("create function", item.quantity);
+
           quantityInput.dispatchEvent(new Event("input"));
 
           addToCartDiv.classList.remove("active");
           quantityWrapper.classList.add("active");
+
+          if (item.quantity > 1) {
+            bottomProductBarDiv.querySelector("button.decrease").innerHTML = `<i class="fa-solid fa-minus"></i>`;
+          }
         }
       },
       (err) => {
@@ -93,17 +99,20 @@ function addToCartCallback(product, bottomProductBarDiv) {
         if (item) {
           callUpdateProductQuantityAPI(
             product,
-            item.quantity + 1,
+            "increase",
             (updatedItem) => {
               util.activateCartElement(bottomProductBarDiv, quantityWrapper);
 
               quantityInput.value = updatedItem.quantity;
               quantityInput.dispatchEvent(new Event("input"));
 
+              quantityWrapper.querySelector("button.decrease").innerHTML = `<i class="fa-solid fa-minus"></i>`;
+
               util.updateCartAlert();
             },
             (err) => {
               console.error(err);
+              util.activateCartElement(bottomProductBarDiv, addToCart);
               util.showErrorToast();
             }
           );
@@ -145,6 +154,7 @@ export function callAddToCartAPI(product, onSuccess, onError) {
       primaryImage: product.images[0],
       title: product.heading.title,
       price: product.price.currentPrice,
+      stock: product.stock,
     }),
   })
     .then((response) => util.toJson(response))
@@ -167,13 +177,17 @@ function decreaseQuantityCallback(product, bottomProductBarDiv) {
       quantityWrapperSpinner.classList.add("active");
       callUpdateProductQuantityAPI(
         product,
-        newQuantity,
+        "decrease",
         (updatedItem) => {
           quantityInput.value = updatedItem.quantity;
           quantityInput.dispatchEvent(new Event("input"));
 
           quantityWrapperSpinner.classList.remove("active");
           util.updateCartAlert();
+
+          if (newQuantity == 1) {
+            quantityWrapper.querySelector("button.decrease").innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
+          }
         },
         (err) => {
           console.error(err);
@@ -205,26 +219,26 @@ function increaseQuantityCallback(product, bottomProductBarDiv) {
     const quantityWrapperSpinner = bottomProductBarDiv.querySelector(
       ".quantity-wrapper .quantity-wrapper-spinner-wrapper"
     );
-    const currentValue = parseInt(quantityInput.value);
-    if (currentValue < product.stock) {
-      quantityWrapperSpinner.classList.add("active");
-      callUpdateProductQuantityAPI(
-        product,
-        currentValue + 1,
-        (updatedItem) => {
-          quantityInput.value = updatedItem.quantity;
-          quantityInput.dispatchEvent(new Event("input"));
 
-          quantityWrapperSpinner.classList.remove("active");
-          util.updateCartAlert();
-        },
-        (err) => {
-          console.error(err);
-          quantityWrapperSpinner.classList.remove("active");
-          util.showErrorToast();
-        }
-      );
-    }
+    quantityWrapperSpinner.classList.add("active");
+    callUpdateProductQuantityAPI(
+      product,
+      "increase",
+      (updatedItem) => {
+        quantityInput.value = updatedItem.quantity;
+        quantityInput.dispatchEvent(new Event("input"));
+
+        quantityWrapperSpinner.classList.remove("active");
+        util.updateCartAlert();
+
+        bottomProductBarDiv.querySelector("button.decrease").innerHTML = `<i class="fa-solid fa-minus"></i>`;
+      },
+      (err) => {
+        console.error(err);
+        quantityWrapperSpinner.classList.remove("active");
+        util.showErrorToast();
+      }
+    );
   };
 }
 
@@ -237,13 +251,13 @@ function quantityInputCallback(product) {
   };
 }
 
-function callUpdateProductQuantityAPI(product, newQuantity, onSuccess, onError) {
+function callUpdateProductQuantityAPI(product, type, onSuccess, onError) {
   fetch(`/api/cart/${product.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ quantity: newQuantity }),
+    body: JSON.stringify({ type: type }),
   })
     .then((response) => util.toJson(response))
     .then(onSuccess)

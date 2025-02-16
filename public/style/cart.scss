@@ -7,10 +7,10 @@
   justify-content: center;
   transition: 0.3s;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .cart-icon {
-  // color: #fff;
   font-weight: 400;
 
   &.hidden {
@@ -63,7 +63,7 @@
   width: fit-content;
   height: 100%;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 30px;
   overflow: hidden;
 
   &.active {
@@ -97,7 +97,7 @@
     height: 100%;
     width: 50px;
     border: none;
-    background: #f0f0f0;
+    background: transparent;
     color: #333;
     font-size: 1.5rem;
     font-weight: 500;
@@ -105,10 +105,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid #ccc;
 
     &:hover {
       background: #e0e0e0;
+    }
+
+    i {
+      font-size: 1.2rem;
     }
 
     &.decrease {

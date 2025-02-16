@@ -170,6 +170,7 @@ function createOrderDetailsCard(product) {
   orderDetailsCard.querySelectorAll(".shipping-option input").forEach((input) => {
     input.addEventListener("change", () => {
       const quantity = orderDetailsCard.querySelector(".quantity-wrapper.active input[type='number']")?.value || 1;
+
       const shippingOption = input.getAttribute("value");
       document.querySelector(".shipping-price span:last-child").innerText = shippingOption + " EGP";
 
