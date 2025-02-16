@@ -73,7 +73,6 @@ function filterProducts(filterBy) {
   }
 }
 
-// Sort products based on sortBy parameter
 function sortProducts(products, sortBy) {
   const sortedProducts = [...products];
 

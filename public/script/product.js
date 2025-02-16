@@ -180,7 +180,7 @@ function createOrderDetailsCard(product) {
     });
   });
 
-  const addToCartDiv = addToCart.create(product);
+  const addToCartDiv = addToCart.create(product, { showQuantityIfCartItem: true });
 
   addToCartDiv.querySelector(".quantity-wrapper input[type='number']").addEventListener("input", function (event) {
     const quantity = event.target.value;
@@ -194,12 +194,25 @@ function createOrderDetailsCard(product) {
     document.querySelector(".total-price-value-value").innerText = total + " EGP";
   });
 
-  const buyNowButton = document.createElement("a");
+  const buyNowButton = document.createElement("div");
   buyNowButton.classList.add("buy-now-button");
   buyNowButton.innerText = "Buy Now";
-  buyNowButton.href = `checkout.html?id=${productId}`;
   buyNowButton.addEventListener("click", () => {
-    addToCart.addToCart(product);
+    const activeQuantityWrapperDiv = orderDetailsCard.querySelector(".quantity-wrapper.active input[type='number']");
+    if (activeQuantityWrapperDiv) {
+      window.open("/cart.html", "_self");
+    } else {
+      addToCart.callAddToCartAPI(
+        product,
+        (newItem) => {
+          window.open("/cart.html", "_self");
+        },
+        (err) => {
+          console.error(err);
+          util.showErrorToast();
+        }
+      );
+    }
   });
 
   orderDetailsCard.appendChild(addToCartDiv);

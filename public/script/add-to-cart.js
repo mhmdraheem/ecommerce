@@ -1,6 +1,6 @@
 import * as util from "./util.js";
 
-export function create(product) {
+export function create(product, options = { showQuantityIfCartItem: false }) {
   const bottomProductBarDiv = document.createElement("div");
   bottomProductBarDiv.classList.add("bottom-product-bar");
 
@@ -55,6 +55,25 @@ export function create(product) {
   bottomProductBarDiv.appendChild(addToCartDiv);
   bottomProductBarDiv.appendChild(addToCartSpinnerDiv);
   bottomProductBarDiv.appendChild(quantityWrapper);
+
+  if (options.showQuantityIfCartItem) {
+    getCartItem(
+      product,
+      (item) => {
+        if (item) {
+          quantityInput.value = item.quantity;
+          quantityInput.dispatchEvent(new Event("input"));
+
+          addToCartDiv.classList.remove("active");
+          quantityWrapper.classList.add("active");
+        }
+      },
+      (err) => {
+        console.error(err);
+        quantityInput.value = 0;
+      }
+    );
+  }
 
   return bottomProductBarDiv;
 }
@@ -116,7 +135,7 @@ function addToCartCallback(product, bottomProductBarDiv) {
   };
 }
 
-function callAddToCartAPI(product, onSuccess, onError) {
+export function callAddToCartAPI(product, onSuccess, onError) {
   fetch(`/api/cart/${product.id}`, {
     method: "POST",
     headers: {

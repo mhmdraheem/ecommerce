@@ -10,7 +10,7 @@
       "stars": 4.7,
       "reviews": 3
     },
-    "stock": 15,
+    "stock": 3,
     "images": [
       "/camera1/1.avif",
       "/camera1/2.avif",
@@ -133,8 +133,23 @@
       "discount": 28
     },
     "freeShipping": true,
+    "soldBy": "WebMart",
     "returns": true,
-    "warranty": false,
+    "warranty": true,
+    "shipping": {
+      "free": {
+        "duration": "5 days",
+        "price": "0"
+      },
+      "standard": {
+        "duration": "3 days",
+        "price": "25"
+      },
+      "express": {
+        "duration": "1 day",
+        "price": "50"
+      }
+    },
     "description": {
       "short": "72MP Digital Camera High-Definition Optical Zoom Mirrorless Female Student Party Travel Entry-Level 12X Professional Camera",
       "long": "Package Includes: Camera * 1. Battery * 1. USB Cable * 1. HDMI Cable *1. English Manual * 1. SD Card*1"
@@ -227,8 +242,23 @@
       "discount": 30
     },
     "freeShipping": true,
+    "soldBy": "WebMart",
     "returns": true,
     "warranty": true,
+    "shipping": {
+      "free": {
+        "duration": "5 days",
+        "price": "0"
+      },
+      "standard": {
+        "duration": "3 days",
+        "price": "25"
+      },
+      "express": {
+        "duration": "1 day",
+        "price": "50"
+      }
+    },
     "description": {
       "short": "Simulation double reflex digital camera retro portable mini ccd Product size: 42.5*52*89.8mm Photo storage: FAT32 format memory card Charging time: about 2-3 hours Battery: Lithium battery Product color: Black Focal length :90CM Video resolution :1080P Exposure compensation; Auto Display: 240*240 resolution ",
       "long": "Product name: Simulation double reflex digital camera retro portable mini ccd Product size: 42.5*52*89.8mm Photo storage: FAT32 format memory card Charging time: about 2-3 hours Battery: Lithium battery Product color: Black Focal length :90CM Video resolution :1080P Exposure compensation; Auto Display: 240*240 resolution Description: 1. Manual rocker,8 seconds to capture moving images Through the manual operation, you can easily record the small moments in life for 8 seconds, and you can capture an exclusive memory. Image is no longer just frame, but a flowing story. 2. Not only is it a piece of retro art: it is also a useful partner that can integrate into modern life 3. Small and exquisite, record every inspiration anytime and anywhere 4. Filter selection Black and white is the continuation of the classic, and color is the record of life. No matter whether you choose black and white or color, you are telling a unique image story in your own way 5. Classic waist screen A classic photo gesture. Between the lower head, is the moment of deep dialogue with the picture Attention: 1. Due to different display and lighting effects, the actual color of the item may be slightly different from the color shown on the picture. Thank you very much! 2. Please allow measurement deviation due to manual measurement."
@@ -316,8 +346,23 @@
       "discount": 50
     },
     "freeShipping": true,
+    "soldBy": "WebMart",
     "returns": true,
     "warranty": true,
+    "shipping": {
+      "free": {
+        "duration": "5 days",
+        "price": "0"
+      },
+      "standard": {
+        "duration": "3 days",
+        "price": "25"
+      },
+      "express": {
+        "duration": "1 day",
+        "price": "50"
+      }
+    },
     "description": {
       "short": "10ml Perfume Pheromone Pheromone For Men And Women Long Acting Perfume Oil Body Essential Oil Perfume Elastic Oil Descriptio",
       "long": "10ml Perfume Pheromone Pheromone For Men And Women Long Acting Perfume Oil Body Essential Oil Perfume Elastic Oil Description: Shelf Life: 5 Years Material: Liquid Color As Shown Function And Purpose: Fun Product Name: Sexy Fragrance Roller Balls Specifications: Ven Ball Male, Ven Ball Female Applicable People: Adults Net Content: 10ml Features: 1. This Powerful And Alluring Fragrance Helps Boost Your Pheromones For Instant, Effortless And Long-lasting Attraction As It Naturally Sparks Desire, Increases Sexual Attraction And Effortlessly Enhances Romantic. 2. Highly Attractive Aroma, It Can Also Increase The Love Between Couples. 3. It Is The Perfect Mud Enhancer When You Want To Spend A Romantic And Intimate Evening With Your Partner. 4. Made Of Safe Ingredients, Use With Confidence. 5. The Fragrance Is Fresh And Easy To Like. Package Included: 1*Fragrance Roller Ball"
@@ -405,8 +450,23 @@
       "discount": 50
     },
     "freeShipping": true,
+    "soldBy": "WebMart",
     "returns": true,
     "warranty": true,
+    "shipping": {
+      "free": {
+        "duration": "5 days",
+        "price": "0"
+      },
+      "standard": {
+        "duration": "3 days",
+        "price": "25"
+      },
+      "express": {
+        "duration": "1 day",
+        "price": "50"
+      }
+    },
     "description": {
       "short": "",
       "long": ""
@@ -492,9 +552,23 @@
       "discount": 12
     },
     "freeShipping": true,
+    "soldBy": "WebMart",
     "returns": true,
-    "warranty": false,
-
+    "warranty": true,
+    "shipping": {
+      "free": {
+        "duration": "5 days",
+        "price": "0"
+      },
+      "standard": {
+        "duration": "3 days",
+        "price": "25"
+      },
+      "express": {
+        "duration": "1 day",
+        "price": "50"
+      }
+    },
     "description": {
       "short": "Savage Man Brand Perfume New Fresh Pheromone Charm Perfume Sexy Atmosphere For Dating Long-lasting Masculinity Light Fragrance",
       "long": "1.500ml large capacity bottle of multi-purpose: aromatherapy bottle supplement, diffuser, humidifier are available 2. Safe and environmentally friendly, natural smell breeze: no formaldehyde, non-toxic, non-stimulation 3. Create an atmosphere, enhance the style: listening to music, reading books, practicing yoga aroma sweeping 4. Help sleep: eliminate odor and fresh air, sleep and nourish the mind."
@@ -528,63 +602,81 @@
     "reviews": [
       {
         "reviewer": "Emma Davis",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Classic fragrance that never goes out of style.",
         "date": "2024-01-19",
         "verified": true
       },
       {
         "reviewer": "Victoria Adams",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Timeless scent, elegant packaging.",
         "date": "2024-01-17",
         "verified": true
       },
       {
         "reviewer": "Kate Moss",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "The perfect signature scent.",
         "date": "2024-01-15",
         "verified": true
       },
       {
         "reviewer": "Gisele Bundchen",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Sophisticated and long-lasting.",
         "date": "2024-01-13",
         "verified": true
       },
       {
         "reviewer": "Naomi Campbell",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Iconic fragrance, worth every penny.",
         "date": "2024-01-11",
         "verified": true
       },
       {
         "reviewer": "Cindy Crawford",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Luxurious scent that lasts all day.",
         "date": "2024-01-09",
         "verified": true
       },
       {
         "reviewer": "Claudia Schiffer",
-        "rating": 4,
+        "rating": {
+          "stars": 2
+        },
         "comment": "Classic Chanel quality.",
         "date": "2024-01-07",
         "verified": true
       },
       {
         "reviewer": "Linda Evangelista",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Elegant and timeless.",
         "date": "2024-01-05",
         "verified": true
       },
       {
         "reviewer": "Christy Turlington",
-        "rating": 5,
+        "rating": {
+          "stars": 1
+        },
         "comment": "The perfect luxury perfume.",
         "date": "2024-01-03",
         "verified": true
@@ -610,8 +702,23 @@
       "discount": 20
     },
     "freeShipping": true,
+    "soldBy": "WebMart",
     "returns": true,
-    "warranty": false,
+    "warranty": true,
+    "shipping": {
+      "free": {
+        "duration": "5 days",
+        "price": "0"
+      },
+      "standard": {
+        "duration": "3 days",
+        "price": "25"
+      },
+      "express": {
+        "duration": "1 day",
+        "price": "50"
+      }
+    },
     "description": {
       "short": "Long-lasting matte lipstick with moisturizing formula and vibrant color payoff.",
       "long": "Long-lasting matte lipstick with moisturizing formula and vibrant color payoff. Long-lasting matte lipstick with moisturizing formula and vibrant color payoff. Long-lasting matte lipstick with moisturizing formula and vibrant color payoff.  Long-lasting matte lipstick with moisturizing formula and vibrant color payoff."
@@ -645,42 +752,54 @@
     "reviews": [
       {
         "reviewer": "Lisa Brown",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Beautiful color and stays on all day!",
         "date": "2024-01-08",
         "verified": true
       },
       {
         "reviewer": "Emma Stone",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Love the formula, very moisturizing.",
         "date": "2024-01-06",
         "verified": true
       },
       {
         "reviewer": "Sophie Turner",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Great pigmentation and long-lasting.",
         "date": "2024-01-04",
         "verified": true
       },
       {
         "reviewer": "Mila Kunis",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Perfect matte finish without drying.",
         "date": "2024-01-02",
         "verified": true
       },
       {
         "reviewer": "Jennifer Lopez",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Beautiful shade, smooth application.",
         "date": "2023-12-30",
         "verified": true
       },
       {
         "reviewer": "Scarlett Johnson",
-        "rating": 5,
+        "rating": {
+          "stars": 5
+        },
         "comment": "Best matte lipstick I've tried.",
         "date": "2023-12-28",
         "verified": true
@@ -706,8 +825,23 @@
       "discount": 25
     },
     "freeShipping": true,
+    "soldBy": "WebMart",
     "returns": true,
-    "warranty": false,
+    "warranty": true,
+    "shipping": {
+      "free": {
+        "duration": "5 days",
+        "price": "0"
+      },
+      "standard": {
+        "duration": "3 days",
+        "price": "25"
+      },
+      "express": {
+        "duration": "1 day",
+        "price": "50"
+      }
+    },
     "description": {
       "short": "Natural energy drink packed with vitamins and minerals. Zero sugar, zero calories.",
       "long": "Natural energy drink packed with vitamins and minerals. Zero sugar, zero calories. Natural energy drink packed with vitamins and minerals. Zero sugar, zero calories. Natural energy drink packed with vitamins and minerals. Zero sugar, zero calories."
@@ -729,14 +863,18 @@
     "reviews": [
       {
         "reviewer": "Mike Johnson",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Great taste and energy boost without the crash.",
         "date": "2024-01-05",
         "verified": true
       },
       {
         "reviewer": "Lisa Anderson",
-        "rating": 4,
+        "rating": {
+          "stars": 4
+        },
         "comment": "Good alternative to coffee, nice flavor.",
         "date": "2024-01-03",
         "verified": true
