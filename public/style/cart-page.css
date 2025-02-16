@@ -96,6 +96,11 @@
   color: var(--accent-color);
 }
 
+.free-shipping {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .item-quantity {
   display: flex;
   gap: 10px;
@@ -125,4 +130,24 @@
 }
 .item-quantity .delete-span .delete-span-spinner.visible {
   display: inline;
+}
+
+.total-price {
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.total-price-amount,
+.total-price-tax,
+.total-price-shipping,
+.total-price-total {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }/*# sourceMappingURL=cart-page.css.map */

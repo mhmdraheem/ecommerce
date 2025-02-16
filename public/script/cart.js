@@ -68,7 +68,8 @@ function render(items) {
     let freeShippingDiv;
     if (item.freeShipping) {
       freeShippingDiv = document.createElement("div");
-      freeShippingDiv.classList.add("free-delivery");
+      freeShippingDiv.classList.add("free-shipping");
+      freeShippingDiv.textContent = "Eligible for free shipping";
     }
 
     const stockDiv = document.createElement("div");
@@ -105,6 +106,12 @@ function render(items) {
       }
     });
 
+    bottomBarDiv.querySelector(".quantity-wrapper input").addEventListener("input", () => {
+      calculatePrice();
+      calculateShipping();
+      calculateTotalPrice();
+    });
+
     const infoDiv = document.createElement("div");
     infoDiv.classList.add("info");
     infoDiv.appendChild(headerDiv);
@@ -121,6 +128,65 @@ function render(items) {
 
     cartItemsDiv.appendChild(cartItemDiv);
   });
+
+  const totalPriceDiv = createTotalPriceElement();
+  cartItemsDiv.appendChild(totalPriceDiv);
+}
+
+function createTotalPriceElement() {
+  const totalPrice = document.createElement("div");
+  totalPrice.classList.add("total-price");
+
+  const amountSpan = document.createElement("span");
+  amountSpan.classList.add("total-price-amount");
+  totalPrice.appendChild(amountSpan);
+
+  const taxSpan = document.createElement("span");
+  taxSpan.classList.add("total-price-tax");
+  taxSpan.textContent = "Tax: 0 EGP";
+  totalPrice.appendChild(taxSpan);
+
+  const shippingSpan = document.createElement("span");
+  shippingSpan.classList.add("total-price-shipping");
+  totalPrice.appendChild(shippingSpan);
+
+  const totalPriceTotalSpan = document.createElement("span");
+  totalPriceTotalSpan.classList.add("total-price-total");
+  totalPrice.appendChild(totalPriceTotalSpan);
+
+  const totalPriceTotalSpanName = document.createElement("span");
+  totalPriceTotalSpan.appendChild(totalPriceTotalSpanName);
+
+  const totalPriceTotalSpanValue = document.createElement("span");
+  totalPriceTotalSpan.appendChild(totalPriceTotalSpanValue);
+
+  return totalPrice;
+}
+
+function calculatePrice() {
+  let price = 0;
+  document.querySelectorAll(".cart-item").forEach((cartItem) => {
+    const amount = cartItem.querySelector(".cart-item-header .price").textContent.replace("EGP", "").trim();
+    const quantity = cartItem.querySelector(`.quantity-wrapper input[type="number"]`).value;
+    price += +quantity * +amount;
+  });
+
+  const priceFotmatted = price.toLocaleString("en-us", { maximumFractionDigits: 2 });
+  document.querySelector(".total-price-amount").innerText = "Price: " + priceFotmatted + " EGP";
+}
+
+function calculateShipping() {
+  document.querySelector(".total-price-shipping").innerText = "Shipping: 0 EGP";
+}
+
+function calculateTotalPrice() {
+  const amount = document.querySelector(".total-price-amount").textContent.match("[,.0-9]+")[0].replace(",", "");
+  const shipping = document.querySelector(".total-price-shipping").textContent.match("[,.0-9]+")[0].replace(",", "");
+  const tax = document.querySelector(".total-price-tax").textContent.match("[,.0-9]+")[0].replace(",", "");
+
+  const totalPriceFormatted = (+amount + +shipping + +tax).toLocaleString("en-us", { maximumFractionDigits: 2 });
+  document.querySelector(".total-price-total span:first-child").innerText = "Total: ";
+  document.querySelector(".total-price-total span:last-child").innerText = totalPriceFormatted + " EGP";
 }
 
 function deleteCartItem(e, item) {

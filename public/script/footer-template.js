@@ -28,30 +28,7 @@ const footer = `
             </address>
           </div>
         </div>
-        <div class="footer-col information-col">
-          <h3 class="footer-col-header">Information</h3>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Delivery Information</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Brands</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Refunds</a></li>
-            <li><a href="#">Site Map</a></li>
-          </ul>
-        </div>
-        <div class="footer-col my-account-col">
-          <h3 class="footer-col-header">My Account</h3>
-          <ul>
-            <li><a href="#">Store Location</a></li>
-            <li><a href="#">Order History</a></li>
-            <li><a href="#">Wish List</a></li>
-            <li><a href="#">Newsletter</a></li>
-            <li><a href="#">Special Offers</a></li>
-            <li><a href="#">Gift Certificates</a></li>
-            <li><a href="#">Affiliate</a></li>
-          </ul>
-        </div>
+        
         <div class="footer-col newsletter-col">
           <h3 class="footer-col-header">Newsletter</h3>
           <div class="newsletter">
