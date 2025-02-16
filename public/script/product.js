@@ -89,7 +89,7 @@ function createOrderDetailsCard(product) {
 
   const soldBy = document.createElement("div");
   soldBy.classList.add("sold-by");
-  soldBy.innerHTML = `Sold by: <a href="/index.html">${product.soldBy}</a>`;
+  soldBy.innerHTML = `Sold by: <a href="/index.html" target="_blank" class="sold-by-link">${product.soldBy}</a>`;
   orderDetailsCard.appendChild(soldBy);
 
   if (product.returns) {

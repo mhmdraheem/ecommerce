@@ -14,7 +14,5 @@ module.exports = (req, res, next) => {
     message += `Session found: ${req.session.userId}`;
   }
 
-  // console.log(message);
-
   next();
 };

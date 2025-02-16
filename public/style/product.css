@@ -42,8 +42,10 @@
 .main-section .product-brand {
   margin: 0.2rem 0.5rem 0.5rem 0;
   font-size: 1.1rem;
-  text-decoration: underline;
   color: #352be2;
+}
+.main-section .product-brand:hover {
+  text-decoration: underline;
 }
 .main-section .product-rating {
   font-size: 0.8rem;
@@ -74,6 +76,12 @@
   opacity: 0.7;
   text-decoration: line-through;
   margin-left: 10px;
+}
+.main-section .sold-by-link {
+  color: #352be2;
+}
+.main-section .sold-by-link:hover {
+  text-decoration: underline;
 }
 .main-section .discount {
   color: #fff;

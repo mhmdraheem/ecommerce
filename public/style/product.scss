@@ -44,8 +44,10 @@
   .product-brand {
     margin: 0.2rem 0.5rem 0.5rem 0;
     font-size: 1.1rem;
-    text-decoration: underline;
     color: #352be2;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .product-rating {
@@ -80,6 +82,13 @@
       opacity: 0.7;
       text-decoration: line-through;
       margin-left: 10px;
+    }
+  }
+
+  .sold-by-link {
+    color: #352be2;
+    &:hover {
+      text-decoration: underline;
     }
   }
 
