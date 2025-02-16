@@ -1,5 +1,5 @@
 import * as util from "./util.js";
-import * as addToCart from "./addToCart.js";
+import * as addToCart from "./add-to-cart.js";
 const productId = util.queryParams.get("id");
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -89,18 +89,22 @@ function createOrderDetailsCard(product) {
 
   const soldBy = document.createElement("div");
   soldBy.classList.add("sold-by");
-  soldBy.innerText = `Sold by: ${product.soldBy}`;
+  soldBy.innerHTML = `Sold by: <a href="/index.html">${product.soldBy}</a>`;
   orderDetailsCard.appendChild(soldBy);
 
-  const returns = document.createElement("div");
-  returns.classList.add("returns");
-  returns.innerText = `Free returns within 15 days`;
-  orderDetailsCard.appendChild(returns);
+  if (product.returns) {
+    const returns = document.createElement("div");
+    returns.classList.add("returns");
+    returns.innerText = `Free returns within 15 days`;
+    orderDetailsCard.appendChild(returns);
+  }
 
-  const warranty = document.createElement("div");
-  warranty.classList.add("warranty");
-  warranty.innerText = `6-month warranty`;
-  orderDetailsCard.appendChild(warranty);
+  if (product.warranty) {
+    const warranty = document.createElement("div");
+    warranty.classList.add("warranty");
+    warranty.innerText = `6-month warranty`;
+    orderDetailsCard.appendChild(warranty);
+  }
 
   const shipping = document.createElement("div");
   shipping.classList.add("shipping");
@@ -150,7 +154,7 @@ function createOrderDetailsCard(product) {
     <h3 class="order-card-title">Total price</h3>
     <div class="item-price">
       <span>Item price</span> 
-      <span>${product.price.currentPrice} EGP</span>
+      <span>1 x ${product.price.currentPrice} EGP</span>
     </div>
     <div class="shipping-price">
       <span>Shipping</span>
@@ -165,28 +169,29 @@ function createOrderDetailsCard(product) {
 
   orderDetailsCard.querySelectorAll(".shipping-option input").forEach((input) => {
     input.addEventListener("change", () => {
+      const quantity = orderDetailsCard.querySelector(".quantity-wrapper.active input[type='number']")?.value || 1;
       const shippingOption = input.getAttribute("value");
       document.querySelector(".shipping-price span:last-child").innerText = shippingOption + " EGP";
-      document.querySelector(".total-price-value-value").innerText =
-        +shippingOption + +product.price.currentPrice + " EGP";
+
+      let total = (+shippingOption + +product.price.currentPrice * quantity).toLocaleString("en-US", {
+        maximumFractionDigits: 2,
+      });
+      document.querySelector(".total-price-value-value").innerText = total + " EGP";
     });
   });
 
   const addToCartDiv = addToCart.create(product);
 
-  addToCartDiv.querySelector(".quantity-wrapper .increase").addEventListener("click", () => {
-    const quantity = ++addToCartDiv.querySelector(".quantity-wrapper input[type='number']").value;
+  addToCartDiv.querySelector(".quantity-wrapper input[type='number']").addEventListener("input", function (event) {
+    const quantity = event.target.value;
     const shippingOption = orderDetailsCard.querySelector(".shipping-option input:checked").getAttribute("value");
+
     document.querySelector(".item-price span:last-child").innerText = `${quantity} x ${product.price.currentPrice} EGP`;
-    document.querySelector(".total-price-value-value").innerText =
-      +shippingOption + +product.price.currentPrice * quantity + " EGP";
-  });
-  addToCartDiv.querySelector(".quantity-wrapper .decrease").addEventListener("click", () => {
-    const quantity = --addToCartDiv.querySelector(".quantity-wrapper input[type='number']").value;
-    const shippingOption = orderDetailsCard.querySelector(".shipping-option input:checked").getAttribute("value");
-    document.querySelector(".item-price span:last-child").innerText = `${quantity} x ${product.price.currentPrice} EGP`;
-    document.querySelector(".total-price-value-value").innerText =
-      +shippingOption + +product.price.currentPrice * quantity + " EGP";
+
+    let total = (+shippingOption + +product.price.currentPrice * quantity).toLocaleString("en-US", {
+      maximumFractionDigits: 2,
+    });
+    document.querySelector(".total-price-value-value").innerText = total + " EGP";
   });
 
   const buyNowButton = document.createElement("a");

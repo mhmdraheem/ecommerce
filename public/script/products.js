@@ -1,5 +1,5 @@
 import * as util from "./util.js";
-import * as addToCart from "./addToCart.js";
+import * as addToCart from "./add-to-cart.js";
 
 const productsPerPage = 5;
 let sortBy = "Rating";

@@ -27,18 +27,6 @@ export function create(product) {
   quantityInput.max = product.stock;
   quantityInput.value = 0;
   quantityInput.addEventListener("input", quantityInputCallback(product));
-  getCartItem(
-    product,
-    (item) => {
-      if (item) {
-        quantityInput.value = item.quantity;
-      }
-    },
-    (err) => {
-      console.error(err);
-      quantityInput.value = 0;
-    }
-  );
 
   const decreaseBtn = document.createElement("button");
   decreaseBtn.classList.add("decrease");
@@ -89,7 +77,10 @@ function addToCartCallback(product, bottomProductBarDiv) {
             item.quantity + 1,
             (updatedItem) => {
               util.activateCartElement(bottomProductBarDiv, quantityWrapper);
+
               quantityInput.value = updatedItem.quantity;
+              quantityInput.dispatchEvent(new Event("input"));
+
               util.updateCartAlert();
             },
             (err) => {
@@ -102,7 +93,10 @@ function addToCartCallback(product, bottomProductBarDiv) {
             product,
             (newItem) => {
               util.activateCartElement(bottomProductBarDiv, quantityWrapper);
+
               quantityInput.value = newItem.quantity;
+              quantityInput.dispatchEvent(new Event("input"));
+
               util.updateCartAlert();
             },
             (err) => {
@@ -157,6 +151,8 @@ function decreaseQuantityCallback(product, bottomProductBarDiv) {
         newQuantity,
         (updatedItem) => {
           quantityInput.value = updatedItem.quantity;
+          quantityInput.dispatchEvent(new Event("input"));
+
           quantityWrapperSpinner.classList.remove("active");
           util.updateCartAlert();
         },
@@ -198,6 +194,8 @@ function increaseQuantityCallback(product, bottomProductBarDiv) {
         currentValue + 1,
         (updatedItem) => {
           quantityInput.value = updatedItem.quantity;
+          quantityInput.dispatchEvent(new Event("input"));
+
           quantityWrapperSpinner.classList.remove("active");
           util.updateCartAlert();
         },
