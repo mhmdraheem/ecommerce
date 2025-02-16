@@ -62,7 +62,6 @@ export function create(product, options = { showQuantityIfCartItem: false }) {
       (item) => {
         if (item) {
           quantityInput.value = item.quantity;
-          console.log("create function", item.quantity);
 
           quantityInput.dispatchEvent(new Event("input"));
 
@@ -155,6 +154,7 @@ export function callAddToCartAPI(product, onSuccess, onError) {
       title: product.heading.title,
       price: product.price.currentPrice,
       stock: product.stock,
+      freeShipping: product.freeShipping,
     }),
   })
     .then((response) => util.toJson(response))

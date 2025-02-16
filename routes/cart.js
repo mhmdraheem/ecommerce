@@ -19,7 +19,7 @@ router.get("/:itemId", (req, res) => {
 // Add item to cart
 router.post("/:itemId", (req, res) => {
   const itemId = req.params.itemId;
-  const { primaryImage, title, price, stock } = req.body;
+  const { primaryImage, title, price, stock, freeShipping } = req.body;
   const item = {
     id: itemId,
     quantity: 1,
@@ -27,6 +27,7 @@ router.post("/:itemId", (req, res) => {
     title: title,
     price: price,
     stock: stock,
+    freeShipping: freeShipping,
   };
   req.session.cart.push(item);
   res.json(item);
