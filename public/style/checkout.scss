@@ -1,0 +1,50 @@
+.page-content {
+    margin: 20px 0;
+}
+
+.page-header {
+    margin-bottom: 10px;
+}
+
+.order-wrapper {}
+
+.shipping-info {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+
+    .shipping-info-header {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+
+        a {
+            margin-left: auto;
+            margin-right: 5px;
+        }
+    }
+
+    .profile-link {
+        color: blue;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .shipping-info-content {
+        padding: 20px 10px;
+
+        h4 {
+            font-weight: 400;
+        }
+
+        p {
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+    }
+}
+
+.payment-method {}

@@ -1,0 +1,39 @@
+.page-content {
+  margin: 20px 0;
+}
+
+.page-header {
+  margin-bottom: 10px;
+}
+
+.shipping-info {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+.shipping-info .shipping-info-header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+.shipping-info .shipping-info-header a {
+  margin-left: auto;
+  margin-right: 5px;
+}
+.shipping-info .profile-link {
+  color: blue;
+}
+.shipping-info .profile-link:hover {
+  text-decoration: underline;
+}
+.shipping-info .shipping-info-content {
+  padding: 20px 10px;
+}
+.shipping-info .shipping-info-content h4 {
+  font-weight: 400;
+}
+.shipping-info .shipping-info-content p {
+  opacity: 0.9;
+  margin-top: 5px;
+}/*# sourceMappingURL=checkout.css.map */

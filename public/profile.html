@@ -1,127 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile | WebMart</title>
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
-    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous" type="text/javascript"></script>
-    <link rel="stylesheet" href="style/elements.css" type="text/css" />
-    <link rel="stylesheet" href="style/profile.css" type="text/css" />
-  </head>
-  <body>
-    <script src="script/header-template.js"></script>
-    <div class="page-content">
-      <div class="profile-section">
-        <div class="container">
-          <div class="personal-info-section">
-            <div class="avatar-wrapper">
-              <div class="avatar">
-                <img class="user-avatar" src="img/avatar.png" alt="Avatar">
-              </div>
-              <input type="file" id="avatar-upload" accept="image/*" hidden>
-              <button id="upload-btn" class="profile-button">Profile picture
-                <i class="fa-solid fa-circle-notch button-spinner"></i>
-              </button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | WebMart</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" type="text/javascript"></script>
+  <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous" type="text/javascript"></script>
+  <link rel="stylesheet" href="style/elements.css" type="text/css" />
+  <link rel="stylesheet" href="style/profile.css" type="text/css" />
+</head>
+
+<body>
+  <script src="script/header-template.js"></script>
+  <div class="page-content">
+    <div class="profile-section">
+      <div class="container">
+        <div class="personal-info-section">
+          <div class="avatar-wrapper">
+            <div class="avatar">
+              <img class="user-avatar" src="img/avatar.png" alt="Avatar">
             </div>
-            <div class="personal-info card">
-              <h2>Personal Information</h2>
-              <form id="personal-info-form" class="profile-form personal-info-form">
-                <label for="first-name">First Name</label>
-                <input type="text" pattern="[A-Za-z]+" id="first-name" name="first-name" required>
-                <label for="last-name">Last Name</label>
-                <input type="text" pattern="[A-Za-z]+" id="last-name" name="last-name" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email">
-                <label for="phone">Phone</label>
-                <input type="tel" pattern="[0-9]+" minlength="11" maxlength="11" id="phone" name="phone" required>
-                <div class="form-buttons">
-                  <button type="submit" class="profile-button" id="save-personal">Save
-                    <i class="fa-solid fa-circle-notch button-spinner"></i>
-                  </button>
-                </div>
-              </form>
-            </div>
+            <input type="file" id="avatar-upload" accept="image/*" hidden>
+            <button id="upload-btn" class="profile-button">Profile picture
+              <i class="fa-solid fa-circle-notch button-spinner"></i>
+            </button>
           </div>
-        </div>
-        </div>
-      </div>
-      <div class="profile-section">
-        <div class="container">
-          <div class="address-section">
-            <div class="address card">
-              <h2>Address</h2>
-              <form id="address-form" class="profile-form">
-                <label for="address-line1">Address Line 1</label>
-                <input type="text" pattern="[A-Za-z0-9]+" id="address-line1" name="address-line1" required>
-                <label for="address-line2">Address Line 2</label>
-                <input type="text" pattern="[A-Za-z0-9]+" id="address-line2" name="address-line2">
-                <label for="country">Country</label>
-                <div class="custom-dropdown">
-                  <div class="dropdown-selected" data-value="">
-                      <i class="fa-solid fa-chevron-down arrow"></i>
-                  </div>
-                  <ul class="dropdown-list">
-                      <li class="dropdown-item" data-value="EG" data-url="https://flagcdn.com/w40/eg.png" data-name="Egypt">
-                          <img src="https://flagcdn.com/w40/eg.png" alt="Egypt"> Egypt
-                      </li>
-                      <li class="dropdown-item" data-value="SA" data-url="https://flagcdn.com/w40/sa.png" data-name="Saudi Arabia">
-                          <img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia"> Saudi Arabia
-                      </li>
-                      <li class="dropdown-item" data-value="AE" data-url="https://flagcdn.com/w40/ae.png" data-name="United Arab Emirates">
-                          <img src="https://flagcdn.com/w40/ae.png" alt="United Arab Emirates"> United Arab Emirates
-                      </li>
-                      <li class="dropdown-item" data-value="KW" data-url="https://flagcdn.com/w40/kw.png" data-name="Kuwait">
-                          <img src="https://flagcdn.com/w40/kw.png" alt="Kuwait"> Kuwait
-                      </li>
-                  </ul>
-                </div>                     
-                <label for="city">City</label>
-                <input type="text" pattern="[A-Za-z]+" id="city" name="city" required>
-                <label for="zip-code">Zip Code</label>
-                <input type="text" pattern="[0-9]+" id="zip-code" minlength="5" maxlength="5" name="zip-code" required>
-                <div class="form-buttons">
-                  <button type="submit" class="profile-button" id="save-address">Save
-                    <i class="fa-solid fa-circle-notch button-spinner"></i>
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div class="payment-options card">
-              <h2>Payment Options</h2>
-              <form id="payment-form" class="profile-form">
-                <div class="payment-option">
-                  <input type="radio" id="cod" name="payment" value="COD">
-                  <label for="cod">Cash on Delivery (COD)</label>
-                </div>
-                <div class="payment-option">
-                  <input type="radio" id="card" name="payment" value="card">
-                  <label for="card">Debit/Credit Card</label><br>
-                  <div id="card-details" class="collapsed card-details">
-                    <input type="text" pattern="[0-9]+" id="card-number" name="card-number" minlength="16" maxlength="16" placeholder="Card Number">
-                    <input type="text" pattern="[0-9]+" id="cvv" class="cvv" name="cvv" minlength="3" maxlength="3" placeholder="CVV">
-                  </div>
-                </div>
-                <div class="form-buttons">
-                  <button type="submit" class="profile-button" id="save-payment">Save
-                    <i class="fa-solid fa-circle-notch button-spinner"></i>
-                  </button>
-                </div>
-              </form>
-            </div>
+          <div class="personal-info card">
+            <h2>Personal Information</h2>
+            <form id="personal-info-form" class="profile-form personal-info-form">
+              <label for="first-name">First Name</label>
+              <input type="text" pattern="[A-Za-z]+" id="first-name" name="first-name" required>
+              <label for="last-name">Last Name</label>
+              <input type="text" pattern="[A-Za-z]+" id="last-name" name="last-name" required>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email">
+              <label for="phone">Phone</label>
+              <input type="tel" pattern="[0-9]+" minlength="11" maxlength="11" id="phone" name="phone" required>
+              <div class="form-buttons">
+                <button type="submit" class="profile-button" id="save-personal">Save
+                  <i class="fa-solid fa-circle-notch button-spinner"></i>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <script src="script/footer-template.js"></script>
-    <script src="script/profile.js" type="module"></script>
-  </body>
+  </div>
+  <div class="profile-section">
+    <div class="container">
+      <div class="address-section">
+        <div class="address card">
+          <h2>Address</h2>
+          <form id="address-form" class="profile-form">
+            <label for="address-line1">Address Line 1</label>
+            <input type="text" pattern="[A-Za-z0-9,-]+" id="address-line1" name="address-line1" required>
+            <label for="address-line2">Address Line 2</label>
+            <input type="text" pattern="[A-Za-z0-9,-]+" id="address-line2" name="address-line2">
+            <label for="country">Country</label>
+            <div class="custom-dropdown">
+              <div class="dropdown-selected" data-value="">
+                <i class="fa-solid fa-chevron-down arrow"></i>
+              </div>
+              <ul class="dropdown-list">
+                <li class="dropdown-item" data-value="EG" data-url="https://flagcdn.com/w40/eg.png" data-name="Egypt">
+                  <img src="https://flagcdn.com/w40/eg.png" alt="Egypt"> Egypt
+                </li>
+                <li class="dropdown-item" data-value="SA" data-url="https://flagcdn.com/w40/sa.png"
+                  data-name="Saudi Arabia">
+                  <img src="https://flagcdn.com/w40/sa.png" alt="Saudi Arabia"> Saudi Arabia
+                </li>
+                <li class="dropdown-item" data-value="AE" data-url="https://flagcdn.com/w40/ae.png"
+                  data-name="United Arab Emirates">
+                  <img src="https://flagcdn.com/w40/ae.png" alt="United Arab Emirates"> United Arab Emirates
+                </li>
+                <li class="dropdown-item" data-value="KW" data-url="https://flagcdn.com/w40/kw.png" data-name="Kuwait">
+                  <img src="https://flagcdn.com/w40/kw.png" alt="Kuwait"> Kuwait
+                </li>
+              </ul>
+            </div>
+            <label for="city">City</label>
+            <input type="text" pattern="[A-Za-z0-9,-]+" id="city" name="city" required>
+            <label for="zip-code">Zip Code</label>
+            <input type="text" pattern="[0-9]+" id="zip-code" minlength="5" maxlength="5" name="zip-code" required>
+            <div class="form-buttons">
+              <button type="submit" class="profile-button" id="save-address">Save
+                <i class="fa-solid fa-circle-notch button-spinner"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="payment-options card">
+          <h2>Payment Options</h2>
+          <form id="payment-form" class="profile-form">
+            <div class="payment-option">
+              <input type="radio" id="cod" name="payment" value="COD">
+              <label for="cod">Cash on Delivery (COD)</label>
+            </div>
+            <div class="payment-option">
+              <input type="radio" id="card" name="payment" value="card">
+              <label for="card">Debit/Credit Card</label><br>
+              <div id="card-details" class="collapsed card-details">
+                <input type="text" pattern="[0-9]+" id="card-number" name="card-number" minlength="16" maxlength="16"
+                  placeholder="Card Number">
+                <input type="text" pattern="[0-9]+" id="cvv" class="cvv" name="cvv" minlength="3" maxlength="3"
+                  placeholder="CVV">
+              </div>
+            </div>
+            <div class="form-buttons">
+              <button type="submit" class="profile-button" id="save-payment">Save
+                <i class="fa-solid fa-circle-notch button-spinner"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="script/footer-template.js"></script>
+  <script src="script/profile.js" type="module"></script>
+</body>
+
 </html>
