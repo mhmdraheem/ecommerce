@@ -247,7 +247,7 @@ nav {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-hover-color);
   color: white;
   border-radius: 50%;
   cursor: pointer;
@@ -274,7 +274,8 @@ nav {
   line-height: 1.5;
   background-color: var(--footer-bg-color);
   color: var(--footer-text-color);
-  margin-top: auto; /* Push to bottom */
+  margin-top: auto;
+  /* Push to bottom */
 }
 .footer-area .content {
   display: flex;

@@ -8,7 +8,8 @@ import * as addToCart from "./add-to-cart.js";
       if (items.length === 0) {
         renderEmptyCart();
       } else {
-        render(items);
+        renderCartItems(items);
+        renderCartSummary(items);
       }
     })
     .catch((err) => {
@@ -31,7 +32,7 @@ function renderEmptyCart() {
   pageHeaderDiv.appendChild(homePageLink);
 }
 
-function render(items) {
+function renderCartItems(items) {
   const pageHeaderDiv = document.querySelector(".page-header");
 
   const header = document.createElement("h3");
@@ -106,11 +107,7 @@ function render(items) {
       }
     });
 
-    bottomBarDiv.querySelector(".quantity-wrapper input").addEventListener("input", () => {
-      calculatePrice();
-      calculateShipping();
-      calculateTotalPrice();
-    });
+    bottomBarDiv.querySelector(".quantity-wrapper input").addEventListener("input", () => calculatePrice());
 
     const infoDiv = document.createElement("div");
     infoDiv.classList.add("info");
@@ -128,39 +125,6 @@ function render(items) {
 
     cartItemsDiv.appendChild(cartItemDiv);
   });
-
-  const totalPriceDiv = createTotalPriceElement();
-  cartItemsDiv.appendChild(totalPriceDiv);
-}
-
-function createTotalPriceElement() {
-  const totalPrice = document.createElement("div");
-  totalPrice.classList.add("total-price");
-
-  const amountSpan = document.createElement("span");
-  amountSpan.classList.add("total-price-amount");
-  totalPrice.appendChild(amountSpan);
-
-  const taxSpan = document.createElement("span");
-  taxSpan.classList.add("total-price-tax");
-  taxSpan.textContent = "Tax: 0 EGP";
-  totalPrice.appendChild(taxSpan);
-
-  const shippingSpan = document.createElement("span");
-  shippingSpan.classList.add("total-price-shipping");
-  totalPrice.appendChild(shippingSpan);
-
-  const totalPriceTotalSpan = document.createElement("span");
-  totalPriceTotalSpan.classList.add("total-price-total");
-  totalPrice.appendChild(totalPriceTotalSpan);
-
-  const totalPriceTotalSpanName = document.createElement("span");
-  totalPriceTotalSpan.appendChild(totalPriceTotalSpanName);
-
-  const totalPriceTotalSpanValue = document.createElement("span");
-  totalPriceTotalSpan.appendChild(totalPriceTotalSpanValue);
-
-  return totalPrice;
 }
 
 function calculatePrice() {
@@ -172,21 +136,10 @@ function calculatePrice() {
   });
 
   const priceFotmatted = price.toLocaleString("en-us", { maximumFractionDigits: 2 });
-  document.querySelector(".total-price-amount").innerText = "Price: " + priceFotmatted + " EGP";
-}
+  document.querySelector(".cart-summary-money").innerText = priceFotmatted + " EGP";
 
-function calculateShipping() {
-  document.querySelector(".total-price-shipping").innerText = "Shipping: 0 EGP";
-}
-
-function calculateTotalPrice() {
-  const amount = document.querySelector(".total-price-amount").textContent.match("[,.0-9]+")[0].replace(",", "");
-  const shipping = document.querySelector(".total-price-shipping").textContent.match("[,.0-9]+")[0].replace(",", "");
-  const tax = document.querySelector(".total-price-tax").textContent.match("[,.0-9]+")[0].replace(",", "");
-
-  const totalPriceFormatted = (+amount + +shipping + +tax).toLocaleString("en-us", { maximumFractionDigits: 2 });
-  document.querySelector(".total-price-total span:first-child").innerText = "Total: ";
-  document.querySelector(".total-price-total span:last-child").innerText = totalPriceFormatted + " EGP";
+  const itemsCount = Array.from(document.querySelectorAll(".quantity-wrapper input")).reduce((a, input) => a + +input.value, 0);
+  document.querySelector(".cart-summary-amount").innerText = itemsCount + " item(s)";
 }
 
 function deleteCartItem(e, item) {
@@ -199,11 +152,18 @@ function deleteCartItem(e, item) {
     item,
     () => {
       deleteSpanSpinner.classList.remove("visible");
+
+      const quantityInput = cartItemDiv.querySelector(".quantity-wrapper input");
+      quantityInput.value = 0;
+      quantityInput.dispatchEvent(new Event("input"));
+
       cartItemDiv.remove();
+
       if (document.querySelectorAll(".cart-item").length === 0) {
         pageHeaderDiv.innerHTML = "";
         renderEmptyCart();
         util.updateCartAlert();
+        document.querySelector(".total-price-amount").remove();
       }
     },
     (e) => {
@@ -212,4 +172,56 @@ function deleteCartItem(e, item) {
       util.showErrorToast();
     }
   );
+}
+
+function renderCartSummary(items) {
+  const cartSummaryTitle = document.createElement("span");
+  cartSummaryTitle.classList.add("cart-summary-title");
+  cartSummaryTitle.textContent = "Cart summary";
+
+  const cartSummaryAmountText = document.createElement("span");
+  cartSummaryAmountText.classList.add("cart-summary-amount-text");
+  cartSummaryAmountText.innerText = "Subtotal: ";
+
+  const cartSummaryAmountValue = document.createElement("span");
+  cartSummaryAmountValue.classList.add("cart-summary-amount-value");
+
+  const cartSummaryMoney = document.createElement("span");
+  cartSummaryMoney.classList.add("cart-summary-money");
+
+  const cartSummaryAmount = document.createElement("span");
+  cartSummaryAmount.classList.add("cart-summary-amount");
+
+  cartSummaryAmountValue.appendChild(cartSummaryMoney);
+  cartSummaryAmountValue.appendChild(cartSummaryAmount);
+
+  const cartSummaryAmountRow = document.createElement("div");
+  cartSummaryAmountRow.classList.add("cart-summary-amount-row");
+  cartSummaryAmountRow.appendChild(cartSummaryAmountText);
+  cartSummaryAmountRow.appendChild(cartSummaryAmountValue);
+
+  const checkoutButton = document.createElement("a");
+  checkoutButton.classList.add("cart-summary-checkout");
+  checkoutButton.href = "checkout.html";
+  checkoutButton.textContent = "Buy now"
+
+  const freeShippingIcon = document.createElement("i");
+  freeShippingIcon.classList.add("free-shipping-icon", "fa-regular", "fa-circle-check");
+
+  const freeShippingText = document.createElement("span");
+  freeShippingText.classList.add("free-shipping-text");
+  freeShippingText.textContent = "Some items are eligible for free shipping";
+
+  const freeShipping = document.createElement("span");
+  freeShipping.classList.add("free-shipping-eligible");
+  freeShipping.appendChild(freeShippingIcon);
+  freeShipping.appendChild(freeShippingText);
+
+  const cartSummary = document.querySelector(".cart-summary-card")
+  cartSummary.appendChild(cartSummaryTitle);
+  cartSummary.appendChild(cartSummaryAmountRow);
+  if (items.find(item => item.freeShipping)) {
+    cartSummary.appendChild(freeShipping);
+  }
+  cartSummary.appendChild(checkoutButton);
 }

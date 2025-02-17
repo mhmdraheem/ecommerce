@@ -45,6 +45,7 @@ h1 {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -90,6 +91,7 @@ nav {
 
   h1 {
     font-weight: 500;
+
     .highlight {
       color: var(--primary-hover-color);
       font-weight: 500;
@@ -234,6 +236,7 @@ nav {
     opacity: 0.5;
     cursor: pointer;
     font-weight: 400;
+
     &.active {
       border-color: rgba(0, 0, 0, 1);
       opacity: 1;
@@ -265,7 +268,7 @@ nav {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-hover-color);
   color: white;
   border-radius: 50%;
   cursor: pointer;
@@ -295,7 +298,8 @@ nav {
   line-height: 1.5;
   background-color: var(--footer-bg-color);
   color: var(--footer-text-color);
-  margin-top: auto; /* Push to bottom */
+  margin-top: auto;
+  /* Push to bottom */
 
   .content {
     display: flex;

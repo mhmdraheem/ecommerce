@@ -56,7 +56,6 @@
   position: relative;
   display: none;
   align-items: center;
-  width: -moz-fit-content;
   width: fit-content;
   height: 100%;
   border: 1px solid #ccc;
