@@ -162,3 +162,7 @@ export function generateStars(rating, includeReviews = false) {
 (function scrollToTopEvent() {
   document.querySelector(".scroll-to-top").addEventListener("click", scrollToTop);
 })();
+
+export function formatPrice(price) {
+  return price.toLocaleString("en-us", { maximumFractionDigits: 2 });
+}

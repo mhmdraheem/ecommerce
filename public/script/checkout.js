@@ -1,13 +1,14 @@
 import * as util from "./util.js";
 import * as addToCart from "./add-to-cart.js";
 
+let subtotal = 0;
 (async function getCartItems() {
   fetch("/api/profile")
     .then((response) => response.json())
     .then((profile) => {
       renderInfoSection(profile);
-      renderItemsSection();
       renderOrderSummaryCard();
+      renderItemsSection();
     })
     .catch((err) => {
       console.error("Failed to fetch profile data:", err);
@@ -35,7 +36,6 @@ function renderInfoSection(profile) {
       ".address"
     ).textContent = `${address.addressLine1} ${address.addressLine2} ${address.country}, ${address.city}, ${address.zipCode} | ${personalInfo.email} | ${personalInfo.phone}`;
 
-    console.log(payment);
     if (payment.type === "COD") {
       shippingInfoContent.querySelector(".payment").textContent = `Payment via: cash on delivery`;
     } else {
@@ -72,14 +72,18 @@ async function renderItemsSection() {
         itemsGrid.appendChild(itemDiv);
       });
       itemsDiv.querySelector(".items-title").textContent = "Your items";
+
+      subtotal = items.reduce((prev, i) => prev + i.price, 0);
+      document.querySelector(".total-price-subtotal .value").textContent = util.formatPrice(subtotal) + " EGP";
+      document.querySelector(".total-price-total .value").textContent = util.formatPrice(subtotal) + " EGP";
     });
 }
 
 async function renderOrderSummaryCard() {
   const orderSummaryCard = document.querySelector(".order-summary-card");
 
-  const shippingDiv = document.createElement("div");
-  shippingDiv.classList.add("shipping");
+  const contentDiv = document.createElement("div");
+  contentDiv.classList.add("shipping");
 
   const shippingCosts = {
     free: {
@@ -96,87 +100,66 @@ async function renderOrderSummaryCard() {
     },
   };
 
-  shippingDiv.innerHTML = `
+  contentDiv.innerHTML = `
     <h3 class="shipping-title">
       Shipping
       <i class="fa-solid fa-chevron-up"></i>
     </h3>
     <div class="shipping-options">
       <div class="shipping-option">
-      <input type="radio" id="free" name="shipping" value="${shippingCosts.free.price}" checked>
-      <label class="shipping-option-label" for="free">
-        <span>Free Shipping</span>
-      </label>
-      <span class="shipping-option-price">${shippingCosts.free.price} EGP</span>
-      <div class="shipping-option-duration">Arrives within ${shippingCosts.free.duration} days</div>
+        <input type="radio" id="free" name="shipping" value="${shippingCosts.free.price}" checked>
+        <label class="shipping-option-label" for="free">
+          <span>Free Shipping</span>
+        </label>
+        <span class="shipping-option-price">${shippingCosts.free.price} EGP</span>
+        <div class="shipping-option-duration">Arrives within ${shippingCosts.free.duration} days</div>
+      </div>
+      <div class="shipping-option"> 
+        <input type="radio" id="standard" name="shipping" value="${shippingCosts.standard.price}">
+        <label class="shipping-option-label" for="standard">
+          <span>Standard Shipping</span>
+        </label>
+        <span class="shipping-option-price">${shippingCosts.standard.price} EGP</span>
+        <div class="shipping-option-duration">Arrives within ${shippingCosts.standard.duration} days</div>
+      </div>
+      <div class="shipping-option">
+        <input type="radio" id="express" name="shipping" value="${shippingCosts.express.price}">
+        <label class="shipping-option-label" for="express">
+          <span>Express Shipping</span>
+        </label>
+        <span class="shipping-option-price">${shippingCosts.express.price} EGP</span>
+        <div class="shipping-option-duration">Arrives within ${shippingCosts.express.duration} days</div>
+      </div>
     </div>
-    <div class="shipping-option"> 
-      <input type="radio" id="standard" name="shipping" value="${shippingCosts.standard.price}">
-      <label class="shipping-option-label" for="standard">
-        <span>Standard Shipping</span>
-      </label>
-      <span class="shipping-option-price">${shippingCosts.standard.price} EGP</span>
-      <div class="shipping-option-duration">Arrives within ${shippingCosts.standard.duration} days</div>
+    <div class="total-price">
+      <h3>Total price</h3>
+      <div class="total-price-subtotal">
+        <span>Subtotal</span>
+        <span class="value"></span>
+      </div>
+      <div class="total-price-shipping">
+        <span>Shipping</span>
+        <span class="value">0 EGP</span>
+      </div>
+      <div class="total-price-total">
+        <span class="value"></span>
+      </div>
     </div>
-    <div class="shipping-option">
-      <input type="radio" id="express" name="shipping" value="${shippingCosts.express.price}">
-      <label class="shipping-option-label" for="express">
-        <span>Express Shipping</span>
-      </label>
-      <span class="shipping-option-price">${shippingCosts.express.price} EGP</span>
-      <div class="shipping-option-duration">Arrives within ${shippingCosts.express.duration} days</div>
-    </div>
-    </div>
+    
   `;
 
-  orderSummaryCard.appendChild(shippingDiv);
-
-  // const totalPrice = document.createElement("div");
-  // totalPrice.classList.add("total-price");
-  // totalPrice.innerHTML = `
-  //   <h3 class="order-card-title">Total price</h3>
-  //   <div class="item-price">
-  //     <span>Item price</span>
-  //     <span>1 x ${item.price} EGP</span>
-  //   </div>
-  //   <div class="shipping-price">
-  //     <span>Shipping</span>
-  //     <span>${shippingCosts.free.price} EGP</span>
-  //   </div>
-  //   <div class="total-price-value">
-  //     <span>Total</span>
-  //     <span class="total-price-value-value">${item.price} EGP</span>
-  //   </div>
-  // `;
-  // orderSummaryCard.appendChild(totalPrice);
+  orderSummaryCard.appendChild(contentDiv);
 
   orderSummaryCard.querySelector(".shipping-title").addEventListener("click", () => {
     orderSummaryCard.querySelector(".shipping-title i").classList.toggle("down");
-
     orderSummaryCard.querySelector(".shipping-options").classList.toggle("inactive");
   });
 
-  //   orderSummaryCard
-  //     .querySelectorAll(".shipping-option input")
-  //     .forEach((input) => {
-  //       input.addEventListener("change", () => {
-  //         const quantity =
-  //           orderSummaryCard.querySelector(
-  //             ".quantity-wrapper.active input[type='number']"
-  //           )?.value || 1;
-
-  //         const shippingOption = input.getAttribute("value");
-  //         document.querySelector(".shipping-price span:last-child").innerText =
-  //           shippingOption + " EGP";
-
-  //         let total = (
-  //           +shippingOption +
-  //           +product.price.currentPrice * quantity
-  //         ).toLocaleString("en-US", {
-  //           maximumFractionDigits: 2,
-  //         });
-  //         document.querySelector(".total-price-value-value").innerText =
-  //           total + " EGP";
-  //       });
-  //     });
+  orderSummaryCard.querySelectorAll('input[name="shipping"]').forEach((input) => {
+    input.addEventListener("change", (e) => {
+      orderSummaryCard.querySelector(".total-price-shipping .value").textContent = e.target.value + " EGP";
+      orderSummaryCard.querySelector(".total-price-total .value").textContent =
+        util.formatPrice(+subtotal + +e.target.value) + " EGP";
+    });
+  });
 }

@@ -135,10 +135,13 @@ function calculatePrice() {
     price += +quantity * +amount;
   });
 
-  const priceFotmatted = price.toLocaleString("en-us", { maximumFractionDigits: 2 });
+  const priceFotmatted = util.formatPrice(price);
   document.querySelector(".cart-summary-money").innerText = priceFotmatted + " EGP";
 
-  const itemsCount = Array.from(document.querySelectorAll(".quantity-wrapper input")).reduce((a, input) => a + +input.value, 0);
+  const itemsCount = Array.from(document.querySelectorAll(".quantity-wrapper input")).reduce(
+    (a, input) => a + +input.value,
+    0
+  );
   document.querySelector(".cart-summary-amount").innerText = itemsCount + " item(s)";
 }
 
@@ -203,7 +206,7 @@ function renderCartSummary(items) {
   const checkoutButton = document.createElement("a");
   checkoutButton.classList.add("cart-summary-checkout");
   checkoutButton.href = "checkout.html";
-  checkoutButton.textContent = "Buy now"
+  checkoutButton.textContent = "Buy now";
 
   const freeShippingIcon = document.createElement("i");
   freeShippingIcon.classList.add("free-shipping-icon", "fa-regular", "fa-circle-check");
@@ -217,10 +220,10 @@ function renderCartSummary(items) {
   freeShipping.appendChild(freeShippingIcon);
   freeShipping.appendChild(freeShippingText);
 
-  const cartSummary = document.querySelector(".cart-summary-card")
+  const cartSummary = document.querySelector(".cart-summary-card");
   cartSummary.appendChild(cartSummaryTitle);
   cartSummary.appendChild(cartSummaryAmountRow);
-  if (items.find(item => item.freeShipping)) {
+  if (items.find((item) => item.freeShipping)) {
     cartSummary.appendChild(freeShipping);
   }
   cartSummary.appendChild(checkoutButton);

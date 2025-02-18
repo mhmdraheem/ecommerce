@@ -45,6 +45,7 @@
 
     .line-1 {
       display: flex;
+      margin-bottom: 10px;
 
       p {
         font-weight: 400;
@@ -120,9 +121,7 @@
   font-size: 1rem;
   display: flex;
   flex-direction: column;
-  //   overflow: hidden;
-  //   position: sticky;
-  //   top: 60px;
+  overflow: hidden;
 
   .shipping {
     display: flex;
@@ -180,12 +179,21 @@
       color: #888;
       width: 100%;
     }
+
+    .total-price {
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 400;
+        padding: 0.8rem 1.2rem;
+        background: rgba(128, 128, 128, 0.09);
+      }
+    }
   }
 
   .total-price {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     background-color: #fff;
 
     .item-price,
@@ -205,6 +213,22 @@
       span {
         font-weight: 500;
       }
+    }
+
+    .total-price-subtotal,
+    .total-price-shipping,
+    .total-price-total {
+      padding: 0rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-price-total .value {
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-left: auto;
+      margin-top: 10px;
     }
   }
 }

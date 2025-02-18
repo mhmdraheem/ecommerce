@@ -41,6 +41,7 @@
 }
 .shipping-info .shipping-info-content .line-1 {
   display: flex;
+  margin-bottom: 10px;
 }
 .shipping-info .shipping-info-content .line-1 p {
   font-weight: 400;
@@ -103,6 +104,7 @@
   font-size: 1rem;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .order-summary-card .shipping {
   display: flex;
@@ -152,10 +154,16 @@
   color: #888;
   width: 100%;
 }
+.order-summary-card .shipping .total-price h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding: 0.8rem 1.2rem;
+  background: rgba(128, 128, 128, 0.09);
+}
 .order-summary-card .total-price {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   background-color: #fff;
 }
 .order-summary-card .total-price .item-price,
@@ -174,4 +182,18 @@
 }
 .order-summary-card .total-price .total-price-value span {
   font-weight: 500;
+}
+.order-summary-card .total-price .total-price-subtotal,
+.order-summary-card .total-price .total-price-shipping,
+.order-summary-card .total-price .total-price-total {
+  padding: 0rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-summary-card .total-price .total-price-total .value {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-left: auto;
+  margin-top: 10px;
 }/*# sourceMappingURL=checkout.css.map */
