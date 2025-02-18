@@ -41,7 +41,7 @@
 
   .shipping-info-content {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #eee;
     border-radius: 5px;
 
     h4 {
@@ -73,7 +73,7 @@
       display: flex;
       gap: 5px;
       font-size: 0.8rem;
-      border: 1px solid #ccc;
+      border: 1px solid #eee;
       padding: 10px;
       border-radius: 5px;
 
@@ -100,6 +100,109 @@
 
       .item-quantity {
         margin-top: 5px;
+      }
+    }
+  }
+}
+
+.order-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.order-summary-card {
+  flex: 1;
+  width: 100%;
+  min-width: 260px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  //   overflow: hidden;
+  //   position: sticky;
+  //   top: 60px;
+
+  .shipping {
+    display: flex;
+    flex-direction: column;
+
+    .shipping-title {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 400;
+      padding: 0.8rem 1.2rem;
+      background: rgba(128, 128, 128, 0.09);
+
+      i {
+        font-size: 1.2rem;
+        margin-left: auto;
+        transition: transform 0.3s ease-in-out;
+
+        &.down {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .shipping-options {
+      height: 170px;
+      transition: height 0.3s ease-in-out;
+
+      &.inactive {
+        height: 0;
+      }
+    }
+
+    .shipping-option {
+      display: flex;
+      padding: 0.1rem 1.2rem;
+      flex-wrap: wrap;
+      row-gap: 5px;
+      -moz-column-gap: 5px;
+      column-gap: 5px;
+      margin: 5px 0;
+    }
+
+    .shipping-option-label {
+      cursor: pointer;
+    }
+
+    .shipping-option-price {
+      display: inline-block;
+      margin-left: auto;
+    }
+
+    .shipping-option-duration {
+      color: #888;
+      width: 100%;
+    }
+  }
+
+  .total-price {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+
+    .item-price,
+    .shipping-price,
+    .total-price-value {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.2rem;
+      line-height: 1.2;
+    }
+
+    .total-price-value {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+      span {
+        font-weight: 500;
       }
     }
   }

@@ -48,10 +48,12 @@ function createMainSection(product) {
     rating.appendChild(util.generateStars(product.rating, true));
   });
 
-  document.querySelector(".product-price .current .value").innerText = product.price.currentPrice + " EGP";
+  document.querySelector(".product-price .current .value").innerText =
+    product.price.currentPrice + " EGP";
 
   if (product.price.discount) {
-    document.querySelector(".product-price .old .value").innerText = product.price.oldPrice + " EGP";
+    document.querySelector(".product-price .old .value").innerText =
+      product.price.oldPrice + " EGP";
     document.querySelector(".product-price .old").classList.remove("hidden");
   }
 
@@ -72,7 +74,8 @@ function createMainSection(product) {
   document.querySelector(".quantity").appendChild(quantity);
 
   document.querySelector(".product-description h3").innerText = "Description:";
-  document.querySelector(".product-description p").innerText = product.description.short;
+  document.querySelector(".product-description p").innerText =
+    product.description.short;
 
   const orderDetails = document.querySelector(".order-details");
   orderDetails.appendChild(createOrderDetailsCard(product));
@@ -106,100 +109,39 @@ function createOrderDetailsCard(product) {
     orderDetailsCard.appendChild(warranty);
   }
 
-  const shipping = document.createElement("div");
-  shipping.classList.add("shipping");
-
-  shipping.innerHTML = `
-    <h3 class="order-card-title">
-      Shipping
-      <i class="fa-solid fa-chevron-up"></i>
-    </h3>
-    <div class="shipping-options">
-      <div class="shipping-option">
-      <input type="radio" id="free" name="shipping" value="${product.shipping.free.price}" checked>
-      <label class="shipping-option-label" for="free">
-        <span>Free Shipping</span>
-      </label>
-      <span class="shipping-option-price">${product.shipping.free.price} EGP</span>
-      <div class="shipping-option-duration">Arrives within ${product.shipping.free.duration} days</div>
-    </div>
-    <div class="shipping-option"> 
-      <input type="radio" id="standard" name="shipping" value="${product.shipping.standard.price}">
-      <label class="shipping-option-label" for="standard">
-        <span>Standard Shipping</span>
-      </label>
-      <span class="shipping-option-price">${product.shipping.standard.price} EGP</span>
-      <div class="shipping-option-duration">Arrives within ${product.shipping.standard.duration} days</div>
-    </div>
-    <div class="shipping-option">
-      <input type="radio" id="express" name="shipping" value="${product.shipping.express.price}">
-      <label class="shipping-option-label" for="express">
-        <span>Express Shipping</span>
-      </label>
-      <span class="shipping-option-price">${product.shipping.express.price} EGP</span>
-      <div class="shipping-option-duration">Arrives within ${product.shipping.express.duration} days</div>
-    </div>
-    </div>
-  `;
-
-  orderDetailsCard.appendChild(shipping);
-  orderDetailsCard.querySelector("h3").addEventListener("click", () => {
-    orderDetailsCard.querySelector("h3 i").classList.toggle("down");
-    orderDetailsCard.querySelector(".shipping-options").classList.toggle("inactive");
+  const addToCartDiv = addToCart.create(product, {
+    showQuantityIfCartItem: true,
   });
 
-  const totalPrice = document.createElement("div");
-  totalPrice.classList.add("total-price");
-  totalPrice.innerHTML = `
-    <h3 class="order-card-title">Total price</h3>
-    <div class="item-price">
-      <span>Item price</span> 
-      <span>1 x ${product.price.currentPrice} EGP</span>
-    </div>
-    <div class="shipping-price">
-      <span>Shipping</span>
-      <span>${product.shipping.free.price} EGP</span>
-    </div>
-    <div class="total-price-value">
-      <span>Total</span>
-      <span class="total-price-value-value">${product.price.currentPrice} EGP</span>
-    </div>
-  `;
-  orderDetailsCard.appendChild(totalPrice);
+  addToCartDiv
+    .querySelector(".quantity-wrapper input[type='number']")
+    .addEventListener("input", function (event) {
+      const quantity = event.target.value;
+      const shippingOption = orderDetailsCard
+        .querySelector(".shipping-option input:checked")
+        .getAttribute("value");
 
-  orderDetailsCard.querySelectorAll(".shipping-option input").forEach((input) => {
-    input.addEventListener("change", () => {
-      const quantity = orderDetailsCard.querySelector(".quantity-wrapper.active input[type='number']")?.value || 1;
+      document.querySelector(
+        ".item-price span:last-child"
+      ).innerText = `${quantity} x ${product.price.currentPrice} EGP`;
 
-      const shippingOption = input.getAttribute("value");
-      document.querySelector(".shipping-price span:last-child").innerText = shippingOption + " EGP";
-
-      let total = (+shippingOption + +product.price.currentPrice * quantity).toLocaleString("en-US", {
+      let total = (
+        +shippingOption +
+        +product.price.currentPrice * quantity
+      ).toLocaleString("en-US", {
         maximumFractionDigits: 2,
       });
-      document.querySelector(".total-price-value-value").innerText = total + " EGP";
+      document.querySelector(".total-price-value-value").innerText =
+        total + " EGP";
     });
-  });
-
-  const addToCartDiv = addToCart.create(product, { showQuantityIfCartItem: true });
-
-  addToCartDiv.querySelector(".quantity-wrapper input[type='number']").addEventListener("input", function (event) {
-    const quantity = event.target.value;
-    const shippingOption = orderDetailsCard.querySelector(".shipping-option input:checked").getAttribute("value");
-
-    document.querySelector(".item-price span:last-child").innerText = `${quantity} x ${product.price.currentPrice} EGP`;
-
-    let total = (+shippingOption + +product.price.currentPrice * quantity).toLocaleString("en-US", {
-      maximumFractionDigits: 2,
-    });
-    document.querySelector(".total-price-value-value").innerText = total + " EGP";
-  });
 
   const buyNowButton = document.createElement("div");
   buyNowButton.classList.add("buy-now-button");
   buyNowButton.innerText = "Buy Now";
   buyNowButton.addEventListener("click", () => {
-    const activeQuantityWrapperDiv = orderDetailsCard.querySelector(".quantity-wrapper.active input[type='number']");
+    const activeQuantityWrapperDiv = orderDetailsCard.querySelector(
+      ".quantity-wrapper.active input[type='number']"
+    );
     if (activeQuantityWrapperDiv) {
       window.open("/cart.html", "_self");
     } else {
@@ -230,7 +172,9 @@ function createAltImages(imagesArr) {
       const altImageWrapperDiv = document.createElement("div");
       altImageWrapperDiv.classList.add("alt-image-wrapper");
       altImageWrapperDiv.addEventListener("click", () => {
-        document.getElementById("product-image").src = `${util.imgUrl}/product/${img}`;
+        document.getElementById(
+          "product-image"
+        ).src = `${util.imgUrl}/product/${img}`;
         altImages.querySelectorAll(".alt-image-wrapper").forEach((wrapper) => {
           wrapper.classList.remove("active");
         });
@@ -359,7 +303,11 @@ async function createReviewsSection(product) {
 
     if (review.verified) {
       const verifiedIcon = document.createElement("i");
-      verifiedIcon.classList.add("fa-solid", "fa-check-circle", "verified-badge");
+      verifiedIcon.classList.add(
+        "fa-solid",
+        "fa-check-circle",
+        "verified-badge"
+      );
 
       const verifiedSpan = document.createElement("span");
       verifiedSpan.classList.add("verified-badge-text");
@@ -393,7 +341,9 @@ async function createReviewsSection(product) {
 
 async function createRelatedProductsSection() {
   try {
-    const relatedRes = await fetch(`/api/product/${productId}/related-products`);
+    const relatedRes = await fetch(
+      `/api/product/${productId}/related-products`
+    );
     const relatedProducts = await relatedRes.json();
 
     if (relatedProducts.length === 0) return;
