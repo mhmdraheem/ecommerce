@@ -1,50 +1,106 @@
 .page-content {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .page-header {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-
-.order-wrapper {}
 
 .shipping-info {
-    border-radius: 5px;
+  overflow: hidden;
+
+  .shipping-info-header {
+    padding: 10px 0 20px;
+    display: flex;
+    align-items: center;
+
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    a {
+      margin-left: 10px;
+      margin-right: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      i {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .profile-link {
+    color: blue;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .shipping-info-content {
+    padding: 10px;
     border: 1px solid #ccc;
-    overflow: hidden;
+    border-radius: 5px;
 
-    .shipping-info-header {
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-        display: flex;
-        align-items: center;
-
-        a {
-            margin-left: auto;
-            margin-right: 5px;
-        }
+    h4 {
+      font-weight: 400;
+      margin-bottom: 10px;
     }
 
-    .profile-link {
-        color: blue;
-
-        &:hover {
-            text-decoration: underline;
-        }
+    p {
+      opacity: 0.9;
+      margin-top: 5px;
     }
-
-    .shipping-info-content {
-        padding: 20px 10px;
-
-        h4 {
-            font-weight: 400;
-        }
-
-        p {
-            opacity: 0.9;
-            margin-top: 5px;
-        }
-    }
+  }
 }
 
-.payment-method {}
+.items {
+  margin-top: 20px;
+
+  .items-title {
+    font-size: 1.2rem;
+    padding: 10px 0 20px;
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+
+    .item {
+      display: flex;
+      gap: 5px;
+      font-size: 0.8rem;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+
+      .image-wrapper {
+        width: 50px;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .item-info {
+        flex: 1;
+        font-size: 0.8rem;
+      }
+
+      .item-title {
+        font-weight: 400;
+      }
+
+      .item-price {
+        margin-top: 5px;
+      }
+
+      .item-quantity {
+        margin-top: 5px;
+      }
+    }
+  }
+}
