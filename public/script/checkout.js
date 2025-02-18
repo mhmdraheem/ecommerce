@@ -20,37 +20,33 @@ function renderInfoSection(profile) {
   pageHeader.textContent = "Place your order";
 
   const shippingInfoHeader = document.querySelector(".shipping-info-header");
-  const shippingInfoText = document.querySelector(".shipping-info-content");
-  if (profile.personalInfo) {
-    shippingInfoHeader.innerHTML = `
-            <h3>Shipping information</h3>
-            <a class="profile-link" href="profile.html">edit
-                <i class="fa-solid fa-chevron-right arrow"></i>
-            </a>
-        `;
+  shippingInfoHeader.classList.remove("hidden");
 
+  const shippingInfoContent = document.querySelector(".shipping-info-content");
+  if (profile) {
     const personalInfo = profile.personalInfo;
     const address = profile.address;
     const payment = profile.paymentMethod;
 
-    shippingInfoText.innerHTML = `
-            <h4>${personalInfo.firstName} ${personalInfo.lastName}</h4>
-            <p>Address: ${address.addressLine1} ${address.addressLine2} ${address.country}, ${address.city}, ${address.zipCode} | ${personalInfo.email} | ${personalInfo.phone}</p>
-        `;
+    shippingInfoContent.querySelector(".line-1 p").textContent = `${personalInfo.firstName} ${personalInfo.lastName}`;
+    shippingInfoContent.querySelector(".line-1 a span").textContent = "edit";
+    shippingInfoContent.querySelector(".line-1 a i").classList.add("fa-solid", "fa-chevron-right", "arrow");
+    shippingInfoContent.querySelector(
+      ".address"
+    ).textContent = `${address.addressLine1} ${address.addressLine2} ${address.country}, ${address.city}, ${address.zipCode} | ${personalInfo.email} | ${personalInfo.phone}`;
 
+    console.log(payment);
     if (payment.type === "COD") {
-      shippingInfoText.innerHTML += `<p class="payment-method">Payment method: cash on delivery</p>`;
+      shippingInfoContent.querySelector(".payment").textContent = `Payment via: cash on delivery`;
     } else {
-      shippingInfoText.innerHTML += `<p class="payment-method">Payment: debit card ending with: ${payment.cardNumber}</p>`;
+      shippingInfoContent.querySelector(
+        ".payment"
+      ).textContent = `Payment via: card ending with ${payment.cardNumber.substr(-4)}`;
     }
   } else {
-    shippingInfoHeader.innerHTML = `
-            <h3>Shipping information</h3>
-            <a class="profile-link" href="profile.html" target="_blank">add
-                <i class="fa-solid fa-plus"></i>
-            </a>
-        `;
-    shippingInfoText.innerHTML = `<span>Please  visit your <a class="profile-link" href="profile.html">profile page</a> to fill out your personal information first.</span>`;
+    shippingInfoContent.querySelector(".line-1 p").textContent = `Please add your personal information.`;
+    shippingInfoContent.querySelector(".line-1 a span").textContent = "add";
+    shippingInfoContent.querySelector(".line-1 a i").classList.add("fa-solid", "fa-plus");
   }
 }
 
@@ -65,16 +61,14 @@ async function renderItemsSection() {
         const itemDiv = document.createElement("div");
         itemDiv.classList.add("item");
         itemDiv.innerHTML = `
-                <div class="image-wrapper">
-                    <img src="${util.imgUrl}/product/${item.image}"></img>
-                </div>
-                <div class="item-info">
-                    <p class="item-title">${item.title}</p>
-                    <p class="item-price">${item.price} EGP</p>
-                    <p class="item-quantity">${item.quantity} item(s)</p>
-                </div>
-            `;
-
+          <div class="image-wrapper">
+              <img src="${util.imgUrl}/product/${item.image}"></img>
+          </div>
+          <div class="item-info">
+              <p class="item-title">${item.title}</p>
+              <p class="item-price">${item.price} EGP</p>
+              <p class="item-quantity">${item.quantity} item(s)</p>
+          </div>`;
         itemsGrid.appendChild(itemDiv);
       });
       itemsDiv.querySelector(".items-title").textContent = "Your items";
@@ -137,36 +131,30 @@ async function renderOrderSummaryCard() {
 
   orderSummaryCard.appendChild(shippingDiv);
 
-  const totalPrice = document.createElement("div");
-  totalPrice.classList.add("total-price");
-  totalPrice.innerHTML = `
-    <h3 class="order-card-title">Total price</h3>
-    <div class="item-price">
-      <span>Item price</span>
-      <span>1 x ${item.price} EGP</span>
-    </div>
-    <div class="shipping-price">
-      <span>Shipping</span>
-      <span>${shippingCosts.free.price} EGP</span>
-    </div>
-    <div class="total-price-value">
-      <span>Total</span>
-      <span class="total-price-value-value">${item.price} EGP</span>
-    </div>
-  `;
-  orderSummaryCard.appendChild(totalPrice);
+  // const totalPrice = document.createElement("div");
+  // totalPrice.classList.add("total-price");
+  // totalPrice.innerHTML = `
+  //   <h3 class="order-card-title">Total price</h3>
+  //   <div class="item-price">
+  //     <span>Item price</span>
+  //     <span>1 x ${item.price} EGP</span>
+  //   </div>
+  //   <div class="shipping-price">
+  //     <span>Shipping</span>
+  //     <span>${shippingCosts.free.price} EGP</span>
+  //   </div>
+  //   <div class="total-price-value">
+  //     <span>Total</span>
+  //     <span class="total-price-value-value">${item.price} EGP</span>
+  //   </div>
+  // `;
+  // orderSummaryCard.appendChild(totalPrice);
 
-  orderSummaryCard
-    .querySelector(".shipping-title")
-    .addEventListener("click", () => {
-      orderSummaryCard
-        .querySelector(".shipping-title i")
-        .classList.toggle("down");
+  orderSummaryCard.querySelector(".shipping-title").addEventListener("click", () => {
+    orderSummaryCard.querySelector(".shipping-title i").classList.toggle("down");
 
-      orderSummaryCard
-        .querySelector(".shipping-options")
-        .classList.toggle("inactive");
-    });
+    orderSummaryCard.querySelector(".shipping-options").classList.toggle("inactive");
+  });
 
   //   orderSummaryCard
   //     .querySelectorAll(".shipping-option input")

@@ -10,40 +10,42 @@
   overflow: hidden;
 }
 .shipping-info .shipping-info-header {
-  padding: 10px 0 20px;
+  padding: 10px 0;
   display: flex;
   align-items: center;
 }
 .shipping-info .shipping-info-header h3 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
-.shipping-info .shipping-info-header a {
-  margin-left: 10px;
-  margin-right: 5px;
+.shipping-info .profile-link {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 5px;
-}
-.shipping-info .shipping-info-header a i {
-  font-size: 0.9rem;
-}
-.shipping-info .profile-link {
-  color: blue;
+  background: #eee;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 .shipping-info .profile-link:hover {
-  text-decoration: underline;
+  background: #ccc;
+}
+.shipping-info .profile-link i {
+  font-size: 0.9rem;
 }
 .shipping-info .shipping-info-content {
   padding: 10px;
   border: 1px solid #eee;
   border-radius: 5px;
 }
-.shipping-info .shipping-info-content h4 {
+.shipping-info .shipping-info-content .line-1 {
+  display: flex;
+}
+.shipping-info .shipping-info-content .line-1 p {
   font-weight: 400;
-  margin-bottom: 10px;
 }
 .shipping-info .shipping-info-content p {
-  opacity: 0.9;
   margin-top: 5px;
 }
 
@@ -51,8 +53,8 @@
   margin-top: 20px;
 }
 .items .items-title {
-  font-size: 1.2rem;
-  padding: 10px 0 20px;
+  font-size: 1.5rem;
+  padding: 10px 0;
 }
 .items .items-grid {
   display: grid;

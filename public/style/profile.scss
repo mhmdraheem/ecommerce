@@ -1,7 +1,7 @@
 .profile-button {
   font-size: 1rem;
   font-weight: 400;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -9,61 +9,49 @@
   color: #fff;
 }
 
-.profile-section {
-  margin-bottom: 30px;
-
-  h2 {
-    margin-bottom: 20px;
-  }
+h2:not(:first-of-type) {
+  margin-top: 15px;
 }
 
-.personal-info-section {
+.avatar-wrapper {
+  flex: 1;
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
   display: flex;
-  margin-top: 20px;
-  gap: 50px;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 55px;
+}
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
+.avatar {
+  width: clamp(150px, 25vw, 350px);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
 
-  .avatar-wrapper {
-    flex: 1;
+  img {
     width: 100%;
-    gap: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    @media (max-width: 768px) {
-      border: none;
-    }
-  }
-
-  .avatar {
-    width: clamp(150px, 25vw, 300px);
-    aspect-ratio: 1/1;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
   }
 }
 
 .personal-info {
-  flex: 1;
-  width: 100%;
-}
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 30px 0;
 
-.personal-info-form {
-  flex: 1;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .profile-form {
+  flex: 2;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -112,7 +100,6 @@
     }
   }
 
-  /* Arrow Styling */
   .arrow {
     margin-left: auto;
     font-size: 14px;
@@ -145,7 +132,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: 0.2s;
     gap: 10px;
   }
 
@@ -177,10 +164,6 @@
   flex: 1;
   width: 100%;
 
-  label {
-    cursor: pointer;
-  }
-
   input[type="radio"] {
     width: 15px;
     height: 15px;
@@ -192,6 +175,11 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+
+  label,
+  input {
+    cursor: pointer;
+  }
 }
 
 .card-details {
