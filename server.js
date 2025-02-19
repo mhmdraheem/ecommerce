@@ -49,7 +49,7 @@ app.use(
 );
 
 // app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("public/html"));
+app.use(express.static("public"));
 
 // Custom Session Middleware
 app.use(require("./middleware/sessionHandler"));
