@@ -8,7 +8,7 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// middleware
 app.use(express.json());
 app.use(
   helmet({
@@ -16,8 +16,18 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
-        fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
+        styleSrc: [
+          "'self'",
+          "https://fonts.googleapis.com",
+          "'unsafe-inline'",
+          "https://cdn.jsdelivr.net",
+        ],
+        fontSrc: [
+          "'self'",
+          "data:",
+          "https://fonts.gstatic.com",
+          "https://ka-f.fontawesome.com",
+        ],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
         imgSrc: ["'self'", "https://www.flaticon.com", "https://flagcdn.com"],
       },
@@ -30,7 +40,11 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: process.env.NODE_ENV === "production", httpOnly: true, maxAge: 365 * 24 * 60 * 60 * 1000 },
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 365 * 24 * 60 * 60 * 1000,
+    },
   })
 );
 
@@ -58,7 +72,9 @@ process.on("SIGINT", () => {
 
 // Start Server (Only for Local Development)
 if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+  app.listen(PORT, () =>
+    console.log(`Server running on http://localhost:${PORT}`)
+  );
 }
 
 module.exports = app;
