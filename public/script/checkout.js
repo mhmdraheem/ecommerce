@@ -94,9 +94,16 @@ async function renderItemsSection(items) {
   });
   itemsDiv.querySelector(".items-title").textContent = "Your items";
 
-  subtotal = items.reduce((prev, i) => prev + i.price, 0);
+  subtotal = items.reduce((prev, i) => prev + i.quantity * i.price, 0);
+
   document.querySelector(".total-price-subtotal .value").textContent =
     util.formatPrice(subtotal) + " EGP";
+
+  const totalQuantity = items.reduce((acc, i) => acc + i.quantity, 0);
+  document.querySelector(
+    ".total-price-subtotal .items-count"
+  ).textContent = `${totalQuantity} item(s)`;
+
   document.querySelector(".total-price-total .value").textContent =
     util.formatPrice(subtotal) + " EGP";
 }
@@ -159,7 +166,10 @@ async function renderOrderSummaryCard() {
       <h3>Total price</h3>
       <div class="total-price-subtotal">
         <span>Subtotal</span>
-        <span class="value"></span>
+        <span class="subtotal-wrapper">
+          <span class="value"></span>
+          <span class="items-count"></span>
+        </span>
       </div>
       <div class="total-price-shipping">
         <span>Shipping</span>
