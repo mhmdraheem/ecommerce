@@ -15,7 +15,6 @@
   }
 }
 .page-header a {
-  width: -moz-fit-content;
   width: fit-content;
   display: block;
   margin: 50px auto 100px;
@@ -78,10 +77,8 @@
 .image-wrapper img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: 50%;
-     object-position: 50%;
+  object-fit: cover;
+  object-position: 50%;
 }
 
 .info {
@@ -93,8 +90,7 @@
 
 .cart-item-header {
   display: flex;
-  -moz-column-gap: 20px;
-       column-gap: 20px;
+  column-gap: 20px;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
@@ -165,7 +161,6 @@
 }
 
 .total-price-amount {
-  width: -moz-fit-content;
   width: fit-content;
   margin: 15px 0 15px auto;
   font-weight: 500;

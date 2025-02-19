@@ -43,7 +43,6 @@ figcaption {
   display: block;
   margin: 50px auto;
   border: 2px solid var(--primary-color);
-  width: -moz-fit-content;
   width: fit-content;
   padding: 10px 20px;
 }

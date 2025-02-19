@@ -5,6 +5,12 @@ router.get("/count", (req, res) => {
   res.json(req.session.cart.length);
 });
 
+router.delete("/", (req, res) => {
+  req.session.cart = [];
+  console.log("cart deleted");
+  res.json({});
+});
+
 // Get cart items
 router.get("/", (req, res) => {
   res.json(req.session.cart);

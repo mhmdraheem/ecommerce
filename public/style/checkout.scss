@@ -2,6 +2,26 @@
   margin: 20px 0;
 }
 
+.empty-page-header {
+  h1 {
+    padding: 20px 0 10px 0;
+    font-size: 1.7rem;
+  }
+
+  a {
+    width: fit-content;
+    display: block;
+    margin: 50px auto 100px;
+    border: 1px solid #000;
+    padding: 10px 15px;
+
+    &:hover {
+      color: #fff;
+      background-color: var(--primary-color);
+    }
+  }
+}
+
 .page-header {
   margin-bottom: 10px;
 }
@@ -11,8 +31,12 @@
 
   .shipping-info-header {
     padding: 10px 0;
-    display: flex;
+    display: none;
     align-items: center;
+
+    &.visible {
+      display: flex;
+    }
 
     h3 {
       font-size: 1.5rem;
@@ -93,7 +117,12 @@
       }
 
       .item-title {
+        cursor: pointer;
         font-weight: 400;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       .item-price {
@@ -110,12 +139,13 @@
 .order-wrapper {
   display: flex;
   gap: 15px;
+  align-items: flex-start;
 }
 
 .order-summary-card {
   flex: 1;
   width: 100%;
-  min-width: 260px;
+  min-width: 350px;
   border: 1px solid #eee;
   border-radius: 5px;
   font-size: 1rem;
@@ -193,7 +223,7 @@
   .total-price {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 15px;
     background-color: #fff;
 
     .item-price,
@@ -231,4 +261,30 @@
       margin-top: 10px;
     }
   }
+}
+
+.checkout-button {
+  width: calc(100% - 20px);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: var(--social-youtube);
+  color: #fff;
+  font-weight: 400;
+
+  &:hover {
+    background-color: #c12727;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.swal2-html-container {
+  text-align: left;
 }
