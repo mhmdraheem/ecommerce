@@ -48,6 +48,8 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, "public")));
+
 // Custom Session Middleware
 app.use(require("./middleware/sessionHandler"));
 
@@ -59,8 +61,6 @@ app.use("/api/product", require("./routes/product"));
 app.use("/api/profile", require("./routes/profile"));
 
 app.use("/api", require("./middleware/errorHandler"));
-
-app.use(express.static(path.join(__dirname, "public")));
 
 // Graceful Shutdown for Redis
 process.on("SIGINT", () => {
