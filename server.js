@@ -27,6 +27,7 @@ app.use(
 );
 app.use(
   session({
+    name: "ecomm-session",
     store: redisStore,
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -34,13 +35,13 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
+      sameSite: "lax",
       maxAge: 365 * 24 * 60 * 60 * 1000,
     },
   })
 );
 
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(express.static("public"));
 
 // Custom Session Middleware
 app.use(require("./middleware/sessionHandler"));
