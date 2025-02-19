@@ -48,7 +48,8 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public/html"));
 
 // Custom Session Middleware
 app.use(require("./middleware/sessionHandler"));
