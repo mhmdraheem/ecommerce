@@ -1,5 +1,5 @@
-export const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
-// export const imgUrl = "http://localhost:3000/img";
+// export const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
+export const imgUrl = "/img";
 
 let url = new URL(window.location.href);
 let searchParams = new URLSearchParams(url.search);
@@ -45,12 +45,7 @@ export function createFullPageOverlay(showSpinner = true) {
   overlay.style.top = document.querySelector("nav").offsetHeight + "px";
 
   const spinner = document.createElement("i");
-  spinner.classList.add(
-    "fa-solid",
-    "fa-spinner",
-    "fa-spin",
-    "page-overlay-spinner"
-  );
+  spinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "page-overlay-spinner");
 
   if (showSpinner) {
     overlay.appendChild(spinner);
@@ -109,9 +104,7 @@ export function getUserProfile() {
 
 export function updateAvatar(avatarElem) {
   getUserProfile().then((profile) => {
-    const avatarValue = profile.avatar
-      ? `${profile.avatar}`
-      : `${imgUrl}/avatar.png`;
+    const avatarValue = profile.avatar ? `${profile.avatar}` : `${imgUrl}/avatar.png`;
     avatarElem.src = avatarValue;
   });
 }
@@ -152,8 +145,7 @@ export function generateStars(rating, includeReviews = false) {
 
 (function navEvents() {
   if (queryParams.get("name")) {
-    document.querySelector(".search-form input").value =
-      queryParams.get("name");
+    document.querySelector(".search-form input").value = queryParams.get("name");
   }
 
   updateAvatar(document.querySelector("nav .user-avatar"));
@@ -168,9 +160,7 @@ export function generateStars(rating, includeReviews = false) {
 })();
 
 (function scrollToTopEvent() {
-  document
-    .querySelector(".scroll-to-top")
-    .addEventListener("click", scrollToTop);
+  document.querySelector(".scroll-to-top").addEventListener("click", scrollToTop);
 })();
 
 export function formatPrice(price) {

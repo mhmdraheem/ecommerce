@@ -12,12 +12,12 @@
     },
     "stock": 3,
     "images": [
-      "/camera1/1.avif",
-      "/camera1/2.avif",
-      "/camera1/3.avif",
-      "/camera1/4.avif",
-      "/camera1/5.avif",
-      "/camera1/cover.avif"
+      "camera1/1.avif",
+      "camera1/2.avif",
+      "camera1/3.avif",
+      "camera1/4.avif",
+      "camera1/5.avif",
+      "camera1/cover.avif"
     ],
     "price": {
       "oldPrice": 7761.47,
@@ -119,13 +119,13 @@
     },
     "stock": 10,
     "images": [
-      "/camera2/1.avif",
-      "/camera2/2.avif",
-      "/camera2/3.avif",
-      "/camera2/cover1.avif",
-      "/camera2/cover2.avif",
-      "/camera2/cover3.avif",
-      "/camera2/cover4.avif"
+      "camera2/1.avif",
+      "camera2/2.avif",
+      "camera2/3.avif",
+      "camera2/cover1.avif",
+      "camera2/cover2.avif",
+      "camera2/cover3.avif",
+      "camera2/cover4.avif"
     ],
     "price": {
       "oldPrice": 8257.33,
@@ -227,14 +227,14 @@
     },
     "stock": 10,
     "images": [
-      "/camera4/1.avif",
-      "/camera4/2.avif",
-      "/camera4/3.avif",
-      "/camera4/4.avif",
-      "/camera4/cover1.avif",
-      "/camera4/cover2.avif",
-      "/camera4/cover3.avif",
-      "/camera4/cover4.avif"
+      "camera4/1.avif",
+      "camera4/2.avif",
+      "camera4/3.avif",
+      "camera4/4.avif",
+      "camera4/cover1.avif",
+      "camera4/cover2.avif",
+      "camera4/cover3.avif",
+      "camera4/cover4.avif"
     ],
     "price": {
       "oldPrice": 1705.04,
@@ -332,13 +332,13 @@
     },
     "stock": 1000,
     "images": [
-      "/perfume2/1.avif",
-      "/perfume2/2.avif",
-      "/perfume2/3.avif",
-      "/perfume2/4.avif",
-      "/perfume2/cover1.avif",
-      "/perfume2/cover2.avif",
-      "/perfume2/cover3.avif"
+      "perfume2/1.avif",
+      "perfume2/2.avif",
+      "perfume2/3.avif",
+      "perfume2/4.avif",
+      "perfume2/cover1.avif",
+      "perfume2/cover2.avif",
+      "perfume2/cover3.avif"
     ],
     "price": {
       "oldPrice": 66.85,
@@ -436,13 +436,13 @@
     },
     "stock": 10,
     "images": [
-      "/perfume3/1.avif",
-      "/perfume3/2.avif",
-      "/perfume3/3.avif",
-      "/perfume3/4.avif",
-      "/perfume3/cover1.avif",
-      "/perfume3/cover2.avif",
-      "/perfume3/cover3.avif"
+      "perfume3/1.avif",
+      "perfume3/2.avif",
+      "perfume3/3.avif",
+      "perfume3/4.avif",
+      "perfume3/cover1.avif",
+      "perfume3/cover2.avif",
+      "perfume3/cover3.avif"
     ],
     "price": {
       "oldPrice": 1787.83,
@@ -540,11 +540,11 @@
     },
     "stock": 25,
     "images": [
-      "/perfume1/1.jpg",
-      "/perfume1/2.jpg",
-      "/perfume1/cover1.avif",
-      "/perfume1/cover2.avif",
-      "/perfume1/cover3.avif"
+      "perfume1/1.jpg",
+      "perfume1/2.jpg",
+      "perfume1/cover1.avif",
+      "perfume1/cover2.avif",
+      "perfume1/cover3.avif"
     ],
     "price": {
       "oldPrice": 135.99,
@@ -695,7 +695,7 @@
       "reviews": 6
     },
     "stock": 75,
-    "images": ["/lipstick/1.jpg", "/lipstick/2.jpg", "/lipstick/cover1.jpg", "/lipstick/cover2.jpg"],
+    "images": ["lipstick/1.jpg", "lipstick/2.jpg", "lipstick/cover1.jpg", "lipstick/cover2.jpg"],
     "price": {
       "oldPrice": 24.99,
       "currentPrice": 19.99,
@@ -818,7 +818,7 @@
       "reviews": 2
     },
     "stock": 100,
-    "images": ["/beer/1.jpg", "/beer/2.jpg", "/beer/cover1.jpg", "/beer/cover2.jpg"],
+    "images": ["beer/1.jpg", "beer/2.jpg", "beer/cover1.jpg", "beer/cover2.jpg"],
     "price": {
       "oldPrice": 3.99,
       "currentPrice": 2.99,

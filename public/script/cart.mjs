@@ -1,5 +1,5 @@
-import * as util from "./util.js";
-import * as addToCart from "./add-to-cart.js";
+import * as util from "./util.mjs";
+import * as addToCart from "./add-to-cart.mjs";
 
 (async function getCartItems() {
   fetch("/api/cart")

@@ -1,4 +1,4 @@
-import * as util from "./util.js";
+import * as util from "./util.mjs";
 
 export function create(product, options = { showQuantityIfCartItem: false }) {
   const bottomProductBarDiv = document.createElement("div");

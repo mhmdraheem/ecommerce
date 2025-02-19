@@ -1,7 +1,7 @@
-import * as util from "./util.js";
-import * as addToCart from "./add-to-cart.js";
-const productId = util.queryParams.get("id");
+import * as util from "./util.mjs";
+import * as addToCart from "./add-to-cart.mjs";
 
+const productId = util.queryParams.get("id");
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     util.createFullPageOverlay(true);
@@ -48,12 +48,10 @@ function createMainSection(product) {
     rating.appendChild(util.generateStars(product.rating, true));
   });
 
-  document.querySelector(".product-price .current .value").innerText =
-    product.price.currentPrice + " EGP";
+  document.querySelector(".product-price .current .value").innerText = product.price.currentPrice + " EGP";
 
   if (product.price.discount) {
-    document.querySelector(".product-price .old .value").innerText =
-      product.price.oldPrice + " EGP";
+    document.querySelector(".product-price .old .value").innerText = product.price.oldPrice + " EGP";
     document.querySelector(".product-price .old").classList.remove("hidden");
   }
 
@@ -74,8 +72,7 @@ function createMainSection(product) {
   document.querySelector(".quantity").appendChild(quantity);
 
   document.querySelector(".product-description h3").innerText = "Description:";
-  document.querySelector(".product-description p").innerText =
-    product.description.short;
+  document.querySelector(".product-description p").innerText = product.description.short;
 
   const orderDetails = document.querySelector(".order-details");
   orderDetails.appendChild(createOrderDetailsCard(product));
@@ -113,35 +110,23 @@ function createOrderDetailsCard(product) {
     showQuantityIfCartItem: true,
   });
 
-  addToCartDiv
-    .querySelector(".quantity-wrapper input[type='number']")
-    .addEventListener("input", function (event) {
-      const quantity = event.target.value;
-      const shippingOption = orderDetailsCard
-        .querySelector(".shipping-option input:checked")
-        .getAttribute("value");
+  addToCartDiv.querySelector(".quantity-wrapper input[type='number']").addEventListener("input", function (event) {
+    const quantity = event.target.value;
+    const shippingOption = orderDetailsCard.querySelector(".shipping-option input:checked").getAttribute("value");
 
-      document.querySelector(
-        ".item-price span:last-child"
-      ).innerText = `${quantity} x ${product.price.currentPrice} EGP`;
+    document.querySelector(".item-price span:last-child").innerText = `${quantity} x ${product.price.currentPrice} EGP`;
 
-      let total = (
-        +shippingOption +
-        +product.price.currentPrice * quantity
-      ).toLocaleString("en-US", {
-        maximumFractionDigits: 2,
-      });
-      document.querySelector(".total-price-value-value").innerText =
-        total + " EGP";
+    let total = (+shippingOption + +product.price.currentPrice * quantity).toLocaleString("en-US", {
+      maximumFractionDigits: 2,
     });
+    document.querySelector(".total-price-value-value").innerText = total + " EGP";
+  });
 
   const buyNowButton = document.createElement("div");
   buyNowButton.classList.add("buy-now-button");
   buyNowButton.innerText = "Buy Now";
   buyNowButton.addEventListener("click", () => {
-    const activeQuantityWrapperDiv = orderDetailsCard.querySelector(
-      ".quantity-wrapper.active input[type='number']"
-    );
+    const activeQuantityWrapperDiv = orderDetailsCard.querySelector(".quantity-wrapper.active input[type='number']");
     if (activeQuantityWrapperDiv) {
       window.open("/cart.html", "_self");
     } else {
@@ -172,9 +157,7 @@ function createAltImages(imagesArr) {
       const altImageWrapperDiv = document.createElement("div");
       altImageWrapperDiv.classList.add("alt-image-wrapper");
       altImageWrapperDiv.addEventListener("click", () => {
-        document.getElementById(
-          "product-image"
-        ).src = `${util.imgUrl}/product/${img}`;
+        document.getElementById("product-image").src = `${util.imgUrl}/product/${img}`;
         altImages.querySelectorAll(".alt-image-wrapper").forEach((wrapper) => {
           wrapper.classList.remove("active");
         });
@@ -303,11 +286,7 @@ async function createReviewsSection(product) {
 
     if (review.verified) {
       const verifiedIcon = document.createElement("i");
-      verifiedIcon.classList.add(
-        "fa-solid",
-        "fa-check-circle",
-        "verified-badge"
-      );
+      verifiedIcon.classList.add("fa-solid", "fa-check-circle", "verified-badge");
 
       const verifiedSpan = document.createElement("span");
       verifiedSpan.classList.add("verified-badge-text");
@@ -341,9 +320,7 @@ async function createReviewsSection(product) {
 
 async function createRelatedProductsSection() {
   try {
-    const relatedRes = await fetch(
-      `/api/product/${productId}/related-products`
-    );
+    const relatedRes = await fetch(`/api/product/${productId}/related-products`);
     const relatedProducts = await relatedRes.json();
 
     if (relatedProducts.length === 0) return;

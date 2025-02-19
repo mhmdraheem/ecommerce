@@ -1,5 +1,5 @@
-import { fetchProducts } from "./products.js";
-import * as util from "./util.js";
+import { fetchProducts } from "./products.mjs";
+import * as util from "./util.mjs";
 
 document.querySelectorAll(".search-query").forEach((element) => {
   element.textContent = util.queryParams.values().next().value;

@@ -15,21 +15,12 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net"],
-        styleSrc: [
-          "'self'",
-          "https://fonts.googleapis.com",
-          "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
-        ],
-        fontSrc: [
-          "'self'",
-          "data:",
-          "https://fonts.gstatic.com",
-          "https://ka-f.fontawesome.com",
-        ],
+        frameSrc: ["https://vercel.live"],
+        scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net", "https://vercel.live"],
+        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+        fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
-        imgSrc: ["'self'", "https://www.flaticon.com", "https://flagcdn.com"],
+        imgSrc: ["'self'", "https://www.flaticon.com", "https://flagcdn.com", "*.vercel-storage.com"],
       },
     },
   })
@@ -73,9 +64,7 @@ process.on("SIGINT", () => {
 
 // Start Server (Only for Local Development)
 if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () =>
-    console.log(`Server running on http://localhost:${PORT}`)
-  );
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 }
 
 module.exports = app;

@@ -1,4 +1,4 @@
-import * as util from "./util.js";
+import * as util from "./util.mjs";
 
 const API_BASE_URL = "http://localhost:3000/api/profile";
 const UPLOAD_AVATAR_URL = `${API_BASE_URL}/upload-avatar`;

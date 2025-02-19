@@ -1,6 +1,8 @@
 module.exports = (req, res, next) => {
   let message = `Checking for session at ${req.url} => `;
-
+  console.log(message);
+  console.log(req.session);
+  console.log(req.session.cookie);
   if (!req.session) {
     return res.status(500).json({ error: "Session is not initialized properly" });
   }
@@ -13,6 +15,8 @@ module.exports = (req, res, next) => {
   } else {
     message += `Session found: ${req.session.userId}`;
   }
+
+  console.log(message);
 
   next();
 };
