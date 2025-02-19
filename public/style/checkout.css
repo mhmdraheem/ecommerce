@@ -117,6 +117,12 @@
   gap: 15px;
   align-items: flex-start;
 }
+@media (max-width: 797px) {
+  .order-wrapper {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
 
 .order-summary-card {
   flex: 1;

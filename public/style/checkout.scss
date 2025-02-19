@@ -140,6 +140,11 @@
   display: flex;
   gap: 15px;
   align-items: flex-start;
+
+  @media (max-width: 797px) {
+    flex-direction: column;
+    gap: 25px;
+  }
 }
 
 .order-summary-card {
