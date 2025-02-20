@@ -1,17 +1,26 @@
-module.exports = (req, res, next) => {
-  let message = `Checking for session at ${req.url} => `;
-
+module.exports = async (req, res, next) => {
   if (!req.session) {
-    return res.status(500).json({ error: "Session is not initialized properly" });
+    return res
+      .status(500)
+      .json({ error: "Session is not initialized properly" });
   }
 
-  if (!req.session.userId) {
-    req.session.userId = `user-${Math.random().toString(36).substring(7)}`;
-    req.session.cart = [];
-    req.session.userData = {};
-    message += `No session found, creating new one ✅ ${req.session.userId}`;
-  } else {
-    message += `Session found: ${req.session.userId}`;
+  try {
+    if (!req.session.userId) {
+      const sessionId = req.sessionID;
+      const existingSession = await req.sessionStore.get(sessionId);
+
+      if (existingSession) {
+        req.session = existingSession;
+      } else {
+        req.session.userId = `user-${Math.random().toString(36).substring(7)}`;
+        req.session.cart = [];
+        req.session.userData = {};
+        console.log(`Creating new session ✅ ${req.session.userId}`);
+      }
+    }
+  } catch (err) {
+    console.error("Session retrieval error:", err);
   }
 
   next();

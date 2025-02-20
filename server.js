@@ -4,38 +4,68 @@ const session = require("express-session");
 const helmet = require("helmet");
 const { redisClient, redisStore } = require("./config/redis");
 const path = require("path");
-
-const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+const app = express();
+app.enable("trust proxy");
+
+// middleware
 app.use(express.json());
+
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
-        fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
+        frameSrc: ["https://vercel.live"],
+        scriptSrc: [
+          "'self'",
+          "*.fontawesome.com",
+          "*.jsdelivr.net",
+          "https://vercel.live",
+        ],
+        styleSrc: [
+          "'self'",
+          "https://fonts.googleapis.com",
+          "'unsafe-inline'",
+          "https://cdn.jsdelivr.net",
+        ],
+        fontSrc: [
+          "'self'",
+          "data:",
+          "https://fonts.gstatic.com",
+          "https://ka-f.fontawesome.com",
+        ],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
-        imgSrc: ["'self'", "https://www.flaticon.com", "https://flagcdn.com"],
+        imgSrc: [
+          "'self'",
+          "https://www.flaticon.com",
+          "https://flagcdn.com",
+          "*.vercel-storage.com",
+        ],
       },
     },
   })
 );
+
 app.use(
   session({
+    name: "ecomm-session",
     store: redisStore,
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: process.env.NODE_ENV === "production", httpOnly: true, maxAge: 365 * 24 * 60 * 60 * 1000 },
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 365 * 24 * 60 * 60 * 1000,
+    },
   })
 );
 
-// Custom Session Middleware
 app.use(require("./middleware/sessionHandler"));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 // API Routes
 app.use("/api", require("./middleware/apiDelay"));
@@ -46,8 +76,6 @@ app.use("/api/profile", require("./routes/profile"));
 
 app.use("/api", require("./middleware/errorHandler"));
 
-app.use(express.static(path.join(__dirname, "public")));
-
 // Graceful Shutdown for Redis
 process.on("SIGINT", () => {
   redisClient.quit().then(() => {
@@ -57,8 +85,8 @@ process.on("SIGINT", () => {
 });
 
 // Start Server (Only for Local Development)
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-}
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`)
+);
 
 module.exports = app;
