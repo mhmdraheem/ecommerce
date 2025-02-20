@@ -7,6 +7,7 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.enable("trust proxy");
 
 // middleware
 app.use(express.json());
@@ -53,7 +54,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      domain: ".ecommerce-production-ca4f.up.railway.app",
+      // domain: ".ecommerce-production-ca4f.up.railway.app",
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       sameSite: "none",
