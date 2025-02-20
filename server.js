@@ -7,7 +7,8 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-app.enable("trust proxy");
+
+// app.enable("trust proxy");
 
 // middleware
 app.use(express.json());
@@ -56,6 +57,7 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
+      sameSite: "none",
       maxAge: 365 * 24 * 60 * 60 * 1000,
     },
   })
