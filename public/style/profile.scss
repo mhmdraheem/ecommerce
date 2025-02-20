@@ -23,6 +23,10 @@ h2:not(:first-of-type) {
   align-items: center;
   position: sticky;
   top: 55px;
+
+  @media (max-width: 767px) {
+    position: static;
+  }
 }
 
 .avatar {

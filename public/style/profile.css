@@ -24,6 +24,11 @@ h2:not(:first-of-type) {
   position: sticky;
   top: 55px;
 }
+@media (max-width: 767px) {
+  .avatar-wrapper {
+    position: static;
+  }
+}
 
 .avatar {
   width: clamp(150px, 25vw, 350px);
@@ -34,7 +39,8 @@ h2:not(:first-of-type) {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .personal-info {

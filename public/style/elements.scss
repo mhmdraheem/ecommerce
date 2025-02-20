@@ -160,7 +160,7 @@ nav {
     margin-right: 10px;
 
     @media (max-width: 768px) {
-      margin: 0 0.7rem 0 auto;
+      margin: 0 1rem 0 auto;
     }
 
     .avatar {
@@ -458,6 +458,7 @@ footer {
 
   @media (max-width: 768px) {
     width: 95%;
+    padding: 0 5px;
   }
 }
 

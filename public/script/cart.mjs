@@ -164,7 +164,7 @@ function deleteCartItem(e, item) {
         pageHeaderDiv.innerHTML = "";
         renderEmptyCart();
         util.updateCartAlert();
-        document.querySelector(".total-price-amount").remove();
+        document.querySelector(".cart-wrapper").remove();
       }
     },
     (e) => {
