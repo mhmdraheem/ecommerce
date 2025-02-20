@@ -145,13 +145,14 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
   util.createFullPageOverlay(true);
   util
     .getUserProfile()
-    .then((profile) => {
-      if (profile.avatar && profile.avatar !== "") {
+    .then((userDetails) => {
+      if (userDetails.avatar && userDetails.avatar !== "") {
         document.querySelectorAll(".user-avatar").forEach((avatar) => {
-          avatar.src = profile.avatar;
+          avatar.src = userDetails.avatar;
         });
       }
 
+      const profile = userDetails.profile;
       if (profile.personalInfo) {
         document.getElementById("first-name").value =
           profile.personalInfo.firstName;

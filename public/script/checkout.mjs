@@ -36,8 +36,6 @@ function renderInfoSection(userData) {
 
   const shippingInfoContent = document.querySelector(".shipping-info-content");
   if (userData.profile) {
-    console.log(profile);
-
     const personalInfo = profile.personalInfo;
     const address = profile.address;
     const payment = profile.paymentMethod;
