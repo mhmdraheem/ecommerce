@@ -53,6 +53,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
+      domain: ".ecommerce-production-ca4f.up.railway.app",
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       sameSite: "none",
