@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const filePath = `../public/img/profiles/${req.session.userId}`;
+    const filePath = `public/img/profiles/${req.session.userId}`;
     if (!fs.existsSync(filePath)) {
       fs.mkdirSync(filePath, { recursive: true });
     } else {
