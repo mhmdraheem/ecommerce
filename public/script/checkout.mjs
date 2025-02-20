@@ -10,8 +10,8 @@ let items = [];
         items = itemsArr;
         fetch("/api/profile")
           .then((response) => response.json())
-          .then((profile) => {
-            renderInfoSection(profile);
+          .then((userData) => {
+            renderInfoSection(userData);
             renderOrderSummaryCard();
             renderItemsSection(items);
           })
@@ -27,7 +27,7 @@ let items = [];
     });
 })();
 
-function renderInfoSection(profile) {
+function renderInfoSection(userData) {
   const pageHeader = document.querySelector(".page-header h1");
   pageHeader.textContent = "Place your order";
 
@@ -35,29 +35,43 @@ function renderInfoSection(profile) {
   shippingInfoHeader.classList.add("visible");
 
   const shippingInfoContent = document.querySelector(".shipping-info-content");
-  if (profile) {
+  if (userData.profile) {
+    console.log(profile);
+
     const personalInfo = profile.personalInfo;
     const address = profile.address;
     const payment = profile.paymentMethod;
 
-    shippingInfoContent.querySelector(".line-1 p").textContent = `${personalInfo.firstName} ${personalInfo.lastName}`;
+    shippingInfoContent.querySelector(
+      ".line-1 p"
+    ).textContent = `${personalInfo.firstName} ${personalInfo.lastName}`;
     shippingInfoContent.querySelector(".line-1 a span").textContent = "edit";
-    shippingInfoContent.querySelector(".line-1 a i").classList.add("fa-solid", "fa-chevron-right", "arrow");
+    shippingInfoContent
+      .querySelector(".line-1 a i")
+      .classList.add("fa-solid", "fa-chevron-right", "arrow");
     shippingInfoContent.querySelector(
       ".address"
     ).textContent = `${address.addressLine1} ${address.addressLine2} ${address.country}, ${address.city}, ${address.zipCode} | ${personalInfo.email} | ${personalInfo.phone}`;
 
     if (payment.type === "COD") {
-      shippingInfoContent.querySelector(".payment").textContent = `Payment via: cash on delivery`;
+      shippingInfoContent.querySelector(
+        ".payment"
+      ).textContent = `Payment via: cash on delivery`;
     } else {
       shippingInfoContent.querySelector(
         ".payment"
-      ).textContent = `Payment via: card ending with ${payment.cardNumber.substr(-4)}`;
+      ).textContent = `Payment via: card ending with ${payment.cardNumber.substr(
+        -4
+      )}`;
     }
   } else {
-    shippingInfoContent.querySelector(".line-1 p").textContent = `Please add your personal information.`;
+    shippingInfoContent.querySelector(
+      ".line-1 p"
+    ).textContent = `Please add your personal information.`;
     shippingInfoContent.querySelector(".line-1 a span").textContent = "add";
-    shippingInfoContent.querySelector(".line-1 a i").classList.add("fa-solid", "fa-plus");
+    shippingInfoContent
+      .querySelector(".line-1 a i")
+      .classList.add("fa-solid", "fa-plus");
   }
 }
 
@@ -83,12 +97,16 @@ async function renderItemsSection(items) {
 
   subtotal = items.reduce((prev, i) => prev + i.quantity * i.price, 0);
 
-  document.querySelector(".total-price-subtotal .value").textContent = util.formatPrice(subtotal) + " EGP";
+  document.querySelector(".total-price-subtotal .value").textContent =
+    util.formatPrice(subtotal) + " EGP";
 
   const totalQuantity = items.reduce((acc, i) => acc + i.quantity, 0);
-  document.querySelector(".total-price-subtotal .items-count").textContent = `${totalQuantity} item(s)`;
+  document.querySelector(
+    ".total-price-subtotal .items-count"
+  ).textContent = `${totalQuantity} item(s)`;
 
-  document.querySelector(".total-price-total .value").textContent = util.formatPrice(subtotal) + " EGP";
+  document.querySelector(".total-price-total .value").textContent =
+    util.formatPrice(subtotal) + " EGP";
 }
 
 async function renderOrderSummaryCard() {
@@ -168,18 +186,29 @@ async function renderOrderSummaryCard() {
 
   orderSummaryCard.appendChild(contentDiv);
 
-  orderSummaryCard.querySelector(".shipping-title").addEventListener("click", () => {
-    orderSummaryCard.querySelector(".shipping-title i").classList.toggle("down");
-    orderSummaryCard.querySelector(".shipping-options").classList.toggle("inactive");
-  });
-
-  orderSummaryCard.querySelectorAll('input[name="shipping"]').forEach((input) => {
-    input.addEventListener("change", (e) => {
-      orderSummaryCard.querySelector(".total-price-shipping .value").textContent = e.target.value + " EGP";
-      orderSummaryCard.querySelector(".total-price-total .value").textContent =
-        util.formatPrice(+subtotal + +e.target.value) + " EGP";
+  orderSummaryCard
+    .querySelector(".shipping-title")
+    .addEventListener("click", () => {
+      orderSummaryCard
+        .querySelector(".shipping-title i")
+        .classList.toggle("down");
+      orderSummaryCard
+        .querySelector(".shipping-options")
+        .classList.toggle("inactive");
     });
-  });
+
+  orderSummaryCard
+    .querySelectorAll('input[name="shipping"]')
+    .forEach((input) => {
+      input.addEventListener("change", (e) => {
+        orderSummaryCard.querySelector(
+          ".total-price-shipping .value"
+        ).textContent = e.target.value + " EGP";
+        orderSummaryCard.querySelector(
+          ".total-price-total .value"
+        ).textContent = util.formatPrice(+subtotal + +e.target.value) + " EGP";
+      });
+    });
 
   const checkoutButton = orderSummaryCard.querySelector(".checkout-button");
   checkoutButton.addEventListener("click", () => {
