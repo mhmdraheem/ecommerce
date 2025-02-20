@@ -9,11 +9,11 @@ const nav = `
             <input type="text" placeholder="Search by name or brand" name="query" id="search" />
             <button type="submit">Search</button>
           </form>
-          <a href="cart.html" class="cart-button cart-menu-icon" target="_blank">
+          <a href="cart.html" class="cart-button cart-menu-icon">
             <img src="img/cart.png" alt="cart" class="cart-menu-img" />
             <span class="alert"></span>
           </a>
-          <a href="profile.html" target="_blank" class="profile">
+          <a href="profile.html" class="profile">
             <img class="avatar user-avatar" src="img/avatar.png" alt="profile-picture" />
           </a>
         </div>
