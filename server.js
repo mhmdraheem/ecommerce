@@ -11,6 +11,7 @@ app.enable("trust proxy");
 
 // middleware
 app.use(express.json());
+
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -46,6 +47,7 @@ app.use(
     },
   })
 );
+
 app.use(
   session({
     name: "ecomm-session",
@@ -56,16 +58,14 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      // sameSite: "none",
       maxAge: 365 * 24 * 60 * 60 * 1000,
     },
   })
 );
 
-app.use(express.static(path.join(__dirname, "public")));
-
-// Custom Session Middleware
 app.use(require("./middleware/sessionHandler"));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 // API Routes
 app.use("/api", require("./middleware/apiDelay"));
