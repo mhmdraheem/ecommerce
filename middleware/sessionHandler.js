@@ -15,7 +15,6 @@ module.exports = async (req, res, next) => {
       } else {
         req.session.userId = `user-${Math.random().toString(36).substring(7)}`;
         req.session.cart = [];
-        req.session.userData = {};
         console.log(`Creating new session ✅ ${req.session.userId}`);
       }
     }
