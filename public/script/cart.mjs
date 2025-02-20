@@ -50,12 +50,10 @@ function renderCartItems(items) {
     imageWrapperLink.classList.add("image-wrapper");
     imageWrapperLink.href = `product.html?id=${item.id}`;
     imageWrapperLink.appendChild(productImage);
-    imageWrapperLink.target = "_blank";
 
     const titleHeaderLink = document.createElement("a");
     titleHeaderLink.innerText = item.title;
     titleHeaderLink.href = `product.html?id=${item.id}`;
-    titleHeaderLink.target = "_blank";
 
     const priceSpan = document.createElement("span");
     priceSpan.classList.add("price");

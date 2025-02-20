@@ -84,7 +84,6 @@ function createProductElement(product) {
   productInfoLink.appendChild(imgWrapper);
   productInfoLink.appendChild(detailsDiv);
   productInfoLink.href = `product.html?id=${product.id}`;
-  productInfoLink.target = "_blank";
 
   // Append everything to product div
   productDiv.appendChild(productInfoLink);
