@@ -145,15 +145,17 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
   util.createFullPageOverlay(true);
   util
     .getUserProfile()
-    .then((userDetails) => {
-      if (userDetails.avatar && userDetails.avatar !== "") {
+    .then((userData) => {
+      if (userData.avatar && userData.avatar !== "") {
         document.querySelectorAll(".user-avatar").forEach((avatar) => {
-          avatar.src = userDetails.avatar;
+          console.log(userData.avatar);
+
+          avatar.src = userData.avatar;
         });
       }
 
-      const profile = userDetails.profile;
-      if (profile.personalInfo) {
+      const profile = userData.profile;
+      if (profile && profile.personalInfo) {
         document.getElementById("first-name").value =
           profile.personalInfo.firstName;
         document.getElementById("last-name").value =
@@ -162,7 +164,7 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
         document.getElementById("phone").value = profile.personalInfo.phone;
       }
 
-      if (profile.address) {
+      if (profile && profile.address) {
         document.getElementById("address-line1").value =
           profile.address.addressLine1;
         document.getElementById("address-line2").value =
@@ -181,7 +183,7 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
         document.getElementById("zip-code").value = profile.address.zipCode;
       }
 
-      if (profile.paymentMethod) {
+      if (profile && profile.paymentMethod) {
         if (profile.paymentMethod.type === "card") {
           document.getElementById("card").checked = true;
           document.getElementById("card-details").classList.remove("collapsed");
