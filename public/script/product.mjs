@@ -186,11 +186,7 @@ function initSwiper(imagesArr) {
       swiperWrapper.appendChild(swiperSlide);
     });
 
-  const swiper = new Swiper(".swiper", {
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+  new Swiper(".swiper", {
     pagination: {
       el: ".swiper-pagination",
       clickable: true,

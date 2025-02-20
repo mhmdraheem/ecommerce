@@ -227,17 +227,12 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-.swiper .swiper-button-next,
-.swiper .swiper-button-prev {
-  font-weight: 700;
-  color: var(--primary-color);
-}
 .swiper .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
 }
 .swiper .swiper-pagination-bullet-active {
-  background: var(--primary-color);
+  background: var(--primary-hover-color);
 }
 @media (max-width: 767px) {
   .swiper {
