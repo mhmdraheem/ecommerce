@@ -78,7 +78,7 @@ nav {
   .header {
     grid-template-areas: "logo profile cart" "form form form";
     padding: 0 0 10px;
-    row-gap: 5px;
+    row-gap: 10px;
   }
 }
 @media (min-width: 769px) {
@@ -149,7 +149,7 @@ nav {
 }
 @media (max-width: 768px) {
   .header .profile {
-    margin: 0 0.5rem 0 auto;
+    margin: 0 1rem 0 auto;
   }
 }
 .header .profile .avatar {
@@ -407,6 +407,7 @@ footer img {
 @media (max-width: 768px) {
   .container {
     width: 95%;
+    padding: 0 5px;
   }
 }
 

@@ -7,6 +7,7 @@
   font-size: 1.7rem;
 }
 .empty-page-header a {
+  width: -moz-fit-content;
   width: fit-content;
   display: block;
   margin: 50px auto 100px;
@@ -37,6 +38,7 @@
   font-size: 1.5rem;
 }
 .shipping-info .profile-link {
+  width: -moz-fit-content;
   width: fit-content;
   margin-left: auto;
   display: flex;
