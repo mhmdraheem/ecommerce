@@ -165,6 +165,7 @@ function deleteCartItem(e, item) {
         renderEmptyCart();
         util.updateCartAlert();
         document.querySelector(".cart-wrapper").remove();
+        util.scrollToTop();
       }
     },
     (e) => {
