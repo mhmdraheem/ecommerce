@@ -79,7 +79,7 @@ function renderCartItems(items) {
       stockDiv.innerHTML = `<span>${item.stock} items(s) in stock</span>`;
     }
 
-    const bottomBarDiv = addToCart.create(item, { showQuantityIfCartItem: true, deleteItemCallback });
+    const bottomBarDiv = addToCart.create(item, { cart: true, showQuantityIfCartItem: true, deleteItemCallback });
 
     const deleteSpanSpinner = document.createElement("i");
     deleteSpanSpinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "delete-span-spinner");

@@ -1,6 +1,6 @@
 import * as util from "./util.mjs";
 
-export async function create(product, options = { showQuantityIfCartItem: false }) {
+export function create(product, options) {
   const bottomProductBarDiv = document.createElement("div");
   bottomProductBarDiv.classList.add("bottom-product-bar");
 
@@ -59,8 +59,13 @@ export async function create(product, options = { showQuantityIfCartItem: false 
   bottomProductBarDiv.appendChild(addToCartSpinnerDiv);
   bottomProductBarDiv.appendChild(quantityWrapper);
 
+  if (options.cart) {
+    addToCartDiv.classList.remove("active");
+    quantityWrapper.classList.add("active");
+  }
+
   if (options.showQuantityIfCartItem) {
-    await getCartItem(
+    getCartItem(
       product,
       (item) => {
         if (item) {
@@ -273,7 +278,7 @@ function callUpdateProductQuantityAPI(product, type, onSuccess, onError) {
     .catch(onError);
 }
 
-async function getCartItem(product, onSuccess, onError) {
+function getCartItem(product, onSuccess, onError) {
   fetch(`/api/cart/${product.id}`)
     .then((response) => util.toJson(response))
     .then(onSuccess)
