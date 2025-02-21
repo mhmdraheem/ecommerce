@@ -1,6 +1,6 @@
 import * as util from "./util.mjs";
 
-export function create(product, options) {
+export function create(product, options = {}) {
   const bottomProductBarDiv = document.createElement("div");
   bottomProductBarDiv.classList.add("bottom-product-bar");
 
@@ -31,10 +31,7 @@ export function create(product, options) {
   const decreaseBtn = document.createElement("button");
   decreaseBtn.classList.add("decrease");
   decreaseBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
-  decreaseBtn.addEventListener(
-    "click",
-    decreaseQuantityCallback(product, bottomProductBarDiv, options.deleteItemCallback)
-  );
+  decreaseBtn.addEventListener("click", decreaseQuantityCallback(product, bottomProductBarDiv, options));
 
   const increaseBtn = document.createElement("button");
   increaseBtn.classList.add("increase");
@@ -170,7 +167,7 @@ export function callAddToCartAPI(product, onSuccess, onError) {
     .catch(onError);
 }
 
-function decreaseQuantityCallback(product, bottomProductBarDiv, deleteItemCallback) {
+function decreaseQuantityCallback(product, bottomProductBarDiv, options) {
   return (e) => {
     const addToCart = bottomProductBarDiv.querySelector(".add-to-cart");
     const spinner = bottomProductBarDiv.querySelector(".add-to-cart-spinner-wrapper");
@@ -212,8 +209,8 @@ function decreaseQuantityCallback(product, bottomProductBarDiv, deleteItemCallba
           util.activateCartElement(bottomProductBarDiv, addToCart);
           util.updateCartAlert();
 
-          if (deleteItemCallback) {
-            deleteItemCallback(e);
+          if (options.deleteItemCallback) {
+            options.deleteItemCallback(e);
           }
         },
         (err) => {
