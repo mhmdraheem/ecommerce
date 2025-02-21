@@ -76,7 +76,7 @@ h2:not(:first-of-type) {
 }
 .profile-form .form-buttons .message {
   color: green;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .button-spinner {

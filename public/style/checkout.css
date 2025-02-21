@@ -259,6 +259,13 @@
   margin-left: 5px;
 }
 
+.missing-shipping-info-message {
+  color: red;
+  font-size: 1rem;
+  padding: 0rem 1.2rem;
+  margin: -10px 0 20px;
+}
+
 .hidden {
   display: none;
 }

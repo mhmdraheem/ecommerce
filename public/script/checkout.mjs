@@ -12,7 +12,7 @@ let items = [];
           .then((response) => response.json())
           .then((userData) => {
             renderInfoSection(userData);
-            renderOrderSummaryCard();
+            renderOrderSummaryCard(userData);
             renderItemsSection(items);
           })
           .catch((err) => {
@@ -93,7 +93,7 @@ async function renderItemsSection(items) {
   document.querySelector(".total-price-total .value").textContent = util.formatPrice(subtotal) + " EGP";
 }
 
-async function renderOrderSummaryCard() {
+async function renderOrderSummaryCard(userData) {
   document.querySelector(".order-wrapper").classList.remove("hidden");
 
   const orderSummaryCard = document.querySelector(".order-summary-card");
@@ -168,6 +168,10 @@ async function renderOrderSummaryCard() {
     <div class="checkout-button">Checkout
       <i class="fa-solid fa-spinner fa-spin hidden"></i>
     </div>
+    <span class="missing-shipping-info-message hidden">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      Please fill your shipping information
+    </span>
   `;
 
   orderSummaryCard.appendChild(contentDiv);
@@ -186,7 +190,12 @@ async function renderOrderSummaryCard() {
   });
 
   const checkoutButton = orderSummaryCard.querySelector(".checkout-button");
-  checkoutButton.addEventListener("click", () => {
+  checkoutButton.addEventListener("click", (e) => {
+    if (!userData.profile) {
+      document.querySelector(".missing-shipping-info-message").classList.remove("hidden");
+      e.preventDefault();
+      return;
+    }
     checkoutButton.querySelector("i").classList.remove("hidden");
     fetch("/api/cart/", { method: "DELETE" })
       .then((response) => {

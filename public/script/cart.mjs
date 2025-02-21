@@ -153,7 +153,7 @@ function deleteCartItem(e, item) {
 
 function deleteItemCallback(e) {
   e.target.closest(".cart-item")?.remove();
-
+  calculatePrice();
   if (document.querySelectorAll(".cart-item").length === 0) {
     const pageHeaderDiv = document.querySelector(".page-header");
     pageHeaderDiv.innerHTML = "";
