@@ -99,11 +99,6 @@ function renderCartItems(items) {
     quantityDiv.appendChild(bottomBarDiv);
     quantityDiv.appendChild(deleteSpan);
 
-    bottomBarDiv.querySelector(".decrease").addEventListener("click", (e) => {
-      if (bottomBarDiv.querySelector(".quantity-wrapper input").value == 1) {
-      }
-    });
-
     bottomBarDiv.querySelector(".quantity-wrapper input").addEventListener("input", () => calculatePrice());
 
     const infoDiv = document.createElement("div");

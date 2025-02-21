@@ -24,7 +24,7 @@ document.getElementById("avatar-upload").addEventListener("change", async (e) =>
       const result = await response.json();
       if (response.ok) {
         document.querySelectorAll(".user-avatar").forEach((avatar) => {
-          avatar.src = `data:${result.mimeType};base64,${result.base64Image}`;
+          avatar.src = `data:${result.avatar.mimeType};base64,${result.avatar.base64Image}`;
         });
       } else {
         throw new Error(result.message || "Failed to upload avatar");
