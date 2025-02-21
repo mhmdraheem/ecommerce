@@ -18,31 +18,11 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         frameSrc: ["https://vercel.live"],
-        scriptSrc: [
-          "'self'",
-          "*.fontawesome.com",
-          "*.jsdelivr.net",
-          "https://vercel.live",
-        ],
-        styleSrc: [
-          "'self'",
-          "https://fonts.googleapis.com",
-          "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
-        ],
-        fontSrc: [
-          "'self'",
-          "data:",
-          "https://fonts.gstatic.com",
-          "https://ka-f.fontawesome.com",
-        ],
+        scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net", "https://vercel.live"],
+        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+        fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
-        imgSrc: [
-          "'self'",
-          "https://www.flaticon.com",
-          "https://flagcdn.com",
-          "*.vercel-storage.com",
-        ],
+        imgSrc: ["'self'", "data:", "https://www.flaticon.com", "https://flagcdn.com", "*.vercel-storage.com"],
       },
     },
   })
@@ -85,8 +65,6 @@ process.on("SIGINT", () => {
 });
 
 // Start Server (Only for Local Development)
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
 module.exports = app;

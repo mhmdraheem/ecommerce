@@ -39,6 +39,19 @@ export function showErrorToast() {
   });
 }
 
+export function showSucessToast(message) {
+  Swal.fire({
+    text: message,
+    position: "top-end",
+    background: "green",
+    color: "#fff",
+    width: "fit-content",
+    showConfirmButton: false,
+    timer: 1500,
+    toast: true,
+  });
+}
+
 export function createFullPageOverlay(showSpinner = true) {
   const overlay = document.createElement("div");
   overlay.classList.add("page-overlay");
@@ -104,8 +117,11 @@ export function getUserProfile() {
 
 export function updateAvatar(avatarElem) {
   getUserProfile().then((profile) => {
-    const avatarValue = profile.avatar ? `${profile.avatar}` : `${imgUrl}/avatar.png`;
-    avatarElem.src = avatarValue;
+    if (profile.avatar) {
+      avatarElem.src = `data:${profile.avatar.mimeType};base64,${profile.avatar.base64Image}`;
+    } else {
+      avatarElem.src = `${imgUrl}/avatar.png`;
+    }
   });
 }
 

@@ -107,8 +107,13 @@
     align-items: center;
     justify-content: center;
 
-    &:active,
-    &:hover {
+    @media (min-width: 767px) {
+      &:hover {
+        background: #e0e0e0;
+      }
+    }
+
+    &:active {
       background: #e0e0e0;
     }
 
@@ -151,4 +156,5 @@
 
 .quantity-wrapper-spinner {
   font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
 }

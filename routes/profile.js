@@ -1,18 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../config/uploader");
-const fs = require("fs");
+const multer = require("multer");
+
+const upload = multer();
 
 router.get("/", (req, res) => {
   res.json(req.session.userData);
 });
 
-router.post("/upload-avatar", upload.single("avatar"), (req, res) => {
+router.post("/upload-avatar", upload.single("avatar"), async (req, res) => {
   if (req.file) {
-    req.session.userData.avatar = req.file.path.replace("public", "");
+    const mimeType = req.file.mimetype;
+    const base64Image = req.file.buffer.toString("base64");
+
+    req.session.userData.avatar = {};
+    req.session.userData.avatar.mimeType = mimeType;
+    req.session.userData.avatar.base64Image = base64Image;
+
     res.json({
       message: "File uploaded successfully",
-      filePath: req.session.userData.avatar,
+      avatar: req.session.userData.avatar,
     });
   } else {
     return res.status(400).json({ message: "No file uploaded" });

@@ -9,36 +9,34 @@ document.getElementById("upload-btn").addEventListener("click", () => {
 });
 
 const uploadBtn = document.getElementById("upload-btn");
-document
-  .getElementById("avatar-upload")
-  .addEventListener("change", async (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append("avatar", file);
+document.getElementById("avatar-upload").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const formData = new FormData();
+    formData.append("avatar", file);
 
-      uploadBtn.querySelector(".button-spinner").classList.add("active");
-      try {
-        const response = await fetch(UPLOAD_AVATAR_URL, {
-          method: "POST",
-          body: formData,
+    uploadBtn.querySelector(".button-spinner").classList.add("active");
+    try {
+      const response = await fetch(UPLOAD_AVATAR_URL, {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+      if (response.ok) {
+        document.querySelectorAll(".user-avatar").forEach((avatar) => {
+          avatar.src = `data:${result.mimeType};base64,${result.base64Image}`;
         });
-        const result = await response.json();
-        if (response.ok) {
-          document.querySelectorAll(".user-avatar").forEach((avatar) => {
-            avatar.src = result.filePath;
-          });
-        } else {
-          throw new Error(result.message || "Failed to upload avatar");
-        }
-      } catch (error) {
-        console.error("Error uploading avatar:", error);
-        util.showErrorToast();
-      } finally {
-        uploadBtn.querySelector(".button-spinner").classList.remove("active");
+      } else {
+        throw new Error(result.message || "Failed to upload avatar");
       }
+    } catch (error) {
+      console.error("Error uploading avatar:", error);
+      util.showErrorToast();
+    } finally {
+      uploadBtn.querySelector(".button-spinner").classList.remove("active");
     }
-  });
+  }
+});
 
 const personalForm = document.getElementById("personal-info-form");
 const savePersonalBtn = document.getElementById("save-personal");
@@ -55,9 +53,7 @@ personalForm.addEventListener("submit", async (e) => {
   const address = {
     addressLine1: document.getElementById("address-line1").value,
     addressLine2: document.getElementById("address-line2").value,
-    country: document
-      .querySelector(".dropdown-selected")
-      .getAttribute("data-value"),
+    country: document.querySelector(".dropdown-selected").getAttribute("data-value"),
     city: document.getElementById("city").value,
     zipCode: document.getElementById("zip-code").value,
   };
@@ -83,6 +79,7 @@ personalForm.addEventListener("submit", async (e) => {
     util.showErrorToast();
   } finally {
     savePersonalBtn.querySelector(".button-spinner").classList.remove("active");
+    util.showSucessToast("Profile updated");
   }
 });
 
@@ -124,20 +121,12 @@ document.addEventListener("click", function (event) {
   }
 });
 
-document
-  .querySelector(".dropdown-selected")
-  .addEventListener("click", toggleDropdown);
+document.querySelector(".dropdown-selected").addEventListener("click", toggleDropdown);
 
 document.querySelectorAll(".dropdown-item").forEach((item) => {
   item.addEventListener("click", (e) => {
-    selectCountry(
-      item.getAttribute("data-value"),
-      item.getAttribute("data-url"),
-      item.textContent
-    );
-    document
-      .querySelector(".dropdown-selected")
-      .classList.add("selected", "user-valid");
+    selectCountry(item.getAttribute("data-value"), item.getAttribute("data-url"), item.textContent);
+    document.querySelector(".dropdown-selected").classList.add("selected", "user-valid");
   });
 });
 
@@ -146,39 +135,27 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
   util
     .getUserProfile()
     .then((userData) => {
-      if (userData.avatar && userData.avatar !== "") {
+      if (userData.avatar) {
         document.querySelectorAll(".user-avatar").forEach((avatar) => {
-          console.log(userData.avatar);
-
-          avatar.src = userData.avatar;
+          avatar.src = `data:${userData.avatar.mimeType};base64,${userData.avatar.base64Image}`;
         });
       }
 
       const profile = userData.profile;
       if (profile && profile.personalInfo) {
-        document.getElementById("first-name").value =
-          profile.personalInfo.firstName;
-        document.getElementById("last-name").value =
-          profile.personalInfo.lastName;
+        document.getElementById("first-name").value = profile.personalInfo.firstName;
+        document.getElementById("last-name").value = profile.personalInfo.lastName;
         document.getElementById("email").value = profile.personalInfo.email;
         document.getElementById("phone").value = profile.personalInfo.phone;
       }
 
       if (profile && profile.address) {
-        document.getElementById("address-line1").value =
-          profile.address.addressLine1;
-        document.getElementById("address-line2").value =
-          profile.address.addressLine2;
+        document.getElementById("address-line1").value = profile.address.addressLine1;
+        document.getElementById("address-line2").value = profile.address.addressLine2;
         console.log(profile.address.country);
 
-        document
-          .querySelector(
-            ".dropdown-item[data-value='" + profile.address.country + "']"
-          )
-          .click();
-        document
-          .querySelector(".dropdown-selected")
-          .classList.remove("user-valid");
+        document.querySelector(".dropdown-item[data-value='" + profile.address.country + "']").click();
+        document.querySelector(".dropdown-selected").classList.remove("user-valid");
         document.getElementById("city").value = profile.address.city;
         document.getElementById("zip-code").value = profile.address.zipCode;
       }
@@ -187,8 +164,7 @@ document.querySelectorAll(".dropdown-item").forEach((item) => {
         if (profile.paymentMethod.type === "card") {
           document.getElementById("card").checked = true;
           document.getElementById("card-details").classList.remove("collapsed");
-          document.getElementById("card-number").value =
-            profile.paymentMethod.cardNumber;
+          document.getElementById("card-number").value = profile.paymentMethod.cardNumber;
           document.getElementById("cvv").value = profile.paymentMethod.cvv;
           setCardDetailsRequired(true);
         } else {

@@ -112,18 +112,6 @@ function createOrderDetailsCard(product) {
     showQuantityIfCartItem: true,
   });
 
-  addToCartDiv.querySelector(".quantity-wrapper input[type='number']").addEventListener("input", function (event) {
-    const quantity = event.target.value;
-    const shippingOption = orderDetailsCard.querySelector(".shipping-option input:checked").getAttribute("value");
-
-    document.querySelector(".item-price span:last-child").innerText = `${quantity} x ${product.price.currentPrice} EGP`;
-
-    let total = (+shippingOption + +product.price.currentPrice * quantity).toLocaleString("en-US", {
-      maximumFractionDigits: 2,
-    });
-    document.querySelector(".total-price-value-value").innerText = total + " EGP";
-  });
-
   const buyNowButton = document.createElement("div");
   buyNowButton.classList.add("buy-now-button");
   buyNowButton.innerText = "Buy Now";
