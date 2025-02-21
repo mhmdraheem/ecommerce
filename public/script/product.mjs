@@ -48,6 +48,8 @@ function createMainSection(product) {
     rating.appendChild(util.generateStars(product.rating, true));
   });
 
+  document.querySelectorAll(".subheader").forEach((subheader) => subheader.classList.remove("hidden"));
+
   document.querySelector(".product-price .current .value").innerText = product.price.currentPrice + " EGP";
 
   if (product.price.discount) {
@@ -59,7 +61,7 @@ function createMainSection(product) {
     const discount = document.createElement("div");
     discount.classList.add("discount");
     discount.innerHTML = `<span>${product.price.discount}% off!</span>`;
-    document.querySelector(".discount").appendChild(discount);
+    document.querySelector(".discount-wrapper").appendChild(discount);
   }
 
   const quantity = document.createElement("div");

@@ -214,6 +214,12 @@
       width: auto;
     }
 
+    .quantity-wrapper.active {
+      width: 100%;
+      border-radius: 0;
+      justify-content: space-between;
+    }
+
     .buy-now-button {
       height: 50px;
       display: flex;

@@ -73,6 +73,8 @@
   border: none;
   color: #333;
   font-size: 1rem;
+  -webkit-appearance: textfield;
+          appearance: textfield;
   -moz-appearance: textfield;
   display: block;
 }
@@ -98,7 +100,7 @@
   align-items: center;
   justify-content: center;
 }
-.quantity-wrapper button:hover {
+.quantity-wrapper button:active, .quantity-wrapper button:hover {
   background: #e0e0e0;
 }
 .quantity-wrapper button i {

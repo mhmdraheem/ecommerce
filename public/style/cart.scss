@@ -77,6 +77,7 @@
     border: none;
     color: #333;
     font-size: 1rem;
+    appearance: textfield;
     -moz-appearance: textfield;
     display: block;
 
@@ -106,6 +107,7 @@
     align-items: center;
     justify-content: center;
 
+    &:active,
     &:hover {
       background: #e0e0e0;
     }

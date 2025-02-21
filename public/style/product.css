@@ -200,6 +200,11 @@
   margin: 30px 1.2rem 5px;
   width: auto;
 }
+.main-section .order-details-card .quantity-wrapper.active {
+  width: 100%;
+  border-radius: 0;
+  justify-content: space-between;
+}
 .main-section .order-details-card .buy-now-button {
   height: 50px;
   display: flex;
