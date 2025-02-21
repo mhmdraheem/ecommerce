@@ -165,7 +165,9 @@ async function renderOrderSummaryCard() {
         <span class="value"></span>
       </div>
     </div>
-    <div class="checkout-button">Checkout</div>
+    <div class="checkout-button">Checkout
+      <i class="fa-solid fa-spinner fa-spin hidden"></i>
+    </div>
   `;
 
   orderSummaryCard.appendChild(contentDiv);
@@ -185,21 +187,28 @@ async function renderOrderSummaryCard() {
 
   const checkoutButton = orderSummaryCard.querySelector(".checkout-button");
   checkoutButton.addEventListener("click", () => {
-    fetch("/api/cart/", { method: "DELETE" }).then((response) => {
-      console.log(response);
-
-      if (response.ok) {
-        Swal.fire({
-          title: "Order placed",
-          text: `Thank you for your order! We are excited to let you know that your purchase has been successfully processed.
-          Your order number is: 83121232133899`,
-          icon: "success",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "Continue shopping",
-        }).then((result) => {
-          window.open("index.html", "_self");
-        });
-      }
-    });
+    checkoutButton.querySelector("i").classList.remove("hidden");
+    fetch("/api/cart/", { method: "DELETE" })
+      .then((response) => {
+        if (response.ok) {
+          Swal.fire({
+            title: "Order placed",
+            text: `Thank you for your order! We are excited to let you know that your purchase has been successfully processed.
+            Your order number is: 83121232133899`,
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Continue shopping",
+          }).then((result) => {
+            window.open("index.html", "_self");
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        util.showErrorToast();
+      })
+      .finally(() => {
+        checkoutButton.querySelector("i").classList.add("hidden");
+      });
   });
 }

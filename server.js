@@ -48,8 +48,8 @@ app.use(require("./middleware/sessionHandler"));
 app.use(express.static(path.join(__dirname, "public")));
 
 // API Routes
-app.use("/api", require("./middleware/apiDelay"));
-app.use("/api", require("./middleware/logger"));
+// app.use("/api", require("./middleware/apiDelay"));
+// app.use("/api", require("./middleware/logger"));
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/product", require("./routes/product"));
 app.use("/api/profile", require("./routes/profile"));

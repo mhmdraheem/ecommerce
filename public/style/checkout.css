@@ -254,6 +254,10 @@
 .checkout-button:hover {
   background-color: #c12727;
 }
+.checkout-button i {
+  color: #fff;
+  margin-left: 5px;
+}
 
 .hidden {
   display: none;
