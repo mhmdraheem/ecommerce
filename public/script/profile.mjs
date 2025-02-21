@@ -43,6 +43,14 @@ const savePersonalBtn = document.getElementById("save-personal");
 
 personalForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+  const countryList = document.querySelector(".dropdown-selected");
+  if (!countryList.getAttribute("data-value")) {
+    countryList.classList.add("user-invalid");
+    console.log("invalid input");
+
+    return;
+  }
+
   const personalInfo = {
     firstName: document.getElementById("first-name").value,
     lastName: document.getElementById("last-name").value,
@@ -74,12 +82,13 @@ personalForm.addEventListener("submit", async (e) => {
     if (!response.ok) {
       throw new Error("Failed to save personal info");
     }
+
+    document.querySelector(".form-buttons .message").classList.remove("hidden");
   } catch (error) {
     console.error("Error saving personal info:", error);
     util.showErrorToast();
   } finally {
     savePersonalBtn.querySelector(".button-spinner").classList.remove("active");
-    util.showSucessToast("Profile updated");
   }
 });
 
@@ -126,6 +135,8 @@ document.querySelector(".dropdown-selected").addEventListener("click", toggleDro
 document.querySelectorAll(".dropdown-item").forEach((item) => {
   item.addEventListener("click", (e) => {
     selectCountry(item.getAttribute("data-value"), item.getAttribute("data-url"), item.textContent);
+
+    document.querySelector(".dropdown-selected").classList.remove("user-invalid");
     document.querySelector(".dropdown-selected").classList.add("selected", "user-valid");
   });
 });

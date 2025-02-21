@@ -145,6 +145,10 @@
     button {
       width: 40px;
     }
+
+    @media (max-width: 767px) {
+      width: fit-content;
+    }
   }
 
   .delete-span {
@@ -190,7 +194,6 @@
   overflow: hidden;
   position: sticky;
   top: 60px;
-
 }
 
 .cart-summary-title {

@@ -145,6 +145,12 @@
 .item-quantity .bottom-product-bar button {
   width: 40px;
 }
+@media (max-width: 767px) {
+  .item-quantity .bottom-product-bar {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
 .item-quantity .delete-span {
   display: flex;
   align-items: center;

@@ -31,7 +31,10 @@ export function create(product, options = { showQuantityIfCartItem: false }) {
   const decreaseBtn = document.createElement("button");
   decreaseBtn.classList.add("decrease");
   decreaseBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
-  decreaseBtn.addEventListener("click", decreaseQuantityCallback(product, bottomProductBarDiv));
+  decreaseBtn.addEventListener(
+    "click",
+    decreaseQuantityCallback(product, bottomProductBarDiv, options.deleteItemCallback)
+  );
 
   const increaseBtn = document.createElement("button");
   increaseBtn.classList.add("increase");
@@ -162,7 +165,7 @@ export function callAddToCartAPI(product, onSuccess, onError) {
     .catch(onError);
 }
 
-function decreaseQuantityCallback(product, bottomProductBarDiv) {
+function decreaseQuantityCallback(product, bottomProductBarDiv, deleteItemCallback) {
   return (e) => {
     const addToCart = bottomProductBarDiv.querySelector(".add-to-cart");
     const spinner = bottomProductBarDiv.querySelector(".add-to-cart-spinner-wrapper");
@@ -196,16 +199,22 @@ function decreaseQuantityCallback(product, bottomProductBarDiv) {
         }
       );
     } else {
-      util.activateCartElement(bottomProductBarDiv, spinner);
+      quantityWrapperSpinner.classList.add("active");
       util.callDeleteAPI(
         product,
         () => {
+          quantityWrapperSpinner.classList.remove("active");
           util.activateCartElement(bottomProductBarDiv, addToCart);
           util.updateCartAlert();
+
+          if (deleteItemCallback) {
+            deleteItemCallback(e);
+          }
         },
         (err) => {
           console.error(err);
-          util.activateCartElement(bottomProductBarDiv, quantityWrapper);
+          quantityWrapperSpinner.classList.remove("active");
+          // util.activateCartElement(bottomProductBarDiv, quantityWrapper);
           util.showErrorToast();
         }
       );

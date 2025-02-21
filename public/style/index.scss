@@ -4,3 +4,9 @@
   background-size: cover;
   background-position: left;
 }
+
+.quantity-wrapper.active {
+  width: 100%;
+  border-radius: 0;
+  justify-content: space-between;
+}

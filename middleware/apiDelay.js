@@ -1,6 +1,11 @@
 module.exports = (req, res, next) => {
-  setTimeout(() => {
+  console.log(req.originalUrl, req.method);
+
+  if (req.originalUrl.includes("/api/cart") && req.method === "DELETE") {
+    setTimeout(() => {
+      next();
+    }, 2000);
+  } else {
     next();
-    // }, 6000);
-  }, 1);
+  }
 };

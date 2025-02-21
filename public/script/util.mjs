@@ -47,7 +47,7 @@ export function showSucessToast(message) {
     color: "#fff",
     width: "fit-content",
     showConfirmButton: false,
-    timer: 1500,
+    timer: 1500000,
     toast: true,
   });
 }

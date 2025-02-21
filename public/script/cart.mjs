@@ -79,7 +79,7 @@ function renderCartItems(items) {
       stockDiv.innerHTML = `<span>${item.stock} items(s) in stock</span>`;
     }
 
-    const bottomBarDiv = addToCart.create(item, { showQuantityIfCartItem: true });
+    const bottomBarDiv = addToCart.create(item, { showQuantityIfCartItem: true, deleteItemCallback });
 
     const deleteSpanSpinner = document.createElement("i");
     deleteSpanSpinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "delete-span-spinner");
@@ -101,7 +101,6 @@ function renderCartItems(items) {
 
     bottomBarDiv.querySelector(".decrease").addEventListener("click", (e) => {
       if (bottomBarDiv.querySelector(".quantity-wrapper input").value == 1) {
-        deleteCartItem(e, item);
       }
     });
 
@@ -144,36 +143,30 @@ function calculatePrice() {
 }
 
 function deleteCartItem(e, item) {
-  const deleteSpanSpinner = document.querySelector(".delete-span i");
-  const pageHeaderDiv = document.querySelector(".page-header");
-  const cartItemDiv = e.target.closest(".cart-item");
-
+  const deleteSpanSpinner = e.target.closest(".cart-item").querySelector(".delete-span i");
   deleteSpanSpinner.classList.add("visible");
   util.callDeleteAPI(
     item,
-    () => {
-      deleteSpanSpinner.classList.remove("visible");
-
-      const quantityInput = cartItemDiv.querySelector(".quantity-wrapper input");
-      quantityInput.value = 0;
-      quantityInput.dispatchEvent(new Event("input"));
-
-      cartItemDiv.remove();
-
-      if (document.querySelectorAll(".cart-item").length === 0) {
-        pageHeaderDiv.innerHTML = "";
-        renderEmptyCart();
-        util.updateCartAlert();
-        document.querySelector(".cart-wrapper").remove();
-        util.scrollToTop();
-      }
-    },
+    () => deleteItemCallback(e),
     (e) => {
       console.log(e);
       deleteSpanSpinner.classList.remove("visible");
       util.showErrorToast();
     }
   );
+}
+
+function deleteItemCallback(e) {
+  e.target.closest(".cart-item")?.remove();
+
+  if (document.querySelectorAll(".cart-item").length === 0) {
+    const pageHeaderDiv = document.querySelector(".page-header");
+    pageHeaderDiv.innerHTML = "";
+    renderEmptyCart();
+    util.updateCartAlert();
+    document.querySelector(".cart-wrapper").remove();
+    util.scrollToTop();
+  }
 }
 
 function renderCartSummary(items) {

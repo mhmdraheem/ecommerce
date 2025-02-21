@@ -66,7 +66,7 @@
 
           <h2>Payment Options</h2>
           <div class="payment-option">
-            <input type="radio" id="cod" name="payment" value="COD">
+            <input type="radio" id="cod" name="payment" value="COD" required>
             <label for="cod">Cash on Delivery (COD)</label>
           </div>
           <div class="payment-option">
@@ -83,6 +83,9 @@
             <button type="submit" class="profile-button" id="save-personal">Save
               <i class="fa-solid fa-circle-notch button-spinner"></i>
             </button>
+            <span class="message hidden">
+              <i class="fa-solid fa-check-circle"></i> Profile updated!
+            </span>
           </div>
         </form>
       </div>

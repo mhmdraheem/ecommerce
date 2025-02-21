@@ -287,9 +287,6 @@ nav {
   display: flex;
   flex-direction: column;
 }
-.footer-area .contact-us-col {
-  max-width: 400px;
-}
 .footer-area .newsletter-col {
   max-width: 300px;
 }

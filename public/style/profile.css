@@ -70,8 +70,13 @@ h2:not(:first-of-type) {
 }
 .profile-form .form-buttons {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 20px;
   margin-top: 10px;
+}
+.profile-form .form-buttons .message {
+  color: green;
+  font-size: 1.2rem;
 }
 
 .button-spinner {
@@ -100,6 +105,9 @@ h2:not(:first-of-type) {
 }
 .custom-dropdown .dropdown-selected.user-valid {
   outline-color: hsl(142, 76%, 36%);
+}
+.custom-dropdown .dropdown-selected.user-invalid {
+  outline-color: hsl(348, 83%, 47%);
 }
 .custom-dropdown .arrow {
   margin-left: auto;
