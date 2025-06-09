@@ -265,6 +265,10 @@
   padding: 0rem 1.2rem;
   margin: -10px 0 20px;
 }
+.missing-shipping-info-message a {
+  text-decoration: underline;
+  color: red;
+}
 
 .hidden {
   display: none;

@@ -1,7 +1,7 @@
 import * as util from "./util.mjs";
 import * as addToCart from "./add-to-cart.mjs";
 
-const productsPerPage = 5;
+const productsPerPage = 10;
 let sortBy = "Rating";
 let page = 1;
 
@@ -70,7 +70,9 @@ function createProductElement(product) {
     freeShippingSpan.textContent = "Free shipping";
   }
 
-  const bottomProductBarDiv = addToCart.create(product);
+  console.log("Creating products");
+
+  const bottomProductBarDiv = addToCart.create(product, { disableQuantityWrapper: true });
 
   // Append elements to details
   detailsDiv.appendChild(title);

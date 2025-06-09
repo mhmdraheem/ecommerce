@@ -37,9 +37,9 @@
   max-width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   -o-object-position: 50%;
-     object-position: 50%;
+  object-position: 50%;
 }
 .products .details {
   display: flex;
@@ -96,7 +96,7 @@
 .products .free-shipping {
   font-size: 0.95rem;
   margin: 10px 0 5px 0;
-  color: var(--accent-color);
+  /* color: var(--accent-color); */
 }
 .products .description {
   line-height: 1.7;
@@ -164,4 +164,4 @@
   background-color: var(--primary-color);
   color: #fff;
   cursor: default;
-}/*# sourceMappingURL=products-list.css.map */
+} /*# sourceMappingURL=products-list.css.map */

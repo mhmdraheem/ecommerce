@@ -307,6 +307,11 @@
   font-size: 1rem;
   padding: 0rem 1.2rem;
   margin: -10px 0 20px;
+
+  a {
+    text-decoration: underline;
+    color: red;
+  }
 }
 
 .hidden {

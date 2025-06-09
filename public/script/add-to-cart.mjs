@@ -12,7 +12,7 @@ export function create(product, options = {}) {
   const addToCartDiv = document.createElement("div");
   addToCartDiv.classList.add("add-to-cart", "cart-add-wrapper", "active");
   addToCartDiv.appendChild(cartAddIcon);
-  addToCartDiv.addEventListener("click", addToCartCallback(product, bottomProductBarDiv));
+  addToCartDiv.addEventListener("click", addToCartCallback(product, bottomProductBarDiv, options));
 
   const addToCartspinner = document.createElement("i");
   addToCartspinner.classList.add("fa-solid", "fa-spinner", "fa-spin", "add-to-cart-spinner");
@@ -88,7 +88,7 @@ export function create(product, options = {}) {
   return bottomProductBarDiv;
 }
 
-function addToCartCallback(product, bottomProductBarDiv) {
+function addToCartCallback(product, bottomProductBarDiv, options) {
   return (e) => {
     const addToCart = bottomProductBarDiv.querySelector(".add-to-cart");
     const spinner = bottomProductBarDiv.querySelector(".add-to-cart-spinner-wrapper");
@@ -105,13 +105,17 @@ function addToCartCallback(product, bottomProductBarDiv) {
             product,
             "increase",
             (updatedItem) => {
-              util.activateCartElement(bottomProductBarDiv, quantityWrapper);
+              if (options.disableQuantityWrapper) {
+                util.activateCartElement(bottomProductBarDiv, addToCart);
+                util.showAddedToCartToast();
+              } else {
+                util.activateCartElement(bottomProductBarDiv, quantityWrapper);
 
-              quantityInput.value = updatedItem.quantity;
-              quantityInput.dispatchEvent(new Event("input"));
+                quantityInput.value = updatedItem.quantity;
+                quantityInput.dispatchEvent(new Event("input"));
 
-              quantityWrapper.querySelector("button.decrease").innerHTML = `<i class="fa-solid fa-minus"></i>`;
-
+                quantityWrapper.querySelector("button.decrease").innerHTML = `<i class="fa-solid fa-minus"></i>`;
+              }
               util.updateCartAlert();
             },
             (err) => {
@@ -124,10 +128,15 @@ function addToCartCallback(product, bottomProductBarDiv) {
           callAddToCartAPI(
             product,
             (newItem) => {
-              util.activateCartElement(bottomProductBarDiv, quantityWrapper);
+              if (options.disableQuantityWrapper) {
+                util.activateCartElement(bottomProductBarDiv, addToCart);
+                util.showAddedToCartToast();
+              } else {
+                util.activateCartElement(bottomProductBarDiv, quantityWrapper);
 
-              quantityInput.value = newItem.quantity;
-              quantityInput.dispatchEvent(new Event("input"));
+                quantityInput.value = newItem.quantity;
+                quantityInput.dispatchEvent(new Event("input"));
+              }
 
               util.updateCartAlert();
             },

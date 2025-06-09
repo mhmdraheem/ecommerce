@@ -170,7 +170,7 @@ async function renderOrderSummaryCard(userData) {
     </div>
     <span class="missing-shipping-info-message hidden">
       <i class="fa-solid fa-circle-exclamation"></i>
-      Please fill your shipping information
+      Please fill your <a href="/profile.html">shipping information</a>
     </span>
   `;
 

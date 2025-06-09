@@ -52,6 +52,25 @@ export function showSucessToast(message) {
   });
 }
 
+export function showAddedToCartToast() {
+  Swal.fire({
+    icon: "success",
+    text: "Item added to cart",
+    position: "bottom",
+    background: "green",
+    color: "#fff",
+    width: "50%",
+    showConfirmButton: false,
+    timer: 3000,
+    toast: true,
+    showClass: {
+      popup: `
+      animate__slideInUp
+    `,
+    },
+  });
+}
+
 export function createFullPageOverlay(showSpinner = true) {
   const overlay = document.createElement("div");
   overlay.classList.add("page-overlay");
