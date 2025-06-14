@@ -17,9 +17,15 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        frameSrc: ["https://vercel.live"],
-        scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net", "https://vercel.live"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
+        frameSrc: ["http://13.48.136.182"],
+        scriptSrc: ["'self'", "*.fontawesome.com", "*.jsdelivr.net", "http://13.48.136.182"],
+        styleSrc: [
+          "'self'",
+          "https://fonts.googleapis.com",
+          "'unsafe-inline'",
+          "https://cdn.jsdelivr.net",
+          "http://13.48.136.182",
+        ],
         fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
         connectSrc: ["'self'", "https://ka-f.fontawesome.com"],
         imgSrc: ["'self'", "data:", "https://www.flaticon.com", "https://flagcdn.com", "*.vercel-storage.com"],
