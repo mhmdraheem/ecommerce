@@ -4,7 +4,7 @@ const session = require("express-session");
 const helmet = require("helmet");
 const { redisClient, redisStore } = require("./config/redis");
 const path = require("path");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 app.enable("trust proxy");
