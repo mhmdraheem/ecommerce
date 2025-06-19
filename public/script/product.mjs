@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     util.createFullPageOverlay(true);
 
-    const productRes = await fetch(`/api/product/${productId}`);
+    const productRes = await fetch(`/ecom/api/product/${productId}`);
     const product = await productRes.json();
 
     createMainSection(product);
@@ -305,7 +305,7 @@ async function createReviewsSection(product) {
 
 async function createRelatedProductsSection() {
   try {
-    const relatedRes = await fetch(`/api/product/${productId}/related-products`);
+    const relatedRes = await fetch(`/ecom/api/product/${productId}/related-products`);
     const relatedProducts = await relatedRes.json();
 
     if (relatedProducts.length === 0) return;
