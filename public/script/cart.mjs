@@ -2,7 +2,7 @@ import * as util from "./util.mjs";
 import * as addToCart from "./add-to-cart.mjs";
 
 (async function getCartItems() {
-  fetch("/ecom/api/cart")
+  fetch("ecom/api/cart")
     .then((response) => response.json())
     .then((items) => {
       if (items.length === 0) {

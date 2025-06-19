@@ -158,7 +158,7 @@ function addToCartCallback(product, bottomProductBarDiv, options) {
 }
 
 export function callAddToCartAPI(product, onSuccess, onError) {
-  fetch(`/ecom/api/cart/${product.id}`, {
+  fetch(`ecom/api/cart/${product.id}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -272,7 +272,7 @@ function quantityInputCallback(product) {
 }
 
 function callUpdateProductQuantityAPI(product, type, onSuccess, onError) {
-  fetch(`/ecom/api/cart/${product.id}`, {
+  fetch(`ecom/api/cart/${product.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -285,7 +285,7 @@ function callUpdateProductQuantityAPI(product, type, onSuccess, onError) {
 }
 
 function getCartItem(product, onSuccess, onError) {
-  fetch(`/ecom/api/cart/${product.id}`)
+  fetch(`ecom/api/cart/${product.id}`)
     .then((response) => util.toJson(response))
     .then(onSuccess)
     .catch(onError);

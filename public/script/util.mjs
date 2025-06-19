@@ -11,7 +11,7 @@ export function getQueryParams() {
 }
 
 export function callDeleteAPI(product, onSuccess, onError) {
-  fetch(`/ecom/api/cart/${product.id}`, {
+  fetch(`ecom/api/cart/${product.id}`, {
     method: "DELETE",
   })
     .then((response) => toJson(response))
@@ -109,7 +109,7 @@ export function activateCartElement(productDiv, element) {
 
 export function updateCartAlert() {
   const alert = document.querySelector(".cart-button .alert");
-  fetch("/ecom/api/cart/count")
+  fetch("ecom/api/cart/count")
     .then((response) => response.json())
     .then((count) => {
       if (count > 0) {
@@ -125,7 +125,7 @@ export function updateCartAlert() {
 }
 
 export function getUserProfile() {
-  return fetch("/ecom/api/profile")
+  return fetch("ecom/api/profile")
     .then((response) => response.json())
     .then((result) => result)
     .catch((err) => {
