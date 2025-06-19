@@ -70,8 +70,6 @@ function createProductElement(product) {
     freeShippingSpan.textContent = "Free shipping";
   }
 
-  console.log("Creating products");
-
   const bottomProductBarDiv = addToCart.create(product, { disableQuantityWrapper: true });
 
   // Append elements to details

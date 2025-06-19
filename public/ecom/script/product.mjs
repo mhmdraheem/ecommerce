@@ -29,7 +29,6 @@ function createMainSection(product) {
   const productImage = document.createElement("img");
   productImage.id = "product-image";
   productImage.src = `${util.imgUrl}/product/${product.images[0]}`;
-
   productImageWrapper.appendChild(productImage);
 
   createAltImages(product.images);
