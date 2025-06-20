@@ -71,11 +71,11 @@ async function renderItemsSection(items) {
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("item");
     itemDiv.innerHTML = `
-          <a class="image-wrapper" href="/product.html?id=${item.id}">
+          <a class="image-wrapper" href="/ecom/product.html?id=${item.id}">
               <img src="${util.imgUrl}/product/${item.image}"></img>
           </a>
           <div class="item-info">
-              <a class="item-title" href="/product.html?id=${item.id}">${item.title}</a>
+              <a class="item-title" href="/ecom/product.html?id=${item.id}">${item.title}</a>
               <p class="item-price">${item.price} EGP</p>
               <p class="item-quantity">${item.quantity} item(s)</p>
           </div>`;
