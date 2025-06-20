@@ -323,7 +323,7 @@ async function createRelatedProductsSection() {
     relatedProducts.forEach((prod) => {
       const relatedProductLink = document.createElement("a");
       relatedProductLink.classList.add("related-product-link");
-      relatedProductLink.href = `ecom/product.html?id=${prod.id}`;
+      relatedProductLink.href = `../ecom/product.html?id=${prod.id}`;
       relatedProductLink.innerHTML = `<img src="${util.imgUrl}/product/${prod.images[0]}">`;
 
       const productTitle = document.createElement("span");

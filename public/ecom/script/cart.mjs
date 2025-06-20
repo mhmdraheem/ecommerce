@@ -48,12 +48,12 @@ function renderCartItems(items) {
 
     const imageWrapperLink = document.createElement("a");
     imageWrapperLink.classList.add("image-wrapper");
-    imageWrapperLink.href = `ecom/product.html?id=${item.id}`;
+    imageWrapperLink.href = `../ecom/product.html?id=${item.id}`;
     imageWrapperLink.appendChild(productImage);
 
     const titleHeaderLink = document.createElement("a");
     titleHeaderLink.innerText = item.title;
-    titleHeaderLink.href = `ecom/product.html?id=${item.id}`;
+    titleHeaderLink.href = `../ecom/product.html?id=${item.id}`;
 
     const priceSpan = document.createElement("span");
     priceSpan.classList.add("price");
