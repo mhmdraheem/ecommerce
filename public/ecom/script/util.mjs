@@ -188,7 +188,7 @@ export function generateStars(rating, includeReviews = false) {
   document.querySelector(".search-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const searchInput = document.querySelector("#search");
-    window.location.href = `catalog.html?name=${searchInput.value}`;
+    window.location.href = `../ecom/catalog.html?name=${searchInput.value}`;
   });
 
   updateCartAlert();
