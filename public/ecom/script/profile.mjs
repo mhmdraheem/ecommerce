@@ -1,6 +1,6 @@
 import * as util from "./util.mjs";
 
-const API_BASE_URL = "/api/profile";
+const API_BASE_URL = "/ecom/api/profile";
 const UPLOAD_AVATAR_URL = `${API_BASE_URL}/upload-avatar`;
 const SUBMIT_INFO_URL = `${API_BASE_URL}/submit-info`;
 

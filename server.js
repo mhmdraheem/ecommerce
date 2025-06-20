@@ -50,9 +50,9 @@ app.use("/ecom", express.static(path.join(__dirname, "public/ecom")));
 // API Routes
 // app.use("/api", require("./middleware/apiDelay"));
 // app.use("/api", require("./middleware/logger"));
-app.use("/api/cart", require("./routes/cart"));
+app.use("/ecom/api/cart", require("./routes/cart"));
 app.use("/ecom/api/product", require("./routes/product"));
-app.use("/api/profile", require("./routes/profile"));
+app.use("/ecom/api/profile", require("./routes/profile"));
 
 app.use("/api", require("./middleware/errorHandler"));
 

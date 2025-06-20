@@ -3,12 +3,12 @@ import * as util from "./util.mjs";
 let subtotal = 0;
 let items = [];
 (async function getCartItems() {
-  fetch("/api/cart")
+  fetch("/ecom/api/cart")
     .then((response) => util.toJson(response))
     .then((itemsArr) => {
       if (itemsArr.length > 0) {
         items = itemsArr;
-        fetch("/api/profile")
+        fetch("/ecom/api/profile")
           .then((response) => response.json())
           .then((userData) => {
             renderInfoSection(userData);
@@ -197,7 +197,7 @@ async function renderOrderSummaryCard(userData) {
       return;
     }
     checkoutButton.querySelector("i").classList.remove("hidden");
-    fetch("/api/cart/", { method: "DELETE" })
+    fetch("/ecom/api/cart/", { method: "DELETE" })
       .then((response) => {
         if (response.ok) {
           Swal.fire({
