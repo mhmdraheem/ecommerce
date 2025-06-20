@@ -118,12 +118,12 @@ function createOrderDetailsCard(product) {
   buyNowButton.addEventListener("click", () => {
     const activeQuantityWrapperDiv = orderDetailsCard.querySelector(".quantity-wrapper.active input[type='number']");
     if (activeQuantityWrapperDiv) {
-      window.open("/cart.html", "_self");
+      window.open("../ecom/cart.html", "_self");
     } else {
       addToCart.callAddToCartAPI(
         product,
         (newItem) => {
-          window.open("/cart.html", "_self");
+          window.open("../ecom/cart.html", "_self");
         },
         (err) => {
           console.error(err);

@@ -25,7 +25,7 @@ function renderEmptyCart() {
   header.textContent = "Your cart is empty, start shopping now!";
 
   const homePageLink = document.createElement("a");
-  homePageLink.href = "index.html";
+  homePageLink.href = "/ecom";
   homePageLink.textContent = "Browse products";
 
   pageHeaderDiv.appendChild(header);
@@ -204,7 +204,7 @@ function renderCartSummary(items) {
 
   const checkoutButton = document.createElement("a");
   checkoutButton.classList.add("cart-summary-checkout");
-  checkoutButton.href = "checkout.html";
+  checkoutButton.href = "../ecom/checkout.html";
   checkoutButton.textContent = "Buy now";
 
   const freeShippingIcon = document.createElement("i");

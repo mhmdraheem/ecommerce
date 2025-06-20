@@ -170,7 +170,7 @@ async function renderOrderSummaryCard(userData) {
     </div>
     <span class="missing-shipping-info-message hidden">
       <i class="fa-solid fa-circle-exclamation"></i>
-      Please fill your <a href="/profile.html">shipping information</a>
+      Please fill your <a href="../ecom/profile.html">shipping information</a>
     </span>
   `;
 
@@ -208,7 +208,7 @@ async function renderOrderSummaryCard(userData) {
             confirmButtonColor: "#3085d6",
             confirmButtonText: "Continue shopping",
           }).then((result) => {
-            window.open("index.html", "_self");
+            window.open("/ecom", "_self");
           });
         }
       })
