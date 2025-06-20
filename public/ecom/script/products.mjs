@@ -126,7 +126,7 @@ const defaultOnError = (err) => {
 export function fetchProducts(callbacks = {}) {
   util.createFullPageOverlay();
 
-  fetch(`/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&${util.queryParams}`)
+  fetch(`/ecom/api/product?limit=${productsPerPage}&sortBy=${sortBy}&page=${page}&${util.queryParams}`)
     .then((response) => util.toJson(response))
     .then((data) => {
       const products = data.products;
