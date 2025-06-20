@@ -1,6 +1,6 @@
 .cover {
   height: 120px;
-  background-image: url("../ecom/img/ecommerce.png");
+  background-image: url("../img/ecommerce.png");
   background-size: cover;
   background-position: left;
 }
@@ -9,4 +9,4 @@
   width: 100%;
   border-radius: 0;
   justify-content: space-between;
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */
