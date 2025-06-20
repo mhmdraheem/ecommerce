@@ -59,7 +59,8 @@ export function showAddedToCartToast() {
     position: "bottom",
     background: "green",
     color: "#fff",
-    width: "50%",
+    width: "600px",
+
     showConfirmButton: false,
     timer: 3000,
     toast: true,
