@@ -76,10 +76,10 @@ const footer = `
       <div class="content container">
         <span>Powered By <a href="#">Tech</a> - Designed by <a href="#">Mohamed Raheem</a></span>
         <span>
-          <img src="img/visa.jpg" alt="payment-method-visa" loading="lazy" />
-          <img src="img/paypal.png" alt="payment-method-paypal" loading="lazy" />
-          <img src="img/mastercard.png" alt="payment-method-mastercard" loading="lazy" />
-          <img src="img/westernunion.webp" alt="payment-method-westernunion" loading="lazy" />
+          <img src="../ecom/img/visa.jpg" alt="payment-method-visa" loading="lazy" />
+          <img src="../ecom/img/paypal.png" alt="payment-method-paypal" loading="lazy" />
+          <img src="../ecom/img/mastercard.png" alt="payment-method-mastercard" loading="lazy" />
+          <img src="../ecom/img/westernunion.webp" alt="payment-method-westernunion" loading="lazy" />
         </span>
       </div>
     </footer>
