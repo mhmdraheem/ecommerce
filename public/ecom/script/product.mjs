@@ -41,7 +41,7 @@ function createMainSection(product) {
 
   document.querySelectorAll(".product-brand").forEach((brand) => {
     brand.innerText = product.heading.brand;
-    brand.href = `/catalog.html?brand=${product.heading.brand}`;
+    brand.href = `../ecom/catalog.html?brand=${product.heading.brand}`;
   });
 
   document.querySelectorAll(".product-rating").forEach((rating) => {
