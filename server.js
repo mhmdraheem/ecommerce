@@ -51,7 +51,7 @@ app.use(
 
 app.use(require("./middleware/sessionHandler"));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public/ecom")));
 
 // API Routes
 // app.use("/api", require("./middleware/apiDelay"));

@@ -1,5 +1,5 @@
 // export const imgUrl = "https://e5fzq08qnffeagrv.public.blob.vercel-storage.com";
-export const imgUrl = "/img";
+export const imgUrl = "../ecom/img";
 
 let url = new URL(window.location.href);
 let searchParams = new URLSearchParams(url.search);
