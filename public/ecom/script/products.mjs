@@ -85,7 +85,7 @@ function createProductElement(product) {
   productInfoLink.classList.add("product-info");
   productInfoLink.appendChild(imgWrapper);
   productInfoLink.appendChild(detailsDiv);
-  productInfoLink.href = `product.html?id=${product.id}`;
+  productInfoLink.href = `ecom/product.html?id=${product.id}`;
 
   // Append everything to product div
   productDiv.appendChild(productInfoLink);

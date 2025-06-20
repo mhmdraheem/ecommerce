@@ -2,7 +2,7 @@ const nav = `
     <nav>
       <div class="container">
         <div class="header">
-          <a href="index.html" class="logo">
+          <a href="/" class="logo">
             <h1>Web<span class="highlight">M</span>art</h1>
           </a>
           <form class="search-form" method="get">
